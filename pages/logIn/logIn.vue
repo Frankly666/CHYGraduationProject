@@ -53,7 +53,7 @@
 
               <!-- 注册链接 -->
               <p class="already">
-                你是否有账号呢?
+                还没有账号?
                 <a @click="switchToSignUp">注册</a>
               </p>
             </view>
@@ -106,6 +106,7 @@ const handleSubmit = async () => {
       uni.setStorageSync('username', result.data.username)
       uni.setStorageSync('encryptedPassword', result.data.encryptedPassword) // 存储加密密码
       uni.setStorageSync('salt', result.data.salt) // 存储 salt
+			uni.setStorageSync('isLogIn', true);
 
       // 跳转到首页或其他页面
       uni.navigateTo({

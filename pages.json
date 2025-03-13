@@ -19,11 +19,17 @@
 			"path" : "pages/enroll/enroll",
 			"style" : 
 			{
-				"navigationBarTitleText" : "",,
+				"navigationBarTitleText" : "",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path" : "pages/chat/chat",
+			"style" : 
+			{
+				"navigationBarTitleText" : ""
+			}
 		}
-		
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
