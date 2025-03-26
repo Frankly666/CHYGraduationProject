@@ -1,276 +1,414 @@
 <template>
   <view class="container">
-    <!-- 顶部导航 -->
-    <view class="header">
-      <text class="title">智能教育研究助手</text>
-      <view class="button-group">
-        <button class="button">
-          <text class="icon">&#xf093;</text>
-          <text>上传文档</text>
-        </button>
-        <button class="button">
-          <text class="icon">&#xf542;</text>
-          <text>知识图谱</text>
-        </button>
-        <button class="button">
-          <text class="icon">&#xf1da;</text>
-          <text>历史管理</text>
+    <!-- 左侧侧边栏 -->
+    <view class="sidebar">
+      <view class="header">
+        <text class="logo">EduResearch</text>
+        <button class="new-chat" @click="createNewChat">
+          <text>+ 新对话</text>
         </button>
       </view>
+      
+      <scroll-view class="history-list" scroll-y>
+        <view 
+          v-for="item in historyList"
+          :key="item.id"
+          class="history-item"
+          :class="{ active: currentSession.id === item.id }"
+          @click="switchSession(item.id)"
+        >
+          <view class="item-icon">{{ item.type === 'doc' ? '📄' : '💬' }}</view>
+          <view class="item-info">
+            <text class="title">{{ item.title }}</text>
+            <text class="time">{{ formatTime(item.time) }}</text>
+          </view>
+        </view>
+      </scroll-view>
     </view>
 
-    <!-- 消息列表区域 -->
-    <scroll-view class="message-container" scroll-y="true" ref="messageContainer">
-      <view class="message-list">
-        <!-- AI消息 -->
-        <view class="message ai-message">
-          <image class="avatar" :src="aiAvatar" mode="aspectFill" />
-          <view class="content">
-            <view class="bubble">
-              <text>您好！我是您的智能教育研究助手。我可以帮助您进行文献研究、知识整理和学习规划。请问有什么我可以帮您的吗？</text>
-            </view>
-            <text class="time">09:30</text>
-          </view>
-        </view>
-
-        <!-- 用户消息 -->
-        <view class="message user-message">
-          <image class="avatar" :src="userAvatar" mode="aspectFill" />
-          <view class="content">
-            <view class="bubble">
-              <text>你好，我想研究一下人工智能在教育领域的应用，能帮我整理相关资料吗？</text>
-            </view>
-            <text class="time">09:31</text>
-          </view>
-        </view>
-
-        <!-- AI回复 -->
-        <view class="message ai-message">
-          <image class="avatar" :src="aiAvatar" mode="aspectFill" />
-          <view class="content">
-            <view class="bubble">
-              <text>当然可以帮您整理相关资料。人工智能在教育领域的应用主要包括以下几个方面：</text>
-              <view class="list">
-                <text>• 个性化学习和自适应教学</text>
-                <text>• 智能教学系统和虚拟助教</text>
-                <text>• 教育数据分析和学习评估</text>
-                <text>• 智能内容生成和课程设计</text>
+    <!-- 右侧主区域 -->
+    <view class="main">
+      <!-- 消息区域 -->
+      <scroll-view 
+        class="message-list"
+        scroll-y
+        :scroll-top="scrollTop"
+      >
+        <view 
+          v-for="(msg, index) in messageList"
+          :key="index"
+          class="message"
+          :class="msg.role"
+        >
+          <image 
+            class="avatar"
+            :src="msg.role === 'user' ? 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAFHSURBVHgB7ZbBDcIwDESfkQpQA6oBNdABHdABHdABJdABHdABHdABJXh5iiNZJ7vEQuojPd1JtvNjO3ECAAAAAAAAAAAAAADAiXjvH1rrO6XUjTF2j9bOuaeU8hGtKaUuY4yXGf3wJcVxH3Rwzt2klHfO8YJQ1nH3MqOfvqQ47oMOzrmblPLOOV4QyjruXmb005cUx33QwTl3k1LeOccLQlnH3cuMfvqS4rgPOjjnblLKO+d4QSjruHuZ0U9fUhz3QQfn3E1Keecch5DkXqy1NxH6M3r1bqgvTjC6a4y5i9C/0Kt3Q31xgtFdY8xdhP6FXr0b6osTjO4aY+4i9C/06t1QX5xgdNcYcxehf6FX74b64gSju8aYuwj9C716N9QXJxjdNcbcRehf6NW7ob44weiuMeYuQv9Cr94N9cUJRneNMXcR+hd69W6oL04wumuMuYvQv9Crd0N9cYLRXWPMXYT+hV69G+qLE4zuGmPuIvQv9OrdUF+cYHTXGHMXoX+hV++G+uIEo7vGmLsI/Qu9ejfUFycY3TXG3EXoX+jVu6G+OMHorjHmLkL/AiMpxmE9Vw1xAAAAAElFTkSuQmCC' : 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IARs4c6QAAAARnQU1BAACxjwv8YQUAAAHSSURBVHgB7ZdBDsIgEEWn7v8C3bgx7o0X6M0L6AIv4Ma4Ny7wAnoBvUA3JtE0TQUhDAX8L5nJcCjTj58OQwEAAAAAAAAAAAAAACqklHpK6YoxXrXWx7X6KaUzxnjWWm+klF4xL0Z7eXHcBx2EEGcM5J0Y4wWhrOPuZUY/fUlx3AcdhBBnDOSdGOMFoazj7mVGP31JcdwHHYQQZwzknRjjBaGs4+5lRj99SXHcBx2EEGcM5J0Y4wWhrOPuZUY/fUlx3AcdhBBnDOSdGONFq9Wr1vomQv9Br94N9cUJRneNMXcR+hd69W6oL04wumuMuYvQv9Crd0N9cYLRXWPMXYT+hV69G+qLE4zuGmPuIvQv9OrdUF+cYHTXGHMXoX+hV++G+uIEo7vGmLsI/Qu9ejfUFycY3TXG3EXoX+jVu6G+OMHorjHmLkL/Qq/eDfXFCUZ3jTF3EfoXevVuqC9OMLprjLmL0L/Qq3dDfXGC0V1jzF2E/oVevRvqixOM7hpj7iL0L/Tq3VBfnGB01xhzF6F/oVfvhvriBKO7xpi7CP0LvXo31BcnGN01xtxF6F/o1buhvjjB6K4x5i5C/wIjjcVhOVkOcQAAAABJRU5ErkJggg=='"
+          />
+          <view class="bubble">
+            <text v-if="msg.thinking" class="typing">
+              <text class="dot">●</text>
+              <text class="dot">●</text>
+              <text class="dot">●</text>
+            </text>
+            <text v-else>{{ msg.content }}</text>
+            <view v-if="msg.files" class="files">
+              <view v-for="(file, i) in msg.files" :key="i" class="file">
+                <text class="icon">📎</text>
+                <text class="name">{{ file.name }}</text>
               </view>
-              <text class="mt-2">您想了解哪个方面的具体应用呢？</text>
             </view>
-            <text class="time">09:32</text>
+            <text class="time">{{ formatTime(msg.time) }}</text>
           </view>
         </view>
-      </view>
-    </scroll-view>
+      </scroll-view>
 
-    <!-- 底部输入区域 -->
-    <view class="footer">
-      <view class="input-container">
-        <input
-          type="text"
-          v-model="inputMessage"
-          placeholder="请输入您的问题..."
-          class="input"
-          @confirm="sendMessage"
+      <!-- 输入区域 -->
+      <view class="input-area">
+        <view class="file-tags">
+          <view v-for="(file, index) in files" :key="index" class="tag">
+            <text>{{ file.name }}</text>
+            <text @click="removeFile(index)" class="remove">×</text>
+          </view>
+        </view>
+        <view class="input-box">
+          <view @click="triggerFile" class="file-btn">📁</view>
+          <input 
+            v-model="inputText"
+            placeholder="输入消息..."
+            @confirm="send"
+            class="input"
+          />
+          <button @click="send" :disabled="!canSend" class="send-btn">
+            {{ isSending ? '发送中...' : '发送' }}
+          </button>
+        </view>
+        <input 
+          type="file"
+          ref="fileInput"
+          @change="addFiles"
+          class="hidden-input"
+          multiple
         />
-        <button class="attach-button">
-          <text class="icon">&#xf0c6;</text>
-        </button>
       </view>
-      <button class="send-button" @click="sendMessage">
-        <text class="icon">&#xf1d8;</text>
-        <text>发送</text>
-      </button>
     </view>
   </view>
 </template>
 
-<script lang="ts" setup>
-import { ref } from 'vue';
+<script setup>
+import { ref, reactive, computed, nextTick } from 'vue'
 
-const messageContainer = ref<HTMLElement | null>(null);
-const inputMessage = ref('');
+// 工具函数
+const formatTime = (timestamp) => {
+  const date = new Date(timestamp)
+  const hours = date.getHours().toString().padStart(2, '0')
+  const minutes = date.getMinutes().toString().padStart(2, '0')
+  return `${hours}:${minutes}`
+}
 
-// AI头像使用科技感的图片
-const aiAvatar = 'https://ai-public.mastergo.com/ai/img_res/d1fffaf8973920830b48c33aceda0629.jpg';
+// 数据部分
+const historyList = reactive([
+  { id: 1, title: '新对话1', time: Date.now(), type: 'chat' },
+  { id: 2, title: '文档分析', time: Date.now()-3600000, type: 'doc' }
+])
 
-// 用户头像使用商务风格的图片
-const userAvatar = 'https://ai-public.mastergo.com/ai/img_res/e8cc2d74ac25962202e46747a9989fbb.jpg';
+const currentSession = reactive({ id: 1 })
+const messageList = reactive([])
+const inputText = ref('')
+const files = ref([])
+const isSending = ref(false)
+const scrollTop = ref(0)
 
-const sendMessage = () => {
-  if (!inputMessage.value.trim()) return;
+// 计算属性
+const canSend = computed(() => {
+  return (inputText.value.trim() || files.value.length) && !isSending.value
+})
 
-  // 这里只是清空输入框，实际项目中需要处理发送消息的逻辑
-  inputMessage.value = '';
+// 核心方法
+const createNewChat = () => {
+  const newChat = {
+    id: Date.now(),
+    title: `新对话${historyList.length+1}`,
+    time: Date.now(),
+    type: 'chat'
+  }
+  historyList.unshift(newChat)
+  switchSession(newChat.id)
+}
 
-  // 滚动到底部
+const switchSession = (id) => {
+  const session = historyList.find(item => item.id === id)
+  Object.assign(currentSession, session)
+  messageList.splice(0) // 清空当前消息
+}
+
+const send = async () => {
+  if (!canSend.value) return
+
+  // 用户消息
+  const userMsg = {
+    role: 'user',
+    content: inputText.value,
+    files: [...files.value],
+    time: Date.now()
+  }
+  messageList.push(userMsg)
+  
+  // 模拟AI回复
+  isSending.value = true
+  const tempMsg = {
+    role: 'assistant',
+    content: '',
+    thinking: true,
+    time: Date.now()
+  }
+  messageList.push(tempMsg)
+
+  // 清空输入
+  inputText.value = ''
+  files.value = []
+  
+  // 模拟延迟
   setTimeout(() => {
-    if (messageContainer.value) {
-      messageContainer.value.scrollTop = messageContainer.value.scrollHeight;
-    }
-  }, 100);
-};
+    messageList.pop() // 移除思考状态
+    messageList.push({
+      role: 'assistant',
+      content: '这是模拟的AI回复内容，实际开发时需接入API',
+      time: Date.now()
+    })
+    isSending.value = false
+    scrollToBottom()
+  }, 1500)
+}
+
+// 文件处理
+const triggerFile = () => {
+  document.querySelector('.hidden-input').click()
+}
+
+const addFiles = (e) => {
+  files.value = [...files.value, ...Array.from(e.target.files)]
+}
+
+const removeFile = (index) => {
+  files.value.splice(index, 1)
+}
+
+// 辅助方法
+const scrollToBottom = async () => {
+  await nextTick()
+  scrollTop.value = Date.now() // 触发滚动更新
+}
 </script>
 
 <style lang="less">
 .container {
   display: flex;
-  flex-direction: column;
   height: 100vh;
-  background-color: #f9fafb;
-}
+  background: #f0f2f5;
+	overflow: hidden;
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 60px;
-  padding: 0 16px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  .sidebar {
+    width: 260px;
+    background: white;
+    border-right: 1px solid #e8e8e8;
 
-  .title {
-    font-size: 18px;
-    font-weight: bold;
-    color: #1a1a1a;
-  }
+    .header {
+      padding: 20px;
+      border-bottom: 1px solid #eee;
 
-  .button-group {
-    display: flex;
-    gap: 8px;
+      .logo {
+        font-size: 24px;
+        font-weight: bold;
+        color: #1890ff;
+      }
 
-    .button {
-      display: flex;
-      align-items: center;
-      gap: 4px;
-      padding: 8px 12px;
-      background-color: #eef2ff;
-      color: #2563eb;
-      border-radius: 20px;
-      font-size: 14px;
+      .new-chat {
+        margin-top: 15px;
+        width: 100%;
+        background: #1890ff;
+        color: white;
+        border-radius: 4px;
+        padding: 8px;
+      }
+    }
 
-      .icon {
-        font-family: 'FontAwesome';
+    .history-list {
+      height: calc(100vh - 100px);
+      padding: 10px;
+
+      .history-item {
+        display: flex;
+        align-items: center;
+        padding: 12px;
+        border-radius: 6px;
+        margin: 4px 0;
+        transition: all 0.2s;
+
+        &.active {
+          background: #e6f7ff;
+        }
+
+        .item-icon {
+          font-size: 20px;
+          margin-right: 12px;
+        }
+
+        .item-info {
+          flex: 1;
+
+          .title {
+            display: block;
+            font-size: 14px;
+          }
+
+          .time {
+            font-size: 12px;
+            color: #999;
+          }
+        }
       }
     }
   }
-}
 
-.message-container {
-  flex: 1;
-  overflow-y: auto;
-  padding: 16px;
-
-  .message-list {
-    max-width: 800px;
-    margin: 0 auto;
+  .main {
+    flex: 1;
     display: flex;
     flex-direction: column;
-    gap: 16px;
 
-    .message {
-      display: flex;
-      gap: 12px;
+    .message-list {
+      flex: 1;
+      padding: 20px;
+      overflow-y: auto;
 
-      &.ai-message {
-        flex-direction: row;
-      }
-
-      &.user-message {
-        flex-direction: row-reverse;
-      }
-
-      .avatar {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-      }
-
-      .content {
+      .message {
         display: flex;
-        flex-direction: column;
+        margin: 12px 0;
 
-        .bubble {
-          padding: 12px;
-          border-radius: 12px;
-          max-width: 70%;
+        &.user {
+          flex-direction: row-reverse;
 
-          .list {
-            margin-top: 8px;
-            display: flex;
-            flex-direction: column;
-            gap: 4px;
+          .bubble {
+            background: #1890ff;
+            color: white;
+
+            .time {
+              color: rgba(255,255,255,0.8);
+            }
           }
         }
 
-        .time {
+        .avatar {
+          width: 40px;
+          height: 40px;
+          border-radius: 4px;
+          margin: 0 12px;
+        }
+
+        .bubble {
+          max-width: 70%;
+          padding: 12px 16px;
+          border-radius: 6px;
+          background: white;
+          box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+          position: relative;
+
+          .typing {
+            .dot {
+              animation: blink 1.4s infinite;
+              @keyframes blink {
+                0%, 100% { opacity: 0.2; }
+                50% { opacity: 1; }
+              }
+              &:nth-child(2) { animation-delay: 0.2s; }
+              &:nth-child(3) { animation-delay: 0.4s; }
+            }
+          }
+
+          .files {
+            margin-top: 8px;
+            .file {
+              display: flex;
+              align-items: center;
+              padding: 4px 0;
+              .icon { margin-right: 6px; }
+              .name {
+                font-size: 12px;
+                color: inherit;
+              }
+            }
+          }
+
+          .time {
+            display: block;
+            font-size: 12px;
+            color: #666;
+            margin-top: 4px;
+          }
+        }
+      }
+    }
+
+    .input-area {
+      padding: 16px;
+      background: white;
+      border-top: 1px solid #eee;
+
+      .file-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+        margin-bottom: 8px;
+
+        .tag {
+          background: #f0f2f5;
+          padding: 4px 8px;
+          border-radius: 4px;
           font-size: 12px;
-          color: #666;
-          margin-top: 4px;
+          display: flex;
+          align-items: center;
+
+          .remove {
+            margin-left: 6px;
+            cursor: pointer;
+            &:hover { color: #ff4d4f; }
+          }
         }
       }
 
-      &.ai-message .bubble {
-        background-color: #ffffff;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      .input-box {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+
+        .file-btn {
+          font-size: 20px;
+          cursor: pointer;
+          padding: 8px;
+        }
+
+        .input {
+          flex: 1;
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          padding: 8px 12px;
+        }
+
+        .send-btn {
+          background: #1890ff;
+          color: white;
+          border: none;
+          padding: 8px 16px;
+          border-radius: 4px;
+          &:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+          }
+        }
       }
 
-      &.user-message .bubble {
-        background-color: #2563eb;
-        color: #ffffff;
+      .hidden-input {
+        display: none;
       }
-    }
-  }
-}
-
-.footer {
-  background-color: #ffffff;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-  padding: 12px;
-
-  .input-container {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    position: relative;
-
-    .input {
-      flex: 1;
-      padding: 12px 16px;
-      background-color: #f3f4f6;
-      border-radius: 24px;
-      border: none;
-      outline: none;
-    }
-
-    .attach-button {
-      position: absolute;
-      right: 12px;
-      top: 50%;
-      transform: translateY(-50%);
-      background: none;
-      border: none;
-      color: #666;
-
-      .icon {
-        font-family: 'FontAwesome';
-      }
-    }
-  }
-
-  .send-button {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    padding: 12px 24px;
-    background-color: #2563eb;
-    color: #ffffff;
-    border-radius: 24px;
-    border: none;
-
-    .icon {
-      font-family: 'FontAwesome';
     }
   }
 }
