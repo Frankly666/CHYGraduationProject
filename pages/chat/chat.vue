@@ -94,8 +94,10 @@
   </view>
 </template>
 
+
 <script setup>
 import { ref, reactive, computed, nextTick } from 'vue'
+import { simpleChat } from '@/service/index.js'
 
 // 工具函数
 const formatTime = (timestamp) => {
@@ -107,12 +109,27 @@ const formatTime = (timestamp) => {
 
 // 数据部分
 const historyList = reactive([
-  { id: 1, title: '新对话1', time: Date.now(), type: 'chat' },
-  { id: 2, title: '文档分析', time: Date.now()-3600000, type: 'doc' }
+  { 
+    id: 1, 
+    title: '新对话1', 
+    time: Date.now(), 
+    type: 'chat',
+    messages: [
+      { role: 'system', content: '你是知识渊博的助理' }
+    ]
+  },
+  { 
+    id: 2, 
+    title: '文档分析', 
+    time: Date.now()-3600000, 
+    type: 'doc',
+    messages: [
+      { role: 'system', content: '你是文档分析专家' }
+    ]
+  }
 ])
 
 const currentSession = reactive({ id: 1 })
-const messageList = reactive([])
 const inputText = ref('')
 const files = ref([])
 const isSending = ref(false)
@@ -123,13 +140,22 @@ const canSend = computed(() => {
   return (inputText.value.trim() || files.value.length) && !isSending.value
 })
 
+// 获取当前会话的消息列表
+const messageList = computed(() => {
+  const session = historyList.find(item => item.id === currentSession.id)
+  return session ? session.messages.filter(msg => msg.role !== 'system') : []
+})
+
 // 核心方法
 const createNewChat = () => {
   const newChat = {
     id: Date.now(),
     title: `新对话${historyList.length+1}`,
     time: Date.now(),
-    type: 'chat'
+    type: 'chat',
+    messages: [
+      { role: 'system', content: '你是知识渊博的助理' }
+    ]
   }
   historyList.unshift(newChat)
   switchSession(newChat.id)
@@ -137,12 +163,17 @@ const createNewChat = () => {
 
 const switchSession = (id) => {
   const session = historyList.find(item => item.id === id)
-  Object.assign(currentSession, session)
-  messageList.splice(0) // 清空当前消息
+  if (session) {
+    Object.assign(currentSession, session)
+  }
 }
 
 const send = async () => {
   if (!canSend.value) return
+
+  // 获取当前会话
+  const session = historyList.find(item => item.id === currentSession.id)
+  if (!session) return
 
   // 用户消息
   const userMsg = {
@@ -151,9 +182,9 @@ const send = async () => {
     files: [...files.value],
     time: Date.now()
   }
-  messageList.push(userMsg)
+  session.messages.push(userMsg)
   
-  // 模拟AI回复
+  // 显示AI思考状态
   isSending.value = true
   const tempMsg = {
     role: 'assistant',
@@ -161,26 +192,63 @@ const send = async () => {
     thinking: true,
     time: Date.now()
   }
-  messageList.push(tempMsg)
+  session.messages.push(tempMsg)
 
   // 清空输入
   inputText.value = ''
   files.value = []
+  scrollToBottom()
   
-  // 模拟延迟
-  setTimeout(() => {
-    messageList.pop() // 移除思考状态
-    messageList.push({
+  try {
+    await simpleChat(
+      userMsg.content,
+			session.messages,
+      (content, isEnd) => {
+        // 移除思考状态消息
+        if (session.messages[session.messages.length - 1].thinking) {
+          session.messages.pop()
+        }
+        
+        // 更新或添加消息
+        const lastMsg = session.messages[session.messages.length - 1]
+        if (lastMsg?.role === 'assistant' && !lastMsg.thinking) {
+          lastMsg.content += content
+        } else {
+          session.messages.push({
+            role: 'assistant',
+            content: content,
+            time: Date.now()
+          })
+        }
+				
+        scrollToBottom()
+        
+        // 最终消息处理
+        if (isEnd) {
+          // 可以在这里添加会话结束后的逻辑
+        }
+      },
+      {
+        temperature: 0.7,
+        max_tokens: 1000
+      }
+    )
+  } catch (error) {
+    // 出错时移除思考状态
+    session.messages.pop()
+    // 添加错误提示
+    session.messages.push({
       role: 'assistant',
-      content: '这是模拟的AI回复内容，实际开发时需接入API',
+      content: '请求失败: ' + error.message,
       time: Date.now()
     })
+  } finally {
     isSending.value = false
     scrollToBottom()
-  }, 1500)
+  }
 }
 
-// 文件处理
+// 文件处理（保持不变）
 const triggerFile = () => {
   document.querySelector('.hidden-input').click()
 }
@@ -199,6 +267,7 @@ const scrollToBottom = async () => {
   scrollTop.value = Date.now() // 触发滚动更新
 }
 </script>
+
 
 <style lang="less">
 .container {
