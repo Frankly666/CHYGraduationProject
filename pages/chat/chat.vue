@@ -65,11 +65,12 @@
       <!-- 输入区域 -->
       <view class="input-area">
         <view class="file-tags">
-          <view v-for="(file, index) in files" :key="index" class="tag">
-            <text>{{ file.name }}</text>
-            <text @click="removeFile(index)" class="remove">×</text>
-          </view>
-        </view>
+					<view v-for="(file, index) in files" :key="index" class="tag">
+						<text>{{ file.name }}</text>
+						<text class="status" :class="file.status">{{ fileStatusText(file) }}</text>
+						<text @click="removeFile(index)" class="remove">×</text>
+					</view>
+				</view>
         <view class="input-box">
           <view @click="triggerFile" class="file-btn">📁</view>
           <input 
@@ -87,7 +88,6 @@
           ref="fileInput"
           @change="addFiles"
           class="hidden-input"
-          multiple
         />
       </view>
     </view>
@@ -97,7 +97,9 @@
 
 <script setup>
 import { ref, reactive, computed, nextTick } from 'vue'
-import { simpleChat } from '@/service/index.js'
+import { askQuestion, uploadFile } from '../../controls/docChat'
+import { chatWithKimi } from '../../controls/kimiControl'
+import { streamChat } from '../../service/kimi_normal'
 
 // 工具函数
 const formatTime = (timestamp) => {
@@ -134,6 +136,17 @@ const inputText = ref('')
 const files = ref([])
 const isSending = ref(false)
 const scrollTop = ref(0)
+const fileInput = ref(null)
+const fileId = ref(null);
+
+// 新增状态常量
+const FILE_STATUS = {
+  PENDING: 'pending',
+  UPLOADING: 'uploading',
+  ANALYZING: 'analyzing',
+  SUCCESS: 'success',
+  ERROR: 'error'
+}
 
 // 计算属性
 const canSend = computed(() => {
@@ -168,89 +181,126 @@ const switchSession = (id) => {
   }
 }
 
+// 页面中的send函数
 const send = async () => {
-  if (!canSend.value) return
+  if (!canSend.value) return;
 
-  // 获取当前会话
-  const session = historyList.find(item => item.id === currentSession.id)
-  if (!session) return
+  const session = historyList.find(item => item.id === currentSession.id);
+  if (!session) {
+    console.error('当前会话不存在');
+    return;
+  }
 
-  // 用户消息
+  // 构造用户消息
   const userMsg = {
     role: 'user',
     content: inputText.value,
-    files: [...files.value],
+    files: files.value.length ? [...files.value] : null,
     time: Date.now()
-  }
-  session.messages.push(userMsg)
+  };
   
-  // 显示AI思考状态
-  isSending.value = true
-  const tempMsg = {
+  // 添加用户消息到历史
+  session.messages.push(userMsg);
+  
+  // 清空输入
+  inputText.value = '';
+  files.value = [];
+  
+  // 添加临时思考消息（使用 reactive 确保响应式）
+  const tempMsg = reactive({
     role: 'assistant',
     content: '',
     thinking: true,
     time: Date.now()
-  }
-  session.messages.push(tempMsg)
+  });
+  session.messages.push(tempMsg);
+  scrollToBottom();
 
-  // 清空输入
-  inputText.value = ''
-  files.value = []
-  scrollToBottom()
-  
   try {
-    await simpleChat(
+    // 获取有效历史记录（过滤系统消息和空内容）
+    const currentHistory = session.messages
+      .filter(m => ['user', 'assistant'].includes(m.role)&&m.content)
+      .map(({ role, content }) => ({ role, content }));
+
+    // 调用流式接口
+    await streamChat(
       userMsg.content,
-			session.messages,
-      (content, isEnd) => {
-        // 移除思考状态消息
-        if (session.messages[session.messages.length - 1].thinking) {
-          session.messages.pop()
+      currentHistory,
+      (data) => {
+        switch (data.type) {
+          case 'chunk':
+            // 逐字追加内容
+            tempMsg.content += data.content;
+            // 强制更新数组触发响应式（Vue 3 需要）
+            session.messages[session.messages.length - 1] = { ...tempMsg };
+            scrollToBottom();
+            break;
+
+          case 'done':
+            // 完成时移除思考状态
+            tempMsg.thinking = false;
+            // 清理历史中的临时消息
+            session.messages = session.messages.filter(m => !m.thinking);
+            // 添加最终消息
+            session.messages.push({ ...tempMsg });
+            scrollToBottom();
+            break;
+
+          case 'error':
+            tempMsg.content = `请求失败: ${data.error}`;
+            tempMsg.thinking = false;
+            session.messages[session.messages.length - 1] = { ...tempMsg };
+            scrollToBottom();
+            break;
         }
-        
-        // 更新或添加消息
-        const lastMsg = session.messages[session.messages.length - 1]
-        if (lastMsg?.role === 'assistant' && !lastMsg.thinking) {
-          lastMsg.content += content
-        } else {
-          session.messages.push({
-            role: 'assistant',
-            content: content,
-            time: Date.now()
-          })
-        }
-				
-        scrollToBottom()
-        
-        // 最终消息处理
-        if (isEnd) {
-          // 可以在这里添加会话结束后的逻辑
-        }
-      },
-      {
-        temperature: 0.7,
-        max_tokens: 1000
       }
-    )
+    );
+    
   } catch (error) {
-    // 出错时移除思考状态
-    session.messages.pop()
-    // 添加错误提示
-    session.messages.push({
-      role: 'assistant',
-      content: '请求失败: ' + error.message,
-      time: Date.now()
-    })
-  } finally {
-    isSending.value = false
+    tempMsg.content = `请求失败: ${error.message}`;
+    tempMsg.thinking = false;
+    session.messages[session.messages.length - 1] = { ...tempMsg };
+    scrollToBottom();
+  }
+};
+
+// 修改文件上传部分（保持原逻辑）
+const triggerFile = async () => {
+  try {
+    const tempFile = {
+      name: '选择文件中...',
+      status: FILE_STATUS.UPLOADING
+    }
+    files.value.push(tempFile)
+    
+    // 这里调用你的文件上传API
+    const uploadResult = await uploadFile(fileInput.value.files[0])
+    
+    tempFile.status = FILE_STATUS.SUCCESS
+    tempFile.name = uploadResult.fileName
+    fileId.value = uploadResult.fileId
+    
     scrollToBottom()
+  } catch (error) {
+    console.error('上传失败:', error)
+    files.value = []
+    uni.showToast({
+      title: `上传失败: ${error.message}`,
+      icon: 'none'
+    })
   }
 }
 
-// 文件处理（保持不变）
-const triggerFile = () => {
-  document.querySelector('.hidden-input').click()
+// 新增文件状态文本显示方法
+const fileStatusText = (file) => {
+  const statusMap = {
+    [FILE_STATUS.PENDING]: '等待中...',
+    [FILE_STATUS.UPLOADING]: '上传中...',
+    [FILE_STATUS.ANALYZING]: '分析中...',
+    [FILE_STATUS.SUCCESS]: '✓',
+    [FILE_STATUS.ERROR]: '×'
+  }
+  return statusMap[file.status] || ''
 }
 
 const addFiles = (e) => {
@@ -423,23 +473,31 @@ const scrollToBottom = async () => {
       border-top: 1px solid #eee;
 
       .file-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-        margin-bottom: 8px;
-
         .tag {
-          background: #f0f2f5;
-          padding: 4px 8px;
-          border-radius: 4px;
-          font-size: 12px;
-          display: flex;
-          align-items: center;
-
-          .remove {
+          position: relative;
+          .status {
             margin-left: 6px;
-            cursor: pointer;
-            &:hover { color: #ff4d4f; }
+            font-size: 12px;
+            &.pending { color: #999; }
+            &.uploading { color: #1890ff; }
+            &.analyzing { color: #52c41a; }
+            &.error { color: #ff4d4f; }
+          }
+        }
+      }
+      
+      // 在消息气泡中显示分析结果
+      .bubble {
+        .analysis-result {
+          margin-top: 8px;
+          padding: 8px;
+          background: rgba(0,0,0,0.05);
+          border-radius: 4px;
+          font-size: 14px;
+          
+          .title {
+            font-weight: bold;
+            margin-bottom: 4px;
           }
         }
       }

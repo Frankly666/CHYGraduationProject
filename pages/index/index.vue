@@ -21,7 +21,7 @@
 				<view class="wrap">
 					<text class="hero-title">智能教育研究助手</text>
 					<textarea class="hero-subtitle" value="基于领域结构化知识驱动的教学研究方案生成系统，整合数据挖掘与自然语言处理技术，为教育研究提供科学、高效的智能支持" placeholder="" />
-					<view class="quickStart" @click="handleSend">
+					<view class="quickStart" >
 						<text>快速开始</text>
 					</view>
 				</view>
@@ -50,6 +50,7 @@
 <script setup>
 import { ref } from 'vue';
 import { simpleChat } from "../../controls/cloudStreamChat.js";
+import { test } from '../../service/test.js';
 
 	const features = [{
 			title: '数据解析',
@@ -81,19 +82,11 @@ import { simpleChat } from "../../controls/cloudStreamChat.js";
 	const username = isLogIn ? uni.getStorageSync('username') : '';
 	
 	const handleSend = async () => {
-		await simpleChat(
-			"什么是人工智能？",
-			({ content, isEnd }) => {
-				if (isEnd) {
-					console.log('完整回复:', content);
-				} else {
-					console.log('实时更新:', content); 
-				}
-			},
-			{ temperature: 0.7 }
-		);
+		test().then(data => {
+			console.log(data)
+		})
 	};
-	
+
 
 	const navTo = (path) => {
 		uni.navigateTo({

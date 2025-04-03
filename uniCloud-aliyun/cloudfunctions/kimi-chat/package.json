@@ -1,0 +1,9 @@
+{
+  "name": "kimi-chat",
+  "dependencies": {
+    "openai": "^4.91.1"
+  },
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+}

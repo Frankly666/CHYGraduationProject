@@ -1,5 +1,10 @@
 {
   "dependencies": {
-    "egg-cors": "^3.0.1"
+    "axios": "^1.8.4",
+    "crypto-js": "^4.2.0",
+    "egg-cors": "^3.0.1",
+    "openai": "^4.91.1",
+    "stream": "^0.0.3",
+    "ws": "^8.18.1"
   }
 }
