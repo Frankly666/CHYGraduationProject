@@ -1,0 +1,55 @@
+{
+  "bsonType": "object",
+  "required": ["session_id", "role", "content", "create_time"],
+  "permission": {
+    "read": true,
+    "create": "auth.uid != null",
+    "update": "doc.user_id == auth.uid",
+    "delete": "doc.user_id == auth.uid"
+  },
+  "properties": {
+    "_id": {
+      "description": "ID，系统自动生成"
+    },
+    "session_id": {
+      "bsonType": "string",
+      "description": "会话ID",
+      "foreignKey": "chat_sessions._id"
+    },
+    "user_id": {
+      "bsonType": "string",
+      "description": "用户ID",
+      "foreignKey": "uni-id-users._id"
+    },
+    "role": {
+      "bsonType": "string",
+      "description": "消息角色：user-用户，assistant-AI助手，system-系统",
+      "enum": ["user", "assistant", "system"]
+    },
+    "content": {
+      "bsonType": "string",
+      "description": "消息内容"
+    },
+    "create_time": {
+      "bsonType": "timestamp",
+      "description": "创建时间"
+    },
+    "files": {
+      "bsonType": "array",
+      "description": "关联的文件列表",
+      "items": {
+        "bsonType": "object",
+        "properties": {
+          "file_id": {
+            "bsonType": "string",
+            "description": "文件ID"
+          },
+          "name": {
+            "bsonType": "string",
+            "description": "文件名称"
+          }
+        }
+      }
+    }
+  }
+}

@@ -49,8 +49,6 @@
 
 <script setup>
 import { ref } from 'vue';
-import { simpleChat } from "../../controls/cloudStreamChat.js";
-import { test } from '../../service/test.js';
 
 	const features = [{
 			title: '数据解析',

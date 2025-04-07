@@ -1,0 +1,43 @@
+{
+  "bsonType": "object",
+  "required": ["user_id", "title", "type", "create_time"],
+  "permission": {
+    "read": true,
+    "create": "auth.uid != null",
+    "update": "doc.user_id == auth.uid",
+    "delete": "doc.user_id == auth.uid"
+  },
+  "properties": {
+    "_id": {
+      "description": "ID，系统自动生成"
+    },
+    "user_id": {
+      "bsonType": "string",
+      "description": "用户ID",
+      "foreignKey": "uni-id-users._id"
+    },
+    "title": {
+      "bsonType": "string",
+      "description": "会话标题",
+      "maxLength": 100
+    },
+    "type": {
+      "bsonType": "string",
+      "description": "会话类型：chat-普通对话，doc-文档对话",
+      "enum": ["chat", "doc"]
+    },
+    "create_time": {
+      "bsonType": "timestamp",
+      "description": "创建时间"
+    },
+    "update_time": {
+      "bsonType": "timestamp",
+      "description": "更新时间"
+    },
+    "last_message": {
+      "bsonType": "string",
+      "description": "最后一条消息内容",
+      "maxLength": 500
+    }
+  }
+}

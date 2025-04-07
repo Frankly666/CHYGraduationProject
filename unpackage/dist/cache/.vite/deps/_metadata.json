@@ -1,31 +1,15 @@
 {
-  "hash": "662664c6",
-  "configHash": "47caf3a6",
-  "lockfileHash": "a6851c44",
-  "browserHash": "e1381b9a",
+  "hash": "e1ffc96c",
+  "configHash": "ad7bf19d",
+  "lockfileHash": "eacf2539",
+  "browserHash": "95870afc",
   "optimized": {
     "openai": {
       "src": "../../../../../node_modules/openai/index.mjs",
       "file": "openai.js",
-      "fileHash": "3df03b60",
+      "fileHash": "c23d0c3a",
       "needsInterop": false
-    },
-    "axios": {
-      "src": "../../../../../node_modules/axios/index.js",
-      "file": "axios.js",
-      "fileHash": "7a0ed5f9",
-      "needsInterop": false
-    },
-    "stream": {
-      "src": "../../../../../node_modules/stream/index.js",
-      "file": "stream.js",
-      "fileHash": "72875457",
-      "needsInterop": true
     }
   },
-  "chunks": {
-    "chunk-P2LSHJDD": {
-      "file": "chunk-P2LSHJDD.js"
-    }
-  }
+  "chunks": {}
 }
