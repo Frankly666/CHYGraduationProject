@@ -1,0 +1,68 @@
+{
+  "bsonType": "object",
+  "required": ["userId", "title", "type", "time", "messages"],
+  "permission": {
+    "read": "auth.uid != null",
+    "create": "auth.uid != null",
+    "update": "auth.uid != null && doc.userId == auth.uid",
+    "delete": "auth.uid != null && doc.userId == auth.uid"
+  },
+  "properties": {
+    "_id": {
+      "description": "ID，系统自动生成"
+    },
+    "userId": {
+      "bsonType": "string",
+      "description": "用户ID，参考user表",
+      "foreignKey": "user._id"
+    },
+    "title": {
+      "bsonType": "string",
+      "description": "对话标题",
+      "title": "标题"
+    },
+    "type": {
+      "bsonType": "string",
+      "description": "对话类型：chat-普通对话，doc-文档对话",
+      "title": "类型",
+      "enum": ["chat", "doc"]
+    },
+    "time": {
+      "bsonType": "timestamp",
+      "description": "对话时间",
+      "title": "时间"
+    },
+    "messages": {
+      "bsonType": "array",
+      "description": "对话消息列表",
+      "title": "消息",
+      "items": {
+        "bsonType": "object",
+        "required": ["role", "content", "time"],
+        "properties": {
+          "role": {
+            "bsonType": "string",
+            "description": "消息角色：user-用户，assistant-AI助手",
+            "enum": ["user", "assistant"]
+          },
+          "content": {
+            "bsonType": "string",
+            "description": "消息内容"
+          },
+          "time": {
+            "bsonType": "timestamp",
+            "description": "消息时间"
+          }
+        }
+      }
+    },
+    "createTime": {
+      "bsonType": "timestamp",
+      "description": "创建时间"
+    },
+    "updateTime": {
+      "bsonType": "timestamp",
+      "description": "更新时间"
+    }
+  }
+} 

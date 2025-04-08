@@ -1,0 +1,15 @@
+{
+  "name": "history",
+  "version": "1.0.0",
+  "description": "聊天历史记录管理云函数",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+} 

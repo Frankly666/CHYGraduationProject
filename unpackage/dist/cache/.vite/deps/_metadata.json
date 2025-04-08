@@ -1,15 +1,25 @@
 {
-  "hash": "e1ffc96c",
-  "configHash": "ad7bf19d",
-  "lockfileHash": "eacf2539",
-  "browserHash": "95870afc",
+  "hash": "061c78bf",
+  "configHash": "6de87e1c",
+  "lockfileHash": "e60f4bea",
+  "browserHash": "51b7cd00",
   "optimized": {
     "openai": {
       "src": "../../../../../node_modules/openai/index.mjs",
       "file": "openai.js",
-      "fileHash": "c23d0c3a",
+      "fileHash": "60247e51",
+      "needsInterop": false
+    },
+    "marked": {
+      "src": "../../../../../node_modules/marked/lib/marked.esm.js",
+      "file": "marked.js",
+      "fileHash": "434edc2d",
       "needsInterop": false
     }
   },
-  "chunks": {}
+  "chunks": {
+    "chunk-F3FYYIAV": {
+      "file": "chunk-F3FYYIAV.js"
+    }
+  }
 }

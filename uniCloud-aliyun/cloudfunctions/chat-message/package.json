@@ -1,0 +1,10 @@
+{
+  "name": "chat-message",
+  "version": "1.0.0",
+  "description": "Chat message cloud function",
+  "main": "index.js",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+} 

@@ -47,8 +47,14 @@
               </view>
 
               <!-- 提交按钮 -->
-              <button type="submit" class="btn btn-style mt-3" @click="handleSubmit">
-                登录
+              <button 
+                type="submit" 
+                class="btn btn-style mt-3" 
+                @click="handleSubmit"
+                :disabled="isLoading"
+              >
+                <text v-if="!isLoading">登录</text>
+                <text v-else class="loading-text">登录中...</text>
               </button>
 
               <!-- 注册链接 -->
@@ -68,6 +74,9 @@
 import { ref } from 'vue'
 import { login } from '@/controls/logIn.js'
 
+// 加载状态
+const isLoading = ref(false)
+
 // 表单数据
 const formData = ref({
   username: '',
@@ -80,7 +89,8 @@ const handleSubmit = async () => {
   if (!formData.value.username || !formData.value.password) {
     uni.showToast({
       title: '账号和密码不能为空',
-      icon: 'none'
+      icon: 'none',
+      duration: 2000
     })
     return
   }
@@ -88,42 +98,68 @@ const handleSubmit = async () => {
   if (formData.value.username.length < 6 || formData.value.password.length < 6) {
     uni.showToast({
       title: '账号和密码长度不能小于6位',
-      icon: 'none'
+      icon: 'none',
+      duration: 2000
     })
     return
   }
 
   try {
+    // 设置加载状态
+    isLoading.value = true
+    
+    // 显示加载提示
+    uni.showLoading({
+      title: '登录中...',
+      mask: true
+    })
+
     // 调用 login 工具函数
     const result = await login(formData.value)
+    
+    // 隐藏加载提示
+    uni.hideLoading()
+    
     if (result.code === 200) {
-      uni.showToast({
-        title: '登录成功',
-        icon: 'success'
-      })
-
       // 将账号和加密密码存储到本地缓存
       uni.setStorageSync('username', result.data.username)
-      uni.setStorageSync('encryptedPassword', result.data.encryptedPassword) // 存储加密密码
-      uni.setStorageSync('salt', result.data.salt) // 存储 salt
-			uni.setStorageSync('isLogIn', true);
+      uni.setStorageSync('encryptedPassword', result.data.encryptedPassword)
+      uni.setStorageSync('salt', result.data.salt)
+      uni.setStorageSync('isLogIn', 'true')
+      uni.setStorageSync('userId', result.data._id) // 保存用户ID
 
-      // 跳转到首页或其他页面
-      uni.navigateTo({
-        url: '/pages/index/index'
+      // 显示成功提示
+      uni.showToast({
+        title: '登录成功',
+        icon: 'success',
+        duration: 1500
       })
+
+      // 延迟跳转，让用户看到成功提示
+      setTimeout(() => {
+        uni.reLaunch({
+          url: '/pages/index/index'
+        })
+      }, 1500)
     } else {
       uni.showToast({
         title: result.message || '登录失败',
-        icon: 'none'
+        icon: 'none',
+        duration: 2000
       })
     }
   } catch (error) {
+    // 隐藏加载提示
+    uni.hideLoading()
+    
     uni.showToast({
       title: '登录失败，请稍后重试',
-      icon: 'none'
+      icon: 'none',
+      duration: 2000
     })
     console.error('登录失败:', error)
+  } finally {
+    // 重置加载状态
   }
 }
 

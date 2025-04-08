@@ -57,8 +57,14 @@
               </view>
 
               <!-- 提交按钮 -->
-              <button type="submit" class="btn btn-style mt-3" @click="handleSubmit">
-                注册
+              <button 
+                type="submit" 
+                class="btn btn-style mt-3" 
+                @click="handleSubmit"
+                :disabled="isLoading"
+              >
+                <text v-if="!isLoading">注册</text>
+                <text v-else class="loading-text">注册中...</text>
               </button>
 
               <!-- 登录链接 -->
@@ -78,6 +84,9 @@
 import { ref } from 'vue'
 import { enroll } from '@/controls/enroll.js' // 导入封装的 enroll 工具函数
 
+// 加载状态
+const isLoading = ref(false)
+
 // 表单数据
 const formData = ref({
   username: '',
@@ -91,7 +100,8 @@ const handleSubmit = async () => {
   if (!formData.value.username || !formData.value.password || !formData.value.confirmPassword) {
     uni.showToast({
       title: '账号和密码不能为空',
-      icon: 'none'
+      icon: 'none',
+      duration: 2000
     })
     return
   }
@@ -99,44 +109,76 @@ const handleSubmit = async () => {
   if (formData.value.password !== formData.value.confirmPassword) {
     uni.showToast({
       title: '两次输入的密码不一致',
-      icon: 'none'
+      icon: 'none',
+      duration: 2000
     })
     return
   }
   
   if(formData.value.username.length < 6 || formData.value.password.length < 6) {
-  	  uni.showToast({
-  	    title: '账号和密码长度不能小于6位',
-  	    icon: 'none'
-  	  })
-  	  return
+    uni.showToast({
+      title: '账号和密码长度不能小于6位',
+      icon: 'none',
+      duration: 2000
+    })
+    return
   }
 
   try {
+    // 设置加载状态
+    isLoading.value = true
+    
+    // 显示加载提示
+    uni.showLoading({
+      title: '注册中...',
+      mask: true
+    })
+
     // 调用 enroll 工具函数
     const result = await enroll(formData.value)
+    
+    // 隐藏加载提示
+    uni.hideLoading()
+    
     if (result.code === 200) {
+      // 显示成功提示
       uni.showToast({
         title: '注册成功',
-        icon: 'success'
+        icon: 'success',
+        duration: 1500
       })
-      // 跳转到登录页面
-      uni.navigateTo({
-        url: '/pages/logIn/logIn'
-      })
+      
+      // 保存用户ID
+      if (result.data && result.data.userId) {
+        uni.setStorageSync('userId', result.data.userId)
+      }
+      
+      // 延迟跳转，让用户看到成功提示
+      setTimeout(() => {
+        uni.navigateTo({
+          url: '/pages/logIn/logIn'
+        })
+      }, 1500)
     } else {
-      // 根据云函数返回的错误信息提示用户
       uni.showToast({
         title: result.message || '注册失败',
-        icon: 'none'
+        icon: 'none',
+        duration: 2000
       })
     }
   } catch (error) {
+    // 隐藏加载提示
+    uni.hideLoading()
+    
     uni.showToast({
       title: '注册失败，请稍后重试',
-      icon: 'none'
+      icon: 'none',
+      duration: 2000
     })
     console.error('注册失败:', error)
+  } finally {
+    // 重置加载状态
+    isLoading.value = false
   }
 }
 
@@ -334,27 +376,33 @@ button:hover {
 
 
 .w3l-workinghny-form .btn-style {
-    font-size: 18px;
+    position: relative;
+    min-width: 120px;
+    height: 45px;
+    line-height: 45px;
+    text-align: center;
+    background: #05de7d;
     color: #fff;
-    width: 100%;
-    background: #4361ee;
+    font-size: 16px;
+    font-weight: 600;
     border: none;
-    height: 55px;
-    font-weight: 700;
-    border-radius: 6px;
-    transition: .3s ease;
-    -webkit-transition: .3s ease;
-    -moz-transition: .3s ease;
-    -ms-transition: .3s ease;
-    -o-transition: .3s ease;
-    box-shadow: 0 3px 6px 0 rgba(0,0,0,0.2);
-	margin-bottom: 10px;
+    transition: all 0.3s ease;
+    
+    &:disabled {
+        background: #ccc;
+        cursor: not-allowed;
+    }
+    
+    .loading-text {
+        display: inline-block;
+        animation: loading 1s infinite;
+    }
 }
 
-.w3l-workinghny-form .btn-style:hover {
-    background: #f72585;
-    transform: translateY(-3px);
-    box-shadow: 0 6px 6px 0 rgba(0,0,0,0.2);
+@keyframes loading {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
 }
 
 .w3l-workinghny-form p.already,

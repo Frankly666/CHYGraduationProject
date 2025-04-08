@@ -41,9 +41,40 @@ exports.main = async (event, context) => {
   })
 
   if (result.id) {
+    // 创建会话记录
+    const chatSessionsCollection = db.collection('chat_sessions')
+    const now = Date.now()
+    
+    // 创建一个初始会话
+    const sessionResult = await chatSessionsCollection.add({
+      user_id: result.id,
+      title: '欢迎使用',
+      type: 'chat',
+      create_time: now,
+      update_time: now,
+      last_message: '你好！我是你的AI助手，有什么我可以帮你的吗？'
+    })
+    
+    // 创建消息记录
+    if (sessionResult.id) {
+      const chatMessagesCollection = db.collection('chat_messages')
+      
+      // 添加欢迎消息
+      await chatMessagesCollection.add({
+        session_id: sessionResult.id,
+        user_id: result.id,
+        role: 'assistant',
+        content: '你好！我是你的AI助手，有什么我可以帮你的吗？',
+        create_time: now
+      })
+    }
+    
     return {
       code: 200,
-      message: '注册成功'
+      message: '注册成功',
+      data: {
+        userId: result.id
+      }
     }
   } else {
     return {

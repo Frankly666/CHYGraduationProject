@@ -49,7 +49,8 @@ exports.main = async (event, context) => {
     data: {
       username: user.data[0].username,
       encryptedPassword: user.data[0].password, // 返回加密后的密码
-      salt: user.data[0].salt // 返回 salt
+      salt: user.data[0].salt, // 返回 salt
+      _id: user.data[0]._id // 返回用户ID
     }
   }
 }

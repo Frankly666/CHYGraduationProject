@@ -1,0 +1,10 @@
+{
+  "name": "chat-session",
+  "version": "1.0.0",
+  "description": "Chat session cloud function",
+  "main": "index.js",
+  "dependencies": {},
+  "extensions": {
+    "uni-cloud-jql": {}
+  }
+} 

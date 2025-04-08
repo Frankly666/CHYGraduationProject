@@ -9,6 +9,11 @@
 			</view>
 			<view class="userName" v-else>
 				<text>{{ username }}</text>
+				<view class="user-dropdown">
+					<view class="dropdown-item" @click="handleLogout">
+						<text>退出登录</text>
+					</view>
+				</view>
 			</view>
 		</view>
 
@@ -79,12 +84,34 @@ import { ref } from 'vue';
 	const isLogIn = ref(!!uni.getStorageSync('isLogIn'))
 	const username = isLogIn ? uni.getStorageSync('username') : '';
 	
+	const handleLogout = () => {
+		// 清除登录状态和用户信息
+		uni.removeStorageSync('isLogIn');
+		uni.removeStorageSync('username');
+		uni.removeStorageSync('userId');
+		
+		// 更新登录状态
+		isLogIn.value = false;
+		
+		// 显示退出成功提示
+		uni.showToast({
+			title: '已退出登录',
+			icon: 'success'
+		});
+		
+		// 可选：跳转到首页
+		setTimeout(() => {
+			uni.reLaunch({
+				url: '/pages/index/index'
+			});
+		}, 1500);
+	};
+
 	const handleSend = async () => {
 		test().then(data => {
 			console.log(data)
 		})
 	};
-
 
 	const navTo = (path) => {
 		uni.navigateTo({
@@ -133,6 +160,43 @@ import { ref } from 'vue';
 			font-weight: 700; // 粗体
 			color: #05de7d; 
 			cursor: pointer;
+			position: relative; // 添加相对定位
+			
+			&:hover {
+				.user-dropdown {
+					display: block;
+					opacity: 1;
+					transform: translateY(0);
+				}
+			}
+			
+			.user-dropdown {
+				position: absolute;
+				top: 100%;
+				right: 0;
+				background: white;
+				border-radius: 8px;
+				box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+				padding: 8px 0;
+				min-width: 120px;
+				display: none;
+				opacity: 0;
+				transform: translateY(-10px);
+				transition: all 0.3s ease;
+				
+				.dropdown-item {
+					padding: 8px 16px;
+					font-size: 14px;
+					color: #333;
+					cursor: pointer;
+					transition: all 0.2s;
+					
+					&:hover {
+						background: #f5f7fa;
+						color: #05de7d;
+					}
+				}
+			}
 		}
 	
 	  .nav-btns {
