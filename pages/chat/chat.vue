@@ -205,50 +205,41 @@ const loadUserHistory = async () => {
 
 // 保存聊天历史
 const saveChatHistory = async () => {
-  if (!userId.value) {
-    console.error('用户ID为空，无法保存历史记录');
-    return;
-  }
-
   try {
-    console.log('开始保存聊天历史');
+    console.log('开始保存聊天历史:', currentSession.value);
     
-    // 创建新会话
-    const session = await createSession(currentSession.value.title, currentSession.value.type);
-    console.log('创建的会话:', session);
-    
-    // 保存消息列表
-    for (const message of currentSession.value.messages) {
-      console.log('保存消息:', message);
-      
-      // 确保每条消息都有明确的角色
-      const role = message.role === 'user' ? 'user' : 'assistant';
-      
-      await createMessage(
-        session._id, 
-        message.content, 
-        role // 确保每条消息都有正确的角色
-      );
+    if (!userId.value) {
+      console.error('用户未登录，无法保存历史');
+      return;
     }
     
-    // 更新当前会话ID
-    currentSession.value.id = session._id;
+    // 准备要保存的数据
+    const historyData = {
+      userId: userId.value,
+      title: currentSession.value.title,
+      type: currentSession.value.type,
+      time: currentSession.value.time,
+      messages: currentSession.value.messages
+    };
     
-    console.log('聊天历史保存成功');
+    console.log('保存历史数据:', historyData);
+    const result = await saveHistory(historyData);
+    console.log('保存历史结果:', result);
+    
+    if (result.code !== 200) {
+      throw new Error(result.message || '保存失败');
+    }
+    
+    // 更新当前会话的ID
+    if (result.data && result.data._id) {
+      currentSession.value.id = result.data._id;
+    }
     
     // 重新加载历史记录
     await loadUserHistory();
     
-    uni.showToast({
-      title: '保存成功',
-      icon: 'success'
-    });
   } catch (error) {
-    console.error('保存聊天历史失败:', error);
-    uni.showToast({
-      title: error.message || '保存聊天历史失败',
-      icon: 'none'
-    });
+    console.error('保存历史失败:', error);
   }
 };
 
@@ -638,6 +629,12 @@ const deleteSessionRecord = async (session) => {
       content: '确定要删除该会话吗？所有相关消息将被永久删除。',
       success: async (res) => {
         if (res.confirm) {
+          // 先删除所有关联的消息
+          console.log('删除会话关联的消息');
+          await deleteMessages(session.id);
+          
+          // 然后删除会话
+          console.log('删除会话');
           await deleteSession(session.id);
           
           // 重新加载历史记录
@@ -812,7 +809,12 @@ const groupedHistoryList = computed(() => {
     if (!groups[date]) {
       groups[date] = [];
     }
-    groups[date].push(item);
+    // 处理消息预览，限制为10个字符
+    const processedItem = {
+      ...item,
+      lastMessage: item.lastMessage ? item.lastMessage.slice(0, 10) + (item.lastMessage.length > 10 ? '...' : '') : ''
+    };
+    groups[date].push(processedItem);
   });
   
   // 转换为数组格式，按日期排序
@@ -1000,6 +1002,7 @@ const groupedHistoryList = computed(() => {
               text-overflow: ellipsis;
               flex: 1;
               min-width: 0;
+              max-width: 120px; // 限制最大宽度
             }
           }
 

@@ -26,7 +26,7 @@
 				<view class="wrap">
 					<text class="hero-title">智能教育研究助手</text>
 					<textarea class="hero-subtitle" value="基于领域结构化知识驱动的教学研究方案生成系统，整合数据挖掘与自然语言处理技术，为教育研究提供科学、高效的智能支持" placeholder="" />
-					<view class="quickStart" >
+					<view class="quickStart" @click="startChat">
 						<text>快速开始</text>
 					</view>
 				</view>
@@ -64,19 +64,19 @@ import { ref } from 'vue';
 		{
 			title: '知识图谱',
 			desc: '可视化知识点关联网络',
-			path: 'knowledge',
+			path: 'chat',
 			icon: '/static/homePage/atlas.png'
 		},
 		{
 			title: '方案生成',
 			desc: 'AI智能生成研究框架',
-			path: 'generate',
+			path: 'chat',
 			icon: '/static/homePage/scheme.png'
 		},
 		{
 			title: '历史管理',
 			desc: '随时查看编辑方案',
-			path: 'history',
+			path: 'chat',
 			icon: '/static/homePage/history.png'
 		}
 	];
@@ -116,6 +116,13 @@ import { ref } from 'vue';
 	const navTo = (path) => {
 		uni.navigateTo({
 			url: `/pages/${path}/${path}`
+		});
+	};
+
+	// 开始聊天
+	const startChat = () => {
+		uni.navigateTo({
+			url: '/pages/chat/chat'
 		});
 	};
 </script>
