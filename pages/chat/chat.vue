@@ -81,33 +81,22 @@
 
       <!-- 输入区域 -->
       <view class="input-area">
-        <view class="file-tags">
-          <view v-for="(file, index) in files" :key="index" class="tag">
-            <text>{{ file.name }}</text>
-            <text class="status" :class="file.status">{{
-              fileStatusText(file)
-            }}</text>
-            <text @click="removeFile(index)" class="remove">×</text>
-          </view>
+        <view class="file-upload" @click="triggerFileInput" v-if="!isFileChat">
+          <text class="icon">📁</text>
         </view>
-        <view class="input-box">
-          <view @click="triggerFile" class="file-btn">📁</view>
-          <input
-            v-model="inputText"
-            placeholder="输入消息..."
-            @confirm="send"
-            class="input"
-          />
-          <button @click="send" :disabled="!canSend" class="send-btn">
-            {{ isSending ? "发送中..." : "发送" }}
-          </button>
+        <view class="current-file" v-if="isFileChat">
+          <text class="icon">📄</text>
+          <text class="file-name">{{ currentFile?.name }}</text>
         </view>
         <input
-          type="file"
-          ref="fileInput"
-          @change="addFiles"
-          class="hidden-input"
+          class="message-input"
+          v-model="inputMessage"
+          placeholder="输入消息..."
+          @confirm="sendMessage"
         />
+        <view class="send-button" @click="sendMessage">
+          <text>发送</text>
+        </view>
       </view>
     </view>
   </view>
@@ -120,6 +109,8 @@ import { userAvatar, aiAvatar } from "../../static/avatars.js";
 import { marked } from 'marked';
 import { getSessionList, getSession, createSession, updateSession, deleteSession } from '@/controls/chat-session.js';
 import { createMessage, getMessageList, deleteMessages } from '@/controls/chat-message.js';
+import { uploadFile, getFileContent, chatWithFile } from '@/service/file.js';
+import { getUserHistory, saveHistory, updateHistory, deleteHistory, getHistoryById } from '@/controls/history.js';
 
 // 用户登录状态
 const isLoggedIn = ref(false);
@@ -181,14 +172,26 @@ const loadUserHistory = async () => {
     const sessions = await getSessionList();
     
     console.log('加载到的历史记录:', sessions);
-    historyList.value = sessions.map(session => ({
-      id: session._id,
-      title: session.title,
-      type: session.type || 'chat',
-      time: session.updateTime || session.createTime || Date.now(),
-      lastMessage: session.lastMessage,
-      lastRole: session.lastRole || 'assistant' // 添加最后消息的角色
-    }));
+    historyList.value = sessions.map(session => {
+      // 基本会话信息
+      const sessionInfo = {
+        id: session._id,
+        title: session.title,
+        type: session.type || 'chat',
+        time: session.updateTime || session.createTime || Date.now(),
+        lastMessage: session.lastMessage,
+        lastRole: session.lastRole || 'assistant'
+      };
+      
+      // 如果是文件对话，添加文件信息
+      if (session.isFileChat && session.fileInfo) {
+        console.log('加载文件对话信息:', session.fileInfo);
+        sessionInfo.isFileChat = true;
+        sessionInfo.fileInfo = session.fileInfo;
+      }
+      
+      return sessionInfo;
+    });
     
     // 如果有历史记录且当前没有选择会话，自动选择第一个
     if (historyList.value.length > 0 && !currentSession.value.id) {
@@ -206,13 +209,12 @@ const loadUserHistory = async () => {
 // 保存聊天历史
 const saveChatHistory = async () => {
   try {
-    console.log('开始保存聊天历史:', currentSession.value);
-    
-    if (!userId.value) {
-      console.error('用户未登录，无法保存历史');
+    console.log('开始保存聊天历史...');
+    if (!currentSession.value || !currentSession.value.messages || currentSession.value.messages.length === 0) {
+      console.log('没有消息需要保存');
       return;
     }
-    
+
     // 准备要保存的数据
     const historyData = {
       userId: userId.value,
@@ -221,25 +223,50 @@ const saveChatHistory = async () => {
       time: currentSession.value.time,
       messages: currentSession.value.messages
     };
+
+    // 如果是文件对话，添加文件信息
+    if (currentSession.value.type === 'file' && currentFile.value) {
+      console.log('保存文件对话信息:', currentFile.value);
+      
+      // 添加文件信息
+      historyData.fileInfo = {
+        id: currentFile.value.id,
+        name: currentFile.value.name,
+        size: currentFile.value.size,
+        type: currentFile.value.type,
+        uploadTime: currentFile.value.uploadTime || Date.now()
+      };
+      
+      // 添加文件问答标识
+      historyData.isFileChat = true;
+      
+      // 保存最后一条消息作为预览
+      const lastMessage = currentSession.value.messages[currentSession.value.messages.length - 1];
+      if (lastMessage) {
+        historyData.lastMessage = lastMessage.content.substring(0, 50) + (lastMessage.content.length > 50 ? '...' : '');
+        historyData.lastRole = lastMessage.role;
+      }
+    }
+
+    console.log('准备保存的历史数据:', historyData);
     
-    console.log('保存历史数据:', historyData);
+    // 调用保存历史记录的函数
     const result = await saveHistory(historyData);
-    console.log('保存历史结果:', result);
+    console.log('保存历史记录结果:', result);
     
-    if (result.code !== 200) {
-      throw new Error(result.message || '保存失败');
+    // 更新当前会话ID
+    if (result && result.id) {
+      currentSession.value.id = result.id;
     }
     
-    // 更新当前会话的ID
-    if (result.data && result.data._id) {
-      currentSession.value.id = result.data._id;
-    }
-    
-    // 重新加载历史记录
+    // 更新历史列表
     await loadUserHistory();
-    
   } catch (error) {
-    console.error('保存历史失败:', error);
+    console.error('保存聊天历史失败:', error);
+    uni.showToast({
+      title: error.message || '保存失败',
+      icon: 'none'
+    });
   }
 };
 
@@ -303,7 +330,7 @@ const renderMarkdown = (content) => {
 
 // 状态管理
 const messageList = ref([]);
-const inputText = ref('');
+const inputMessage = ref('');
 const isSending = ref(false);
 const scrollTop = ref(0);
 const currentSession = ref({
@@ -329,7 +356,7 @@ const FILE_STATUS = {
 
 // 计算属性
 const canSend = computed(() => {
-  return inputText.value.trim() && !isSending.value;
+  return inputMessage.value.trim() && !isSending.value;
 });
 
 // 智能生成标题
@@ -359,163 +386,169 @@ const generateTitle = (content) => {
 };
 
 // 发送消息
-const send = async () => {
-  if (!canSend.value) return;
+const sendMessage = async () => {
+  if (!inputMessage.value.trim()) return;
   
-  // 创建用户消息
-  const userMessage = {
+  const userMessage = inputMessage.value.trim();
+  inputMessage.value = '';
+  
+  // 添加用户消息
+  currentSession.value.messages.push({
     role: 'user',
-    content: inputText.value,
+    content: userMessage,
     time: Date.now()
-  };
+  });
   
-  // 添加到消息列表
-  messageList.value.push(userMessage);
-  // 同时更新当前会话的消息列表
-  currentSession.value.messages.push(userMessage);
-  inputText.value = '';
+  // 保存用户消息到数据库
+  if (currentSession.value.id) {
+    await createMessage(
+      currentSession.value.id,
+      userMessage,
+      'user'
+    );
+  }
   
-  // 添加AI思考状态
-  const aiMessage = {
+  // 添加助手消息占位
+  const assistantMessageIndex = currentSession.value.messages.length;
+  currentSession.value.messages.push({
     role: 'assistant',
     content: '',
     thinking: true,
     time: Date.now()
-  };
-  messageList.value.push(aiMessage);
+  });
   
-  // 滚动到底部
-  await nextTick();
-  scrollToBottom();
+  // 更新消息列表以显示思考状态
+  messageList.value = [...currentSession.value.messages];
   
   try {
-    isSending.value = true;
-    
-    // 准备历史消息
-    const history = formatHistory(
-      messageList.value
-        .filter(msg => !msg.thinking)
+    let response;
+    if (isFileChat.value && currentFile.value) {
+      console.log('开始文件问答:', {
+        question: userMessage,
+        fileContent: currentFile.value.content
+      });
+      
+      // 调用文件问答接口，传入进度回调函数
+      response = await chatWithFile(
+        currentFile.value.content, 
+        userMessage,
+        (chunk, fullResponse) => {
+          // 更新助手消息内容
+          currentSession.value.messages[assistantMessageIndex] = {
+            role: 'assistant',
+            content: fullResponse,
+            thinking: false,
+            time: Date.now()
+          };
+          
+          // 更新消息列表
+          messageList.value = [...currentSession.value.messages];
+          
+          // 滚动到底部
+          nextTick(() => {
+            scrollToBottom();
+          });
+        }
+      );
+      
+      console.log('文件问答完成');
+      
+      // 保存助手消息到数据库
+      if (currentSession.value.id) {
+        await createMessage(
+          currentSession.value.id,
+          response,
+          'assistant'
+        );
+      }
+    } else {
+      // 普通对话
+      console.log('开始普通对话:', userMessage);
+      
+      // 准备历史消息，过滤掉空内容和系统消息
+      const historyMessages = currentSession.value.messages
+        .filter(msg => 
+          msg.role !== 'system' && 
+          msg.role !== 'thinking' && 
+          msg.content && 
+          msg.content.trim() !== ''
+        )
         .map(msg => ({
           role: msg.role,
           content: msg.content
-        }))
-    );
-    
-    console.log('Sending message with history:', history);
-    
-    // 调用AI
-    await streamChat(
-      userMessage.content,
-      history,
-      (data) => {
-        console.log('Received AI response:', data);
-        
+        }));
+      
+      console.log('历史消息:', historyMessages);
+      
+      // 使用 streamChat 替代 chatWithAI，传入历史消息
+      response = await streamChat(userMessage, historyMessages, (data) => {
         if (data.type === 'chunk') {
-          aiMessage.content += data.content;
-          aiMessage.thinking = false;
-          // 强制更新视图
-          messageList.value = [...messageList.value];
-        } else if (data.type === 'error') {
-          aiMessage.content = `错误: ${data.error}`;
-          aiMessage.thinking = false;
-          // 显示错误提示
-          uni.showToast({
-            title: data.error,
-            icon: 'none',
-            duration: 3000
+          // 更新助手消息内容
+          currentSession.value.messages[assistantMessageIndex] = {
+            role: 'assistant',
+            content: data.fullContent,
+            thinking: false,
+            time: Date.now()
+          };
+          
+          // 更新消息列表
+          messageList.value = [...currentSession.value.messages];
+          
+          // 滚动到底部
+          nextTick(() => {
+            scrollToBottom();
           });
+        } else if (data.type === 'error') {
+          throw new Error(data.error);
         }
-        
-        // 每次更新后滚动到底部
-        scrollToBottom();
-      }
-    );
-    
-    // 完成后，更新当前会话的消息列表
-    aiMessage.thinking = false;
-    const finalAiMessage = {
-      role: 'assistant',
-      content: aiMessage.content,
-      time: aiMessage.time
-    };
-    
-    // 替换临时消息
-    const aiIndex = currentSession.value.messages.length;
-    currentSession.value.messages.push(finalAiMessage);
-    
-    // 更新会话标题和时间
-    if (messageList.value.length <= 3) {
-      const now = Date.now();
-      // 使用智能标题生成
-      currentSession.value.title = generateTitle(userMessage.content);
-      currentSession.value.time = now;
-    }
-    
-    // 如果用户已登录，每次对话完成后都保存历史记录
-    if (isLoggedIn.value) {
-      // 检查当前会话是否有ID
-      if (!currentSession.value.id) {
-        // 如果没有ID，说明是新会话，保存为新记录
-        console.log('创建新的历史记录');
-        await saveChatHistory();
-      } else {
-        // 如果有ID，说明是现有会话，更新记录
-        console.log('更新现有历史记录');
-        
-        // 仅保存最新的对话（包含用户消息和AI回复）
-        // 这里我们将两条消息一起保存，但不会再次调用updateSessionRecord，避免重复保存
-        
-        // 先保存用户消息
-        console.log('保存用户消息:', userMessage);
+      });
+      
+      // 保存助手消息到数据库
+      if (currentSession.value.id) {
         await createMessage(
           currentSession.value.id,
-          userMessage.content,
-          'user' // 明确指定为用户角色
+          response,
+          'assistant'
         );
-        
-        // 再保存AI回复
-        console.log('保存AI回复:', finalAiMessage);
-        await createMessage(
-          currentSession.value.id,
-          finalAiMessage.content,
-          'assistant' // 明确指定为AI角色
-        );
-        
-        // 直接更新会话信息，而不是调用updateSessionRecord（避免重复保存消息）
-        const updateData = {
-          title: currentSession.value.title,
-          lastMessage: finalAiMessage.content,
-          lastRole: 'assistant'
-        };
-        await updateSession(currentSession.value.id, updateData);
-        
-        // 重新加载历史记录以更新侧边栏
-        await loadUserHistory();
       }
     }
+    
+    // 更新会话信息
+    if (currentSession.value.id) {
+      // 获取最后一条消息
+      const lastMessage = currentSession.value.messages[currentSession.value.messages.length - 1];
+      
+      // 更新会话信息
+      await updateSession(currentSession.value.id, {
+        lastMessage: lastMessage.content.substring(0, 50) + (lastMessage.content.length > 50 ? '...' : ''),
+        lastRole: lastMessage.role
+      });
+    }
+    
+    // 滚动到底部
+    await nextTick();
+    scrollToBottom();
     
   } catch (error) {
-    console.error('Chat error:', error);
-    aiMessage.content = handleAIError(error);
-    aiMessage.thinking = false;
-    
-    // 更新到当前会话的消息列表
-    const finalAiMessage = {
+    console.error('发送消息失败:', error);
+    // 更新错误消息
+    currentSession.value.messages[assistantMessageIndex] = {
       role: 'assistant',
-      content: aiMessage.content,
-      time: aiMessage.time
+      content: `抱歉，处理您的请求时出现错误：${error.message}`,
+      thinking: false,
+      time: Date.now()
     };
-    currentSession.value.messages.push(finalAiMessage);
+    // 更新消息列表
+    messageList.value = [...currentSession.value.messages];
     
-    // 显示错误提示
-    uni.showToast({
-      title: handleAIError(error),
-      icon: 'none',
-      duration: 3000
-    });
-  } finally {
-    isSending.value = false;
-    scrollToBottom();
+    // 保存错误消息到数据库
+    if (currentSession.value.id) {
+      await createMessage(
+        currentSession.value.id,
+        `抱歉，处理您的请求时出现错误：${error.message}`,
+        'assistant'
+      );
+    }
   }
 };
 
@@ -531,16 +564,58 @@ const scrollToBottom = () => {
 };
 
 // 创建新会话
-const createNewChat = () => {
-  currentSession.value = {
-    id: '',
-    title: '新对话',
-    type: 'chat',
-    time: Date.now(),
-    messages: []
-  };
-  messageList.value = [];
-  showWelcomeMessage();
+const createNewChat = async () => {
+  try {
+    console.log('创建新会话');
+    
+    // 创建新会话
+    const sessionResult = await createSession('新对话', 'chat');
+    console.log('创建会话结果:', sessionResult);
+    
+    if (!sessionResult || !sessionResult.id) {
+      throw new Error('创建会话失败：未获取到会话ID');
+    }
+    
+    // 更新当前会话
+    currentSession.value = {
+      id: sessionResult.id,
+      title: '新对话',
+      type: 'chat',
+      time: Date.now(),
+      messages: []
+    };
+    
+    // 重置文件状态
+    isFileChat.value = false;
+    currentFile.value = null;
+    
+    // 显示欢迎消息
+    showWelcomeMessage();
+    
+    // 保存欢迎消息到数据库
+    const welcomeMessage = {
+      role: 'assistant',
+      content: '你好！我是你的AI助手，有什么我可以帮你的吗？',
+      time: Date.now()
+    };
+    
+    await createMessage(
+      currentSession.value.id,
+      welcomeMessage.content,
+      welcomeMessage.role
+    );
+    
+    // 更新消息列表
+    messageList.value = [welcomeMessage];
+    currentSession.value.messages = [welcomeMessage];
+    
+  } catch (error) {
+    console.error('创建新会话失败:', error);
+    uni.showToast({
+      title: error.message || '创建新会话失败',
+      icon: 'none'
+    });
+  }
 };
 
 // 切换会话
@@ -567,6 +642,13 @@ const switchSession = async (session) => {
         time: Date.now()
       };
       
+      // 保存欢迎消息到数据库
+      await createMessage(
+        session.id,
+        welcomeMessage.content,
+        welcomeMessage.role
+      );
+      
       // 更新当前会话
       currentSession.value = {
         id: session.id,
@@ -586,22 +668,46 @@ const switchSession = async (session) => {
         type: sessionDetail.type || 'chat',
         time: sessionDetail.updateTime || sessionDetail.createTime,
         messages: messages.map(msg => ({
-          role: msg.role || 'assistant', // 使用消息的角色或默认为assistant
+          role: msg.role || 'assistant',
           content: msg.content,
           time: msg.createTime || msg.create_time
         }))
       };
       
-      // 输出消息的角色分布情况，用于调试
-      const roleCounts = messages.reduce((acc, msg) => {
-        const role = msg.role || 'unknown';
-        acc[role] = (acc[role] || 0) + 1;
-        return acc;
-      }, {});
-      console.log('消息角色分布:', roleCounts);
-      
       // 更新消息列表
       messageList.value = [...currentSession.value.messages];
+    }
+    
+    // 如果是文件对话，设置文件状态
+    if (sessionDetail.isFileChat && sessionDetail.fileInfo) {
+      console.log('切换到文件对话，文件信息:', sessionDetail.fileInfo);
+      isFileChat.value = true;
+      currentFile.value = {
+        id: sessionDetail.fileInfo.id,
+        name: sessionDetail.fileInfo.name,
+        size: sessionDetail.fileInfo.size,
+        type: sessionDetail.fileInfo.type,
+        uploadTime: sessionDetail.fileInfo.uploadTime
+      };
+      
+      // 获取文件内容
+      try {
+        console.log('获取文件内容:', currentFile.value.id);
+        const fileContent = await getFileContent(currentFile.value.id);
+        console.log('文件内容获取成功');
+        currentFile.value.content = fileContent;
+      } catch (error) {
+        console.error('获取文件内容失败:', error);
+        uni.showToast({
+          title: '获取文件内容失败，可能无法正常进行文件问答',
+          icon: 'none',
+          duration: 3000
+        });
+      }
+    } else {
+      // 如果不是文件对话，重置文件状态
+      isFileChat.value = false;
+      currentFile.value = null;
     }
     
     console.log('会话切换成功');
@@ -750,25 +856,191 @@ const removeFile = (index) => {
   files.value.splice(index, 1);
 };
 
-// 触发文件选择
-const triggerFile = () => {
-  fileInput.value.click();
+// 修改触发文件选择的函数
+const triggerFileInput = () => {
+  console.log('触发文件选择');
+  try {
+    // 使用 uni.chooseFile API
+    uni.chooseFile({
+      count: 1,
+      type: 'all',
+      extension: ['.pdf', '.txt', '.doc', '.docx', '.xls', '.xlsx', '.ppt', '.pptx', '.md', 
+                 '.jpeg', '.png', '.bmp', '.gif', '.svg', '.svgz', '.webp', '.ico', '.xbm', 
+                 '.dib', '.pjp', '.tif', '.pjpeg', '.avif', '.dot', '.apng', '.epub', '.tiff', 
+                 '.jfif', '.html', '.json', '.mobi', '.log', '.go', '.h', '.c', '.cpp', '.cxx', 
+                 '.cc', '.cs', '.java', '.js', '.css', '.jsp', '.php', '.py', '.py3', '.asp', 
+                 '.yaml', '.yml', '.ini', '.conf', '.ts', '.tsx'],
+      success: (res) => {
+        console.log('文件选择成功:', res);
+        if (res.tempFiles && res.tempFiles.length > 0) {
+          handleFileSelected(res.tempFiles[0]);
+        }
+      },
+      fail: (err) => {
+        console.error('文件选择失败:', err);
+        uni.showToast({
+          title: '选择文件失败',
+          icon: 'none'
+        });
+      }
+    });
+  } catch (error) {
+    console.error('触发文件选择失败:', error);
+  }
 };
 
-// 添加文件
-const addFiles = (event) => {
-  const fileList = event.target.files;
-  if (!fileList || fileList.length === 0) return;
-
-  Array.from(fileList).forEach(file => {
-    files.value.push({
-      name: file.name,
-      status: FILE_STATUS.PENDING
+// 修改文件处理函数
+const handleFileSelected = async (file) => {
+  console.log('处理选择的文件:', file);
+  try {
+    // 检查用户是否已登录
+    if (!isLoggedIn.value || !userId.value) {
+      console.error('用户未登录，无法处理文件');
+      uni.showToast({
+        title: '请先登录后再上传文件',
+        icon: 'none'
+      });
+      return;
+    }
+    
+    console.log('文件信息:', {
+      name: file.name || file.path.split('/').pop(),
+      size: file.size,
+      type: file.type
     });
-  });
-
-  // 清空文件输入框，以便可以再次选择相同的文件
-  event.target.value = '';
+    
+    // 检查文件大小
+    if (file.size > 100 * 1024 * 1024) { // 100MB
+      console.error('文件大小超过限制:', file.size);
+      uni.showToast({
+        title: '文件大小不能超过100MB',
+        icon: 'none'
+      });
+      return;
+    }
+    
+    // 显示上传中提示
+    uni.showLoading({
+      title: '正在上传文件...',
+      mask: true
+    });
+    
+    // 首先创建会话记录
+    console.log('创建文件问答会话');
+    let sessionResult;
+    try {
+      // 创建会话记录
+      console.log('创建会话记录');
+      const fileName = file.name || file.path.split('/').pop();
+      sessionResult = await createSession(fileName, 'file');
+      console.log('创建会话结果:', sessionResult);
+      
+      if (!sessionResult || !sessionResult._id) {
+        throw new Error('创建会话失败：未获取到会话ID');
+      }
+      
+      console.log('成功创建会话，ID:', sessionResult._id);
+    } catch (error) {
+      console.error('创建会话失败:', error);
+      throw new Error('创建会话失败：' + (error.message || '未知错误'));
+    }
+    
+    // 上传文件
+    console.log('开始上传文件到服务器');
+    const uploadResult = await uploadFile(file);
+    console.log('文件上传结果:', uploadResult);
+    
+    if (!uploadResult || !uploadResult.id) {
+      throw new Error('文件上传失败：未获取到文件ID');
+    }
+    
+    // 获取文件内容
+    console.log('开始获取文件内容');
+    const fileContent = await getFileContent(uploadResult.id);
+    console.log('文件内容获取成功');
+    
+    // 更新当前文件状态
+    currentFile.value = {
+      name: file.name || file.path.split('/').pop(),
+      size: file.size,
+      type: file.type,
+      id: uploadResult.id,
+      content: fileContent,
+      uploadTime: Date.now()
+    };
+    
+    // 更新会话信息
+    try {
+      await updateSession(sessionResult._id, {
+        userId: userId.value,
+        isFileChat: true,
+        fileInfo: {
+          id: currentFile.value.id,
+          name: currentFile.value.name,
+          size: currentFile.value.size,
+          type: currentFile.value.type,
+          uploadTime: currentFile.value.uploadTime
+        }
+      });
+      console.log('会话信息更新成功');
+    } catch (error) {
+      console.error('更新会话信息失败:', error);
+      // 继续执行，不影响主要功能
+    }
+    
+    // 更新会话状态
+    isFileChat.value = true;
+    currentSession.value = {
+      id: sessionResult._id,
+      title: currentFile.value.name,
+      type: 'file',
+      time: Date.now(),
+      messages: []
+    };
+    
+    // 添加系统消息
+    const systemMessage = {
+      role: 'system',
+      content: `文件 ${currentFile.value.name} 已上传并处理完成，您可以开始提问关于文件内容的问题。`,
+      time: Date.now()
+    };
+    
+    // 保存系统消息到数据库
+    try {
+      await createMessage(
+        currentSession.value.id,
+        systemMessage.content,
+        systemMessage.role
+      );
+    } catch (error) {
+      console.error('保存系统消息失败:', error);
+      // 继续执行，不影响主要功能
+    }
+    
+    // 更新当前会话的消息列表
+    currentSession.value.messages.push(systemMessage);
+    
+    // 更新消息列表
+    messageList.value = [...currentSession.value.messages];
+    
+    uni.hideLoading();
+    uni.showToast({
+      title: '文件处理完成',
+      icon: 'success'
+    });
+    
+  } catch (error) {
+    console.error('处理文件失败:', error);
+    uni.hideLoading();
+    uni.showToast({
+      title: error.message || '处理文件失败',
+      icon: 'none'
+    });
+    
+    // 重置文件聊天状态
+    isFileChat.value = false;
+    currentFile.value = null;
+  }
 };
 
 // 格式化完整日期
@@ -830,6 +1102,11 @@ const groupedHistoryList = computed(() => {
     return new Date(b.date) - new Date(a.date);
   });
 });
+
+// 在 setup 中添加
+const fileInputRef = ref(null);
+const currentFile = ref(null);
+const isFileChat = ref(false);
 </script>
 
 <style lang="less">
@@ -1198,209 +1475,112 @@ const groupedHistoryList = computed(() => {
       border-top: 1px solid #eee;
       box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.03);
       position: relative;
+      display: flex;
+      align-items: center;
+      gap: 12px;
 
-      .file-tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 6px;
-        margin-bottom: 12px;
-        min-height: 28px;
-
-        .tag {
-          display: flex;
-          align-items: center;
-          padding: 4px 12px;
-          background: #f5f7fa;
-          border-radius: 16px;
-          font-size: 12px;
-          transition: all 0.3s;
-          border: 1px solid #eee;
-          box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
-
-          &:hover {
-            background: #e6f7ff;
-            border-color: #1890ff;
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(24, 144, 255, 0.1);
-          }
-
-          .status {
-            margin-left: 6px;
-            font-size: 11px;
-            display: flex;
-            align-items: center;
-
-            &.pending {
-              color: #999;
-              &::before {
-                content: "⏳";
-                margin-right: 3px;
-              }
-            }
-            &.uploading {
-              color: #1890ff;
-              &::before {
-                content: "📤";
-                margin-right: 3px;
-              }
-            }
-            &.analyzing {
-              color: #52c41a;
-              &::before {
-                content: "🔍";
-                margin-right: 3px;
-              }
-            }
-            &.error {
-              color: #ff4d4f;
-              &::before {
-                content: "❌";
-                margin-right: 3px;
-              }
-            }
-          }
-
-          .remove {
-            margin-left: 6px;
-            cursor: pointer;
-            color: #999;
-            width: 16px;
-            height: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: all 0.3s;
-            font-size: 12px;
-
-            &:hover {
-              color: #ff4d4f;
-              background: rgba(255, 77, 79, 0.1);
-              transform: scale(1.1);
-            }
-          }
-        }
-      }
-
-      .input-box {
+      .file-upload {
         display: flex;
         align-items: center;
-        gap: 8px;
+        justify-content: center;
+        width: 36px;
+        height: 36px;
+        border-radius: 8px;
         background: #f5f7fa;
-        padding: 8px 12px;
-        border-radius: 12px;
+        cursor: pointer;
         transition: all 0.3s;
-        border: 1px solid transparent;
-        box-shadow: 0 1px 4px rgba(0, 0, 0, 0.02);
+        border: 1px solid #eee;
 
-        &:focus-within {
+        &:hover {
+          background: #e6f7ff;
           border-color: #1890ff;
-          box-shadow: 0 0 0 3px rgba(24, 144, 255, 0.1);
-          background: #fff;
+          transform: translateY(-1px);
         }
 
-        .file-btn {
-          font-size: 16px;
-          cursor: pointer;
-          padding: 6px;
+        .icon {
+          font-size: 20px;
           color: #666;
-          transition: all 0.3s;
-          border-radius: 6px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          width: 28px;
-          height: 28px;
-
-          &:hover {
-            color: #1890ff;
-            background: #e6f7ff;
-            transform: scale(1.05);
-          }
-
-          &:active {
-            transform: scale(0.95);
-          }
-        }
-
-        .input {
-          flex: 1;
-          border: none;
-          background: transparent;
-          padding: 6px 8px;
-          font-size: 13px;
-          line-height: 1.4;
-          min-height: 20px;
-          max-height: 100px;
-          resize: none;
-
-          &:focus {
-            outline: none;
-          }
-
-          &::placeholder {
-            color: #999;
-          }
-        }
-
-        .send-btn {
-          background: linear-gradient(45deg, #1890ff, #36cfc9);
-          color: white;
-          border: none;
-          padding: 8px 16px;
-          border-radius: 8px;
-          font-weight: 500;
-          font-size: 13px;
-          transition: all 0.3s;
-          position: relative;
-          overflow: hidden;
-          min-width: 60px;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          gap: 4px;
-
-          &::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: linear-gradient(
-              45deg,
-              rgba(255, 255, 255, 0.1),
-              rgba(255, 255, 255, 0)
-            );
-            transition: all 0.3s;
-          }
-
-          &:hover::before {
-            transform: translateY(-100%);
-          }
-
-          &:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            &::before {
-              display: none;
-            }
-          }
-
-          &:not(:disabled):hover {
-            transform: translateY(-1px);
-            box-shadow: 0 2px 8px rgba(24, 144, 255, 0.2);
-          }
-
-          &:not(:disabled):active {
-            transform: translateY(1px);
-            box-shadow: 0 1px 4px rgba(24, 144, 255, 0.2);
-          }
         }
       }
 
-      .hidden-input {
-        display: none;
+      .current-file {
+        display: flex;
+        align-items: center;
+        padding: 6px 12px;
+        background: #f5f7fa;
+        border-radius: 8px;
+        border: 1px solid #eee;
+        margin-right: 8px;
+        max-width: 200px;
+        overflow: hidden;
+
+        .icon {
+          font-size: 16px;
+          color: #666;
+          margin-right: 8px;
+        }
+
+        .file-name {
+          font-size: 13px;
+          color: #333;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+      }
+
+      .message-input {
+        flex: 1;
+        min-height: 36px;
+        max-height: 120px;
+        padding: 8px 12px;
+        font-size: 14px;
+        line-height: 1.5;
+        background: #f5f7fa;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        transition: all 0.3s;
+        resize: none;
+
+        &:focus {
+          outline: none;
+          border-color: #1890ff;
+          background: #fff;
+          box-shadow: 0 0 0 2px rgba(24, 144, 255, 0.1);
+        }
+
+        &::placeholder {
+          color: #999;
+        }
+      }
+
+      .send-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 60px;
+        height: 36px;
+        padding: 0 16px;
+        border-radius: 8px;
+        background: linear-gradient(45deg, #1890ff, #36cfc9);
+        cursor: pointer;
+        transition: all 0.3s;
+        border: none;
+
+        text {
+          color: white;
+          font-size: 14px;
+          font-weight: 500;
+        }
+
+        &:hover {
+          transform: translateY(-1px);
+          box-shadow: 0 2px 8px rgba(24, 144, 255, 0.2);
+        }
+
+        &:active {
+          transform: translateY(1px);
+        }
       }
     }
 
@@ -1549,5 +1729,9 @@ const groupedHistoryList = computed(() => {
       }
     }
   }
+}
+
+.hidden-file-input {
+  display: none;
 }
 </style>
