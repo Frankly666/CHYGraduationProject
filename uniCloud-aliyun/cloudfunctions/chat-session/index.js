@@ -114,6 +114,16 @@ exports.main = async (event, context) => {
           normalizedUpdateData.type = updateData.type;
         }
         
+        // 处理文件聊天标识
+        if (updateData.isFileChat !== undefined) {
+          normalizedUpdateData.isFileChat = updateData.isFileChat;
+        }
+        
+        // 处理文件信息
+        if (updateData.fileInfo !== undefined) {
+          normalizedUpdateData.fileInfo = updateData.fileInfo;
+        }
+        
         // 更新会话
         await chatSessionsCollection.doc(sessionId).update({
           ...normalizedUpdateData,

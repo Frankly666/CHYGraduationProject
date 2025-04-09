@@ -38,6 +38,41 @@
       "bsonType": "string",
       "description": "最后一条消息内容",
       "maxLength": 500
+    },
+    "last_role": {
+      "bsonType": "string",
+      "description": "最后一条消息的角色",
+      "enum": ["user", "assistant", "system"]
+    },
+    "is_file_chat": {
+      "bsonType": "bool",
+      "description": "是否为文件问答会话"
+    },
+    "file_info": {
+      "bsonType": "object",
+      "description": "文件信息",
+      "properties": {
+        "id": {
+          "bsonType": "string",
+          "description": "文件ID"
+        },
+        "name": {
+          "bsonType": "string",
+          "description": "文件名称"
+        },
+        "size": {
+          "bsonType": "int",
+          "description": "文件大小"
+        },
+        "type": {
+          "bsonType": "string",
+          "description": "文件类型"
+        },
+        "upload_time": {
+          "bsonType": "timestamp",
+          "description": "上传时间"
+        }
+      }
     }
   }
 }

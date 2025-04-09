@@ -1,5 +1,8 @@
 <template>
   <view class="container">
+    <!-- 全局遮罩层，在删除操作进行时显示 -->
+    <view class="global-mask" v-if="isDeleting"></view>
+    
     <!-- 左侧侧边栏 - 仅在用户登录时显示 -->
     <view class="sidebar" v-if="isLoggedIn">
       <view class="header">
@@ -20,9 +23,15 @@
             :class="{ active: currentSession.id === item.id }"
             @click="switchSession(item)"
           >
-            <view class="item-icon">{{ item.type === "doc" ? "📄" : "💬" }}</view>
+            <view class="item-icon" :title="item.isFileChat && item.fileInfo ? item.fileInfo.name : ''">{{ item.isFileChat ? "📄" : (item.type === "doc" ? "📄" : "💬") }}</view>
             <view class="item-info">
-              <text class="title">{{ item.title }}</text>
+              <!-- 如果是文件对话，在标题旁显示文件标签 -->
+              <view class="title-row">
+                <text class="title">{{ item.title }}</text>
+                <view class="file-tag" v-if="item.isFileChat && item.fileInfo">
+                  <text class="file-name">{{ item.fileInfo.name }}</text>
+                </view>
+              </view>
               <view class="last-message" v-if="item.lastMessage">
                 <text class="role-badge" :class="item.lastRole === 'user' ? 'user' : 'assistant'">{{ item.lastRole === 'user' ? '问' : '答' }}</text>
                 <text class="message-preview">{{ item.lastMessage }}</text>
@@ -30,7 +39,7 @@
               <text class="time">{{ formatTime(item.time) }}</text>
             </view>
             <view class="item-actions">
-              <button class="delete-btn" @click.stop="deleteSessionRecord(item)">
+              <button class="delete-btn" @click.stop="deleteSessionRecord(item)" :disabled="isDeleting" :class="{ 'disabled': isDeleting }">
                 <text class="delete-icon">×</text>
               </button>
             </view>
@@ -399,6 +408,33 @@ const sendMessage = async () => {
     time: Date.now()
   });
   
+  // 检查当前会话是否有ID，如果没有则创建新会话
+  if (!currentSession.value.id && isLoggedIn.value) {
+    try {
+      console.log('首次发送消息，创建新会话');
+      // 创建新会话
+      const sessionResult = await createSession(currentSession.value.title, currentSession.value.type);
+      console.log('创建会话结果:', sessionResult);
+      
+      // 检查会话ID，云函数返回的ID在_id字段中
+      if (!sessionResult || (!sessionResult._id && !sessionResult.id)) {
+        throw new Error('创建会话失败：未获取到会话ID');
+      }
+      
+      // 获取会话ID，优先使用_id字段，兼容id字段
+      const sessionId = sessionResult._id || sessionResult.id;
+      currentSession.value.id = sessionId;
+      console.log('成功创建会话，ID:', sessionId);
+    } catch (error) {
+      console.error('创建会话失败:', error);
+      uni.showToast({
+        title: error.message || '创建会话失败',
+        icon: 'none'
+      });
+      // 即使创建会话失败，也继续处理消息，只是不会保存到数据库
+    }
+  }
+  
   // 保存用户消息到数据库
   if (currentSession.value.id) {
     await createMessage(
@@ -428,7 +464,21 @@ const sendMessage = async () => {
         fileContent: currentFile.value.content
       });
       
-      // 调用文件问答接口，传入进度回调函数
+      // 准备历史消息，过滤掉空内容和系统消息
+      const historyMessages = currentSession.value.messages
+        .filter(msg => 
+          msg.role !== 'thinking' && 
+          msg.content && 
+          msg.content.trim() !== ''
+        )
+        .map(msg => ({
+          role: msg.role,
+          content: msg.content
+        }));
+      
+      console.log('文件问答历史消息:', historyMessages);
+      
+      // 调用文件问答接口，传入进度回调函数和历史消息
       response = await chatWithFile(
         currentFile.value.content, 
         userMessage,
@@ -448,7 +498,8 @@ const sendMessage = async () => {
           nextTick(() => {
             scrollToBottom();
           });
-        }
+        },
+        historyMessages
       );
       
       console.log('文件问答完成');
@@ -523,6 +574,9 @@ const sendMessage = async () => {
         lastMessage: lastMessage.content.substring(0, 50) + (lastMessage.content.length > 50 ? '...' : ''),
         lastRole: lastMessage.role
       });
+      
+      // 更新左侧历史记录列表，确保只有在实际发送消息后才会显示在历史记录中
+      await loadUserHistory();
     }
     
     // 滚动到底部
@@ -568,17 +622,12 @@ const createNewChat = async () => {
   try {
     console.log('创建新会话');
     
-    // 创建新会话
-    const sessionResult = await createSession('新对话', 'chat');
-    console.log('创建会话结果:', sessionResult);
+    // 不再立即创建会话记录，而是只在内存中创建临时会话
+    // 只有在用户实际发送消息时才会创建真正的会话记录
     
-    if (!sessionResult || !sessionResult.id) {
-      throw new Error('创建会话失败：未获取到会话ID');
-    }
-    
-    // 更新当前会话
+    // 更新当前会话（仅在内存中）
     currentSession.value = {
-      id: sessionResult.id,
+      id: '', // 空ID表示这是一个临时会话，尚未保存到数据库
       title: '新对话',
       type: 'chat',
       time: Date.now(),
@@ -592,22 +641,13 @@ const createNewChat = async () => {
     // 显示欢迎消息
     showWelcomeMessage();
     
-    // 保存欢迎消息到数据库
-    const welcomeMessage = {
-      role: 'assistant',
-      content: '你好！我是你的AI助手，有什么我可以帮你的吗？',
-      time: Date.now()
-    };
+    // 更新消息列表（仅在内存中，不保存到数据库）
+    // 欢迎消息已经在showWelcomeMessage函数中添加到currentSession.value.messages
+    messageList.value = [...currentSession.value.messages];
     
-    await createMessage(
-      currentSession.value.id,
-      welcomeMessage.content,
-      welcomeMessage.role
-    );
+    // 不再保存欢迎消息到数据库，只有用户实际发送消息时才会创建会话记录
     
-    // 更新消息列表
-    messageList.value = [welcomeMessage];
-    currentSession.value.messages = [welcomeMessage];
+    // 不再立即更新左侧历史记录列表，等待用户实际发送消息后再更新
     
   } catch (error) {
     console.error('创建新会话失败:', error);
@@ -618,10 +658,39 @@ const createNewChat = async () => {
   }
 };
 
+// 添加加载状态变量
+const isLoading = ref(false);
+
 // 切换会话
 const switchSession = async (session) => {
   try {
     console.log('切换到会话:', session);
+    
+    // 设置加载状态为true
+    isLoading.value = true;
+    
+    // 显示加载提示
+    uni.showLoading({
+      title: '加载历史记录中...',
+      mask: true // 显示透明蒙层，防止触摸穿透
+    });
+    
+    // 检查是否为文件对话
+    if (session.isFileChat && session.fileInfo) {
+      console.log('切换到文件对话，文件信息:', session.fileInfo);
+      isFileChat.value = true;
+      currentFile.value = {
+        id: session.fileInfo.id,
+        name: session.fileInfo.name,
+        size: session.fileInfo.size,
+        type: session.fileInfo.type,
+        uploadTime: session.fileInfo.uploadTime || Date.now()
+      };
+    } else {
+      // 非文件对话，重置文件相关状态
+      isFileChat.value = false;
+      currentFile.value = null;
+    }
     
     // 获取会话详情
     const sessionDetail = await getSession(session.id);
@@ -649,80 +718,55 @@ const switchSession = async (session) => {
         welcomeMessage.role
       );
       
-      // 更新当前会话
+      // 更新会话消息列表
       currentSession.value = {
-        id: session.id,
-        title: sessionDetail.title,
-        type: sessionDetail.type || 'chat',
-        time: sessionDetail.updateTime || sessionDetail.createTime,
+        ...session,
         messages: [welcomeMessage]
       };
-      
-      // 更新消息列表
-      messageList.value = [welcomeMessage];
     } else {
-      // 更新当前会话
+      // 更新会话消息列表
       currentSession.value = {
-        id: session.id,
-        title: sessionDetail.title,
-        type: sessionDetail.type || 'chat',
-        time: sessionDetail.updateTime || sessionDetail.createTime,
+        ...session,
         messages: messages.map(msg => ({
-          role: msg.role || 'assistant',
+          role: msg.role,
           content: msg.content,
-          time: msg.createTime || msg.create_time
+          time: msg.createTime || Date.now()
         }))
       };
-      
-      // 更新消息列表
-      messageList.value = [...currentSession.value.messages];
     }
     
+    // 更新消息列表
+    messageList.value = [...currentSession.value.messages];
+    
     // 如果是文件对话，设置文件状态
-    if (sessionDetail.isFileChat && sessionDetail.fileInfo) {
-      console.log('切换到文件对话，文件信息:', sessionDetail.fileInfo);
+    if (session.isFileChat && session.fileInfo) {
+      console.log('加载文件对话信息:', session.fileInfo);
       isFileChat.value = true;
-      currentFile.value = {
-        id: sessionDetail.fileInfo.id,
-        name: sessionDetail.fileInfo.name,
-        size: sessionDetail.fileInfo.size,
-        type: sessionDetail.fileInfo.type,
-        uploadTime: sessionDetail.fileInfo.uploadTime
-      };
-      
-      // 获取文件内容
-      try {
-        console.log('获取文件内容:', currentFile.value.id);
-        const fileContent = await getFileContent(currentFile.value.id);
-        console.log('文件内容获取成功');
-        currentFile.value.content = fileContent;
-      } catch (error) {
-        console.error('获取文件内容失败:', error);
-        uni.showToast({
-          title: '获取文件内容失败，可能无法正常进行文件问答',
-          icon: 'none',
-          duration: 3000
-        });
-      }
+      currentFile.value = session.fileInfo;
     } else {
-      // 如果不是文件对话，重置文件状态
       isFileChat.value = false;
       currentFile.value = null;
     }
     
-    console.log('会话切换成功');
-    
     // 滚动到底部
     await nextTick();
     scrollToBottom();
+    
   } catch (error) {
     console.error('切换会话失败:', error);
     uni.showToast({
       title: error.message || '切换会话失败',
       icon: 'none'
     });
+  } finally {
+    // 无论成功或失败，都隐藏加载提示并重置加载状态
+    uni.hideLoading();
+    isLoading.value = false;
   }
 };
+
+// 添加删除加载状态变量
+const isDeleting = ref(false);
 
 // 删除会话
 const deleteSessionRecord = async (session) => {
@@ -735,26 +779,47 @@ const deleteSessionRecord = async (session) => {
       content: '确定要删除该会话吗？所有相关消息将被永久删除。',
       success: async (res) => {
         if (res.confirm) {
-          // 先删除所有关联的消息
-          console.log('删除会话关联的消息');
-          await deleteMessages(session.id);
+          // 设置删除状态为true
+          isDeleting.value = true;
           
-          // 然后删除会话
-          console.log('删除会话');
-          await deleteSession(session.id);
-          
-          // 重新加载历史记录
-          await loadUserHistory();
-          
-          // 如果删除的是当前会话，创建新会话
-          if (currentSession.value.id === session.id) {
-            createNewChat();
-          }
-          
-          uni.showToast({
-            title: '删除成功',
-            icon: 'success'
+          // 显示加载提示
+          uni.showLoading({
+            title: '正在删除...',
+            mask: true // 显示透明蒙层，防止触摸穿透
           });
+          
+          try {
+            // 先删除所有关联的消息
+            console.log('删除会话关联的消息');
+            await deleteMessages(session.id);
+            
+            // 然后删除会话
+            console.log('删除会话');
+            await deleteSession(session.id);
+            
+            // 重新加载历史记录
+            await loadUserHistory();
+            
+            // 如果删除的是当前会话，创建新会话
+            if (currentSession.value.id === session.id) {
+              createNewChat();
+            }
+            
+            uni.showToast({
+              title: '删除成功',
+              icon: 'success'
+            });
+          } catch (error) {
+            console.error('删除会话失败:', error);
+            uni.showToast({
+              title: error.message || '删除会话失败',
+              icon: 'none'
+            });
+          } finally {
+            // 无论成功或失败，都隐藏加载提示并重置删除状态
+            uni.hideLoading();
+            isDeleting.value = false;
+          }
         }
       }
     });
@@ -764,6 +829,8 @@ const deleteSessionRecord = async (session) => {
       title: error.message || '删除会话失败',
       icon: 'none'
     });
+    // 确保删除状态被重置
+    isDeleting.value = false;
   }
 };
 
@@ -925,24 +992,30 @@ const handleFileSelected = async (file) => {
       mask: true
     });
     
-    // 首先创建会话记录
-    console.log('创建文件问答会话');
-    let sessionResult;
-    try {
-      // 创建会话记录
-      console.log('创建会话记录');
-      const fileName = file.name || file.path.split('/').pop();
-      sessionResult = await createSession(fileName, 'file');
-      console.log('创建会话结果:', sessionResult);
-      
-      if (!sessionResult || !sessionResult._id) {
-        throw new Error('创建会话失败：未获取到会话ID');
+    let sessionId = currentSession.value.id;
+    
+    // 如果当前没有会话，则创建一个新会话
+    if (!sessionId) {
+      console.log('当前没有会话，创建文件问答会话');
+      try {
+        // 创建会话记录
+        console.log('创建会话记录');
+        const fileName = file.name || file.path.split('/').pop();
+        const sessionResult = await createSession(fileName, 'file');
+        console.log('创建会话结果:', sessionResult);
+        
+        if (!sessionResult || !sessionResult._id) {
+          throw new Error('创建会话失败：未获取到会话ID');
+        }
+        
+        sessionId = sessionResult._id;
+        console.log('成功创建会话，ID:', sessionId);
+      } catch (error) {
+        console.error('创建会话失败:', error);
+        throw new Error('创建会话失败：' + (error.message || '未知错误'));
       }
-      
-      console.log('成功创建会话，ID:', sessionResult._id);
-    } catch (error) {
-      console.error('创建会话失败:', error);
-      throw new Error('创建会话失败：' + (error.message || '未知错误'));
+    } else {
+      console.log('在当前会话中继续对话，会话ID:', sessionId);
     }
     
     // 上传文件
@@ -971,7 +1044,7 @@ const handleFileSelected = async (file) => {
     
     // 更新会话信息
     try {
-      await updateSession(sessionResult._id, {
+      await updateSession(sessionId, {
         userId: userId.value,
         isFileChat: true,
         fileInfo: {
@@ -990,35 +1063,61 @@ const handleFileSelected = async (file) => {
     
     // 更新会话状态
     isFileChat.value = true;
-    currentSession.value = {
-      id: sessionResult._id,
-      title: currentFile.value.name,
-      type: 'file',
-      time: Date.now(),
-      messages: []
-    };
     
-    // 添加系统消息
-    const systemMessage = {
-      role: 'system',
-      content: `文件 ${currentFile.value.name} 已上传并处理完成，您可以开始提问关于文件内容的问题。`,
-      time: Date.now()
-    };
-    
-    // 保存系统消息到数据库
-    try {
-      await createMessage(
-        currentSession.value.id,
-        systemMessage.content,
-        systemMessage.role
-      );
-    } catch (error) {
-      console.error('保存系统消息失败:', error);
-      // 继续执行，不影响主要功能
+    // 如果是新会话，则初始化消息列表
+    if (!currentSession.value.id) {
+      currentSession.value = {
+        id: sessionId,
+        title: currentFile.value.name,
+        type: 'file',
+        time: Date.now(),
+        messages: []
+      };
+      
+      // 添加系统消息
+      const systemMessage = {
+        role: 'system',
+        content: `文件 ${currentFile.value.name} 已上传并处理完成，您可以开始提问关于文件内容的问题。`,
+        time: Date.now()
+      };
+      
+      // 保存系统消息到数据库
+      try {
+        await createMessage(
+          sessionId,
+          systemMessage.content,
+          systemMessage.role
+        );
+      } catch (error) {
+        console.error('保存系统消息失败:', error);
+        // 继续执行，不影响主要功能
+      }
+      
+      // 更新当前会话的消息列表
+      currentSession.value.messages.push(systemMessage);
+    } else {
+      // 如果是在现有会话中上传文件，添加文件上传通知消息
+      const fileUploadMessage = {
+        role: 'system',
+        content: `文件 ${currentFile.value.name} 已上传并处理完成，您可以继续提问关于文件内容的问题。`,
+        time: Date.now()
+      };
+      
+      // 保存文件上传通知消息到数据库
+      try {
+        await createMessage(
+          sessionId,
+          fileUploadMessage.content,
+          fileUploadMessage.role
+        );
+      } catch (error) {
+        console.error('保存文件上传通知消息失败:', error);
+        // 继续执行，不影响主要功能
+      }
+      
+      // 更新当前会话的消息列表
+      currentSession.value.messages.push(fileUploadMessage);
     }
-    
-    // 更新当前会话的消息列表
-    currentSession.value.messages.push(systemMessage);
     
     // 更新消息列表
     messageList.value = [...currentSession.value.messages];
@@ -1222,6 +1321,36 @@ const isFileChat = ref(false);
           min-width: 26px;
           height: 26px;
           display: flex;
+        }
+        
+        .title-row {
+          display: flex;
+          align-items: center;
+          width: 100%;
+          
+          .title {
+            flex: 1;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+          }
+          
+          .file-tag {
+            background: rgba(24, 144, 255, 0.1);
+            border-radius: 4px;
+            padding: 2px 6px;
+            margin-left: 5px;
+            max-width: 80px;
+            
+            .file-name {
+              font-size: 10px;
+              color: #1890ff;
+              white-space: nowrap;
+              overflow: hidden;
+              text-overflow: ellipsis;
+            }
+          }
+        }
           align-items: center;
           justify-content: center;
           background: #f0f7ff;
@@ -1733,5 +1862,19 @@ const isFileChat = ref(false);
 
 .hidden-file-input {
   display: none;
+}
+.global-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
+
+.delete-btn.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
 }
 </style>

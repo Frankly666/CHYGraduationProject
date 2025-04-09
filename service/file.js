@@ -66,10 +66,12 @@ export const getFileContent = async (fileId) => {
 };
 
 // 文件问答
-export const chatWithFile = async (fileContent, question, onProgress) => {
+export const chatWithFile = async (fileContent, question, onProgress, history = []) => {
   try {
     console.log('开始文件问答:', question);
+    console.log('历史消息:', history);
     
+    // 构建消息数组，包含系统消息、文件内容、历史消息和当前问题
     const messages = [
       {
         role: "system",
@@ -78,12 +80,27 @@ export const chatWithFile = async (fileContent, question, onProgress) => {
       {
         role: "system",
         content: typeof fileContent === 'string' ? fileContent : JSON.stringify(fileContent)
-      },
-      {
-        role: "user",
-        content: question
       }
     ];
+    
+    // 添加历史消息
+    if (history && history.length > 0) {
+      // 过滤掉系统消息，只保留用户和助手的对话
+      const filteredHistory = history.filter(msg => 
+        msg.role !== 'system' && 
+        msg.content && 
+        msg.content.trim() !== ''
+      );
+      
+      // 将历史消息添加到消息数组中
+      messages.push(...filteredHistory);
+    }
+    
+    // 添加当前问题
+    messages.push({
+      role: "user",
+      content: question
+    });
     
     console.log('发送的消息:', messages);
     
@@ -154,4 +171,4 @@ export const chatWithFile = async (fileContent, question, onProgress) => {
     console.error('文件问答失败:', error);
     throw error;
   }
-}; 
+};
