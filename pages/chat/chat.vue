@@ -1351,12 +1351,6 @@ const isFileChat = ref(false);
             }
           }
         }
-          align-items: center;
-          justify-content: center;
-          background: #f0f7ff;
-          border-radius: 6px;
-          flex-shrink: 0;
-        }
 
         .item-info {
           flex: 1;
