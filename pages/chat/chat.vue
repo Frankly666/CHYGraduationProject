@@ -56,6 +56,12 @@
         <button class="login-btn" @click="goToLogin">去登录</button>
       </view>
 
+      <!-- 知识图谱展示区域 -->
+      <view class="knowledge-graph-container" v-if="showKnowledgeGraph && graphData">
+        <KnowledgeGraph :graph-data="graphData" />
+        <button class="close-graph-btn" @click="showKnowledgeGraph = false">关闭图谱</button>
+      </view>
+
       <!-- 消息区域 -->
       <scroll-view class="message-list" scroll-y :scroll-top="scrollTop">
         <view
@@ -93,9 +99,19 @@
         <view class="file-upload" @click="triggerFileInput" v-if="!isFileChat">
           <text class="icon">📁</text>
         </view>
-        <view class="current-file" v-if="isFileChat">
-          <text class="icon">📄</text>
-          <text class="file-name">{{ currentFile?.name }}</text>
+        <view class="file-controls" v-if="isFileChat">
+          <view class="current-file">
+            <text class="icon">📄</text>
+            <text class="file-name">{{ currentFile?.name }}</text>
+          </view>
+          <button 
+            v-if="analysisResult && analysisResult.suitable" 
+            class="generate-graph-btn" 
+            @click="handleGenerateGraph"
+            :disabled="isAnalyzing"
+          >
+            {{ isAnalyzing ? '生成中...' : '生成知识图谱' }}
+          </button>
         </view>
         <input
           class="message-input"
@@ -119,6 +135,8 @@ import { marked } from 'marked';
 import { getSessionList, getSession, createSession, updateSession, deleteSession } from '@/controls/chat-session.js';
 import { createMessage, getMessageList, deleteMessages } from '@/controls/chat-message.js';
 import { uploadFile, getFileContent, chatWithFile } from '@/service/file.js';
+import { checkFileForKnowledgeGraph, generateKnowledgeGraph } from '@/service/knowledge-graph.js';
+import KnowledgeGraph from '@/components/KnowledgeGraph.vue';
 import { getUserHistory, saveHistory, updateHistory, deleteHistory, getHistoryById } from '@/controls/history.js';
 
 // 用户登录状态
@@ -353,6 +371,15 @@ const historyList = ref([]);
 const files = ref([]);
 const fileInput = ref(null);
 const fileId = ref(null);
+const currentFile = ref(null);
+
+// 知识图谱相关状态
+const showKnowledgeGraph = ref(false);
+const graphData = ref(null);
+const isAnalyzing = ref(false);
+const analysisResult = ref(null);
+// currentFile已在状态管理部分定义
+const isFileChat = ref(false);
 
 // 新增状态常量
 const FILE_STATUS = {
@@ -467,9 +494,11 @@ const sendMessage = async () => {
       // 准备历史消息，过滤掉空内容和系统消息
       const historyMessages = currentSession.value.messages
         .filter(msg => 
+          msg.role !== 'system' && 
           msg.role !== 'thinking' && 
           msg.content && 
-          msg.content.trim() !== ''
+          msg.content.trim() !== '' &&
+          !msg.thinking
         )
         .map(msg => ({
           role: msg.role,
@@ -477,6 +506,11 @@ const sendMessage = async () => {
         }));
       
       console.log('文件问答历史消息:', historyMessages);
+      
+      // 确保文件信息完整
+      if (!currentFile.value || !currentFile.value.content) {
+        throw new Error('文件信息不完整，请重新上传文件');
+      }
       
       // 调用文件问答接口，传入进度回调函数和历史消息
       response = await chatWithFile(
@@ -607,6 +641,70 @@ const sendMessage = async () => {
 };
 
 // 滚动到底部
+// 处理文件上传
+const handleFileUpload = async (file) => {
+  try {
+    isAnalyzing.value = true;
+    
+    // 上传文件
+    const uploadResult = await uploadFile(file);
+    if (!uploadResult || !uploadResult.id) {
+      throw new Error('文件上传失败');
+    }
+    
+    // 获取文件内容
+    const fileContent = await getFileContent(uploadResult.id);
+    
+    // 检查文件是否适合生成知识图谱
+    const checkResult = await checkFileForKnowledgeGraph(fileContent);
+    analysisResult.value = checkResult;
+    
+    // 更新当前文件信息
+    currentFile.value = {
+      id: uploadResult.id,
+      name: file.name,
+      content: fileContent
+    };
+    isFileChat.value = true;
+    
+    if (!checkResult.suitable) {
+      uni.showToast({
+        title: '当前文件不适合生成知识图谱',
+        icon: 'none'
+      });
+    }
+  } catch (error) {
+    console.error('处理文件失败:', error);
+    uni.showToast({
+      title: error.message || '处理文件失败',
+      icon: 'none'
+    });
+    currentFile.value = null;
+    analysisResult.value = null;
+  } finally {
+    isAnalyzing.value = false;
+  }
+};
+
+// 生成知识图谱
+const handleGenerateGraph = async () => {
+  try {
+    isAnalyzing.value = true;
+    
+    const graphResult = await generateKnowledgeGraph(currentFile.value.content);
+    graphData.value = graphResult;
+    showKnowledgeGraph.value = true;
+  } catch (error) {
+    console.error('生成知识图谱失败:', error);
+    uni.showToast({
+      title: error.message || '生成知识图谱失败',
+      icon: 'none'
+    });
+  } finally {
+    isAnalyzing.value = false;
+  }
+};
+
 const scrollToBottom = () => {
   const query = uni.createSelectorQuery();
   query.select('.message-list').boundingClientRect();
@@ -678,14 +776,36 @@ const switchSession = async (session) => {
     // 检查是否为文件对话
     if (session.isFileChat && session.fileInfo) {
       console.log('切换到文件对话，文件信息:', session.fileInfo);
-      isFileChat.value = true;
-      currentFile.value = {
-        id: session.fileInfo.id,
-        name: session.fileInfo.name,
-        size: session.fileInfo.size,
-        type: session.fileInfo.type,
-        uploadTime: session.fileInfo.uploadTime || Date.now()
-      };
+      try {
+        // 获取文件内容
+        const fileContent = await getFileContent(session.fileInfo.id);
+        
+        if (fileContent) {
+          isFileChat.value = true;
+          currentFile.value = {
+            id: session.fileInfo.id,
+            name: session.fileInfo.name,
+            size: session.fileInfo.size,
+            type: session.fileInfo.type,
+            uploadTime: session.fileInfo.uploadTime || Date.now(),
+            content: fileContent
+          };
+        } else {
+          console.warn('文件内容为空，重置文件状态');
+          isFileChat.value = false;
+          currentFile.value = null;
+        }
+      } catch (error) {
+        console.error('获取文件内容失败:', error);
+        isFileChat.value = false;
+        currentFile.value = null;
+        // 不抛出错误，而是显示提示并继续加载会话
+        uni.showToast({
+          title: '文件内容加载失败，仅显示对话记录',
+          icon: 'none',
+          duration: 2000
+        });
+      }
     } else {
       // 非文件对话，重置文件相关状态
       isFileChat.value = false;
@@ -738,14 +858,23 @@ const switchSession = async (session) => {
     // 更新消息列表
     messageList.value = [...currentSession.value.messages];
     
-    // 如果是文件对话，设置文件状态
+    // 如果是文件对话，设置文件状态和分析结果
     if (session.isFileChat && session.fileInfo) {
       console.log('加载文件对话信息:', session.fileInfo);
       isFileChat.value = true;
       currentFile.value = session.fileInfo;
+      
+      // 恢复文件内容和分析结果
+      if (session.fileInfo.content) {
+        currentFile.value.content = session.fileInfo.content;
+      }
+      if (session.fileInfo.analysisResult) {
+        analysisResult.value = session.fileInfo.analysisResult;
+      }
     } else {
       isFileChat.value = false;
       currentFile.value = null;
+      analysisResult.value = null;
     }
     
     // 滚动到底部
@@ -1042,7 +1171,7 @@ const handleFileSelected = async (file) => {
       uploadTime: Date.now()
     };
     
-    // 更新会话信息
+    // 更新会话信息，包括文件分析结果
     try {
       await updateSession(sessionId, {
         userId: userId.value,
@@ -1052,7 +1181,9 @@ const handleFileSelected = async (file) => {
           name: currentFile.value.name,
           size: currentFile.value.size,
           type: currentFile.value.type,
-          uploadTime: currentFile.value.uploadTime
+          uploadTime: currentFile.value.uploadTime,
+          content: fileContent,
+          analysisResult: analysisResult.value
         }
       });
       console.log('会话信息更新成功');
@@ -1121,6 +1252,9 @@ const handleFileSelected = async (file) => {
     
     // 更新消息列表
     messageList.value = [...currentSession.value.messages];
+    
+    // 更新历史记录列表
+    await loadUserHistory();
     
     uni.hideLoading();
     uni.showToast({
@@ -1204,8 +1338,6 @@ const groupedHistoryList = computed(() => {
 
 // 在 setup 中添加
 const fileInputRef = ref(null);
-const currentFile = ref(null);
-const isFileChat = ref(false);
 </script>
 
 <style lang="less">
@@ -1821,6 +1953,49 @@ const isFileChat = ref(false);
     height: auto;
     border-radius: 4px;
     margin: 0.5em 0;
+  }
+}
+
+// 知识图谱相关样式
+.knowledge-graph-container {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  margin: 10px 0;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.close-graph-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  background-color: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.file-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.generate-graph-btn {
+  padding: 5px 10px;
+  background-color: #4992ff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  
+  &:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
   }
 }
 

@@ -1,25 +1,61 @@
 {
-  "hash": "061c78bf",
+  "hash": "a93bc244",
   "configHash": "6de87e1c",
-  "lockfileHash": "e60f4bea",
-  "browserHash": "f55618ab",
+  "lockfileHash": "592a1a5c",
+  "browserHash": "9ebaf858",
   "optimized": {
     "marked": {
       "src": "../../../../../node_modules/marked/lib/marked.esm.js",
       "file": "marked.js",
-      "fileHash": "d5ee7911",
+      "fileHash": "581f46a0",
       "needsInterop": false
     },
     "openai": {
       "src": "../../../../../node_modules/openai/index.mjs",
       "file": "openai.js",
-      "fileHash": "ffad0b7f",
+      "fileHash": "6a201aaf",
+      "needsInterop": false
+    },
+    "echarts/core": {
+      "src": "../../../../../node_modules/echarts/core.js",
+      "file": "echarts_core.js",
+      "fileHash": "56088858",
+      "needsInterop": false
+    },
+    "echarts/charts": {
+      "src": "../../../../../node_modules/echarts/charts.js",
+      "file": "echarts_charts.js",
+      "fileHash": "d02a60fb",
+      "needsInterop": false
+    },
+    "echarts/components": {
+      "src": "../../../../../node_modules/echarts/components.js",
+      "file": "echarts_components.js",
+      "fileHash": "6470121e",
+      "needsInterop": false
+    },
+    "echarts/renderers": {
+      "src": "../../../../../node_modules/echarts/renderers.js",
+      "file": "echarts_renderers.js",
+      "fileHash": "e72096f9",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-F3FYYIAV": {
-      "file": "chunk-F3FYYIAV.js"
+    "chunk-S346HD5J": {
+      "file": "chunk-S346HD5J.js"
+    },
+    "chunk-G2AIAOYN": {
+      "file": "chunk-G2AIAOYN.js"
+    },
+    "chunk-SVFLJ42B": {
+      "file": "chunk-SVFLJ42B.js"
+    },
+    "chunk-XYPXWI6Z": {
+      "file": "chunk-XYPXWI6Z.js"
+    },
+    "chunk-7U33LM2Z": {
+      "file": "chunk-7U33LM2Z.js"
     }
   }
 }

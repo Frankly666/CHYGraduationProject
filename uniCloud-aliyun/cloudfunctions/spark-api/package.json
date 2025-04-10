@@ -1,9 +1,0 @@
-{
-  "name": "aiChat",
-  "dependencies": {
-    "node-fetch": "^2.6.7"
-  },
-  "extensions": {
-    "uni-cloud-jql": {}
-  }
-}
