@@ -57,9 +57,17 @@
       </view>
 
       <!-- 知识图谱展示区域 -->
-      <view class="knowledge-graph-container" v-if="showKnowledgeGraph && graphData">
-        <KnowledgeGraph :graph-data="graphData" />
-        <button class="close-graph-btn" @click="showKnowledgeGraph = false">关闭图谱</button>
+      <view class="knowledge-graph-section">
+        <!-- 知识图谱控制按钮，当图谱数据存在时显示 -->
+        <view class="graph-controls" v-if="graphData">
+          <button class="graph-btn" @click="toggleKnowledgeGraph">
+            <text class="btn-text">{{ showKnowledgeGraph ? '隐藏知识图谱' : '显示知识图谱' }}</text>
+          </button>
+        </view>
+        <!-- 知识图谱容器 -->
+        <view class="knowledge-graph-container" v-if="showKnowledgeGraph && graphData">
+          <KnowledgeGraph :graph-data="graphData" />
+        </view>
       </view>
 
       <!-- 消息区域 -->
@@ -94,6 +102,28 @@
         </view>
       </scroll-view>
 
+      <!-- 分析结果弹窗 -->
+      <uni-popup ref="analysisPopup" type="center">
+        <view class="analysis-popup-content">
+          <view class="analysis-popup-header">
+            <text class="analysis-popup-title">文件分析结果</text>
+          </view>
+          <view class="analysis-popup-body">
+            <view v-if="analysisResult && analysisResult.suitable" class="analysis-suitable">
+              <text class="suitable-icon">✅</text>
+              <text class="suitable-text">该文件适合生成知识图谱</text>
+            </view>
+            <view v-else-if="analysisResult && !analysisResult.suitable" class="analysis-unsuitable">
+              <text class="unsuitable-icon">❌</text>
+              <text class="unsuitable-text">{{ analysisResult.reason || '当前文件不适合生成知识图谱' }}</text>
+            </view>
+          </view>
+          <view class="analysis-popup-footer">
+            <button class="analysis-popup-btn" @click="closeAnalysisPopup">确定</button>
+          </view>
+        </view>
+      </uni-popup>
+      
       <!-- 输入区域 -->
       <view class="input-area">
         <view class="file-upload" @click="triggerFileInput" v-if="!isFileChat">
@@ -129,6 +159,7 @@
 
 <script setup>
 import { ref, reactive, computed, nextTick, onMounted } from "vue";
+import { onReady } from '@dcloudio/uni-app';
 import { streamChat, formatHistory, handleAIError } from "../../service/kimi_normal";
 import { userAvatar, aiAvatar } from "../../static/avatars.js";
 import { marked } from 'marked';
@@ -136,8 +167,9 @@ import { getSessionList, getSession, createSession, updateSession, deleteSession
 import { createMessage, getMessageList, deleteMessages } from '@/controls/chat-message.js';
 import { uploadFile, getFileContent, chatWithFile } from '@/service/file.js';
 import { checkFileForKnowledgeGraph, generateKnowledgeGraph } from '@/service/knowledge-graph.js';
+import { generateTitle } from '@/service/title-service.js';
 import KnowledgeGraph from '@/components/KnowledgeGraph.vue';
-import { getUserHistory, saveHistory, updateHistory, deleteHistory, getHistoryById } from '@/controls/history.js';
+import { getUserHistory, saveHistory, updateHistory, deleteHistory, } from '@/controls/history.js';
 
 // 用户登录状态
 const isLoggedIn = ref(false);
@@ -220,9 +252,9 @@ const loadUserHistory = async () => {
       return sessionInfo;
     });
     
-    // 如果有历史记录且当前没有选择会话，自动选择第一个
-    if (historyList.value.length > 0 && !currentSession.value.id) {
-      await switchSession(historyList.value[0]);
+    // 不自动选择第一个历史记录，而是创建新会话
+    if (!currentSession.value.id) {
+      createNewChat();
     }
   } catch (error) {
     console.error('加载历史记录失败:', error);
@@ -233,7 +265,7 @@ const loadUserHistory = async () => {
   }
 };
 
-// 保存聊天历史
+// 保存聊天历史的函数，添加历史记录更新
 const saveChatHistory = async () => {
   try {
     console.log('开始保存聊天历史...');
@@ -286,7 +318,7 @@ const saveChatHistory = async () => {
       currentSession.value.id = result.id;
     }
     
-    // 更新历史列表
+    // 立即更新历史列表
     await loadUserHistory();
   } catch (error) {
     console.error('保存聊天历史失败:', error);
@@ -381,6 +413,30 @@ const analysisResult = ref(null);
 // currentFile已在状态管理部分定义
 const isFileChat = ref(false);
 
+// 切换知识图谱显示状态
+const toggleKnowledgeGraph = () => {
+  if (graphData.value) {
+    showKnowledgeGraph.value = !showKnowledgeGraph.value;
+  }
+};
+
+// 分析结果弹窗引用
+const analysisPopup = ref(null);
+
+// 显示分析结果弹窗
+const showAnalysisPopup = () => {
+  if (analysisPopup.value) {
+    analysisPopup.value.open('center');
+  }
+};
+
+// 关闭分析结果弹窗
+const closeAnalysisPopup = () => {
+  if (analysisPopup.value) {
+    analysisPopup.value.close();
+  }
+};
+
 // 新增状态常量
 const FILE_STATUS = {
   PENDING: "pending",
@@ -395,31 +451,7 @@ const canSend = computed(() => {
   return inputMessage.value.trim() && !isSending.value;
 });
 
-// 智能生成标题
-const generateTitle = (content) => {
-  // 移除多余空格和换行
-  const cleanContent = content.trim().replace(/\s+/g, ' ');
-  
-  // 如果内容很短，直接返回
-  if (cleanContent.length <= 20) {
-    return cleanContent;
-  }
-  
-  // 尝试找到第一个句号、问号或感叹号
-  const sentenceEnd = cleanContent.search(/[。？！.!?]/);
-  if (sentenceEnd !== -1) {
-    // 提取第一个句子
-    let title = cleanContent.substring(0, sentenceEnd + 1);
-    // 如果第一个句子还是太长，截取前20个字符
-    if (title.length > 20) {
-      title = title.substring(0, 20) + '...';
-    }
-    return title;
-  }
-  
-  // 如果没有找到句子结束符，直接截取前20个字符
-  return cleanContent.substring(0, 20) + '...';
-};
+// 使用从title-service.js导入的generateTitle函数
 
 // 发送消息
 const sendMessage = async () => {
@@ -435,10 +467,15 @@ const sendMessage = async () => {
     time: Date.now()
   });
   
-  // 检查当前会话是否有ID，如果没有则创建新会话
+  // 如果是第一条消息，先生成标题
   if (!currentSession.value.id && isLoggedIn.value) {
     try {
-      console.log('首次发送消息，创建新会话');
+      console.log('首次发送消息，生成标题并创建新会话');
+      // 生成标题
+      const generatedTitle = await generateTitle(userMessage);
+      console.log('生成的标题:', generatedTitle);
+      currentSession.value.title = generatedTitle;
+      
       // 创建新会话
       const sessionResult = await createSession(currentSession.value.title, currentSession.value.type);
       console.log('创建会话结果:', sessionResult);
@@ -603,8 +640,22 @@ const sendMessage = async () => {
       // 获取最后一条消息
       const lastMessage = currentSession.value.messages[currentSession.value.messages.length - 1];
       
+      // 如果是第一条用户消息，使用它来生成标题
+      if (currentSession.value.messages.length <= 2 && userMessage.trim() !== '') {
+        try {
+          // 使用title-service生成标题
+          const generatedTitle = await generateTitle(userMessage);
+          console.log('自动生成标题:', generatedTitle);
+          currentSession.value.title = generatedTitle;
+        } catch (error) {
+          console.error('生成标题失败:', error);
+          currentSession.value.title = '新的会话';
+        }
+      }
+      
       // 更新会话信息
       await updateSession(currentSession.value.id, {
+        title: currentSession.value.title, // 添加标题更新
         lastMessage: lastMessage.content.substring(0, 50) + (lastMessage.content.length > 50 ? '...' : ''),
         lastRole: lastMessage.role
       });
@@ -616,6 +667,22 @@ const sendMessage = async () => {
     // 滚动到底部
     await nextTick();
     scrollToBottom();
+    
+    // 如果需要自动生成知识图谱，在切换会话完成后生成
+    if (shouldGenerateGraph && currentFile.value && currentFile.value.content) {
+      try {
+        console.log('开始自动生成知识图谱');
+        isAnalyzing.value = true;
+        const graphResult = await generateKnowledgeGraph(currentFile.value.content);
+        graphData.value = graphResult;
+        console.log('知识图谱生成成功');
+      } catch (error) {
+        console.error('自动生成知识图谱失败:', error);
+        // 生成失败时不显示错误提示，保持静默
+      } finally {
+        isAnalyzing.value = false;
+      }
+    }
     
   } catch (error) {
     console.error('发送消息失败:', error);
@@ -657,9 +724,10 @@ const handleFileUpload = async (file) => {
     
     // 检查文件是否适合生成知识图谱
     const checkResult = await checkFileForKnowledgeGraph(fileContent);
+    console.log('文件分析结果:', checkResult);
     analysisResult.value = checkResult;
     
-    // 更新当前文件信息
+    // 更新当前文件状态
     currentFile.value = {
       id: uploadResult.id,
       name: file.name,
@@ -667,10 +735,18 @@ const handleFileUpload = async (file) => {
     };
     isFileChat.value = true;
     
-    if (!checkResult.suitable) {
+    // 根据分析结果给用户提示
+    if (checkResult && checkResult.suitable) {
+      uni.showToast({
+        title: '文件适合生成知识图谱，可点击生成按钮',
+        icon: 'none',
+        duration: 3000
+      });
+    } else {
       uni.showToast({
         title: '当前文件不适合生成知识图谱',
-        icon: 'none'
+        icon: 'none',
+        duration: 3000
       });
     }
   } catch (error) {
@@ -764,6 +840,10 @@ const switchSession = async (session) => {
   try {
     console.log('切换到会话:', session);
     
+    // 清除知识图谱数据
+    showKnowledgeGraph.value = false;
+    graphData.value = null;
+    
     // 设置加载状态为true
     isLoading.value = true;
     
@@ -772,6 +852,9 @@ const switchSession = async (session) => {
       title: '加载历史记录中...',
       mask: true // 显示透明蒙层，防止触摸穿透
     });
+    
+    // 自动生成知识图谱的标志
+    let shouldGenerateGraph = false;
     
     // 检查是否为文件对话
     if (session.isFileChat && session.fileInfo) {
@@ -790,10 +873,28 @@ const switchSession = async (session) => {
             uploadTime: session.fileInfo.uploadTime || Date.now(),
             content: fileContent
           };
+          
+          // 加载分析结果
+          if (session.analysisResult) {
+            console.log('加载文件分析结果:', session.analysisResult);
+            analysisResult.value = session.analysisResult;
+          } else {
+            // 如果没有分析结果，尝试重新分析
+            console.log('会话中没有分析结果，尝试重新分析文件');
+            const checkResult = await checkFileForKnowledgeGraph(fileContent);
+            console.log('重新分析结果:', checkResult);
+            analysisResult.value = checkResult;
+            
+            // 如果文件适合生成知识图谱，标记需要自动生成
+            if (checkResult && checkResult.suitable) {
+              shouldGenerateGraph = true;
+            }
+          }
         } else {
           console.warn('文件内容为空，重置文件状态');
           isFileChat.value = false;
           currentFile.value = null;
+          analysisResult.value = null;
         }
       } catch (error) {
         console.error('获取文件内容失败:', error);
@@ -862,14 +963,36 @@ const switchSession = async (session) => {
     if (session.isFileChat && session.fileInfo) {
       console.log('加载文件对话信息:', session.fileInfo);
       isFileChat.value = true;
-      currentFile.value = session.fileInfo;
       
-      // 恢复文件内容和分析结果
-      if (session.fileInfo.content) {
-        currentFile.value.content = session.fileInfo.content;
-      }
-      if (session.fileInfo.analysisResult) {
-        analysisResult.value = session.fileInfo.analysisResult;
+      // 确保文件内容已加载
+      if (!currentFile.value || !currentFile.value.content) {
+        console.log('文件内容未加载或不完整，尝试重新获取文件内容');
+        try {
+          // 再次尝试获取文件内容
+          const fileContent = await getFileContent(session.fileInfo.id);
+          
+          if (fileContent) {
+            currentFile.value = {
+              ...session.fileInfo,
+              content: fileContent
+            };
+            console.log('成功重新获取文件内容');
+            
+            // 如果没有分析结果，尝试重新分析
+            if (!analysisResult.value) {
+              const checkResult = await checkFileForKnowledgeGraph(fileContent);
+              console.log('重新分析结果:', checkResult);
+              analysisResult.value = checkResult;
+            }
+          }
+        } catch (error) {
+          console.error('重新获取文件内容失败:', error);
+          uni.showToast({
+            title: '文件内容加载失败，可能无法进行文件问答',
+            icon: 'none',
+            duration: 2000
+          });
+        }
       }
     } else {
       isFileChat.value = false;
@@ -880,6 +1003,22 @@ const switchSession = async (session) => {
     // 滚动到底部
     await nextTick();
     scrollToBottom();
+    
+    // 如果需要自动生成知识图谱，在切换会话完成后生成
+    if (shouldGenerateGraph && currentFile.value && currentFile.value.content) {
+      try {
+        console.log('开始自动生成知识图谱');
+        isAnalyzing.value = true;
+        const graphResult = await generateKnowledgeGraph(currentFile.value.content);
+        graphData.value = graphResult;
+        console.log('知识图谱生成成功');
+      } catch (error) {
+        console.error('自动生成知识图谱失败:', error);
+        // 生成失败时不显示错误提示，保持静默
+      } finally {
+        isAnalyzing.value = false;
+      }
+    }
     
   } catch (error) {
     console.error('切换会话失败:', error);
@@ -1171,6 +1310,15 @@ const handleFileSelected = async (file) => {
       uploadTime: Date.now()
     };
     
+    // 检查文件是否适合生成知识图谱
+    console.log('开始分析文件是否适合生成知识图谱');
+    const checkResult = await checkFileForKnowledgeGraph(fileContent);
+    console.log('文件分析结果:', checkResult);
+    analysisResult.value = checkResult;
+    
+    // 显示分析结果弹窗
+    showAnalysisPopup();
+    
     // 更新会话信息，包括文件分析结果
     try {
       await updateSession(sessionId, {
@@ -1181,10 +1329,10 @@ const handleFileSelected = async (file) => {
           name: currentFile.value.name,
           size: currentFile.value.size,
           type: currentFile.value.type,
-          uploadTime: currentFile.value.uploadTime,
-          content: fileContent,
-          analysisResult: analysisResult.value
-        }
+          uploadTime: currentFile.value.uploadTime
+        },
+        // 单独保存分析结果
+        analysisResult: checkResult
       });
       console.log('会话信息更新成功');
     } catch (error) {
@@ -1870,6 +2018,51 @@ const fileInputRef = ref(null);
   }
 }
 
+.knowledge-graph-section {
+  width: 100%;
+  margin: 10px 0;
+  position: relative;
+}
+
+.knowledge-graph-container {
+  width: 100%;
+  height: 400px;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  background-color: #fff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.graph-controls {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.graph-btn {
+  padding: 8px 16px;
+  background: linear-gradient(135deg, #1890ff, #36cfc9);
+  border: none;
+  border-radius: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.graph-btn:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(135deg, #36cfc9, #1890ff);
+}
+
+.graph-btn .btn-text {
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+}
+
 .markdown-content {
   font-size: 14px;
   line-height: 1.6;
@@ -1996,6 +2189,95 @@ const fileInputRef = ref(null);
   &:disabled {
     background-color: #ccc;
     cursor: not-allowed;
+  }
+}
+
+// 分析结果弹窗样式
+.analysis-popup-content {
+  width: 80%;
+  max-width: 400px;
+  background-color: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  
+  .analysis-popup-header {
+    padding: 16px;
+    border-bottom: 1px solid #f0f0f0;
+    text-align: center;
+    
+    .analysis-popup-title {
+      font-size: 18px;
+      font-weight: 600;
+      color: #333;
+    }
+  }
+  
+  .analysis-popup-body {
+    padding: 20px;
+    min-height: 80px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    .analysis-suitable {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      
+      .suitable-icon {
+        font-size: 32px;
+      }
+      
+      .suitable-text {
+        font-size: 16px;
+        color: #52c41a;
+        font-weight: 500;
+      }
+    }
+    
+    .analysis-unsuitable {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      text-align: center;
+      
+      .unsuitable-icon {
+        font-size: 32px;
+      }
+      
+      .unsuitable-text {
+        font-size: 16px;
+        color: #f5222d;
+        font-weight: 500;
+        line-height: 1.5;
+      }
+    }
+  }
+  
+  .analysis-popup-footer {
+    padding: 12px 16px;
+    border-top: 1px solid #f0f0f0;
+    display: flex;
+    justify-content: center;
+    
+    .analysis-popup-btn {
+      background-color: #1890ff;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      padding: 8px 16px;
+      font-size: 14px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      
+      &:hover {
+        background-color: #40a9ff;
+      }
+    }
   }
 }
 

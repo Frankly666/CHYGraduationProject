@@ -19,17 +19,23 @@
         <view class="suggestion-content">
           <text class="suggestion-title">文档分析完成</text>
           <text class="suggestion-text">{{ analysisResult.reason }}</text>
-          <button class="generate-button" @click="handleGenerateGraph">生成知识图谱</button>
+          <button class="generate-button" @click="handleGenerateGraph">{{ graphData ? '重新生成知识图谱' : '生成知识图谱' }}</button>
         </view>
       </view>
     </view>
 
-    <!-- 知识图谱展示 -->
-    <knowledge-graph
-      v-if="graphData"
-      :graph-data="graphData"
-      class="knowledge-graph"
-    ></knowledge-graph>
+    <!-- 知识图谱展示区域 -->
+    <view class="graph-container" v-if="graphData">
+      <view class="graph-header">
+        <text class="graph-title">知识图谱</text>
+        <switch class="graph-switch" :checked="showGraph" @change="toggleGraph" />
+      </view>
+      <knowledge-graph
+        v-if="showGraph"
+        :graph-data="graphData"
+        class="knowledge-graph"
+      ></knowledge-graph>
+    </view>
 
     <!-- 加载状态 -->
     <uni-load-more v-if="loading" status="loading" :content-text="loadingText"></uni-load-more>
@@ -50,6 +56,12 @@ export default {
     const loadingText = ref({ contentdown: '上传文件', contentrefresh: '处理中...' });
     const analysisResult = ref(null);
     const graphData = ref(null);
+    const showGraph = ref(true);
+
+    // 切换知识图谱显示状态
+    const toggleGraph = (event) => {
+      showGraph.value = event.detail.value;
+    };
 
     // 是否显示生成按钮
     const showGenerateButton = computed(() => {
@@ -168,7 +180,9 @@ export default {
       showGenerateButton,
       triggerFileInput,
       handleGenerateGraph,
-      formatFileSize
+      formatFileSize,
+      showGraph,
+      toggleGraph
     };
   }
 };
@@ -280,8 +294,34 @@ export default {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
-.knowledge-graph {
+.graph-container {
   margin-top: 20px;
+}
+
+.graph-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f8f9fa;
+  border-radius: 8px 8px 0 0;
+}
+
+.graph-title {
+  font-size: 16px;
+  font-weight: bold;
+  color: #303133;
+}
+
+.graph-switch {
+  transform: scale(0.8);
+}
+
+.knowledge-graph {
   width: 100%;
+  height: 500px;
+  border: 1px solid #ebeef5;
+  border-radius: 0 0 8px 8px;
+  overflow: hidden;
 }
 </style>

@@ -75,7 +75,7 @@ export const chatWithFile = async (fileContent, question, onProgress, history = 
     const messages = [
       {
         role: "system",
-        content: "你是 Kimi，由 Moonshot AI 提供的人工智能助手，你更擅长中文和英文的对话。你会为用户提供安全，有帮助，准确的回答。同时，你会拒绝一切涉及恐怖主义，种族歧视，黄色暴力等问题的回答。Moonshot AI 为专有名词，不可翻译成其他语言。"
+        content: "你是一个专业的文档分析助手，擅长从文档中提取结构化知识和关系。在回答问题时，请注意：\n1. 尽可能从文档中提取实体、概念和它们之间的关系\n2. 使用清晰的层次结构组织信息\n3. 突出关键概念之间的联系\n4. 保持回答的逻辑性和连贯性\n这样的分析方式将有助于后续生成知识图谱。"
       },
       {
         role: "system",
