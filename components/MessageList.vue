@@ -112,8 +112,20 @@ export default {
     watch(() => props.messages.length, () => {
       nextTick(() => {
         scrollToBottom();
+        
+        // 添加延时滚动，确保在内容完全渲染后再次滚动到底部
+        setTimeout(() => {
+          scrollToBottom();
+        }, 300);
       });
     });
+    
+    // 监听消息内容变化，确保在流式响应时也能滚动到底部
+    watch(() => props.messages, () => {
+      nextTick(() => {
+        scrollToBottom();
+      });
+    }, { deep: true });
 
     return {
       scrollTop,

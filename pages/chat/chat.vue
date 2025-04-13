@@ -148,6 +148,7 @@
           v-model="inputMessage"
           placeholder="输入消息..."
           @confirm="sendMessage"
+          ref="messageInput"
         />
         <view class="send-button" @click="sendMessage">
           <text>发送</text>
@@ -255,6 +256,14 @@ const loadUserHistory = async () => {
     // 不自动选择第一个历史记录，而是创建新会话
     if (!currentSession.value.id) {
       createNewChat();
+      // 确保创建新会话后滚动到底部
+      nextTick(() => {
+        scrollToBottom();
+        // 添加延时滚动，解决某些情况下滚动不完全的问题
+        setTimeout(() => {
+          scrollToBottom();
+        }, 300);
+      });
     }
   } catch (error) {
     console.error('加载历史记录失败:', error);
@@ -345,6 +354,20 @@ const showWelcomeMessage = () => {
   };
   messageList.value = [welcomeMessage];
   currentSession.value.messages = [welcomeMessage];
+  
+  // 确保显示欢迎消息后滚动到底部
+  nextTick(() => {
+    scrollToBottom();
+    // 添加延时滚动，解决某些情况下滚动不完全的问题
+    setTimeout(() => {
+      scrollToBottom();
+      
+      // 自动聚焦输入框，方便用户继续输入
+      if (messageInput.value && typeof messageInput.value.focus === 'function') {
+        messageInput.value.focus();
+      }
+    }, 300);
+  });
 };
 
 // 修改 onMounted
@@ -355,6 +378,10 @@ onMounted(() => {
   if (currentSession.value.messages.length === 0) {
     showWelcomeMessage();
   }
+  // 确保初始化后滚动到底部
+  nextTick(() => {
+    scrollToBottom();
+  });
 });
 
 // 使用uni-app的页面生命周期函数
@@ -365,7 +392,12 @@ defineExpose({
   },
   onReady() {
     console.log('页面加载完成');
+    // 确保页面加载完成后滚动到底部
     scrollToBottom();
+    // 添加延时滚动，解决某些情况下滚动不完全的问题
+    setTimeout(() => {
+      scrollToBottom();
+    }, 300);
   }
 });
 
@@ -392,6 +424,7 @@ const messageList = ref([]);
 const inputMessage = ref('');
 const isSending = ref(false);
 const scrollTop = ref(0);
+const messageInput = ref(null);
 const currentSession = ref({
   id: '',
   title: '新对话',
@@ -412,6 +445,10 @@ const isAnalyzing = ref(false);
 const analysisResult = ref(null);
 // currentFile已在状态管理部分定义
 const isFileChat = ref(false);
+// 添加自动生成知识图谱的标志
+const shouldGenerateGraph = ref(false);
+// 添加标志变量，记录当前会话是否已生成过知识图谱
+const hasGeneratedGraph = ref(false);
 
 // 切换知识图谱显示状态
 const toggleKnowledgeGraph = () => {
@@ -456,6 +493,16 @@ const canSend = computed(() => {
 // 发送消息
 const sendMessage = async () => {
   if (!inputMessage.value.trim()) return;
+  
+  // 检查是否正在生成知识图谱，如果是，提示用户等待
+  if (isAnalyzing.value) {
+    uni.showToast({
+      title: '知识图谱正在生成中，请稍候再发送消息',
+      icon: 'none',
+      duration: 3000
+    });
+    return;
+  }
   
   const userMessage = inputMessage.value.trim();
   inputMessage.value = '';
@@ -568,6 +615,11 @@ const sendMessage = async () => {
           // 滚动到底部
           nextTick(() => {
             scrollToBottom();
+            
+            // 添加延时滚动，确保在内容完全渲染后再次滚动到底部
+            setTimeout(() => {
+              scrollToBottom();
+            }, 300);
           });
         },
         historyMessages
@@ -619,6 +671,11 @@ const sendMessage = async () => {
           // 滚动到底部
           nextTick(() => {
             scrollToBottom();
+            
+            // 添加延时滚动，确保在内容完全渲染后再次滚动到底部
+            setTimeout(() => {
+              scrollToBottom();
+            }, 300);
           });
         } else if (data.type === 'error') {
           throw new Error(data.error);
@@ -668,20 +725,70 @@ const sendMessage = async () => {
     await nextTick();
     scrollToBottom();
     
-    // 如果需要自动生成知识图谱，在切换会话完成后生成
-    if (shouldGenerateGraph && currentFile.value && currentFile.value.content) {
-      try {
-        console.log('开始自动生成知识图谱');
-        isAnalyzing.value = true;
-        const graphResult = await generateKnowledgeGraph(currentFile.value.content);
-        graphData.value = graphResult;
-        console.log('知识图谱生成成功');
-      } catch (error) {
-        console.error('自动生成知识图谱失败:', error);
-        // 生成失败时不显示错误提示，保持静默
-      } finally {
-        isAnalyzing.value = false;
+    // 确保在UI更新后再次滚动到底部
+    setTimeout(() => {
+      scrollToBottom();
+    }, 300);
+    
+    // 自动聚焦输入框，方便用户继续输入
+    nextTick(() => {
+      if (messageInput.value && typeof messageInput.value.focus === 'function') {
+        messageInput.value.focus();
       }
+    });
+    
+    // 如果需要自动生成知识图谱，且当前会话尚未生成过知识图谱，在切换会话完成后异步生成，不阻塞用户界面
+    if (shouldGenerateGraph.value && currentFile.value && currentFile.value.content && !hasGeneratedGraph.value) {
+      console.log('开始后台异步生成知识图谱');
+      // 使用setTimeout将知识图谱生成放入事件循环的下一个周期，不阻塞当前操作
+      setTimeout(() => {
+        try {
+          isAnalyzing.value = true;         
+          // 显示友好提示，告知用户知识图谱正在后台生成，可以继续对话
+          uni.showToast({
+            title: '知识图谱正在后台生成中，您可以继续对话',
+            icon: 'none',
+            duration: 3000
+          });
+          
+          // 将API调用包装在Promise中，确保异步执行
+          // 再次使用setTimeout确保UI不被阻塞
+          setTimeout(async () => {
+            try {
+              const graphResult = await generateKnowledgeGraph(currentFile.value.content);
+              graphData.value = graphResult;
+              console.log('知识图谱后台生成成功');
+              // 不自动显示知识图谱，让用户主动点击显示
+              showKnowledgeGraph.value = false;
+              // 标记当前会话已生成过知识图谱
+              hasGeneratedGraph.value = true;
+              // 标记当前会话已生成过知识图谱
+              hasGeneratedGraph.value = true;
+              
+              // 生成成功提示
+              uni.showToast({
+                title: '知识图谱生成完成，可点击按钮查看',
+                icon: 'none',
+                duration: 2000
+              });
+            } catch (error) {
+              console.error('后台生成知识图谱失败:', error);
+              // 生成失败时显示错误提示
+              uni.showToast({
+                title: '知识图谱生成失败',
+                icon: 'none',
+                duration: 2000
+              });
+            } finally {
+              isAnalyzing.value = false;
+            }
+          }, 0);
+          
+        } catch (error) {
+          console.error('启动知识图谱生成失败:', error);
+          isAnalyzing.value = false;
+        }
+      }, 100); // 短暂延迟，确保UI更新完成
     }
     
   } catch (error) {
@@ -695,6 +802,23 @@ const sendMessage = async () => {
     };
     // 更新消息列表
     messageList.value = [...currentSession.value.messages];
+    
+    // 滚动到底部
+    nextTick(() => {
+      scrollToBottom();
+      
+      // 添加延时滚动，确保在内容完全渲染后再次滚动到底部
+      setTimeout(() => {
+        scrollToBottom();
+      }, 300);
+    });
+    
+    // 自动聚焦输入框，即使发生错误也让用户可以继续输入
+    nextTick(() => {
+      if (messageInput.value) {
+        messageInput.value.focus();
+      }
+    });
     
     // 保存错误消息到数据库
     if (currentSession.value.id) {
@@ -762,32 +886,100 @@ const handleFileUpload = async (file) => {
   }
 };
 
-// 生成知识图谱
-const handleGenerateGraph = async () => {
+// 生成知识图谱 - 用户主动点击按钮触发
+const handleGenerateGraph = () => {
   try {
+    // 设置分析状态
     isAnalyzing.value = true;
     
-    const graphResult = await generateKnowledgeGraph(currentFile.value.content);
-    graphData.value = graphResult;
-    showKnowledgeGraph.value = true;
-  } catch (error) {
-    console.error('生成知识图谱失败:', error);
+    // 标记正在生成知识图谱，防止重复生成
+    hasGeneratedGraph.value = true;
+    
+    // 显示友好提示，告知用户知识图谱正在生成中，需要等待完成
     uni.showToast({
-      title: error.message || '生成知识图谱失败',
-      icon: 'none'
+      title: '知识图谱正在生成中，请稍候再发送消息',
+      icon: 'none',
+      duration: 4000
     });
-  } finally {
+    
+    // 显示模态框提供更详细的信息
+    uni.showModal({
+      title: '知识图谱生成中',
+      content: '由于API并发限制，知识图谱生成过程中需要等待生成完成后才能继续对话。',
+      showCancel: false,
+      confirmText: '我知道了'
+    });
+    
+    // 异步生成知识图谱，不阻塞UI
+    setTimeout(() => {
+      try {
+        // 将API调用包装在Promise中，确保异步执行
+        // 再次使用setTimeout确保UI不被阻塞
+        setTimeout(async () => {
+          try {
+            const graphResult = await generateKnowledgeGraph(currentFile.value.content);
+            graphData.value = graphResult;
+            
+            // 生成完成后自动显示知识图谱（因为是用户主动触发的）
+            showKnowledgeGraph.value = true;
+            // 标记当前会话已生成过知识图谱
+            hasGeneratedGraph.value = true;
+            
+            console.log('知识图谱生成成功');
+            
+            // 生成成功提示
+            uni.showToast({
+              title: '知识图谱生成完成，现在可以正常对话',
+              icon: 'success',
+              duration: 2000
+            });
+            
+            // 显示模态框提示用户可以开始对话
+            uni.showModal({
+              title: '知识图谱生成完成',
+              content: '知识图谱已成功生成，您现在可以开始进行对话。',
+              showCancel: false,
+              confirmText: '我知道了'
+            });
+          } catch (error) {
+            console.error('生成知识图谱失败:', error);
+            uni.showToast({
+              title: error.message || '生成知识图谱失败',
+              icon: 'none'
+            });
+          } finally {
+            isAnalyzing.value = false;
+          }
+        }, 0);
+      } catch (error) {
+        console.error('启动知识图谱生成失败:', error);
+        isAnalyzing.value = false;
+      }
+    }, 100); // 短暂延迟，确保UI响应
+  } catch (error) {
+    console.error('启动知识图谱生成失败:', error);
     isAnalyzing.value = false;
   }
 };
 
 const scrollToBottom = () => {
-  const query = uni.createSelectorQuery();
-  query.select('.message-list').boundingClientRect();
-  query.exec((res) => {
-    if (res[0]) {
-      scrollTop.value = res[0].height;
-    }
+  // 使用nextTick确保DOM已更新
+  nextTick(() => {
+    const query = uni.createSelectorQuery();
+    query.select('.message-list').boundingClientRect();
+    query.exec((res) => {
+      if (res[0]) {
+        // 设置滚动位置为消息列表的高度
+        scrollTop.value = res[0].height * 1000; // 使用较大的值确保滚动到底部
+        
+        // 添加延时滚动，解决某些情况下滚动不完全的问题
+        setTimeout(() => {
+          if (res[0]) {
+            scrollTop.value = res[0].height * 1000;
+          }
+        }, 100);
+      }
+    });
   });
 };
 
@@ -823,6 +1015,20 @@ const createNewChat = async () => {
     
     // 不再立即更新左侧历史记录列表，等待用户实际发送消息后再更新
     
+    // 确保创建新会话后滚动到底部
+    nextTick(() => {
+      scrollToBottom();
+      // 添加延时滚动，解决某些情况下滚动不完全的问题
+      setTimeout(() => {
+        scrollToBottom();
+      }, 300);
+      
+      // 自动聚焦输入框，方便用户继续输入
+      if (messageInput.value && typeof messageInput.value.focus === 'function') {
+        messageInput.value.focus();
+      }
+    });
+    
   } catch (error) {
     console.error('创建新会话失败:', error);
     uni.showToast({
@@ -853,8 +1059,10 @@ const switchSession = async (session) => {
       mask: true // 显示透明蒙层，防止触摸穿透
     });
     
-    // 自动生成知识图谱的标志
-    let shouldGenerateGraph = false;
+    // 重置自动生成知识图谱的标志
+    shouldGenerateGraph.value = false;
+    // 重置知识图谱生成状态标志
+    hasGeneratedGraph.value = false;
     
     // 检查是否为文件对话
     if (session.isFileChat && session.fileInfo) {
@@ -887,7 +1095,7 @@ const switchSession = async (session) => {
             
             // 如果文件适合生成知识图谱，标记需要自动生成
             if (checkResult && checkResult.suitable) {
-              shouldGenerateGraph = true;
+              shouldGenerateGraph.value = true;
             }
           }
         } else {
@@ -959,10 +1167,26 @@ const switchSession = async (session) => {
     // 更新消息列表
     messageList.value = [...currentSession.value.messages];
     
+    // 确保滚动到底部
+    await nextTick();
+    scrollToBottom();
+    
+    // 添加延时滚动，解决某些情况下滚动不完全的问题
+    setTimeout(() => {
+      scrollToBottom();
+    }, 300);
+    
     // 如果是文件对话，设置文件状态和分析结果
     if (session.isFileChat && session.fileInfo) {
       console.log('加载文件对话信息:', session.fileInfo);
       isFileChat.value = true;
+      
+      // 检查会话是否已有知识图谱数据
+      if (session.graphData) {
+        console.log('会话已有知识图谱数据，直接加载');
+        graphData.value = session.graphData;
+        hasGeneratedGraph.value = true; // 标记已生成过知识图谱
+      }
       
       // 确保文件内容已加载
       if (!currentFile.value || !currentFile.value.content) {
@@ -1004,20 +1228,69 @@ const switchSession = async (session) => {
     await nextTick();
     scrollToBottom();
     
-    // 如果需要自动生成知识图谱，在切换会话完成后生成
-    if (shouldGenerateGraph && currentFile.value && currentFile.value.content) {
-      try {
-        console.log('开始自动生成知识图谱');
-        isAnalyzing.value = true;
-        const graphResult = await generateKnowledgeGraph(currentFile.value.content);
-        graphData.value = graphResult;
-        console.log('知识图谱生成成功');
-      } catch (error) {
-        console.error('自动生成知识图谱失败:', error);
-        // 生成失败时不显示错误提示，保持静默
-      } finally {
-        isAnalyzing.value = false;
+    // 确保在UI更新后再次滚动到底部
+    setTimeout(() => {
+      scrollToBottom();
+    }, 300);
+    
+    // 自动聚焦输入框，方便用户继续输入
+    nextTick(() => {
+      if (messageInput.value && typeof messageInput.value.focus === 'function') {
+        messageInput.value.focus();
       }
+    });
+    
+    // 如果需要自动生成知识图谱，且当前会话尚未生成过知识图谱，在切换会话完成后异步生成，不阻塞用户界面
+    if (shouldGenerateGraph.value && currentFile.value && currentFile.value.content && !hasGeneratedGraph.value) {
+      console.log('开始后台异步生成知识图谱');
+      // 使用setTimeout将知识图谱生成放入事件循环的下一个周期，不阻塞当前操作
+      setTimeout(() => {
+        try {
+          isAnalyzing.value = true;
+          
+          // 显示友好提示，告知用户知识图谱正在生成中
+          uni.showToast({
+            title: '知识图谱正在生成中，请稍候再发送消息',
+            icon: 'none',
+            duration: 3000
+          });
+          
+          // 将API调用包装在Promise中，确保异步执行
+          // 再次使用setTimeout确保UI不被阻塞
+          setTimeout(async () => {
+            try {
+              const graphResult = await generateKnowledgeGraph(currentFile.value.content);
+              graphData.value = graphResult;
+              console.log('知识图谱后台生成成功');
+              // 不自动显示知识图谱，让用户主动点击显示
+              showKnowledgeGraph.value = false;
+              // 标记当前会话已生成过知识图谱
+              hasGeneratedGraph.value = true;
+              
+              // 生成成功提示
+              uni.showToast({
+                title: '知识图谱生成完成，可点击按钮查看',
+                icon: 'none',
+                duration: 2000
+              });
+            } catch (error) {
+              console.error('后台生成知识图谱失败:', error);
+              // 生成失败时显示错误提示
+              uni.showToast({
+                title: '知识图谱生成失败',
+                icon: 'none',
+                duration: 2000
+              });
+            } finally {
+              isAnalyzing.value = false;
+            }
+          }, 0);
+          
+        } catch (error) {
+          console.error('启动知识图谱生成失败:', error);
+          isAnalyzing.value = false;
+        }
+      }, 100); // 短暂延迟，确保UI更新完成
     }
     
   } catch (error) {
