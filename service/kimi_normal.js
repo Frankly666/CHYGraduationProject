@@ -1,9 +1,11 @@
 // service/moonshot.js
 import OpenAI from "openai";
 
+import { config } from '@/config/env';
+
 const client = new OpenAI({
     apiKey: "sk-JWuFVaV252ndCTXc3Q8lvkVP7vMomFeySnJxx6bbT1PMoEst",
-    baseURL: "https://api.moonshot.cn/v1",
+    baseURL: config.baseURL,
     dangerouslyAllowBrowser: true
 });
 

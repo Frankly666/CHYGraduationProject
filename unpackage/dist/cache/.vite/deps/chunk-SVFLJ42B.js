@@ -20,7 +20,7 @@ import {
   brushSingle,
   calculateTextPosition,
   clone,
-  clone3 as clone2,
+  clone2,
   concatArray,
   createHashMap,
   cubicAt,
@@ -72,7 +72,7 @@ import {
   registerPainter,
   registerSSRDataGetter,
   retrieve2,
-  scale2 as scale,
+  scale,
   setAsPrimitive,
   setPlatformAPI,
   slice,
@@ -83,12 +83,12 @@ import {
   subPixelOptimizeRect,
   trim,
   windingLine
-} from "./chunk-BQOHNX66.js";
+} from "./chunk-XYPXWI6Z.js";
 import {
   __export
 } from "./chunk-7U33LM2Z.js";
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/util/clazz.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/util/clazz.js
 var TYPE_DELIMITER = ".";
 var IS_CONTAINER = "___EC__COMPONENT__CONTAINER___";
 var IS_EXTENDED_CLASS = "___EC__EXTENDED_CLASS___";
@@ -244,7 +244,7 @@ function enableClassManagement(target) {
   }
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/model/mixin/makeStyleMapper.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/model/mixin/makeStyleMapper.js
 function makeStyleMapper(properties, ignoreParent) {
   for (var i = 0; i < properties.length; i++) {
     if (!properties[i][1]) {
@@ -268,7 +268,7 @@ function makeStyleMapper(properties, ignoreParent) {
   };
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/model/mixin/areaStyle.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/model/mixin/areaStyle.js
 var AREA_STYLE_KEY_MAP = [
   ["fill", "color"],
   ["shadowBlur"],
@@ -292,7 +292,7 @@ var AreaStyleMixin = (
   }()
 );
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/util/number.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/util/number.js
 var RADIAN_EPSILON = 1e-4;
 var ROUND_SUPPORTED_PRECISION_MAX = 20;
 function _trim(str) {
@@ -589,7 +589,7 @@ function getLeastCommonMultiple(a, b) {
   return a * b / getGreatestCommonDividor(a, b);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/util/log.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/util/log.js
 var ECHARTS_PREFIX = "[ECharts] ";
 var storedLogs = {};
 var hasConsole = typeof console !== "undefined" && console.warn && console.log;
@@ -661,7 +661,7 @@ function throwError(msg) {
   throw new Error(msg);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/util/model.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/util/model.js
 function interpolateNumber(p0, p1, percent) {
   return (p1 - p0) * percent + p0;
 }
@@ -1106,7 +1106,7 @@ function interpolateRawValues(data, precision, sourceValue, targetValue, percent
   }
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/util/innerStore.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/util/innerStore.js
 var getECData = makeInner();
 var setCommonECData = function(seriesIndex, dataType, dataIdx, el) {
   if (el) {
@@ -1127,7 +1127,7 @@ var setCommonECData = function(seriesIndex, dataType, dataIdx, el) {
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/util/states.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/util/states.js
 var _highlightNextDigit = 1;
 var _highlightKeyMap = {};
 var getSavedStates = makeInner();
@@ -1654,7 +1654,7 @@ function savePathStates(el) {
   store.selectStroke = selectState.style && selectState.style.stroke || null;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/util/graphic.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/util/graphic.js
 var graphic_exports = {};
 __export(graphic_exports, {
   Arc: () => Arc_default,
@@ -1707,7 +1707,7 @@ __export(graphic_exports, {
   updateProps: () => updateProps
 });
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/zrender/lib/tool/transformPath.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/zrender/lib/tool/transformPath.js
 var CMD = PathProxy_default.CMD;
 var points = [[], [], []];
 var mathSqrt = Math.sqrt;
@@ -1788,7 +1788,7 @@ function transformPath(path, m2) {
   path.increaseVersion();
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/zrender/lib/tool/path.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/zrender/lib/tool/path.js
 var mathSqrt2 = Math.sqrt;
 var mathSin = Math.sin;
 var mathCos = Math.cos;
@@ -2118,7 +2118,7 @@ function mergePath(pathEls, opts) {
   return pathBundle;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/zrender/lib/graphic/shape/Circle.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/zrender/lib/graphic/shape/Circle.js
 var CircleShape = /* @__PURE__ */ function() {
   function CircleShape2() {
     this.cx = 0;
@@ -2144,7 +2144,7 @@ var Circle = function(_super) {
 Circle.prototype.type = "circle";
 var Circle_default = Circle;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/zrender/lib/graphic/shape/Ellipse.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/zrender/lib/graphic/shape/Ellipse.js
 var EllipseShape = /* @__PURE__ */ function() {
   function EllipseShape2() {
     this.cx = 0;
@@ -2182,7 +2182,7 @@ var Ellipse = function(_super) {
 Ellipse.prototype.type = "ellipse";
 var Ellipse_default = Ellipse;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/zrender/lib/graphic/helper/roundSector.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/zrender/lib/graphic/helper/roundSector.js
 var PI2 = Math.PI;
 var PI22 = PI2 * 2;
 var mathSin2 = Math.sin;
@@ -2398,7 +2398,7 @@ function buildPath(ctx, shape) {
   ctx.closePath();
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/zrender/lib/graphic/shape/Sector.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/zrender/lib/graphic/shape/Sector.js
 var SectorShape = /* @__PURE__ */ function() {
   function SectorShape2() {
     this.cx = 0;
@@ -2431,7 +2431,7 @@ var Sector = function(_super) {
 Sector.prototype.type = "sector";
 var Sector_default = Sector;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/zrender/lib/graphic/shape/Ring.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/zrender/lib/graphic/shape/Ring.js
 var RingShape = /* @__PURE__ */ function() {
   function RingShape2() {
     this.cx = 0;
@@ -2463,7 +2463,7 @@ var Ring = function(_super) {
 Ring.prototype.type = "ring";
 var Ring_default = Ring;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/zrender/lib/graphic/helper/smoothBezier.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/zrender/lib/graphic/helper/smoothBezier.js
 function smoothBezier(points2, smooth, isLoop, constraint) {
   var cps = [];
   var v = [];
@@ -2525,7 +2525,7 @@ function smoothBezier(points2, smooth, isLoop, constraint) {
   return cps;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/zrender/lib/graphic/helper/poly.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/zrender/lib/graphic/helper/poly.js
 function buildPath2(ctx, shape, closePath) {
   var smooth = shape.smooth;
   var points2 = shape.points;
@@ -2550,7 +2550,7 @@ function buildPath2(ctx, shape, closePath) {
   }
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/zrender/lib/graphic/shape/Polygon.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/zrender/lib/graphic/shape/Polygon.js
 var PolygonShape = /* @__PURE__ */ function() {
   function PolygonShape2() {
     this.points = null;
@@ -2575,7 +2575,7 @@ var Polygon = function(_super) {
 Polygon.prototype.type = "polygon";
 var Polygon_default = Polygon;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/zrender/lib/graphic/shape/Polyline.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/zrender/lib/graphic/shape/Polyline.js
 var PolylineShape = /* @__PURE__ */ function() {
   function PolylineShape2() {
     this.points = null;
@@ -2607,7 +2607,7 @@ var Polyline = function(_super) {
 Polyline.prototype.type = "polyline";
 var Polyline_default = Polyline;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/zrender/lib/graphic/shape/Line.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/zrender/lib/graphic/shape/Line.js
 var subPixelOptimizeOutputShape = {};
 var LineShape = /* @__PURE__ */ function() {
   function LineShape2() {
@@ -2673,7 +2673,7 @@ var Line = function(_super) {
 Line.prototype.type = "line";
 var Line_default = Line;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/zrender/lib/graphic/shape/BezierCurve.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/zrender/lib/graphic/shape/BezierCurve.js
 var out = [];
 var BezierCurveShape = /* @__PURE__ */ function() {
   function BezierCurveShape2() {
@@ -2766,7 +2766,7 @@ var BezierCurve = function(_super) {
 BezierCurve.prototype.type = "bezier-curve";
 var BezierCurve_default = BezierCurve;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/zrender/lib/graphic/shape/Arc.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/zrender/lib/graphic/shape/Arc.js
 var ArcShape = /* @__PURE__ */ function() {
   function ArcShape2() {
     this.cx = 0;
@@ -2809,7 +2809,7 @@ var Arc = function(_super) {
 Arc.prototype.type = "arc";
 var Arc_default = Arc;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/zrender/lib/graphic/Gradient.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/zrender/lib/graphic/Gradient.js
 var Gradient = function() {
   function Gradient2(colorStops) {
     this.colorStops = colorStops || [];
@@ -2824,7 +2824,7 @@ var Gradient = function() {
 }();
 var Gradient_default = Gradient;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/zrender/lib/graphic/LinearGradient.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/zrender/lib/graphic/LinearGradient.js
 var LinearGradient = function(_super) {
   __extends(LinearGradient2, _super);
   function LinearGradient2(x, y, x2, y2, colorStops, globalCoord) {
@@ -2841,7 +2841,7 @@ var LinearGradient = function(_super) {
 }(Gradient_default);
 var LinearGradient_default = LinearGradient;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/zrender/lib/graphic/RadialGradient.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/zrender/lib/graphic/RadialGradient.js
 var RadialGradient = function(_super) {
   __extends(RadialGradient2, _super);
   function RadialGradient2(x, y, r, colorStops, globalCoord) {
@@ -2857,7 +2857,7 @@ var RadialGradient = function(_super) {
 }(Gradient_default);
 var RadialGradient_default = RadialGradient;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/zrender/lib/core/OrientedBoundingRect.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/zrender/lib/core/OrientedBoundingRect.js
 var extent = [0, 0];
 var extent2 = [0, 0];
 var minTv = new Point_default();
@@ -2975,7 +2975,7 @@ var OrientedBoundingRect = function() {
 }();
 var OrientedBoundingRect_default = OrientedBoundingRect;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/zrender/lib/graphic/IncrementalDisplayable.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/zrender/lib/graphic/IncrementalDisplayable.js
 var m = [];
 var IncrementalDisplayable = function(_super) {
   __extends(IncrementalDisplayable2, _super);
@@ -3085,7 +3085,7 @@ var IncrementalDisplayable = function(_super) {
 }(Displayable_default);
 var IncrementalDisplayable_default = IncrementalDisplayable;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/animation/basicTransition.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/animation/basicTransition.js
 var transitionStore = makeInner();
 function getAnimationConfig(animationType, animatableModel, dataIndex, extraOpts, extraDelayParams) {
   var animationPayload;
@@ -3223,7 +3223,7 @@ function saveOldStyle(el) {
   transitionStore(el).oldStyle = el.style;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/util/graphic.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/util/graphic.js
 var mathMax2 = Math.max;
 var mathMin2 = Math.min;
 var _customShapeMap = {};
@@ -3523,7 +3523,7 @@ registerShape("line", Line_default);
 registerShape("bezierCurve", BezierCurve_default);
 registerShape("arc", Arc_default);
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/label/labelStyle.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/label/labelStyle.js
 var EMPTY_OBJ = {};
 function setLabelText(label, labelTexts) {
   for (var i = 0; i < SPECIAL_STATES.length; i++) {
@@ -3885,7 +3885,7 @@ function animateLabelValue(textEl, dataIndex, data, animatableModel, labelFetche
   }, animatableModel, dataIndex, null, during);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/model/mixin/textStyle.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/model/mixin/textStyle.js
 var PATH_COLOR = ["textStyle", "color"];
 var textStyleParams = ["fontStyle", "fontWeight", "fontSize", "fontFamily", "padding", "lineHeight", "rich", "width", "height", "overflow"];
 var tmpText = new Text_default();
@@ -3923,7 +3923,7 @@ var TextStyleMixin = (
 );
 var textStyle_default = TextStyleMixin;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/model/mixin/lineStyle.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/model/mixin/lineStyle.js
 var LINE_STYLE_KEY_MAP = [
   ["lineWidth", "width"],
   ["stroke", "color"],
@@ -3953,7 +3953,7 @@ var LineStyleMixin = (
   }()
 );
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/model/mixin/itemStyle.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/model/mixin/itemStyle.js
 var ITEM_STYLE_KEY_MAP = [
   ["fill", "color"],
   ["stroke", "borderColor"],
@@ -3984,7 +3984,7 @@ var ItemStyleMixin = (
   }()
 );
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/model/Model.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/model/Model.js
 var Model = (
   /** @class */
   function() {
@@ -4083,160 +4083,1182 @@ mixin(Model, AreaStyleMixin);
 mixin(Model, textStyle_default);
 var Model_default = Model;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/data/DataDiffer.js
-function dataIndexMapValueLength(valNumOrArrLengthMoreThan2) {
-  return valNumOrArrLengthMoreThan2 == null ? 0 : valNumOrArrLengthMoreThan2.length || 1;
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/i18n/langEN.js
+var langEN_default = {
+  time: {
+    month: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+    monthAbbr: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+    dayOfWeek: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+    dayOfWeekAbbr: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
+  },
+  legend: {
+    selector: {
+      all: "All",
+      inverse: "Inv"
+    }
+  },
+  toolbox: {
+    brush: {
+      title: {
+        rect: "Box Select",
+        polygon: "Lasso Select",
+        lineX: "Horizontally Select",
+        lineY: "Vertically Select",
+        keep: "Keep Selections",
+        clear: "Clear Selections"
+      }
+    },
+    dataView: {
+      title: "Data View",
+      lang: ["Data View", "Close", "Refresh"]
+    },
+    dataZoom: {
+      title: {
+        zoom: "Zoom",
+        back: "Zoom Reset"
+      }
+    },
+    magicType: {
+      title: {
+        line: "Switch to Line Chart",
+        bar: "Switch to Bar Chart",
+        stack: "Stack",
+        tiled: "Tile"
+      }
+    },
+    restore: {
+      title: "Restore"
+    },
+    saveAsImage: {
+      title: "Save as Image",
+      lang: ["Right Click to Save Image"]
+    }
+  },
+  series: {
+    typeNames: {
+      pie: "Pie chart",
+      bar: "Bar chart",
+      line: "Line chart",
+      scatter: "Scatter plot",
+      effectScatter: "Ripple scatter plot",
+      radar: "Radar chart",
+      tree: "Tree",
+      treemap: "Treemap",
+      boxplot: "Boxplot",
+      candlestick: "Candlestick",
+      k: "K line chart",
+      heatmap: "Heat map",
+      map: "Map",
+      parallel: "Parallel coordinate map",
+      lines: "Line graph",
+      graph: "Relationship graph",
+      sankey: "Sankey diagram",
+      funnel: "Funnel chart",
+      gauge: "Gauge",
+      pictorialBar: "Pictorial bar",
+      themeRiver: "Theme River Map",
+      sunburst: "Sunburst",
+      custom: "Custom chart",
+      chart: "Chart"
+    }
+  },
+  aria: {
+    general: {
+      withTitle: 'This is a chart about "{title}"',
+      withoutTitle: "This is a chart"
+    },
+    series: {
+      single: {
+        prefix: "",
+        withName: " with type {seriesType} named {seriesName}.",
+        withoutName: " with type {seriesType}."
+      },
+      multiple: {
+        prefix: ". It consists of {seriesCount} series count.",
+        withName: " The {seriesId} series is a {seriesType} representing {seriesName}.",
+        withoutName: " The {seriesId} series is a {seriesType}.",
+        separator: {
+          middle: "",
+          end: ""
+        }
+      }
+    },
+    data: {
+      allData: "The data is as follows: ",
+      partialData: "The first {displayCnt} items are: ",
+      withName: "the data for {name} is {value}",
+      withoutName: "{value}",
+      separator: {
+        middle: ", ",
+        end: ". "
+      }
+    }
+  }
+};
+
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/i18n/langZH.js
+var langZH_default = {
+  time: {
+    month: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
+    monthAbbr: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
+    dayOfWeek: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
+    dayOfWeekAbbr: ["日", "一", "二", "三", "四", "五", "六"]
+  },
+  legend: {
+    selector: {
+      all: "全选",
+      inverse: "反选"
+    }
+  },
+  toolbox: {
+    brush: {
+      title: {
+        rect: "矩形选择",
+        polygon: "圈选",
+        lineX: "横向选择",
+        lineY: "纵向选择",
+        keep: "保持选择",
+        clear: "清除选择"
+      }
+    },
+    dataView: {
+      title: "数据视图",
+      lang: ["数据视图", "关闭", "刷新"]
+    },
+    dataZoom: {
+      title: {
+        zoom: "区域缩放",
+        back: "区域缩放还原"
+      }
+    },
+    magicType: {
+      title: {
+        line: "切换为折线图",
+        bar: "切换为柱状图",
+        stack: "切换为堆叠",
+        tiled: "切换为平铺"
+      }
+    },
+    restore: {
+      title: "还原"
+    },
+    saveAsImage: {
+      title: "保存为图片",
+      lang: ["右键另存为图片"]
+    }
+  },
+  series: {
+    typeNames: {
+      pie: "饼图",
+      bar: "柱状图",
+      line: "折线图",
+      scatter: "散点图",
+      effectScatter: "涟漪散点图",
+      radar: "雷达图",
+      tree: "树图",
+      treemap: "矩形树图",
+      boxplot: "箱型图",
+      candlestick: "K线图",
+      k: "K线图",
+      heatmap: "热力图",
+      map: "地图",
+      parallel: "平行坐标图",
+      lines: "线图",
+      graph: "关系图",
+      sankey: "桑基图",
+      funnel: "漏斗图",
+      gauge: "仪表盘图",
+      pictorialBar: "象形柱图",
+      themeRiver: "主题河流图",
+      sunburst: "旭日图",
+      custom: "自定义图表",
+      chart: "图表"
+    }
+  },
+  aria: {
+    general: {
+      withTitle: "这是一个关于“{title}”的图表。",
+      withoutTitle: "这是一个图表，"
+    },
+    series: {
+      single: {
+        prefix: "",
+        withName: "图表类型是{seriesType}，表示{seriesName}。",
+        withoutName: "图表类型是{seriesType}。"
+      },
+      multiple: {
+        prefix: "它由{seriesCount}个图表系列组成。",
+        withName: "第{seriesId}个系列是一个表示{seriesName}的{seriesType}，",
+        withoutName: "第{seriesId}个系列是一个{seriesType}，",
+        separator: {
+          middle: "；",
+          end: "。"
+        }
+      }
+    },
+    data: {
+      allData: "其数据是——",
+      partialData: "其中，前{displayCnt}项是——",
+      withName: "{name}的数据是{value}",
+      withoutName: "{value}",
+      separator: {
+        middle: "，",
+        end: ""
+      }
+    }
+  }
+};
+
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/core/locale.js
+var LOCALE_ZH = "ZH";
+var LOCALE_EN = "EN";
+var DEFAULT_LOCALE = LOCALE_EN;
+var localeStorage = {};
+var localeModels = {};
+var SYSTEM_LANG = !env_default.domSupported ? DEFAULT_LOCALE : function() {
+  var langStr = (
+    /* eslint-disable-next-line */
+    (document.documentElement.lang || navigator.language || navigator.browserLanguage || DEFAULT_LOCALE).toUpperCase()
+  );
+  return langStr.indexOf(LOCALE_ZH) > -1 ? LOCALE_ZH : DEFAULT_LOCALE;
+}();
+function registerLocale(locale, localeObj) {
+  locale = locale.toUpperCase();
+  localeModels[locale] = new Model_default(localeObj);
+  localeStorage[locale] = localeObj;
 }
-function defaultKeyGetter(item) {
-  return item;
+function createLocaleObject(locale) {
+  if (isString(locale)) {
+    var localeObj = localeStorage[locale.toUpperCase()] || {};
+    if (locale === LOCALE_ZH || locale === LOCALE_EN) {
+      return clone(localeObj);
+    } else {
+      return merge(clone(localeObj), clone(localeStorage[DEFAULT_LOCALE]), false);
+    }
+  } else {
+    return merge(clone(locale), clone(localeStorage[DEFAULT_LOCALE]), false);
+  }
 }
-var DataDiffer = (
+function getLocaleModel(lang) {
+  return localeModels[lang];
+}
+function getDefaultLocaleModel() {
+  return localeModels[DEFAULT_LOCALE];
+}
+registerLocale(LOCALE_EN, langEN_default);
+registerLocale(LOCALE_ZH, langZH_default);
+
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/util/component.js
+var base = Math.round(Math.random() * 10);
+function getUID(type) {
+  return [type || "", base++].join("_");
+}
+function enableSubTypeDefaulter(target) {
+  var subTypeDefaulters = {};
+  target.registerSubTypeDefaulter = function(componentType, defaulter) {
+    var componentTypeInfo = parseClassType(componentType);
+    subTypeDefaulters[componentTypeInfo.main] = defaulter;
+  };
+  target.determineSubType = function(componentType, option) {
+    var type = option.type;
+    if (!type) {
+      var componentTypeMain = parseClassType(componentType).main;
+      if (target.hasSubTypes(componentType) && subTypeDefaulters[componentTypeMain]) {
+        type = subTypeDefaulters[componentTypeMain](option);
+      }
+    }
+    return type;
+  };
+}
+function enableTopologicalTravel(entity, dependencyGetter) {
+  entity.topologicalTravel = function(targetNameList, fullNameList, callback, context) {
+    if (!targetNameList.length) {
+      return;
+    }
+    var result = makeDepndencyGraph(fullNameList);
+    var graph = result.graph;
+    var noEntryList = result.noEntryList;
+    var targetNameSet = {};
+    each(targetNameList, function(name) {
+      targetNameSet[name] = true;
+    });
+    while (noEntryList.length) {
+      var currComponentType = noEntryList.pop();
+      var currVertex = graph[currComponentType];
+      var isInTargetNameSet = !!targetNameSet[currComponentType];
+      if (isInTargetNameSet) {
+        callback.call(context, currComponentType, currVertex.originalDeps.slice());
+        delete targetNameSet[currComponentType];
+      }
+      each(currVertex.successor, isInTargetNameSet ? removeEdgeAndAdd : removeEdge);
+    }
+    each(targetNameSet, function() {
+      var errMsg = "";
+      if (true) {
+        errMsg = makePrintable("Circular dependency may exists: ", targetNameSet, targetNameList, fullNameList);
+      }
+      throw new Error(errMsg);
+    });
+    function removeEdge(succComponentType) {
+      graph[succComponentType].entryCount--;
+      if (graph[succComponentType].entryCount === 0) {
+        noEntryList.push(succComponentType);
+      }
+    }
+    function removeEdgeAndAdd(succComponentType) {
+      targetNameSet[succComponentType] = true;
+      removeEdge(succComponentType);
+    }
+  };
+  function makeDepndencyGraph(fullNameList) {
+    var graph = {};
+    var noEntryList = [];
+    each(fullNameList, function(name) {
+      var thisItem = createDependencyGraphItem(graph, name);
+      var originalDeps = thisItem.originalDeps = dependencyGetter(name);
+      var availableDeps = getAvailableDependencies(originalDeps, fullNameList);
+      thisItem.entryCount = availableDeps.length;
+      if (thisItem.entryCount === 0) {
+        noEntryList.push(name);
+      }
+      each(availableDeps, function(dependentName) {
+        if (indexOf(thisItem.predecessor, dependentName) < 0) {
+          thisItem.predecessor.push(dependentName);
+        }
+        var thatItem = createDependencyGraphItem(graph, dependentName);
+        if (indexOf(thatItem.successor, dependentName) < 0) {
+          thatItem.successor.push(name);
+        }
+      });
+    });
+    return {
+      graph,
+      noEntryList
+    };
+  }
+  function createDependencyGraphItem(graph, name) {
+    if (!graph[name]) {
+      graph[name] = {
+        predecessor: [],
+        successor: []
+      };
+    }
+    return graph[name];
+  }
+  function getAvailableDependencies(originalDeps, fullNameList) {
+    var availableDeps = [];
+    each(originalDeps, function(dep) {
+      indexOf(fullNameList, dep) >= 0 && availableDeps.push(dep);
+    });
+    return availableDeps;
+  }
+}
+function inheritDefaultOption(superOption, subOption) {
+  return merge(merge({}, superOption, true), subOption, true);
+}
+
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/util/time.js
+var ONE_SECOND = 1e3;
+var ONE_MINUTE = ONE_SECOND * 60;
+var ONE_HOUR = ONE_MINUTE * 60;
+var ONE_DAY = ONE_HOUR * 24;
+var ONE_YEAR = ONE_DAY * 365;
+var defaultLeveledFormatter = {
+  year: "{yyyy}",
+  month: "{MMM}",
+  day: "{d}",
+  hour: "{HH}:{mm}",
+  minute: "{HH}:{mm}",
+  second: "{HH}:{mm}:{ss}",
+  millisecond: "{HH}:{mm}:{ss} {SSS}",
+  none: "{yyyy}-{MM}-{dd} {HH}:{mm}:{ss} {SSS}"
+};
+var fullDayFormatter = "{yyyy}-{MM}-{dd}";
+var fullLeveledFormatter = {
+  year: "{yyyy}",
+  month: "{yyyy}-{MM}",
+  day: fullDayFormatter,
+  hour: fullDayFormatter + " " + defaultLeveledFormatter.hour,
+  minute: fullDayFormatter + " " + defaultLeveledFormatter.minute,
+  second: fullDayFormatter + " " + defaultLeveledFormatter.second,
+  millisecond: defaultLeveledFormatter.none
+};
+var primaryTimeUnits = ["year", "month", "day", "hour", "minute", "second", "millisecond"];
+var timeUnits = ["year", "half-year", "quarter", "month", "week", "half-week", "day", "half-day", "quarter-day", "hour", "minute", "second", "millisecond"];
+function pad(str, len) {
+  str += "";
+  return "0000".substr(0, len - str.length) + str;
+}
+function getPrimaryTimeUnit(timeUnit) {
+  switch (timeUnit) {
+    case "half-year":
+    case "quarter":
+      return "month";
+    case "week":
+    case "half-week":
+      return "day";
+    case "half-day":
+    case "quarter-day":
+      return "hour";
+    default:
+      return timeUnit;
+  }
+}
+function isPrimaryTimeUnit(timeUnit) {
+  return timeUnit === getPrimaryTimeUnit(timeUnit);
+}
+function getDefaultFormatPrecisionOfInterval(timeUnit) {
+  switch (timeUnit) {
+    case "year":
+    case "month":
+      return "day";
+    case "millisecond":
+      return "millisecond";
+    default:
+      return "second";
+  }
+}
+function format(time, template, isUTC, lang) {
+  var date = parseDate(time);
+  var y = date[fullYearGetterName(isUTC)]();
+  var M = date[monthGetterName(isUTC)]() + 1;
+  var q = Math.floor((M - 1) / 3) + 1;
+  var d = date[dateGetterName(isUTC)]();
+  var e2 = date["get" + (isUTC ? "UTC" : "") + "Day"]();
+  var H = date[hoursGetterName(isUTC)]();
+  var h = (H - 1) % 12 + 1;
+  var m2 = date[minutesGetterName(isUTC)]();
+  var s = date[secondsGetterName(isUTC)]();
+  var S = date[millisecondsGetterName(isUTC)]();
+  var a = H >= 12 ? "pm" : "am";
+  var A = a.toUpperCase();
+  var localeModel = lang instanceof Model_default ? lang : getLocaleModel(lang || SYSTEM_LANG) || getDefaultLocaleModel();
+  var timeModel = localeModel.getModel("time");
+  var month = timeModel.get("month");
+  var monthAbbr = timeModel.get("monthAbbr");
+  var dayOfWeek = timeModel.get("dayOfWeek");
+  var dayOfWeekAbbr = timeModel.get("dayOfWeekAbbr");
+  return (template || "").replace(/{a}/g, a + "").replace(/{A}/g, A + "").replace(/{yyyy}/g, y + "").replace(/{yy}/g, pad(y % 100 + "", 2)).replace(/{Q}/g, q + "").replace(/{MMMM}/g, month[M - 1]).replace(/{MMM}/g, monthAbbr[M - 1]).replace(/{MM}/g, pad(M, 2)).replace(/{M}/g, M + "").replace(/{dd}/g, pad(d, 2)).replace(/{d}/g, d + "").replace(/{eeee}/g, dayOfWeek[e2]).replace(/{ee}/g, dayOfWeekAbbr[e2]).replace(/{e}/g, e2 + "").replace(/{HH}/g, pad(H, 2)).replace(/{H}/g, H + "").replace(/{hh}/g, pad(h + "", 2)).replace(/{h}/g, h + "").replace(/{mm}/g, pad(m2, 2)).replace(/{m}/g, m2 + "").replace(/{ss}/g, pad(s, 2)).replace(/{s}/g, s + "").replace(/{SSS}/g, pad(S, 3)).replace(/{S}/g, S + "");
+}
+function leveledFormat(tick, idx, formatter, lang, isUTC) {
+  var template = null;
+  if (isString(formatter)) {
+    template = formatter;
+  } else if (isFunction(formatter)) {
+    template = formatter(tick.value, idx, {
+      level: tick.level
+    });
+  } else {
+    var defaults2 = extend({}, defaultLeveledFormatter);
+    if (tick.level > 0) {
+      for (var i = 0; i < primaryTimeUnits.length; ++i) {
+        defaults2[primaryTimeUnits[i]] = "{primary|" + defaults2[primaryTimeUnits[i]] + "}";
+      }
+    }
+    var mergedFormatter = formatter ? formatter.inherit === false ? formatter : defaults(formatter, defaults2) : defaults2;
+    var unit = getUnitFromValue(tick.value, isUTC);
+    if (mergedFormatter[unit]) {
+      template = mergedFormatter[unit];
+    } else if (mergedFormatter.inherit) {
+      var targetId = timeUnits.indexOf(unit);
+      for (var i = targetId - 1; i >= 0; --i) {
+        if (mergedFormatter[unit]) {
+          template = mergedFormatter[unit];
+          break;
+        }
+      }
+      template = template || defaults2.none;
+    }
+    if (isArray(template)) {
+      var levelId = tick.level == null ? 0 : tick.level >= 0 ? tick.level : template.length + tick.level;
+      levelId = Math.min(levelId, template.length - 1);
+      template = template[levelId];
+    }
+  }
+  return format(new Date(tick.value), template, isUTC, lang);
+}
+function getUnitFromValue(value, isUTC) {
+  var date = parseDate(value);
+  var M = date[monthGetterName(isUTC)]() + 1;
+  var d = date[dateGetterName(isUTC)]();
+  var h = date[hoursGetterName(isUTC)]();
+  var m2 = date[minutesGetterName(isUTC)]();
+  var s = date[secondsGetterName(isUTC)]();
+  var S = date[millisecondsGetterName(isUTC)]();
+  var isSecond = S === 0;
+  var isMinute = isSecond && s === 0;
+  var isHour = isMinute && m2 === 0;
+  var isDay = isHour && h === 0;
+  var isMonth = isDay && d === 1;
+  var isYear = isMonth && M === 1;
+  if (isYear) {
+    return "year";
+  } else if (isMonth) {
+    return "month";
+  } else if (isDay) {
+    return "day";
+  } else if (isHour) {
+    return "hour";
+  } else if (isMinute) {
+    return "minute";
+  } else if (isSecond) {
+    return "second";
+  } else {
+    return "millisecond";
+  }
+}
+function getUnitValue(value, unit, isUTC) {
+  var date = isNumber(value) ? parseDate(value) : value;
+  unit = unit || getUnitFromValue(value, isUTC);
+  switch (unit) {
+    case "year":
+      return date[fullYearGetterName(isUTC)]();
+    case "half-year":
+      return date[monthGetterName(isUTC)]() >= 6 ? 1 : 0;
+    case "quarter":
+      return Math.floor((date[monthGetterName(isUTC)]() + 1) / 4);
+    case "month":
+      return date[monthGetterName(isUTC)]();
+    case "day":
+      return date[dateGetterName(isUTC)]();
+    case "half-day":
+      return date[hoursGetterName(isUTC)]() / 24;
+    case "hour":
+      return date[hoursGetterName(isUTC)]();
+    case "minute":
+      return date[minutesGetterName(isUTC)]();
+    case "second":
+      return date[secondsGetterName(isUTC)]();
+    case "millisecond":
+      return date[millisecondsGetterName(isUTC)]();
+  }
+}
+function fullYearGetterName(isUTC) {
+  return isUTC ? "getUTCFullYear" : "getFullYear";
+}
+function monthGetterName(isUTC) {
+  return isUTC ? "getUTCMonth" : "getMonth";
+}
+function dateGetterName(isUTC) {
+  return isUTC ? "getUTCDate" : "getDate";
+}
+function hoursGetterName(isUTC) {
+  return isUTC ? "getUTCHours" : "getHours";
+}
+function minutesGetterName(isUTC) {
+  return isUTC ? "getUTCMinutes" : "getMinutes";
+}
+function secondsGetterName(isUTC) {
+  return isUTC ? "getUTCSeconds" : "getSeconds";
+}
+function millisecondsGetterName(isUTC) {
+  return isUTC ? "getUTCMilliseconds" : "getMilliseconds";
+}
+function fullYearSetterName(isUTC) {
+  return isUTC ? "setUTCFullYear" : "setFullYear";
+}
+function monthSetterName(isUTC) {
+  return isUTC ? "setUTCMonth" : "setMonth";
+}
+function dateSetterName(isUTC) {
+  return isUTC ? "setUTCDate" : "setDate";
+}
+function hoursSetterName(isUTC) {
+  return isUTC ? "setUTCHours" : "setHours";
+}
+function minutesSetterName(isUTC) {
+  return isUTC ? "setUTCMinutes" : "setMinutes";
+}
+function secondsSetterName(isUTC) {
+  return isUTC ? "setUTCSeconds" : "setSeconds";
+}
+function millisecondsSetterName(isUTC) {
+  return isUTC ? "setUTCMilliseconds" : "setMilliseconds";
+}
+
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/legacy/getTextRect.js
+function getTextRect(text, font, align, verticalAlign, padding, rich, truncate, lineHeight) {
+  var textEl = new Text_default({
+    style: {
+      text,
+      font,
+      align,
+      verticalAlign,
+      padding,
+      rich,
+      overflow: truncate ? "truncate" : null,
+      lineHeight
+    }
+  });
+  return textEl.getBoundingRect();
+}
+
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/util/format.js
+function addCommas(x) {
+  if (!isNumeric(x)) {
+    return isString(x) ? x : "-";
+  }
+  var parts = (x + "").split(".");
+  return parts[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, "$1,") + (parts.length > 1 ? "." + parts[1] : "");
+}
+function toCamelCase(str, upperCaseFirst) {
+  str = (str || "").toLowerCase().replace(/-(.)/g, function(match, group1) {
+    return group1.toUpperCase();
+  });
+  if (upperCaseFirst && str) {
+    str = str.charAt(0).toUpperCase() + str.slice(1);
+  }
+  return str;
+}
+var normalizeCssArray2 = normalizeCssArray;
+function makeValueReadable(value, valueType, useUTC) {
+  var USER_READABLE_DEFUALT_TIME_PATTERN = "{yyyy}-{MM}-{dd} {HH}:{mm}:{ss}";
+  function stringToUserReadable(str) {
+    return str && trim(str) ? str : "-";
+  }
+  function isNumberUserReadable(num) {
+    return !!(num != null && !isNaN(num) && isFinite(num));
+  }
+  var isTypeTime = valueType === "time";
+  var isValueDate = value instanceof Date;
+  if (isTypeTime || isValueDate) {
+    var date = isTypeTime ? parseDate(value) : value;
+    if (!isNaN(+date)) {
+      return format(date, USER_READABLE_DEFUALT_TIME_PATTERN, useUTC);
+    } else if (isValueDate) {
+      return "-";
+    }
+  }
+  if (valueType === "ordinal") {
+    return isStringSafe(value) ? stringToUserReadable(value) : isNumber(value) ? isNumberUserReadable(value) ? value + "" : "-" : "-";
+  }
+  var numericResult = numericToNumber(value);
+  return isNumberUserReadable(numericResult) ? addCommas(numericResult) : isStringSafe(value) ? stringToUserReadable(value) : typeof value === "boolean" ? value + "" : "-";
+}
+var TPL_VAR_ALIAS = ["a", "b", "c", "d", "e", "f", "g"];
+var wrapVar = function(varName, seriesIdx) {
+  return "{" + varName + (seriesIdx == null ? "" : seriesIdx) + "}";
+};
+function formatTpl(tpl, paramsList, encode) {
+  if (!isArray(paramsList)) {
+    paramsList = [paramsList];
+  }
+  var seriesLen = paramsList.length;
+  if (!seriesLen) {
+    return "";
+  }
+  var $vars = paramsList[0].$vars || [];
+  for (var i = 0; i < $vars.length; i++) {
+    var alias = TPL_VAR_ALIAS[i];
+    tpl = tpl.replace(wrapVar(alias), wrapVar(alias, 0));
+  }
+  for (var seriesIdx = 0; seriesIdx < seriesLen; seriesIdx++) {
+    for (var k = 0; k < $vars.length; k++) {
+      var val = paramsList[seriesIdx][$vars[k]];
+      tpl = tpl.replace(wrapVar(TPL_VAR_ALIAS[k], seriesIdx), encode ? encodeHTML(val) : val);
+    }
+  }
+  return tpl;
+}
+function formatTplSimple(tpl, param, encode) {
+  each(param, function(value, key) {
+    tpl = tpl.replace("{" + key + "}", encode ? encodeHTML(value) : value);
+  });
+  return tpl;
+}
+function getTooltipMarker(inOpt, extraCssText) {
+  var opt = isString(inOpt) ? {
+    color: inOpt,
+    extraCssText
+  } : inOpt || {};
+  var color = opt.color;
+  var type = opt.type;
+  extraCssText = opt.extraCssText;
+  var renderMode = opt.renderMode || "html";
+  if (!color) {
+    return "";
+  }
+  if (renderMode === "html") {
+    return type === "subItem" ? '<span style="display:inline-block;vertical-align:middle;margin-right:8px;margin-left:3px;border-radius:4px;width:4px;height:4px;background-color:' + encodeHTML(color) + ";" + (extraCssText || "") + '"></span>' : '<span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:' + encodeHTML(color) + ";" + (extraCssText || "") + '"></span>';
+  } else {
+    var markerId = opt.markerId || "markerX";
+    return {
+      renderMode,
+      content: "{" + markerId + "|}  ",
+      style: type === "subItem" ? {
+        width: 4,
+        height: 4,
+        borderRadius: 2,
+        backgroundColor: color
+      } : {
+        width: 10,
+        height: 10,
+        borderRadius: 5,
+        backgroundColor: color
+      }
+    };
+  }
+}
+function formatTime(tpl, value, isUTC) {
+  if (true) {
+    deprecateReplaceLog("echarts.format.formatTime", "echarts.time.format");
+  }
+  if (tpl === "week" || tpl === "month" || tpl === "quarter" || tpl === "half-year" || tpl === "year") {
+    tpl = "MM-dd\nyyyy";
+  }
+  var date = parseDate(value);
+  var getUTC = isUTC ? "getUTC" : "get";
+  var y = date[getUTC + "FullYear"]();
+  var M = date[getUTC + "Month"]() + 1;
+  var d = date[getUTC + "Date"]();
+  var h = date[getUTC + "Hours"]();
+  var m2 = date[getUTC + "Minutes"]();
+  var s = date[getUTC + "Seconds"]();
+  var S = date[getUTC + "Milliseconds"]();
+  tpl = tpl.replace("MM", pad(M, 2)).replace("M", M).replace("yyyy", y).replace("yy", pad(y % 100 + "", 2)).replace("dd", pad(d, 2)).replace("d", d).replace("hh", pad(h, 2)).replace("h", h).replace("mm", pad(m2, 2)).replace("m", m2).replace("ss", pad(s, 2)).replace("s", s).replace("SSS", pad(S, 3));
+  return tpl;
+}
+function capitalFirst(str) {
+  return str ? str.charAt(0).toUpperCase() + str.substr(1) : str;
+}
+function convertToColorString(color, defaultColor) {
+  defaultColor = defaultColor || "transparent";
+  return isString(color) ? color : isObject(color) ? color.colorStops && (color.colorStops[0] || {}).color || defaultColor : defaultColor;
+}
+function windowOpen(link, target) {
+  if (target === "_blank" || target === "blank") {
+    var blank = window.open();
+    blank.opener = null;
+    blank.location.href = link;
+  } else {
+    window.open(link, target);
+  }
+}
+
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/util/layout.js
+var each2 = each;
+var LOCATION_PARAMS = ["left", "right", "top", "bottom", "width", "height"];
+var HV_NAMES = [["width", "left", "right"], ["height", "top", "bottom"]];
+function boxLayout(orient, group, gap, maxWidth, maxHeight) {
+  var x = 0;
+  var y = 0;
+  if (maxWidth == null) {
+    maxWidth = Infinity;
+  }
+  if (maxHeight == null) {
+    maxHeight = Infinity;
+  }
+  var currentLineMaxSize = 0;
+  group.eachChild(function(child, idx) {
+    var rect = child.getBoundingRect();
+    var nextChild = group.childAt(idx + 1);
+    var nextChildRect = nextChild && nextChild.getBoundingRect();
+    var nextX;
+    var nextY;
+    if (orient === "horizontal") {
+      var moveX = rect.width + (nextChildRect ? -nextChildRect.x + rect.x : 0);
+      nextX = x + moveX;
+      if (nextX > maxWidth || child.newline) {
+        x = 0;
+        nextX = moveX;
+        y += currentLineMaxSize + gap;
+        currentLineMaxSize = rect.height;
+      } else {
+        currentLineMaxSize = Math.max(currentLineMaxSize, rect.height);
+      }
+    } else {
+      var moveY = rect.height + (nextChildRect ? -nextChildRect.y + rect.y : 0);
+      nextY = y + moveY;
+      if (nextY > maxHeight || child.newline) {
+        x += currentLineMaxSize + gap;
+        y = 0;
+        nextY = moveY;
+        currentLineMaxSize = rect.width;
+      } else {
+        currentLineMaxSize = Math.max(currentLineMaxSize, rect.width);
+      }
+    }
+    if (child.newline) {
+      return;
+    }
+    child.x = x;
+    child.y = y;
+    child.markRedraw();
+    orient === "horizontal" ? x = nextX + gap : y = nextY + gap;
+  });
+}
+var box = boxLayout;
+var vbox = curry(boxLayout, "vertical");
+var hbox = curry(boxLayout, "horizontal");
+function getAvailableSize(positionInfo, containerRect, margin) {
+  var containerWidth = containerRect.width;
+  var containerHeight = containerRect.height;
+  var x = parsePercent2(positionInfo.left, containerWidth);
+  var y = parsePercent2(positionInfo.top, containerHeight);
+  var x2 = parsePercent2(positionInfo.right, containerWidth);
+  var y2 = parsePercent2(positionInfo.bottom, containerHeight);
+  (isNaN(x) || isNaN(parseFloat(positionInfo.left))) && (x = 0);
+  (isNaN(x2) || isNaN(parseFloat(positionInfo.right))) && (x2 = containerWidth);
+  (isNaN(y) || isNaN(parseFloat(positionInfo.top))) && (y = 0);
+  (isNaN(y2) || isNaN(parseFloat(positionInfo.bottom))) && (y2 = containerHeight);
+  margin = normalizeCssArray2(margin || 0);
+  return {
+    width: Math.max(x2 - x - margin[1] - margin[3], 0),
+    height: Math.max(y2 - y - margin[0] - margin[2], 0)
+  };
+}
+function getLayoutRect(positionInfo, containerRect, margin) {
+  margin = normalizeCssArray2(margin || 0);
+  var containerWidth = containerRect.width;
+  var containerHeight = containerRect.height;
+  var left = parsePercent2(positionInfo.left, containerWidth);
+  var top = parsePercent2(positionInfo.top, containerHeight);
+  var right = parsePercent2(positionInfo.right, containerWidth);
+  var bottom = parsePercent2(positionInfo.bottom, containerHeight);
+  var width = parsePercent2(positionInfo.width, containerWidth);
+  var height = parsePercent2(positionInfo.height, containerHeight);
+  var verticalMargin = margin[2] + margin[0];
+  var horizontalMargin = margin[1] + margin[3];
+  var aspect = positionInfo.aspect;
+  if (isNaN(width)) {
+    width = containerWidth - right - horizontalMargin - left;
+  }
+  if (isNaN(height)) {
+    height = containerHeight - bottom - verticalMargin - top;
+  }
+  if (aspect != null) {
+    if (isNaN(width) && isNaN(height)) {
+      if (aspect > containerWidth / containerHeight) {
+        width = containerWidth * 0.8;
+      } else {
+        height = containerHeight * 0.8;
+      }
+    }
+    if (isNaN(width)) {
+      width = aspect * height;
+    }
+    if (isNaN(height)) {
+      height = width / aspect;
+    }
+  }
+  if (isNaN(left)) {
+    left = containerWidth - right - width - horizontalMargin;
+  }
+  if (isNaN(top)) {
+    top = containerHeight - bottom - height - verticalMargin;
+  }
+  switch (positionInfo.left || positionInfo.right) {
+    case "center":
+      left = containerWidth / 2 - width / 2 - margin[3];
+      break;
+    case "right":
+      left = containerWidth - width - horizontalMargin;
+      break;
+  }
+  switch (positionInfo.top || positionInfo.bottom) {
+    case "middle":
+    case "center":
+      top = containerHeight / 2 - height / 2 - margin[0];
+      break;
+    case "bottom":
+      top = containerHeight - height - verticalMargin;
+      break;
+  }
+  left = left || 0;
+  top = top || 0;
+  if (isNaN(width)) {
+    width = containerWidth - horizontalMargin - left - (right || 0);
+  }
+  if (isNaN(height)) {
+    height = containerHeight - verticalMargin - top - (bottom || 0);
+  }
+  var rect = new BoundingRect_default(left + margin[3], top + margin[0], width, height);
+  rect.margin = margin;
+  return rect;
+}
+function positionElement(el, positionInfo, containerRect, margin, opt, out2) {
+  var h = !opt || !opt.hv || opt.hv[0];
+  var v = !opt || !opt.hv || opt.hv[1];
+  var boundingMode = opt && opt.boundingMode || "all";
+  out2 = out2 || el;
+  out2.x = el.x;
+  out2.y = el.y;
+  if (!h && !v) {
+    return false;
+  }
+  var rect;
+  if (boundingMode === "raw") {
+    rect = el.type === "group" ? new BoundingRect_default(0, 0, +positionInfo.width || 0, +positionInfo.height || 0) : el.getBoundingRect();
+  } else {
+    rect = el.getBoundingRect();
+    if (el.needLocalTransform()) {
+      var transform = el.getLocalTransform();
+      rect = rect.clone();
+      rect.applyTransform(transform);
+    }
+  }
+  var layoutRect = getLayoutRect(defaults({
+    width: rect.width,
+    height: rect.height
+  }, positionInfo), containerRect, margin);
+  var dx = h ? layoutRect.x - rect.x : 0;
+  var dy = v ? layoutRect.y - rect.y : 0;
+  if (boundingMode === "raw") {
+    out2.x = dx;
+    out2.y = dy;
+  } else {
+    out2.x += dx;
+    out2.y += dy;
+  }
+  if (out2 === el) {
+    el.markRedraw();
+  }
+  return true;
+}
+function sizeCalculable(option, hvIdx) {
+  return option[HV_NAMES[hvIdx][0]] != null || option[HV_NAMES[hvIdx][1]] != null && option[HV_NAMES[hvIdx][2]] != null;
+}
+function fetchLayoutMode(ins) {
+  var layoutMode = ins.layoutMode || ins.constructor.layoutMode;
+  return isObject(layoutMode) ? layoutMode : layoutMode ? {
+    type: layoutMode
+  } : null;
+}
+function mergeLayoutParam(targetOption, newOption, opt) {
+  var ignoreSize = opt && opt.ignoreSize;
+  !isArray(ignoreSize) && (ignoreSize = [ignoreSize, ignoreSize]);
+  var hResult = merge2(HV_NAMES[0], 0);
+  var vResult = merge2(HV_NAMES[1], 1);
+  copy(HV_NAMES[0], targetOption, hResult);
+  copy(HV_NAMES[1], targetOption, vResult);
+  function merge2(names, hvIdx) {
+    var newParams = {};
+    var newValueCount = 0;
+    var merged = {};
+    var mergedValueCount = 0;
+    var enoughParamNumber = 2;
+    each2(names, function(name) {
+      merged[name] = targetOption[name];
+    });
+    each2(names, function(name) {
+      hasProp(newOption, name) && (newParams[name] = merged[name] = newOption[name]);
+      hasValue(newParams, name) && newValueCount++;
+      hasValue(merged, name) && mergedValueCount++;
+    });
+    if (ignoreSize[hvIdx]) {
+      if (hasValue(newOption, names[1])) {
+        merged[names[2]] = null;
+      } else if (hasValue(newOption, names[2])) {
+        merged[names[1]] = null;
+      }
+      return merged;
+    }
+    if (mergedValueCount === enoughParamNumber || !newValueCount) {
+      return merged;
+    } else if (newValueCount >= enoughParamNumber) {
+      return newParams;
+    } else {
+      for (var i = 0; i < names.length; i++) {
+        var name_1 = names[i];
+        if (!hasProp(newParams, name_1) && hasProp(targetOption, name_1)) {
+          newParams[name_1] = targetOption[name_1];
+          break;
+        }
+      }
+      return newParams;
+    }
+  }
+  function hasProp(obj, name) {
+    return obj.hasOwnProperty(name);
+  }
+  function hasValue(obj, name) {
+    return obj[name] != null && obj[name] !== "auto";
+  }
+  function copy(names, target, source) {
+    each2(names, function(name) {
+      target[name] = source[name];
+    });
+  }
+}
+function getLayoutParams(source) {
+  return copyLayoutParams({}, source);
+}
+function copyLayoutParams(target, source) {
+  source && target && each2(LOCATION_PARAMS, function(name) {
+    source.hasOwnProperty(name) && (target[name] = source[name]);
+  });
+  return target;
+}
+
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/model/Component.js
+var inner = makeInner();
+var ComponentModel = (
+  /** @class */
+  function(_super) {
+    __extends(ComponentModel2, _super);
+    function ComponentModel2(option, parentModel, ecModel) {
+      var _this = _super.call(this, option, parentModel, ecModel) || this;
+      _this.uid = getUID("ec_cpt_model");
+      return _this;
+    }
+    ComponentModel2.prototype.init = function(option, parentModel, ecModel) {
+      this.mergeDefaultAndTheme(option, ecModel);
+    };
+    ComponentModel2.prototype.mergeDefaultAndTheme = function(option, ecModel) {
+      var layoutMode = fetchLayoutMode(this);
+      var inputPositionParams = layoutMode ? getLayoutParams(option) : {};
+      var themeModel = ecModel.getTheme();
+      merge(option, themeModel.get(this.mainType));
+      merge(option, this.getDefaultOption());
+      if (layoutMode) {
+        mergeLayoutParam(option, inputPositionParams, layoutMode);
+      }
+    };
+    ComponentModel2.prototype.mergeOption = function(option, ecModel) {
+      merge(this.option, option, true);
+      var layoutMode = fetchLayoutMode(this);
+      if (layoutMode) {
+        mergeLayoutParam(this.option, option, layoutMode);
+      }
+    };
+    ComponentModel2.prototype.optionUpdated = function(newCptOption, isInit) {
+    };
+    ComponentModel2.prototype.getDefaultOption = function() {
+      var ctor = this.constructor;
+      if (!isExtendedClass(ctor)) {
+        return ctor.defaultOption;
+      }
+      var fields = inner(this);
+      if (!fields.defaultOption) {
+        var optList = [];
+        var clz = ctor;
+        while (clz) {
+          var opt = clz.prototype.defaultOption;
+          opt && optList.push(opt);
+          clz = clz.superClass;
+        }
+        var defaultOption = {};
+        for (var i = optList.length - 1; i >= 0; i--) {
+          defaultOption = merge(defaultOption, optList[i], true);
+        }
+        fields.defaultOption = defaultOption;
+      }
+      return fields.defaultOption;
+    };
+    ComponentModel2.prototype.getReferringComponents = function(mainType, opt) {
+      var indexKey = mainType + "Index";
+      var idKey = mainType + "Id";
+      return queryReferringComponents(this.ecModel, mainType, {
+        index: this.get(indexKey, true),
+        id: this.get(idKey, true)
+      }, opt);
+    };
+    ComponentModel2.prototype.getBoxLayoutParams = function() {
+      var boxLayoutModel = this;
+      return {
+        left: boxLayoutModel.get("left"),
+        top: boxLayoutModel.get("top"),
+        right: boxLayoutModel.get("right"),
+        bottom: boxLayoutModel.get("bottom"),
+        width: boxLayoutModel.get("width"),
+        height: boxLayoutModel.get("height")
+      };
+    };
+    ComponentModel2.prototype.getZLevelKey = function() {
+      return "";
+    };
+    ComponentModel2.prototype.setZLevel = function(zlevel) {
+      this.option.zlevel = zlevel;
+    };
+    ComponentModel2.protoInitialize = function() {
+      var proto2 = ComponentModel2.prototype;
+      proto2.type = "component";
+      proto2.id = "";
+      proto2.name = "";
+      proto2.mainType = "";
+      proto2.subType = "";
+      proto2.componentIndex = 0;
+    }();
+    return ComponentModel2;
+  }(Model_default)
+);
+mountExtend(ComponentModel, Model_default);
+enableClassManagement(ComponentModel);
+enableSubTypeDefaulter(ComponentModel);
+enableTopologicalTravel(ComponentModel, getDependencies);
+function getDependencies(componentType) {
+  var deps = [];
+  each(ComponentModel.getClassesByMainType(componentType), function(clz) {
+    deps = deps.concat(clz.dependencies || clz.prototype.dependencies || []);
+  });
+  deps = map(deps, function(type) {
+    return parseClassType(type).main;
+  });
+  if (componentType !== "dataset" && indexOf(deps, "dataset") <= 0) {
+    deps.unshift("dataset");
+  }
+  return deps;
+}
+var Component_default = ComponentModel;
+
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/model/mixin/palette.js
+var innerColor = makeInner();
+var innerDecal = makeInner();
+var PaletteMixin = (
   /** @class */
   function() {
-    function DataDiffer2(oldArr, newArr, oldKeyGetter, newKeyGetter, context, diffMode) {
-      this._old = oldArr;
-      this._new = newArr;
-      this._oldKeyGetter = oldKeyGetter || defaultKeyGetter;
-      this._newKeyGetter = newKeyGetter || defaultKeyGetter;
-      this.context = context;
-      this._diffModeMultiple = diffMode === "multiple";
+    function PaletteMixin2() {
     }
-    DataDiffer2.prototype.add = function(func) {
-      this._add = func;
-      return this;
+    PaletteMixin2.prototype.getColorFromPalette = function(name, scope, requestNum) {
+      var defaultPalette = normalizeToArray(this.get("color", true));
+      var layeredPalette = this.get("colorLayer", true);
+      return getFromPalette(this, innerColor, defaultPalette, layeredPalette, name, scope, requestNum);
     };
-    DataDiffer2.prototype.update = function(func) {
-      this._update = func;
-      return this;
+    PaletteMixin2.prototype.clearColorPalette = function() {
+      clearPalette(this, innerColor);
     };
-    DataDiffer2.prototype.updateManyToOne = function(func) {
-      this._updateManyToOne = func;
-      return this;
-    };
-    DataDiffer2.prototype.updateOneToMany = function(func) {
-      this._updateOneToMany = func;
-      return this;
-    };
-    DataDiffer2.prototype.updateManyToMany = function(func) {
-      this._updateManyToMany = func;
-      return this;
-    };
-    DataDiffer2.prototype.remove = function(func) {
-      this._remove = func;
-      return this;
-    };
-    DataDiffer2.prototype.execute = function() {
-      this[this._diffModeMultiple ? "_executeMultiple" : "_executeOneToOne"]();
-    };
-    DataDiffer2.prototype._executeOneToOne = function() {
-      var oldArr = this._old;
-      var newArr = this._new;
-      var newDataIndexMap = {};
-      var oldDataKeyArr = new Array(oldArr.length);
-      var newDataKeyArr = new Array(newArr.length);
-      this._initIndexMap(oldArr, null, oldDataKeyArr, "_oldKeyGetter");
-      this._initIndexMap(newArr, newDataIndexMap, newDataKeyArr, "_newKeyGetter");
-      for (var i = 0; i < oldArr.length; i++) {
-        var oldKey = oldDataKeyArr[i];
-        var newIdxMapVal = newDataIndexMap[oldKey];
-        var newIdxMapValLen = dataIndexMapValueLength(newIdxMapVal);
-        if (newIdxMapValLen > 1) {
-          var newIdx = newIdxMapVal.shift();
-          if (newIdxMapVal.length === 1) {
-            newDataIndexMap[oldKey] = newIdxMapVal[0];
-          }
-          this._update && this._update(newIdx, i);
-        } else if (newIdxMapValLen === 1) {
-          newDataIndexMap[oldKey] = null;
-          this._update && this._update(newIdxMapVal, i);
-        } else {
-          this._remove && this._remove(i);
-        }
-      }
-      this._performRestAdd(newDataKeyArr, newDataIndexMap);
-    };
-    DataDiffer2.prototype._executeMultiple = function() {
-      var oldArr = this._old;
-      var newArr = this._new;
-      var oldDataIndexMap = {};
-      var newDataIndexMap = {};
-      var oldDataKeyArr = [];
-      var newDataKeyArr = [];
-      this._initIndexMap(oldArr, oldDataIndexMap, oldDataKeyArr, "_oldKeyGetter");
-      this._initIndexMap(newArr, newDataIndexMap, newDataKeyArr, "_newKeyGetter");
-      for (var i = 0; i < oldDataKeyArr.length; i++) {
-        var oldKey = oldDataKeyArr[i];
-        var oldIdxMapVal = oldDataIndexMap[oldKey];
-        var newIdxMapVal = newDataIndexMap[oldKey];
-        var oldIdxMapValLen = dataIndexMapValueLength(oldIdxMapVal);
-        var newIdxMapValLen = dataIndexMapValueLength(newIdxMapVal);
-        if (oldIdxMapValLen > 1 && newIdxMapValLen === 1) {
-          this._updateManyToOne && this._updateManyToOne(newIdxMapVal, oldIdxMapVal);
-          newDataIndexMap[oldKey] = null;
-        } else if (oldIdxMapValLen === 1 && newIdxMapValLen > 1) {
-          this._updateOneToMany && this._updateOneToMany(newIdxMapVal, oldIdxMapVal);
-          newDataIndexMap[oldKey] = null;
-        } else if (oldIdxMapValLen === 1 && newIdxMapValLen === 1) {
-          this._update && this._update(newIdxMapVal, oldIdxMapVal);
-          newDataIndexMap[oldKey] = null;
-        } else if (oldIdxMapValLen > 1 && newIdxMapValLen > 1) {
-          this._updateManyToMany && this._updateManyToMany(newIdxMapVal, oldIdxMapVal);
-          newDataIndexMap[oldKey] = null;
-        } else if (oldIdxMapValLen > 1) {
-          for (var i_1 = 0; i_1 < oldIdxMapValLen; i_1++) {
-            this._remove && this._remove(oldIdxMapVal[i_1]);
-          }
-        } else {
-          this._remove && this._remove(oldIdxMapVal);
-        }
-      }
-      this._performRestAdd(newDataKeyArr, newDataIndexMap);
-    };
-    DataDiffer2.prototype._performRestAdd = function(newDataKeyArr, newDataIndexMap) {
-      for (var i = 0; i < newDataKeyArr.length; i++) {
-        var newKey = newDataKeyArr[i];
-        var newIdxMapVal = newDataIndexMap[newKey];
-        var idxMapValLen = dataIndexMapValueLength(newIdxMapVal);
-        if (idxMapValLen > 1) {
-          for (var j = 0; j < idxMapValLen; j++) {
-            this._add && this._add(newIdxMapVal[j]);
-          }
-        } else if (idxMapValLen === 1) {
-          this._add && this._add(newIdxMapVal);
-        }
-        newDataIndexMap[newKey] = null;
-      }
-    };
-    DataDiffer2.prototype._initIndexMap = function(arr, map3, keyArr, keyGetterName) {
-      var cbModeMultiple = this._diffModeMultiple;
-      for (var i = 0; i < arr.length; i++) {
-        var key = "_ec_" + this[keyGetterName](arr[i], i);
-        if (!cbModeMultiple) {
-          keyArr[i] = key;
-        }
-        if (!map3) {
-          continue;
-        }
-        var idxMapVal = map3[key];
-        var idxMapValLen = dataIndexMapValueLength(idxMapVal);
-        if (idxMapValLen === 0) {
-          map3[key] = i;
-          if (cbModeMultiple) {
-            keyArr.push(key);
-          }
-        } else if (idxMapValLen === 1) {
-          map3[key] = [idxMapVal, i];
-        } else {
-          idxMapVal.push(i);
-        }
-      }
-    };
-    return DataDiffer2;
+    return PaletteMixin2;
   }()
 );
-var DataDiffer_default = DataDiffer;
+function getDecalFromPalette(ecModel, name, scope, requestNum) {
+  var defaultDecals = normalizeToArray(ecModel.get(["aria", "decal", "decals"]));
+  return getFromPalette(ecModel, innerDecal, defaultDecals, null, name, scope, requestNum);
+}
+function getNearestPalette(palettes, requestColorNum) {
+  var paletteNum = palettes.length;
+  for (var i = 0; i < paletteNum; i++) {
+    if (palettes[i].length > requestColorNum) {
+      return palettes[i];
+    }
+  }
+  return palettes[paletteNum - 1];
+}
+function getFromPalette(that, inner7, defaultPalette, layeredPalette, name, scope, requestNum) {
+  scope = scope || that;
+  var scopeFields = inner7(scope);
+  var paletteIdx = scopeFields.paletteIdx || 0;
+  var paletteNameMap = scopeFields.paletteNameMap = scopeFields.paletteNameMap || {};
+  if (paletteNameMap.hasOwnProperty(name)) {
+    return paletteNameMap[name];
+  }
+  var palette = requestNum == null || !layeredPalette ? defaultPalette : getNearestPalette(layeredPalette, requestNum);
+  palette = palette || defaultPalette;
+  if (!palette || !palette.length) {
+    return;
+  }
+  var pickedPaletteItem = palette[paletteIdx];
+  if (name) {
+    paletteNameMap[name] = pickedPaletteItem;
+  }
+  scopeFields.paletteIdx = (paletteIdx + 1) % palette.length;
+  return pickedPaletteItem;
+}
+function clearPalette(that, inner7) {
+  inner7(that).paletteIdx = 0;
+  inner7(that).paletteNameMap = {};
+}
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/util/types.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/util/types.js
 var VISUAL_DIMENSIONS = createHashMap(["tooltip", "label", "itemName", "itemId", "itemGroupId", "itemChildGroupId", "seriesName"]);
 var SOURCE_FORMAT_ORIGINAL = "original";
 var SOURCE_FORMAT_ARRAY_ROWS = "arrayRows";
@@ -4247,7 +5269,7 @@ var SOURCE_FORMAT_UNKNOWN = "unknown";
 var SERIES_LAYOUT_BY_COLUMN = "column";
 var SERIES_LAYOUT_BY_ROW = "row";
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/data/helper/sourceHelper.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/data/helper/sourceHelper.js
 var BE_ORDINAL = {
   Must: 1,
   Might: 2,
@@ -4479,7 +5501,7 @@ function doGuessOrdinal(data, sourceFormat, seriesLayoutBy, dimensionsDefine, st
   return BE_ORDINAL.Not;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/data/Source.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/data/Source.js
 var SourceImpl = (
   /** @class */
   /* @__PURE__ */ function() {
@@ -4684,7 +5706,7 @@ function shouldRetrieveDataByName(source) {
   return sourceFormat === SOURCE_FORMAT_OBJECT_ROWS || sourceFormat === SOURCE_FORMAT_KEYED_COLUMNS;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/data/helper/dataProvider.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/data/helper/dataProvider.js
 var _a;
 var _b;
 var _c;
@@ -4933,121 +5955,299 @@ function retrieveRawValue(data, dataIndex, dim) {
   }
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/data/helper/dimensionHelper.js
-var DimensionUserOuput = (
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/model/mixin/dataFormat.js
+var DIMENSION_LABEL_REG = /\{@(.+?)\}/g;
+var DataFormatMixin = (
   /** @class */
   function() {
-    function DimensionUserOuput2(encode, dimRequest) {
-      this._encode = encode;
-      this._schema = dimRequest;
+    function DataFormatMixin2() {
     }
-    DimensionUserOuput2.prototype.get = function() {
+    DataFormatMixin2.prototype.getDataParams = function(dataIndex, dataType) {
+      var data = this.getData(dataType);
+      var rawValue = this.getRawValue(dataIndex, dataType);
+      var rawDataIndex = data.getRawIndex(dataIndex);
+      var name = data.getName(dataIndex);
+      var itemOpt = data.getRawDataItem(dataIndex);
+      var style = data.getItemVisual(dataIndex, "style");
+      var color = style && style[data.getItemVisual(dataIndex, "drawType") || "fill"];
+      var borderColor = style && style.stroke;
+      var mainType = this.mainType;
+      var isSeries2 = mainType === "series";
+      var userOutput = data.userOutput && data.userOutput.get();
       return {
-        // Do not generate full dimension name until fist used.
-        fullDimensions: this._getFullDimensionNames(),
-        encode: this._encode
+        componentType: mainType,
+        componentSubType: this.subType,
+        componentIndex: this.componentIndex,
+        seriesType: isSeries2 ? this.subType : null,
+        seriesIndex: this.seriesIndex,
+        seriesId: isSeries2 ? this.id : null,
+        seriesName: isSeries2 ? this.name : null,
+        name,
+        dataIndex: rawDataIndex,
+        data: itemOpt,
+        dataType,
+        value: rawValue,
+        color,
+        borderColor,
+        dimensionNames: userOutput ? userOutput.fullDimensions : null,
+        encode: userOutput ? userOutput.encode : null,
+        // Param name list for mapping `a`, `b`, `c`, `d`, `e`
+        $vars: ["seriesName", "name", "value"]
       };
     };
-    DimensionUserOuput2.prototype._getFullDimensionNames = function() {
-      if (!this._cachedDimNames) {
-        this._cachedDimNames = this._schema ? this._schema.makeOutputDimensionNames() : [];
+    DataFormatMixin2.prototype.getFormattedLabel = function(dataIndex, status, dataType, labelDimIndex, formatter, extendParams) {
+      status = status || "normal";
+      var data = this.getData(dataType);
+      var params = this.getDataParams(dataIndex, dataType);
+      if (extendParams) {
+        params.value = extendParams.interpolatedValue;
       }
-      return this._cachedDimNames;
+      if (labelDimIndex != null && isArray(params.value)) {
+        params.value = params.value[labelDimIndex];
+      }
+      if (!formatter) {
+        var itemModel = data.getItemModel(dataIndex);
+        formatter = itemModel.get(status === "normal" ? ["label", "formatter"] : [status, "label", "formatter"]);
+      }
+      if (isFunction(formatter)) {
+        params.status = status;
+        params.dimensionIndex = labelDimIndex;
+        return formatter(params);
+      } else if (isString(formatter)) {
+        var str = formatTpl(formatter, params);
+        return str.replace(DIMENSION_LABEL_REG, function(origin, dimStr) {
+          var len = dimStr.length;
+          var dimLoose = dimStr;
+          if (dimLoose.charAt(0) === "[" && dimLoose.charAt(len - 1) === "]") {
+            dimLoose = +dimLoose.slice(1, len - 1);
+            if (true) {
+              if (isNaN(dimLoose)) {
+                error("Invalide label formatter: @" + dimStr + ", only support @[0], @[1], @[2], ...");
+              }
+            }
+          }
+          var val = retrieveRawValue(data, dataIndex, dimLoose);
+          if (extendParams && isArray(extendParams.interpolatedValue)) {
+            var dimIndex = data.getDimensionIndex(dimLoose);
+            if (dimIndex >= 0) {
+              val = extendParams.interpolatedValue[dimIndex];
+            }
+          }
+          return val != null ? val + "" : "";
+        });
+      }
     };
-    return DimensionUserOuput2;
+    DataFormatMixin2.prototype.getRawValue = function(idx, dataType) {
+      return retrieveRawValue(this.getData(dataType), idx);
+    };
+    DataFormatMixin2.prototype.formatTooltip = function(dataIndex, multipleSeries, dataType) {
+      return;
+    };
+    return DataFormatMixin2;
   }()
 );
-function summarizeDimensions(data, schema) {
-  var summary = {};
-  var encode = summary.encode = {};
-  var notExtraCoordDimMap = createHashMap();
-  var defaultedLabel = [];
-  var defaultedTooltip = [];
-  var userOutputEncode = {};
-  each(data.dimensions, function(dimName) {
-    var dimItem = data.getDimensionInfo(dimName);
-    var coordDim = dimItem.coordDim;
-    if (coordDim) {
+function normalizeTooltipFormatResult(result) {
+  var markupText;
+  var markupFragment;
+  if (isObject(result)) {
+    if (result.type) {
+      markupFragment = result;
+    } else {
       if (true) {
-        assert(VISUAL_DIMENSIONS.get(coordDim) == null);
-      }
-      var coordDimIndex = dimItem.coordDimIndex;
-      getOrCreateEncodeArr(encode, coordDim)[coordDimIndex] = dimName;
-      if (!dimItem.isExtraCoord) {
-        notExtraCoordDimMap.set(coordDim, 1);
-        if (mayLabelDimType(dimItem.type)) {
-          defaultedLabel[0] = dimName;
-        }
-        getOrCreateEncodeArr(userOutputEncode, coordDim)[coordDimIndex] = data.getDimensionIndex(dimItem.name);
-      }
-      if (dimItem.defaultTooltip) {
-        defaultedTooltip.push(dimName);
+        console.warn("The return type of `formatTooltip` is not supported: " + makePrintable(result));
       }
     }
-    VISUAL_DIMENSIONS.each(function(v, otherDim) {
-      var encodeArr = getOrCreateEncodeArr(encode, otherDim);
-      var dimIndex = dimItem.otherDims[otherDim];
-      if (dimIndex != null && dimIndex !== false) {
-        encodeArr[dimIndex] = dimItem.name;
-      }
-    });
-  });
-  var dataDimsOnCoord = [];
-  var encodeFirstDimNotExtra = {};
-  notExtraCoordDimMap.each(function(v, coordDim) {
-    var dimArr = encode[coordDim];
-    encodeFirstDimNotExtra[coordDim] = dimArr[0];
-    dataDimsOnCoord = dataDimsOnCoord.concat(dimArr);
-  });
-  summary.dataDimsOnCoord = dataDimsOnCoord;
-  summary.dataDimIndicesOnCoord = map(dataDimsOnCoord, function(dimName) {
-    return data.getDimensionInfo(dimName).storeDimIndex;
-  });
-  summary.encodeFirstDimNotExtra = encodeFirstDimNotExtra;
-  var encodeLabel = encode.label;
-  if (encodeLabel && encodeLabel.length) {
-    defaultedLabel = encodeLabel.slice();
+  } else {
+    markupText = result;
   }
-  var encodeTooltip = encode.tooltip;
-  if (encodeTooltip && encodeTooltip.length) {
-    defaultedTooltip = encodeTooltip.slice();
-  } else if (!defaultedTooltip.length) {
-    defaultedTooltip = defaultedLabel.slice();
-  }
-  encode.defaultedLabel = defaultedLabel;
-  encode.defaultedTooltip = defaultedTooltip;
-  summary.userOutput = new DimensionUserOuput(userOutputEncode, schema);
-  return summary;
-}
-function getOrCreateEncodeArr(encode, dim) {
-  if (!encode.hasOwnProperty(dim)) {
-    encode[dim] = [];
-  }
-  return encode[dim];
-}
-function getDimensionTypeByAxis(axisType) {
-  return axisType === "category" ? "ordinal" : axisType === "time" ? "time" : "float";
-}
-function mayLabelDimType(dimType) {
-  return !(dimType === "ordinal" || dimType === "time");
+  return {
+    text: markupText,
+    // markers: markers || markersExisting,
+    frag: markupFragment
+  };
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/data/SeriesDimensionDefine.js
-var SeriesDimensionDefine = (
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/core/task.js
+function createTask(define) {
+  return new Task(define);
+}
+var Task = (
   /** @class */
-  /* @__PURE__ */ function() {
-    function SeriesDimensionDefine2(opt) {
-      this.otherDims = {};
-      if (opt != null) {
-        extend(this, opt);
-      }
+  function() {
+    function Task2(define) {
+      define = define || {};
+      this._reset = define.reset;
+      this._plan = define.plan;
+      this._count = define.count;
+      this._onDirty = define.onDirty;
+      this._dirty = true;
     }
-    return SeriesDimensionDefine2;
+    Task2.prototype.perform = function(performArgs) {
+      var upTask = this._upstream;
+      var skip = performArgs && performArgs.skip;
+      if (this._dirty && upTask) {
+        var context = this.context;
+        context.data = context.outputData = upTask.context.outputData;
+      }
+      if (this.__pipeline) {
+        this.__pipeline.currentTask = this;
+      }
+      var planResult;
+      if (this._plan && !skip) {
+        planResult = this._plan(this.context);
+      }
+      var lastModBy = normalizeModBy(this._modBy);
+      var lastModDataCount = this._modDataCount || 0;
+      var modBy = normalizeModBy(performArgs && performArgs.modBy);
+      var modDataCount = performArgs && performArgs.modDataCount || 0;
+      if (lastModBy !== modBy || lastModDataCount !== modDataCount) {
+        planResult = "reset";
+      }
+      function normalizeModBy(val) {
+        !(val >= 1) && (val = 1);
+        return val;
+      }
+      var forceFirstProgress;
+      if (this._dirty || planResult === "reset") {
+        this._dirty = false;
+        forceFirstProgress = this._doReset(skip);
+      }
+      this._modBy = modBy;
+      this._modDataCount = modDataCount;
+      var step = performArgs && performArgs.step;
+      if (upTask) {
+        if (true) {
+          assert(upTask._outputDueEnd != null);
+        }
+        this._dueEnd = upTask._outputDueEnd;
+      } else {
+        if (true) {
+          assert(!this._progress || this._count);
+        }
+        this._dueEnd = this._count ? this._count(this.context) : Infinity;
+      }
+      if (this._progress) {
+        var start = this._dueIndex;
+        var end = Math.min(step != null ? this._dueIndex + step : Infinity, this._dueEnd);
+        if (!skip && (forceFirstProgress || start < end)) {
+          var progress = this._progress;
+          if (isArray(progress)) {
+            for (var i = 0; i < progress.length; i++) {
+              this._doProgress(progress[i], start, end, modBy, modDataCount);
+            }
+          } else {
+            this._doProgress(progress, start, end, modBy, modDataCount);
+          }
+        }
+        this._dueIndex = end;
+        var outputDueEnd = this._settedOutputEnd != null ? this._settedOutputEnd : end;
+        if (true) {
+          assert(outputDueEnd >= this._outputDueEnd);
+        }
+        this._outputDueEnd = outputDueEnd;
+      } else {
+        this._dueIndex = this._outputDueEnd = this._settedOutputEnd != null ? this._settedOutputEnd : this._dueEnd;
+      }
+      return this.unfinished();
+    };
+    Task2.prototype.dirty = function() {
+      this._dirty = true;
+      this._onDirty && this._onDirty(this.context);
+    };
+    Task2.prototype._doProgress = function(progress, start, end, modBy, modDataCount) {
+      iterator.reset(start, end, modBy, modDataCount);
+      this._callingProgress = progress;
+      this._callingProgress({
+        start,
+        end,
+        count: end - start,
+        next: iterator.next
+      }, this.context);
+    };
+    Task2.prototype._doReset = function(skip) {
+      this._dueIndex = this._outputDueEnd = this._dueEnd = 0;
+      this._settedOutputEnd = null;
+      var progress;
+      var forceFirstProgress;
+      if (!skip && this._reset) {
+        progress = this._reset(this.context);
+        if (progress && progress.progress) {
+          forceFirstProgress = progress.forceFirstProgress;
+          progress = progress.progress;
+        }
+        if (isArray(progress) && !progress.length) {
+          progress = null;
+        }
+      }
+      this._progress = progress;
+      this._modBy = this._modDataCount = null;
+      var downstream = this._downstream;
+      downstream && downstream.dirty();
+      return forceFirstProgress;
+    };
+    Task2.prototype.unfinished = function() {
+      return this._progress && this._dueIndex < this._dueEnd;
+    };
+    Task2.prototype.pipe = function(downTask) {
+      if (true) {
+        assert(downTask && !downTask._disposed && downTask !== this);
+      }
+      if (this._downstream !== downTask || this._dirty) {
+        this._downstream = downTask;
+        downTask._upstream = this;
+        downTask.dirty();
+      }
+    };
+    Task2.prototype.dispose = function() {
+      if (this._disposed) {
+        return;
+      }
+      this._upstream && (this._upstream._downstream = null);
+      this._downstream && (this._downstream._upstream = null);
+      this._dirty = false;
+      this._disposed = true;
+    };
+    Task2.prototype.getUpstream = function() {
+      return this._upstream;
+    };
+    Task2.prototype.getDownstream = function() {
+      return this._downstream;
+    };
+    Task2.prototype.setOutputEnd = function(end) {
+      this._outputDueEnd = this._settedOutputEnd = end;
+    };
+    return Task2;
   }()
 );
-var SeriesDimensionDefine_default = SeriesDimensionDefine;
+var iterator = /* @__PURE__ */ function() {
+  var end;
+  var current;
+  var modBy;
+  var modDataCount;
+  var winCount;
+  var it = {
+    reset: function(s, e2, sStep, sCount) {
+      current = s;
+      end = e2;
+      modBy = sStep;
+      modDataCount = sCount;
+      winCount = Math.ceil(modDataCount / modBy);
+      it.next = modBy > 1 && modDataCount > 0 ? modNext : sequentialNext;
+    }
+  };
+  return it;
+  function sequentialNext() {
+    return current < end ? current++ : null;
+  }
+  function modNext() {
+    var dataIndex = current % winCount * modBy + Math.ceil(current / winCount);
+    var result = current >= end ? null : dataIndex < modDataCount ? dataIndex : current;
+    current++;
+    return result;
+  }
+}();
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/data/helper/dataValueHelper.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/data/helper/dataValueHelper.js
 function parseDataValue(value, opt) {
   var dimType = opt && opt.type;
   if (dimType === "ordinal") {
@@ -5169,7 +6369,292 @@ function createFilterComparator(op, rval) {
   return op === "eq" || op === "ne" ? new FilterEqualityComparator(op === "eq", rval) : hasOwn(ORDER_COMPARISON_OP_MAP, op) ? new FilterOrderComparator(op, rval) : null;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/data/DataStore.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/data/helper/transform.js
+var ExternalSource = (
+  /** @class */
+  function() {
+    function ExternalSource2() {
+    }
+    ExternalSource2.prototype.getRawData = function() {
+      throw new Error("not supported");
+    };
+    ExternalSource2.prototype.getRawDataItem = function(dataIndex) {
+      throw new Error("not supported");
+    };
+    ExternalSource2.prototype.cloneRawData = function() {
+      return;
+    };
+    ExternalSource2.prototype.getDimensionInfo = function(dim) {
+      return;
+    };
+    ExternalSource2.prototype.cloneAllDimensionInfo = function() {
+      return;
+    };
+    ExternalSource2.prototype.count = function() {
+      return;
+    };
+    ExternalSource2.prototype.retrieveValue = function(dataIndex, dimIndex) {
+      return;
+    };
+    ExternalSource2.prototype.retrieveValueFromItem = function(dataItem, dimIndex) {
+      return;
+    };
+    ExternalSource2.prototype.convertValue = function(rawVal, dimInfo) {
+      return parseDataValue(rawVal, dimInfo);
+    };
+    return ExternalSource2;
+  }()
+);
+function createExternalSource(internalSource, externalTransform) {
+  var extSource = new ExternalSource();
+  var data = internalSource.data;
+  var sourceFormat = extSource.sourceFormat = internalSource.sourceFormat;
+  var sourceHeaderCount = internalSource.startIndex;
+  var errMsg = "";
+  if (internalSource.seriesLayoutBy !== SERIES_LAYOUT_BY_COLUMN) {
+    if (true) {
+      errMsg = '`seriesLayoutBy` of upstream dataset can only be "column" in data transform.';
+    }
+    throwError(errMsg);
+  }
+  var dimensions = [];
+  var dimsByName = {};
+  var dimsDef = internalSource.dimensionsDefine;
+  if (dimsDef) {
+    each(dimsDef, function(dimDef, idx) {
+      var name = dimDef.name;
+      var dimDefExt = {
+        index: idx,
+        name,
+        displayName: dimDef.displayName
+      };
+      dimensions.push(dimDefExt);
+      if (name != null) {
+        var errMsg_1 = "";
+        if (hasOwn(dimsByName, name)) {
+          if (true) {
+            errMsg_1 = 'dimension name "' + name + '" duplicated.';
+          }
+          throwError(errMsg_1);
+        }
+        dimsByName[name] = dimDefExt;
+      }
+    });
+  } else {
+    for (var i = 0; i < internalSource.dimensionsDetectedCount || 0; i++) {
+      dimensions.push({
+        index: i
+      });
+    }
+  }
+  var rawItemGetter = getRawSourceItemGetter(sourceFormat, SERIES_LAYOUT_BY_COLUMN);
+  if (externalTransform.__isBuiltIn) {
+    extSource.getRawDataItem = function(dataIndex) {
+      return rawItemGetter(data, sourceHeaderCount, dimensions, dataIndex);
+    };
+    extSource.getRawData = bind(getRawData, null, internalSource);
+  }
+  extSource.cloneRawData = bind(cloneRawData, null, internalSource);
+  var rawCounter = getRawSourceDataCounter(sourceFormat, SERIES_LAYOUT_BY_COLUMN);
+  extSource.count = bind(rawCounter, null, data, sourceHeaderCount, dimensions);
+  var rawValueGetter = getRawSourceValueGetter(sourceFormat);
+  extSource.retrieveValue = function(dataIndex, dimIndex) {
+    var rawItem = rawItemGetter(data, sourceHeaderCount, dimensions, dataIndex);
+    return retrieveValueFromItem(rawItem, dimIndex);
+  };
+  var retrieveValueFromItem = extSource.retrieveValueFromItem = function(dataItem, dimIndex) {
+    if (dataItem == null) {
+      return;
+    }
+    var dimDef = dimensions[dimIndex];
+    if (dimDef) {
+      return rawValueGetter(dataItem, dimIndex, dimDef.name);
+    }
+  };
+  extSource.getDimensionInfo = bind(getDimensionInfo, null, dimensions, dimsByName);
+  extSource.cloneAllDimensionInfo = bind(cloneAllDimensionInfo, null, dimensions);
+  return extSource;
+}
+function getRawData(upstream) {
+  var sourceFormat = upstream.sourceFormat;
+  if (!isSupportedSourceFormat(sourceFormat)) {
+    var errMsg = "";
+    if (true) {
+      errMsg = "`getRawData` is not supported in source format " + sourceFormat;
+    }
+    throwError(errMsg);
+  }
+  return upstream.data;
+}
+function cloneRawData(upstream) {
+  var sourceFormat = upstream.sourceFormat;
+  var data = upstream.data;
+  if (!isSupportedSourceFormat(sourceFormat)) {
+    var errMsg = "";
+    if (true) {
+      errMsg = "`cloneRawData` is not supported in source format " + sourceFormat;
+    }
+    throwError(errMsg);
+  }
+  if (sourceFormat === SOURCE_FORMAT_ARRAY_ROWS) {
+    var result = [];
+    for (var i = 0, len = data.length; i < len; i++) {
+      result.push(data[i].slice());
+    }
+    return result;
+  } else if (sourceFormat === SOURCE_FORMAT_OBJECT_ROWS) {
+    var result = [];
+    for (var i = 0, len = data.length; i < len; i++) {
+      result.push(extend({}, data[i]));
+    }
+    return result;
+  }
+}
+function getDimensionInfo(dimensions, dimsByName, dim) {
+  if (dim == null) {
+    return;
+  }
+  if (isNumber(dim) || !isNaN(dim) && !hasOwn(dimsByName, dim)) {
+    return dimensions[dim];
+  } else if (hasOwn(dimsByName, dim)) {
+    return dimsByName[dim];
+  }
+}
+function cloneAllDimensionInfo(dimensions) {
+  return clone(dimensions);
+}
+var externalTransformMap = createHashMap();
+function registerExternalTransform(externalTransform) {
+  externalTransform = clone(externalTransform);
+  var type = externalTransform.type;
+  var errMsg = "";
+  if (!type) {
+    if (true) {
+      errMsg = "Must have a `type` when `registerTransform`.";
+    }
+    throwError(errMsg);
+  }
+  var typeParsed = type.split(":");
+  if (typeParsed.length !== 2) {
+    if (true) {
+      errMsg = 'Name must include namespace like "ns:regression".';
+    }
+    throwError(errMsg);
+  }
+  var isBuiltIn = false;
+  if (typeParsed[0] === "echarts") {
+    type = typeParsed[1];
+    isBuiltIn = true;
+  }
+  externalTransform.__isBuiltIn = isBuiltIn;
+  externalTransformMap.set(type, externalTransform);
+}
+function applyDataTransform(rawTransOption, sourceList, infoForPrint) {
+  var pipedTransOption = normalizeToArray(rawTransOption);
+  var pipeLen = pipedTransOption.length;
+  var errMsg = "";
+  if (!pipeLen) {
+    if (true) {
+      errMsg = "If `transform` declared, it should at least contain one transform.";
+    }
+    throwError(errMsg);
+  }
+  for (var i = 0, len = pipeLen; i < len; i++) {
+    var transOption = pipedTransOption[i];
+    sourceList = applySingleDataTransform(transOption, sourceList, infoForPrint, pipeLen === 1 ? null : i);
+    if (i !== len - 1) {
+      sourceList.length = Math.max(sourceList.length, 1);
+    }
+  }
+  return sourceList;
+}
+function applySingleDataTransform(transOption, upSourceList, infoForPrint, pipeIndex) {
+  var errMsg = "";
+  if (!upSourceList.length) {
+    if (true) {
+      errMsg = "Must have at least one upstream dataset.";
+    }
+    throwError(errMsg);
+  }
+  if (!isObject(transOption)) {
+    if (true) {
+      errMsg = "transform declaration must be an object rather than " + typeof transOption + ".";
+    }
+    throwError(errMsg);
+  }
+  var transType = transOption.type;
+  var externalTransform = externalTransformMap.get(transType);
+  if (!externalTransform) {
+    if (true) {
+      errMsg = 'Can not find transform on type "' + transType + '".';
+    }
+    throwError(errMsg);
+  }
+  var extUpSourceList = map(upSourceList, function(upSource) {
+    return createExternalSource(upSource, externalTransform);
+  });
+  var resultList = normalizeToArray(externalTransform.transform({
+    upstream: extUpSourceList[0],
+    upstreamList: extUpSourceList,
+    config: clone(transOption.config)
+  }));
+  if (true) {
+    if (transOption.print) {
+      var printStrArr = map(resultList, function(extSource) {
+        var pipeIndexStr = pipeIndex != null ? " === pipe index: " + pipeIndex : "";
+        return ["=== dataset index: " + infoForPrint.datasetIndex + pipeIndexStr + " ===", "- transform result data:", makePrintable(extSource.data), "- transform result dimensions:", makePrintable(extSource.dimensions)].join("\n");
+      }).join("\n");
+      log(printStrArr);
+    }
+  }
+  return map(resultList, function(result, resultIndex) {
+    var errMsg2 = "";
+    if (!isObject(result)) {
+      if (true) {
+        errMsg2 = "A transform should not return some empty results.";
+      }
+      throwError(errMsg2);
+    }
+    if (!result.data) {
+      if (true) {
+        errMsg2 = "Transform result data should be not be null or undefined";
+      }
+      throwError(errMsg2);
+    }
+    var sourceFormat = detectSourceFormat(result.data);
+    if (!isSupportedSourceFormat(sourceFormat)) {
+      if (true) {
+        errMsg2 = "Transform result data should be array rows or object rows.";
+      }
+      throwError(errMsg2);
+    }
+    var resultMetaRawOption;
+    var firstUpSource = upSourceList[0];
+    if (firstUpSource && resultIndex === 0 && !result.dimensions) {
+      var startIndex = firstUpSource.startIndex;
+      if (startIndex) {
+        result.data = firstUpSource.data.slice(0, startIndex).concat(result.data);
+      }
+      resultMetaRawOption = {
+        seriesLayoutBy: SERIES_LAYOUT_BY_COLUMN,
+        sourceHeader: startIndex,
+        dimensions: firstUpSource.metaRawOption.dimensions
+      };
+    } else {
+      resultMetaRawOption = {
+        seriesLayoutBy: SERIES_LAYOUT_BY_COLUMN,
+        sourceHeader: 0,
+        dimensions: result.dimensions
+      };
+    }
+    return createSource(result.data, resultMetaRawOption, null);
+  });
+}
+function isSupportedSourceFormat(sourceFormat) {
+  return sourceFormat === SOURCE_FORMAT_ARRAY_ROWS || sourceFormat === SOURCE_FORMAT_OBJECT_ROWS;
+}
+
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/data/DataStore.js
 var UNDEFINED = "undefined";
 var CtorUint32Array = typeof Uint32Array === UNDEFINED ? Array : Uint32Array;
 var CtorUint16Array = typeof Uint16Array === UNDEFINED ? Array : Uint16Array;
@@ -5993,2559 +7478,7 @@ var DataStore = (
 );
 var DataStore_default = DataStore;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/data/helper/SeriesDataSchema.js
-var inner = makeInner();
-var dimTypeShort = {
-  float: "f",
-  int: "i",
-  ordinal: "o",
-  number: "n",
-  time: "t"
-};
-var SeriesDataSchema = (
-  /** @class */
-  function() {
-    function SeriesDataSchema2(opt) {
-      this.dimensions = opt.dimensions;
-      this._dimOmitted = opt.dimensionOmitted;
-      this.source = opt.source;
-      this._fullDimCount = opt.fullDimensionCount;
-      this._updateDimOmitted(opt.dimensionOmitted);
-    }
-    SeriesDataSchema2.prototype.isDimensionOmitted = function() {
-      return this._dimOmitted;
-    };
-    SeriesDataSchema2.prototype._updateDimOmitted = function(dimensionOmitted) {
-      this._dimOmitted = dimensionOmitted;
-      if (!dimensionOmitted) {
-        return;
-      }
-      if (!this._dimNameMap) {
-        this._dimNameMap = ensureSourceDimNameMap(this.source);
-      }
-    };
-    SeriesDataSchema2.prototype.getSourceDimensionIndex = function(dimName) {
-      return retrieve2(this._dimNameMap.get(dimName), -1);
-    };
-    SeriesDataSchema2.prototype.getSourceDimension = function(dimIndex) {
-      var dimensionsDefine = this.source.dimensionsDefine;
-      if (dimensionsDefine) {
-        return dimensionsDefine[dimIndex];
-      }
-    };
-    SeriesDataSchema2.prototype.makeStoreSchema = function() {
-      var dimCount = this._fullDimCount;
-      var willRetrieveDataByName = shouldRetrieveDataByName(this.source);
-      var makeHashStrict = !shouldOmitUnusedDimensions(dimCount);
-      var dimHash = "";
-      var dims = [];
-      for (var fullDimIdx = 0, seriesDimIdx = 0; fullDimIdx < dimCount; fullDimIdx++) {
-        var property = void 0;
-        var type = void 0;
-        var ordinalMeta = void 0;
-        var seriesDimDef = this.dimensions[seriesDimIdx];
-        if (seriesDimDef && seriesDimDef.storeDimIndex === fullDimIdx) {
-          property = willRetrieveDataByName ? seriesDimDef.name : null;
-          type = seriesDimDef.type;
-          ordinalMeta = seriesDimDef.ordinalMeta;
-          seriesDimIdx++;
-        } else {
-          var sourceDimDef = this.getSourceDimension(fullDimIdx);
-          if (sourceDimDef) {
-            property = willRetrieveDataByName ? sourceDimDef.name : null;
-            type = sourceDimDef.type;
-          }
-        }
-        dims.push({
-          property,
-          type,
-          ordinalMeta
-        });
-        if (willRetrieveDataByName && property != null && (!seriesDimDef || !seriesDimDef.isCalculationCoord)) {
-          dimHash += makeHashStrict ? property.replace(/\`/g, "`1").replace(/\$/g, "`2") : property;
-        }
-        dimHash += "$";
-        dimHash += dimTypeShort[type] || "f";
-        if (ordinalMeta) {
-          dimHash += ordinalMeta.uid;
-        }
-        dimHash += "$";
-      }
-      var source = this.source;
-      var hash = [source.seriesLayoutBy, source.startIndex, dimHash].join("$$");
-      return {
-        dimensions: dims,
-        hash
-      };
-    };
-    SeriesDataSchema2.prototype.makeOutputDimensionNames = function() {
-      var result = [];
-      for (var fullDimIdx = 0, seriesDimIdx = 0; fullDimIdx < this._fullDimCount; fullDimIdx++) {
-        var name_1 = void 0;
-        var seriesDimDef = this.dimensions[seriesDimIdx];
-        if (seriesDimDef && seriesDimDef.storeDimIndex === fullDimIdx) {
-          if (!seriesDimDef.isCalculationCoord) {
-            name_1 = seriesDimDef.name;
-          }
-          seriesDimIdx++;
-        } else {
-          var sourceDimDef = this.getSourceDimension(fullDimIdx);
-          if (sourceDimDef) {
-            name_1 = sourceDimDef.name;
-          }
-        }
-        result.push(name_1);
-      }
-      return result;
-    };
-    SeriesDataSchema2.prototype.appendCalculationDimension = function(dimDef) {
-      this.dimensions.push(dimDef);
-      dimDef.isCalculationCoord = true;
-      this._fullDimCount++;
-      this._updateDimOmitted(true);
-    };
-    return SeriesDataSchema2;
-  }()
-);
-function isSeriesDataSchema(schema) {
-  return schema instanceof SeriesDataSchema;
-}
-function createDimNameMap(dimsDef) {
-  var dataDimNameMap = createHashMap();
-  for (var i = 0; i < (dimsDef || []).length; i++) {
-    var dimDefItemRaw = dimsDef[i];
-    var userDimName = isObject(dimDefItemRaw) ? dimDefItemRaw.name : dimDefItemRaw;
-    if (userDimName != null && dataDimNameMap.get(userDimName) == null) {
-      dataDimNameMap.set(userDimName, i);
-    }
-  }
-  return dataDimNameMap;
-}
-function ensureSourceDimNameMap(source) {
-  var innerSource = inner(source);
-  return innerSource.dimNameMap || (innerSource.dimNameMap = createDimNameMap(source.dimensionsDefine));
-}
-function shouldOmitUnusedDimensions(dimCount) {
-  return dimCount > 30;
-}
-
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/data/SeriesData.js
-var isObject2 = isObject;
-var map2 = map;
-var CtorInt32Array2 = typeof Int32Array === "undefined" ? Array : Int32Array;
-var ID_PREFIX = "e\0\0";
-var INDEX_NOT_FOUND = -1;
-var TRANSFERABLE_PROPERTIES = ["hasItemOption", "_nameList", "_idList", "_invertedIndicesMap", "_dimSummary", "userOutput", "_rawData", "_dimValueGetter", "_nameDimIdx", "_idDimIdx", "_nameRepeatCount"];
-var CLONE_PROPERTIES = ["_approximateExtent"];
-var prepareInvertedIndex;
-var getId;
-var getIdNameFromStore;
-var normalizeDimensions;
-var transferProperties;
-var cloneListForMapAndSample;
-var makeIdFromName;
-var SeriesData = (
-  /** @class */
-  function() {
-    function SeriesData2(dimensionsInput, hostModel) {
-      this.type = "list";
-      this._dimOmitted = false;
-      this._nameList = [];
-      this._idList = [];
-      this._visual = {};
-      this._layout = {};
-      this._itemVisuals = [];
-      this._itemLayouts = [];
-      this._graphicEls = [];
-      this._approximateExtent = {};
-      this._calculationInfo = {};
-      this.hasItemOption = false;
-      this.TRANSFERABLE_METHODS = ["cloneShallow", "downSample", "minmaxDownSample", "lttbDownSample", "map"];
-      this.CHANGABLE_METHODS = ["filterSelf", "selectRange"];
-      this.DOWNSAMPLE_METHODS = ["downSample", "minmaxDownSample", "lttbDownSample"];
-      var dimensions;
-      var assignStoreDimIdx = false;
-      if (isSeriesDataSchema(dimensionsInput)) {
-        dimensions = dimensionsInput.dimensions;
-        this._dimOmitted = dimensionsInput.isDimensionOmitted();
-        this._schema = dimensionsInput;
-      } else {
-        assignStoreDimIdx = true;
-        dimensions = dimensionsInput;
-      }
-      dimensions = dimensions || ["x", "y"];
-      var dimensionInfos = {};
-      var dimensionNames = [];
-      var invertedIndicesMap = {};
-      var needsHasOwn = false;
-      var emptyObj = {};
-      for (var i = 0; i < dimensions.length; i++) {
-        var dimInfoInput = dimensions[i];
-        var dimensionInfo = isString(dimInfoInput) ? new SeriesDimensionDefine_default({
-          name: dimInfoInput
-        }) : !(dimInfoInput instanceof SeriesDimensionDefine_default) ? new SeriesDimensionDefine_default(dimInfoInput) : dimInfoInput;
-        var dimensionName = dimensionInfo.name;
-        dimensionInfo.type = dimensionInfo.type || "float";
-        if (!dimensionInfo.coordDim) {
-          dimensionInfo.coordDim = dimensionName;
-          dimensionInfo.coordDimIndex = 0;
-        }
-        var otherDims = dimensionInfo.otherDims = dimensionInfo.otherDims || {};
-        dimensionNames.push(dimensionName);
-        dimensionInfos[dimensionName] = dimensionInfo;
-        if (emptyObj[dimensionName] != null) {
-          needsHasOwn = true;
-        }
-        if (dimensionInfo.createInvertedIndices) {
-          invertedIndicesMap[dimensionName] = [];
-        }
-        if (otherDims.itemName === 0) {
-          this._nameDimIdx = i;
-        }
-        if (otherDims.itemId === 0) {
-          this._idDimIdx = i;
-        }
-        if (true) {
-          assert(assignStoreDimIdx || dimensionInfo.storeDimIndex >= 0);
-        }
-        if (assignStoreDimIdx) {
-          dimensionInfo.storeDimIndex = i;
-        }
-      }
-      this.dimensions = dimensionNames;
-      this._dimInfos = dimensionInfos;
-      this._initGetDimensionInfo(needsHasOwn);
-      this.hostModel = hostModel;
-      this._invertedIndicesMap = invertedIndicesMap;
-      if (this._dimOmitted) {
-        var dimIdxToName_1 = this._dimIdxToName = createHashMap();
-        each(dimensionNames, function(dimName) {
-          dimIdxToName_1.set(dimensionInfos[dimName].storeDimIndex, dimName);
-        });
-      }
-    }
-    SeriesData2.prototype.getDimension = function(dim) {
-      var dimIdx = this._recognizeDimIndex(dim);
-      if (dimIdx == null) {
-        return dim;
-      }
-      dimIdx = dim;
-      if (!this._dimOmitted) {
-        return this.dimensions[dimIdx];
-      }
-      var dimName = this._dimIdxToName.get(dimIdx);
-      if (dimName != null) {
-        return dimName;
-      }
-      var sourceDimDef = this._schema.getSourceDimension(dimIdx);
-      if (sourceDimDef) {
-        return sourceDimDef.name;
-      }
-    };
-    SeriesData2.prototype.getDimensionIndex = function(dim) {
-      var dimIdx = this._recognizeDimIndex(dim);
-      if (dimIdx != null) {
-        return dimIdx;
-      }
-      if (dim == null) {
-        return -1;
-      }
-      var dimInfo = this._getDimInfo(dim);
-      return dimInfo ? dimInfo.storeDimIndex : this._dimOmitted ? this._schema.getSourceDimensionIndex(dim) : -1;
-    };
-    SeriesData2.prototype._recognizeDimIndex = function(dim) {
-      if (isNumber(dim) || dim != null && !isNaN(dim) && !this._getDimInfo(dim) && (!this._dimOmitted || this._schema.getSourceDimensionIndex(dim) < 0)) {
-        return +dim;
-      }
-    };
-    SeriesData2.prototype._getStoreDimIndex = function(dim) {
-      var dimIdx = this.getDimensionIndex(dim);
-      if (true) {
-        if (dimIdx == null) {
-          throw new Error("Unknown dimension " + dim);
-        }
-      }
-      return dimIdx;
-    };
-    SeriesData2.prototype.getDimensionInfo = function(dim) {
-      return this._getDimInfo(this.getDimension(dim));
-    };
-    SeriesData2.prototype._initGetDimensionInfo = function(needsHasOwn) {
-      var dimensionInfos = this._dimInfos;
-      this._getDimInfo = needsHasOwn ? function(dimName) {
-        return dimensionInfos.hasOwnProperty(dimName) ? dimensionInfos[dimName] : void 0;
-      } : function(dimName) {
-        return dimensionInfos[dimName];
-      };
-    };
-    SeriesData2.prototype.getDimensionsOnCoord = function() {
-      return this._dimSummary.dataDimsOnCoord.slice();
-    };
-    SeriesData2.prototype.mapDimension = function(coordDim, idx) {
-      var dimensionsSummary = this._dimSummary;
-      if (idx == null) {
-        return dimensionsSummary.encodeFirstDimNotExtra[coordDim];
-      }
-      var dims = dimensionsSummary.encode[coordDim];
-      return dims ? dims[idx] : null;
-    };
-    SeriesData2.prototype.mapDimensionsAll = function(coordDim) {
-      var dimensionsSummary = this._dimSummary;
-      var dims = dimensionsSummary.encode[coordDim];
-      return (dims || []).slice();
-    };
-    SeriesData2.prototype.getStore = function() {
-      return this._store;
-    };
-    SeriesData2.prototype.initData = function(data, nameList, dimValueGetter) {
-      var _this = this;
-      var store;
-      if (data instanceof DataStore_default) {
-        store = data;
-      }
-      if (!store) {
-        var dimensions = this.dimensions;
-        var provider = isSourceInstance(data) || isArrayLike(data) ? new DefaultDataProvider(data, dimensions.length) : data;
-        store = new DataStore_default();
-        var dimensionInfos = map2(dimensions, function(dimName) {
-          return {
-            type: _this._dimInfos[dimName].type,
-            property: dimName
-          };
-        });
-        store.initData(provider, dimensionInfos, dimValueGetter);
-      }
-      this._store = store;
-      this._nameList = (nameList || []).slice();
-      this._idList = [];
-      this._nameRepeatCount = {};
-      this._doInit(0, store.count());
-      this._dimSummary = summarizeDimensions(this, this._schema);
-      this.userOutput = this._dimSummary.userOutput;
-    };
-    SeriesData2.prototype.appendData = function(data) {
-      var range = this._store.appendData(data);
-      this._doInit(range[0], range[1]);
-    };
-    SeriesData2.prototype.appendValues = function(values, names) {
-      var _a2 = this._store.appendValues(values, names && names.length), start = _a2.start, end = _a2.end;
-      var shouldMakeIdFromName = this._shouldMakeIdFromName();
-      this._updateOrdinalMeta();
-      if (names) {
-        for (var idx = start; idx < end; idx++) {
-          var sourceIdx = idx - start;
-          this._nameList[idx] = names[sourceIdx];
-          if (shouldMakeIdFromName) {
-            makeIdFromName(this, idx);
-          }
-        }
-      }
-    };
-    SeriesData2.prototype._updateOrdinalMeta = function() {
-      var store = this._store;
-      var dimensions = this.dimensions;
-      for (var i = 0; i < dimensions.length; i++) {
-        var dimInfo = this._dimInfos[dimensions[i]];
-        if (dimInfo.ordinalMeta) {
-          store.collectOrdinalMeta(dimInfo.storeDimIndex, dimInfo.ordinalMeta);
-        }
-      }
-    };
-    SeriesData2.prototype._shouldMakeIdFromName = function() {
-      var provider = this._store.getProvider();
-      return this._idDimIdx == null && provider.getSource().sourceFormat !== SOURCE_FORMAT_TYPED_ARRAY && !provider.fillStorage;
-    };
-    SeriesData2.prototype._doInit = function(start, end) {
-      if (start >= end) {
-        return;
-      }
-      var store = this._store;
-      var provider = store.getProvider();
-      this._updateOrdinalMeta();
-      var nameList = this._nameList;
-      var idList = this._idList;
-      var sourceFormat = provider.getSource().sourceFormat;
-      var isFormatOriginal = sourceFormat === SOURCE_FORMAT_ORIGINAL;
-      if (isFormatOriginal && !provider.pure) {
-        var sharedDataItem = [];
-        for (var idx = start; idx < end; idx++) {
-          var dataItem = provider.getItem(idx, sharedDataItem);
-          if (!this.hasItemOption && isDataItemOption(dataItem)) {
-            this.hasItemOption = true;
-          }
-          if (dataItem) {
-            var itemName = dataItem.name;
-            if (nameList[idx] == null && itemName != null) {
-              nameList[idx] = convertOptionIdName(itemName, null);
-            }
-            var itemId = dataItem.id;
-            if (idList[idx] == null && itemId != null) {
-              idList[idx] = convertOptionIdName(itemId, null);
-            }
-          }
-        }
-      }
-      if (this._shouldMakeIdFromName()) {
-        for (var idx = start; idx < end; idx++) {
-          makeIdFromName(this, idx);
-        }
-      }
-      prepareInvertedIndex(this);
-    };
-    SeriesData2.prototype.getApproximateExtent = function(dim) {
-      return this._approximateExtent[dim] || this._store.getDataExtent(this._getStoreDimIndex(dim));
-    };
-    SeriesData2.prototype.setApproximateExtent = function(extent3, dim) {
-      dim = this.getDimension(dim);
-      this._approximateExtent[dim] = extent3.slice();
-    };
-    SeriesData2.prototype.getCalculationInfo = function(key) {
-      return this._calculationInfo[key];
-    };
-    SeriesData2.prototype.setCalculationInfo = function(key, value) {
-      isObject2(key) ? extend(this._calculationInfo, key) : this._calculationInfo[key] = value;
-    };
-    SeriesData2.prototype.getName = function(idx) {
-      var rawIndex = this.getRawIndex(idx);
-      var name = this._nameList[rawIndex];
-      if (name == null && this._nameDimIdx != null) {
-        name = getIdNameFromStore(this, this._nameDimIdx, rawIndex);
-      }
-      if (name == null) {
-        name = "";
-      }
-      return name;
-    };
-    SeriesData2.prototype._getCategory = function(dimIdx, idx) {
-      var ordinal = this._store.get(dimIdx, idx);
-      var ordinalMeta = this._store.getOrdinalMeta(dimIdx);
-      if (ordinalMeta) {
-        return ordinalMeta.categories[ordinal];
-      }
-      return ordinal;
-    };
-    SeriesData2.prototype.getId = function(idx) {
-      return getId(this, this.getRawIndex(idx));
-    };
-    SeriesData2.prototype.count = function() {
-      return this._store.count();
-    };
-    SeriesData2.prototype.get = function(dim, idx) {
-      var store = this._store;
-      var dimInfo = this._dimInfos[dim];
-      if (dimInfo) {
-        return store.get(dimInfo.storeDimIndex, idx);
-      }
-    };
-    SeriesData2.prototype.getByRawIndex = function(dim, rawIdx) {
-      var store = this._store;
-      var dimInfo = this._dimInfos[dim];
-      if (dimInfo) {
-        return store.getByRawIndex(dimInfo.storeDimIndex, rawIdx);
-      }
-    };
-    SeriesData2.prototype.getIndices = function() {
-      return this._store.getIndices();
-    };
-    SeriesData2.prototype.getDataExtent = function(dim) {
-      return this._store.getDataExtent(this._getStoreDimIndex(dim));
-    };
-    SeriesData2.prototype.getSum = function(dim) {
-      return this._store.getSum(this._getStoreDimIndex(dim));
-    };
-    SeriesData2.prototype.getMedian = function(dim) {
-      return this._store.getMedian(this._getStoreDimIndex(dim));
-    };
-    SeriesData2.prototype.getValues = function(dimensions, idx) {
-      var _this = this;
-      var store = this._store;
-      return isArray(dimensions) ? store.getValues(map2(dimensions, function(dim) {
-        return _this._getStoreDimIndex(dim);
-      }), idx) : store.getValues(dimensions);
-    };
-    SeriesData2.prototype.hasValue = function(idx) {
-      var dataDimIndicesOnCoord = this._dimSummary.dataDimIndicesOnCoord;
-      for (var i = 0, len = dataDimIndicesOnCoord.length; i < len; i++) {
-        if (isNaN(this._store.get(dataDimIndicesOnCoord[i], idx))) {
-          return false;
-        }
-      }
-      return true;
-    };
-    SeriesData2.prototype.indexOfName = function(name) {
-      for (var i = 0, len = this._store.count(); i < len; i++) {
-        if (this.getName(i) === name) {
-          return i;
-        }
-      }
-      return -1;
-    };
-    SeriesData2.prototype.getRawIndex = function(idx) {
-      return this._store.getRawIndex(idx);
-    };
-    SeriesData2.prototype.indexOfRawIndex = function(rawIndex) {
-      return this._store.indexOfRawIndex(rawIndex);
-    };
-    SeriesData2.prototype.rawIndexOf = function(dim, value) {
-      var invertedIndices = dim && this._invertedIndicesMap[dim];
-      if (true) {
-        if (!invertedIndices) {
-          throw new Error("Do not supported yet");
-        }
-      }
-      var rawIndex = invertedIndices && invertedIndices[value];
-      if (rawIndex == null || isNaN(rawIndex)) {
-        return INDEX_NOT_FOUND;
-      }
-      return rawIndex;
-    };
-    SeriesData2.prototype.indicesOfNearest = function(dim, value, maxDistance) {
-      return this._store.indicesOfNearest(this._getStoreDimIndex(dim), value, maxDistance);
-    };
-    SeriesData2.prototype.each = function(dims, cb, ctx) {
-      "use strict";
-      if (isFunction(dims)) {
-        ctx = cb;
-        cb = dims;
-        dims = [];
-      }
-      var fCtx = ctx || this;
-      var dimIndices = map2(normalizeDimensions(dims), this._getStoreDimIndex, this);
-      this._store.each(dimIndices, fCtx ? bind(cb, fCtx) : cb);
-    };
-    SeriesData2.prototype.filterSelf = function(dims, cb, ctx) {
-      "use strict";
-      if (isFunction(dims)) {
-        ctx = cb;
-        cb = dims;
-        dims = [];
-      }
-      var fCtx = ctx || this;
-      var dimIndices = map2(normalizeDimensions(dims), this._getStoreDimIndex, this);
-      this._store = this._store.filter(dimIndices, fCtx ? bind(cb, fCtx) : cb);
-      return this;
-    };
-    SeriesData2.prototype.selectRange = function(range) {
-      "use strict";
-      var _this = this;
-      var innerRange = {};
-      var dims = keys(range);
-      var dimIndices = [];
-      each(dims, function(dim) {
-        var dimIdx = _this._getStoreDimIndex(dim);
-        innerRange[dimIdx] = range[dim];
-        dimIndices.push(dimIdx);
-      });
-      this._store = this._store.selectRange(innerRange);
-      return this;
-    };
-    SeriesData2.prototype.mapArray = function(dims, cb, ctx) {
-      "use strict";
-      if (isFunction(dims)) {
-        ctx = cb;
-        cb = dims;
-        dims = [];
-      }
-      ctx = ctx || this;
-      var result = [];
-      this.each(dims, function() {
-        result.push(cb && cb.apply(this, arguments));
-      }, ctx);
-      return result;
-    };
-    SeriesData2.prototype.map = function(dims, cb, ctx, ctxCompat) {
-      "use strict";
-      var fCtx = ctx || ctxCompat || this;
-      var dimIndices = map2(normalizeDimensions(dims), this._getStoreDimIndex, this);
-      var list = cloneListForMapAndSample(this);
-      list._store = this._store.map(dimIndices, fCtx ? bind(cb, fCtx) : cb);
-      return list;
-    };
-    SeriesData2.prototype.modify = function(dims, cb, ctx, ctxCompat) {
-      var _this = this;
-      var fCtx = ctx || ctxCompat || this;
-      if (true) {
-        each(normalizeDimensions(dims), function(dim) {
-          var dimInfo = _this.getDimensionInfo(dim);
-          if (!dimInfo.isCalculationCoord) {
-            console.error("Danger: only stack dimension can be modified");
-          }
-        });
-      }
-      var dimIndices = map2(normalizeDimensions(dims), this._getStoreDimIndex, this);
-      this._store.modify(dimIndices, fCtx ? bind(cb, fCtx) : cb);
-    };
-    SeriesData2.prototype.downSample = function(dimension, rate, sampleValue, sampleIndex) {
-      var list = cloneListForMapAndSample(this);
-      list._store = this._store.downSample(this._getStoreDimIndex(dimension), rate, sampleValue, sampleIndex);
-      return list;
-    };
-    SeriesData2.prototype.minmaxDownSample = function(valueDimension, rate) {
-      var list = cloneListForMapAndSample(this);
-      list._store = this._store.minmaxDownSample(this._getStoreDimIndex(valueDimension), rate);
-      return list;
-    };
-    SeriesData2.prototype.lttbDownSample = function(valueDimension, rate) {
-      var list = cloneListForMapAndSample(this);
-      list._store = this._store.lttbDownSample(this._getStoreDimIndex(valueDimension), rate);
-      return list;
-    };
-    SeriesData2.prototype.getRawDataItem = function(idx) {
-      return this._store.getRawDataItem(idx);
-    };
-    SeriesData2.prototype.getItemModel = function(idx) {
-      var hostModel = this.hostModel;
-      var dataItem = this.getRawDataItem(idx);
-      return new Model_default(dataItem, hostModel, hostModel && hostModel.ecModel);
-    };
-    SeriesData2.prototype.diff = function(otherList) {
-      var thisList = this;
-      return new DataDiffer_default(otherList ? otherList.getStore().getIndices() : [], this.getStore().getIndices(), function(idx) {
-        return getId(otherList, idx);
-      }, function(idx) {
-        return getId(thisList, idx);
-      });
-    };
-    SeriesData2.prototype.getVisual = function(key) {
-      var visual = this._visual;
-      return visual && visual[key];
-    };
-    SeriesData2.prototype.setVisual = function(kvObj, val) {
-      this._visual = this._visual || {};
-      if (isObject2(kvObj)) {
-        extend(this._visual, kvObj);
-      } else {
-        this._visual[kvObj] = val;
-      }
-    };
-    SeriesData2.prototype.getItemVisual = function(idx, key) {
-      var itemVisual = this._itemVisuals[idx];
-      var val = itemVisual && itemVisual[key];
-      if (val == null) {
-        return this.getVisual(key);
-      }
-      return val;
-    };
-    SeriesData2.prototype.hasItemVisual = function() {
-      return this._itemVisuals.length > 0;
-    };
-    SeriesData2.prototype.ensureUniqueItemVisual = function(idx, key) {
-      var itemVisuals = this._itemVisuals;
-      var itemVisual = itemVisuals[idx];
-      if (!itemVisual) {
-        itemVisual = itemVisuals[idx] = {};
-      }
-      var val = itemVisual[key];
-      if (val == null) {
-        val = this.getVisual(key);
-        if (isArray(val)) {
-          val = val.slice();
-        } else if (isObject2(val)) {
-          val = extend({}, val);
-        }
-        itemVisual[key] = val;
-      }
-      return val;
-    };
-    SeriesData2.prototype.setItemVisual = function(idx, key, value) {
-      var itemVisual = this._itemVisuals[idx] || {};
-      this._itemVisuals[idx] = itemVisual;
-      if (isObject2(key)) {
-        extend(itemVisual, key);
-      } else {
-        itemVisual[key] = value;
-      }
-    };
-    SeriesData2.prototype.clearAllVisual = function() {
-      this._visual = {};
-      this._itemVisuals = [];
-    };
-    SeriesData2.prototype.setLayout = function(key, val) {
-      isObject2(key) ? extend(this._layout, key) : this._layout[key] = val;
-    };
-    SeriesData2.prototype.getLayout = function(key) {
-      return this._layout[key];
-    };
-    SeriesData2.prototype.getItemLayout = function(idx) {
-      return this._itemLayouts[idx];
-    };
-    SeriesData2.prototype.setItemLayout = function(idx, layout2, merge2) {
-      this._itemLayouts[idx] = merge2 ? extend(this._itemLayouts[idx] || {}, layout2) : layout2;
-    };
-    SeriesData2.prototype.clearItemLayouts = function() {
-      this._itemLayouts.length = 0;
-    };
-    SeriesData2.prototype.setItemGraphicEl = function(idx, el) {
-      var seriesIndex = this.hostModel && this.hostModel.seriesIndex;
-      setCommonECData(seriesIndex, this.dataType, idx, el);
-      this._graphicEls[idx] = el;
-    };
-    SeriesData2.prototype.getItemGraphicEl = function(idx) {
-      return this._graphicEls[idx];
-    };
-    SeriesData2.prototype.eachItemGraphicEl = function(cb, context) {
-      each(this._graphicEls, function(el, idx) {
-        if (el) {
-          cb && cb.call(context, el, idx);
-        }
-      });
-    };
-    SeriesData2.prototype.cloneShallow = function(list) {
-      if (!list) {
-        list = new SeriesData2(this._schema ? this._schema : map2(this.dimensions, this._getDimInfo, this), this.hostModel);
-      }
-      transferProperties(list, this);
-      list._store = this._store;
-      return list;
-    };
-    SeriesData2.prototype.wrapMethod = function(methodName, injectFunction) {
-      var originalMethod = this[methodName];
-      if (!isFunction(originalMethod)) {
-        return;
-      }
-      this.__wrappedMethods = this.__wrappedMethods || [];
-      this.__wrappedMethods.push(methodName);
-      this[methodName] = function() {
-        var res = originalMethod.apply(this, arguments);
-        return injectFunction.apply(this, [res].concat(slice(arguments)));
-      };
-    };
-    SeriesData2.internalField = function() {
-      prepareInvertedIndex = function(data) {
-        var invertedIndicesMap = data._invertedIndicesMap;
-        each(invertedIndicesMap, function(invertedIndices, dim) {
-          var dimInfo = data._dimInfos[dim];
-          var ordinalMeta = dimInfo.ordinalMeta;
-          var store = data._store;
-          if (ordinalMeta) {
-            invertedIndices = invertedIndicesMap[dim] = new CtorInt32Array2(ordinalMeta.categories.length);
-            for (var i = 0; i < invertedIndices.length; i++) {
-              invertedIndices[i] = INDEX_NOT_FOUND;
-            }
-            for (var i = 0; i < store.count(); i++) {
-              invertedIndices[store.get(dimInfo.storeDimIndex, i)] = i;
-            }
-          }
-        });
-      };
-      getIdNameFromStore = function(data, dimIdx, idx) {
-        return convertOptionIdName(data._getCategory(dimIdx, idx), null);
-      };
-      getId = function(data, rawIndex) {
-        var id = data._idList[rawIndex];
-        if (id == null && data._idDimIdx != null) {
-          id = getIdNameFromStore(data, data._idDimIdx, rawIndex);
-        }
-        if (id == null) {
-          id = ID_PREFIX + rawIndex;
-        }
-        return id;
-      };
-      normalizeDimensions = function(dimensions) {
-        if (!isArray(dimensions)) {
-          dimensions = dimensions != null ? [dimensions] : [];
-        }
-        return dimensions;
-      };
-      cloneListForMapAndSample = function(original) {
-        var list = new SeriesData2(original._schema ? original._schema : map2(original.dimensions, original._getDimInfo, original), original.hostModel);
-        transferProperties(list, original);
-        return list;
-      };
-      transferProperties = function(target, source) {
-        each(TRANSFERABLE_PROPERTIES.concat(source.__wrappedMethods || []), function(propName) {
-          if (source.hasOwnProperty(propName)) {
-            target[propName] = source[propName];
-          }
-        });
-        target.__wrappedMethods = source.__wrappedMethods;
-        each(CLONE_PROPERTIES, function(propName) {
-          target[propName] = clone(source[propName]);
-        });
-        target._calculationInfo = extend({}, source._calculationInfo);
-      };
-      makeIdFromName = function(data, idx) {
-        var nameList = data._nameList;
-        var idList = data._idList;
-        var nameDimIdx = data._nameDimIdx;
-        var idDimIdx = data._idDimIdx;
-        var name = nameList[idx];
-        var id = idList[idx];
-        if (name == null && nameDimIdx != null) {
-          nameList[idx] = name = getIdNameFromStore(data, nameDimIdx, idx);
-        }
-        if (id == null && idDimIdx != null) {
-          idList[idx] = id = getIdNameFromStore(data, idDimIdx, idx);
-        }
-        if (id == null && name != null) {
-          var nameRepeatCount = data._nameRepeatCount;
-          var nmCnt = nameRepeatCount[name] = (nameRepeatCount[name] || 0) + 1;
-          id = name;
-          if (nmCnt > 1) {
-            id += "__ec__" + nmCnt;
-          }
-          idList[idx] = id;
-        }
-      };
-    }();
-    return SeriesData2;
-  }()
-);
-var SeriesData_default = SeriesData;
-
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/i18n/langEN.js
-var langEN_default = {
-  time: {
-    month: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-    monthAbbr: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
-    dayOfWeek: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
-    dayOfWeekAbbr: ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
-  },
-  legend: {
-    selector: {
-      all: "All",
-      inverse: "Inv"
-    }
-  },
-  toolbox: {
-    brush: {
-      title: {
-        rect: "Box Select",
-        polygon: "Lasso Select",
-        lineX: "Horizontally Select",
-        lineY: "Vertically Select",
-        keep: "Keep Selections",
-        clear: "Clear Selections"
-      }
-    },
-    dataView: {
-      title: "Data View",
-      lang: ["Data View", "Close", "Refresh"]
-    },
-    dataZoom: {
-      title: {
-        zoom: "Zoom",
-        back: "Zoom Reset"
-      }
-    },
-    magicType: {
-      title: {
-        line: "Switch to Line Chart",
-        bar: "Switch to Bar Chart",
-        stack: "Stack",
-        tiled: "Tile"
-      }
-    },
-    restore: {
-      title: "Restore"
-    },
-    saveAsImage: {
-      title: "Save as Image",
-      lang: ["Right Click to Save Image"]
-    }
-  },
-  series: {
-    typeNames: {
-      pie: "Pie chart",
-      bar: "Bar chart",
-      line: "Line chart",
-      scatter: "Scatter plot",
-      effectScatter: "Ripple scatter plot",
-      radar: "Radar chart",
-      tree: "Tree",
-      treemap: "Treemap",
-      boxplot: "Boxplot",
-      candlestick: "Candlestick",
-      k: "K line chart",
-      heatmap: "Heat map",
-      map: "Map",
-      parallel: "Parallel coordinate map",
-      lines: "Line graph",
-      graph: "Relationship graph",
-      sankey: "Sankey diagram",
-      funnel: "Funnel chart",
-      gauge: "Gauge",
-      pictorialBar: "Pictorial bar",
-      themeRiver: "Theme River Map",
-      sunburst: "Sunburst",
-      custom: "Custom chart",
-      chart: "Chart"
-    }
-  },
-  aria: {
-    general: {
-      withTitle: 'This is a chart about "{title}"',
-      withoutTitle: "This is a chart"
-    },
-    series: {
-      single: {
-        prefix: "",
-        withName: " with type {seriesType} named {seriesName}.",
-        withoutName: " with type {seriesType}."
-      },
-      multiple: {
-        prefix: ". It consists of {seriesCount} series count.",
-        withName: " The {seriesId} series is a {seriesType} representing {seriesName}.",
-        withoutName: " The {seriesId} series is a {seriesType}.",
-        separator: {
-          middle: "",
-          end: ""
-        }
-      }
-    },
-    data: {
-      allData: "The data is as follows: ",
-      partialData: "The first {displayCnt} items are: ",
-      withName: "the data for {name} is {value}",
-      withoutName: "{value}",
-      separator: {
-        middle: ", ",
-        end: ". "
-      }
-    }
-  }
-};
-
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/i18n/langZH.js
-var langZH_default = {
-  time: {
-    month: ["一月", "二月", "三月", "四月", "五月", "六月", "七月", "八月", "九月", "十月", "十一月", "十二月"],
-    monthAbbr: ["1月", "2月", "3月", "4月", "5月", "6月", "7月", "8月", "9月", "10月", "11月", "12月"],
-    dayOfWeek: ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"],
-    dayOfWeekAbbr: ["日", "一", "二", "三", "四", "五", "六"]
-  },
-  legend: {
-    selector: {
-      all: "全选",
-      inverse: "反选"
-    }
-  },
-  toolbox: {
-    brush: {
-      title: {
-        rect: "矩形选择",
-        polygon: "圈选",
-        lineX: "横向选择",
-        lineY: "纵向选择",
-        keep: "保持选择",
-        clear: "清除选择"
-      }
-    },
-    dataView: {
-      title: "数据视图",
-      lang: ["数据视图", "关闭", "刷新"]
-    },
-    dataZoom: {
-      title: {
-        zoom: "区域缩放",
-        back: "区域缩放还原"
-      }
-    },
-    magicType: {
-      title: {
-        line: "切换为折线图",
-        bar: "切换为柱状图",
-        stack: "切换为堆叠",
-        tiled: "切换为平铺"
-      }
-    },
-    restore: {
-      title: "还原"
-    },
-    saveAsImage: {
-      title: "保存为图片",
-      lang: ["右键另存为图片"]
-    }
-  },
-  series: {
-    typeNames: {
-      pie: "饼图",
-      bar: "柱状图",
-      line: "折线图",
-      scatter: "散点图",
-      effectScatter: "涟漪散点图",
-      radar: "雷达图",
-      tree: "树图",
-      treemap: "矩形树图",
-      boxplot: "箱型图",
-      candlestick: "K线图",
-      k: "K线图",
-      heatmap: "热力图",
-      map: "地图",
-      parallel: "平行坐标图",
-      lines: "线图",
-      graph: "关系图",
-      sankey: "桑基图",
-      funnel: "漏斗图",
-      gauge: "仪表盘图",
-      pictorialBar: "象形柱图",
-      themeRiver: "主题河流图",
-      sunburst: "旭日图",
-      custom: "自定义图表",
-      chart: "图表"
-    }
-  },
-  aria: {
-    general: {
-      withTitle: "这是一个关于“{title}”的图表。",
-      withoutTitle: "这是一个图表，"
-    },
-    series: {
-      single: {
-        prefix: "",
-        withName: "图表类型是{seriesType}，表示{seriesName}。",
-        withoutName: "图表类型是{seriesType}。"
-      },
-      multiple: {
-        prefix: "它由{seriesCount}个图表系列组成。",
-        withName: "第{seriesId}个系列是一个表示{seriesName}的{seriesType}，",
-        withoutName: "第{seriesId}个系列是一个{seriesType}，",
-        separator: {
-          middle: "；",
-          end: "。"
-        }
-      }
-    },
-    data: {
-      allData: "其数据是——",
-      partialData: "其中，前{displayCnt}项是——",
-      withName: "{name}的数据是{value}",
-      withoutName: "{value}",
-      separator: {
-        middle: "，",
-        end: ""
-      }
-    }
-  }
-};
-
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/core/locale.js
-var LOCALE_ZH = "ZH";
-var LOCALE_EN = "EN";
-var DEFAULT_LOCALE = LOCALE_EN;
-var localeStorage = {};
-var localeModels = {};
-var SYSTEM_LANG = !env_default.domSupported ? DEFAULT_LOCALE : function() {
-  var langStr = (
-    /* eslint-disable-next-line */
-    (document.documentElement.lang || navigator.language || navigator.browserLanguage || DEFAULT_LOCALE).toUpperCase()
-  );
-  return langStr.indexOf(LOCALE_ZH) > -1 ? LOCALE_ZH : DEFAULT_LOCALE;
-}();
-function registerLocale(locale, localeObj) {
-  locale = locale.toUpperCase();
-  localeModels[locale] = new Model_default(localeObj);
-  localeStorage[locale] = localeObj;
-}
-function createLocaleObject(locale) {
-  if (isString(locale)) {
-    var localeObj = localeStorage[locale.toUpperCase()] || {};
-    if (locale === LOCALE_ZH || locale === LOCALE_EN) {
-      return clone(localeObj);
-    } else {
-      return merge(clone(localeObj), clone(localeStorage[DEFAULT_LOCALE]), false);
-    }
-  } else {
-    return merge(clone(locale), clone(localeStorage[DEFAULT_LOCALE]), false);
-  }
-}
-function getLocaleModel(lang) {
-  return localeModels[lang];
-}
-function getDefaultLocaleModel() {
-  return localeModels[DEFAULT_LOCALE];
-}
-registerLocale(LOCALE_EN, langEN_default);
-registerLocale(LOCALE_ZH, langZH_default);
-
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/util/component.js
-var base = Math.round(Math.random() * 10);
-function getUID(type) {
-  return [type || "", base++].join("_");
-}
-function enableSubTypeDefaulter(target) {
-  var subTypeDefaulters = {};
-  target.registerSubTypeDefaulter = function(componentType, defaulter) {
-    var componentTypeInfo = parseClassType(componentType);
-    subTypeDefaulters[componentTypeInfo.main] = defaulter;
-  };
-  target.determineSubType = function(componentType, option) {
-    var type = option.type;
-    if (!type) {
-      var componentTypeMain = parseClassType(componentType).main;
-      if (target.hasSubTypes(componentType) && subTypeDefaulters[componentTypeMain]) {
-        type = subTypeDefaulters[componentTypeMain](option);
-      }
-    }
-    return type;
-  };
-}
-function enableTopologicalTravel(entity, dependencyGetter) {
-  entity.topologicalTravel = function(targetNameList, fullNameList, callback, context) {
-    if (!targetNameList.length) {
-      return;
-    }
-    var result = makeDepndencyGraph(fullNameList);
-    var graph = result.graph;
-    var noEntryList = result.noEntryList;
-    var targetNameSet = {};
-    each(targetNameList, function(name) {
-      targetNameSet[name] = true;
-    });
-    while (noEntryList.length) {
-      var currComponentType = noEntryList.pop();
-      var currVertex = graph[currComponentType];
-      var isInTargetNameSet = !!targetNameSet[currComponentType];
-      if (isInTargetNameSet) {
-        callback.call(context, currComponentType, currVertex.originalDeps.slice());
-        delete targetNameSet[currComponentType];
-      }
-      each(currVertex.successor, isInTargetNameSet ? removeEdgeAndAdd : removeEdge);
-    }
-    each(targetNameSet, function() {
-      var errMsg = "";
-      if (true) {
-        errMsg = makePrintable("Circular dependency may exists: ", targetNameSet, targetNameList, fullNameList);
-      }
-      throw new Error(errMsg);
-    });
-    function removeEdge(succComponentType) {
-      graph[succComponentType].entryCount--;
-      if (graph[succComponentType].entryCount === 0) {
-        noEntryList.push(succComponentType);
-      }
-    }
-    function removeEdgeAndAdd(succComponentType) {
-      targetNameSet[succComponentType] = true;
-      removeEdge(succComponentType);
-    }
-  };
-  function makeDepndencyGraph(fullNameList) {
-    var graph = {};
-    var noEntryList = [];
-    each(fullNameList, function(name) {
-      var thisItem = createDependencyGraphItem(graph, name);
-      var originalDeps = thisItem.originalDeps = dependencyGetter(name);
-      var availableDeps = getAvailableDependencies(originalDeps, fullNameList);
-      thisItem.entryCount = availableDeps.length;
-      if (thisItem.entryCount === 0) {
-        noEntryList.push(name);
-      }
-      each(availableDeps, function(dependentName) {
-        if (indexOf(thisItem.predecessor, dependentName) < 0) {
-          thisItem.predecessor.push(dependentName);
-        }
-        var thatItem = createDependencyGraphItem(graph, dependentName);
-        if (indexOf(thatItem.successor, dependentName) < 0) {
-          thatItem.successor.push(name);
-        }
-      });
-    });
-    return {
-      graph,
-      noEntryList
-    };
-  }
-  function createDependencyGraphItem(graph, name) {
-    if (!graph[name]) {
-      graph[name] = {
-        predecessor: [],
-        successor: []
-      };
-    }
-    return graph[name];
-  }
-  function getAvailableDependencies(originalDeps, fullNameList) {
-    var availableDeps = [];
-    each(originalDeps, function(dep) {
-      indexOf(fullNameList, dep) >= 0 && availableDeps.push(dep);
-    });
-    return availableDeps;
-  }
-}
-function inheritDefaultOption(superOption, subOption) {
-  return merge(merge({}, superOption, true), subOption, true);
-}
-
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/util/time.js
-var ONE_SECOND = 1e3;
-var ONE_MINUTE = ONE_SECOND * 60;
-var ONE_HOUR = ONE_MINUTE * 60;
-var ONE_DAY = ONE_HOUR * 24;
-var ONE_YEAR = ONE_DAY * 365;
-var defaultLeveledFormatter = {
-  year: "{yyyy}",
-  month: "{MMM}",
-  day: "{d}",
-  hour: "{HH}:{mm}",
-  minute: "{HH}:{mm}",
-  second: "{HH}:{mm}:{ss}",
-  millisecond: "{HH}:{mm}:{ss} {SSS}",
-  none: "{yyyy}-{MM}-{dd} {HH}:{mm}:{ss} {SSS}"
-};
-var fullDayFormatter = "{yyyy}-{MM}-{dd}";
-var fullLeveledFormatter = {
-  year: "{yyyy}",
-  month: "{yyyy}-{MM}",
-  day: fullDayFormatter,
-  hour: fullDayFormatter + " " + defaultLeveledFormatter.hour,
-  minute: fullDayFormatter + " " + defaultLeveledFormatter.minute,
-  second: fullDayFormatter + " " + defaultLeveledFormatter.second,
-  millisecond: defaultLeveledFormatter.none
-};
-var primaryTimeUnits = ["year", "month", "day", "hour", "minute", "second", "millisecond"];
-var timeUnits = ["year", "half-year", "quarter", "month", "week", "half-week", "day", "half-day", "quarter-day", "hour", "minute", "second", "millisecond"];
-function pad(str, len) {
-  str += "";
-  return "0000".substr(0, len - str.length) + str;
-}
-function getPrimaryTimeUnit(timeUnit) {
-  switch (timeUnit) {
-    case "half-year":
-    case "quarter":
-      return "month";
-    case "week":
-    case "half-week":
-      return "day";
-    case "half-day":
-    case "quarter-day":
-      return "hour";
-    default:
-      return timeUnit;
-  }
-}
-function isPrimaryTimeUnit(timeUnit) {
-  return timeUnit === getPrimaryTimeUnit(timeUnit);
-}
-function getDefaultFormatPrecisionOfInterval(timeUnit) {
-  switch (timeUnit) {
-    case "year":
-    case "month":
-      return "day";
-    case "millisecond":
-      return "millisecond";
-    default:
-      return "second";
-  }
-}
-function format(time, template, isUTC, lang) {
-  var date = parseDate(time);
-  var y = date[fullYearGetterName(isUTC)]();
-  var M = date[monthGetterName(isUTC)]() + 1;
-  var q = Math.floor((M - 1) / 3) + 1;
-  var d = date[dateGetterName(isUTC)]();
-  var e2 = date["get" + (isUTC ? "UTC" : "") + "Day"]();
-  var H = date[hoursGetterName(isUTC)]();
-  var h = (H - 1) % 12 + 1;
-  var m2 = date[minutesGetterName(isUTC)]();
-  var s = date[secondsGetterName(isUTC)]();
-  var S = date[millisecondsGetterName(isUTC)]();
-  var a = H >= 12 ? "pm" : "am";
-  var A = a.toUpperCase();
-  var localeModel = lang instanceof Model_default ? lang : getLocaleModel(lang || SYSTEM_LANG) || getDefaultLocaleModel();
-  var timeModel = localeModel.getModel("time");
-  var month = timeModel.get("month");
-  var monthAbbr = timeModel.get("monthAbbr");
-  var dayOfWeek = timeModel.get("dayOfWeek");
-  var dayOfWeekAbbr = timeModel.get("dayOfWeekAbbr");
-  return (template || "").replace(/{a}/g, a + "").replace(/{A}/g, A + "").replace(/{yyyy}/g, y + "").replace(/{yy}/g, pad(y % 100 + "", 2)).replace(/{Q}/g, q + "").replace(/{MMMM}/g, month[M - 1]).replace(/{MMM}/g, monthAbbr[M - 1]).replace(/{MM}/g, pad(M, 2)).replace(/{M}/g, M + "").replace(/{dd}/g, pad(d, 2)).replace(/{d}/g, d + "").replace(/{eeee}/g, dayOfWeek[e2]).replace(/{ee}/g, dayOfWeekAbbr[e2]).replace(/{e}/g, e2 + "").replace(/{HH}/g, pad(H, 2)).replace(/{H}/g, H + "").replace(/{hh}/g, pad(h + "", 2)).replace(/{h}/g, h + "").replace(/{mm}/g, pad(m2, 2)).replace(/{m}/g, m2 + "").replace(/{ss}/g, pad(s, 2)).replace(/{s}/g, s + "").replace(/{SSS}/g, pad(S, 3)).replace(/{S}/g, S + "");
-}
-function leveledFormat(tick, idx, formatter, lang, isUTC) {
-  var template = null;
-  if (isString(formatter)) {
-    template = formatter;
-  } else if (isFunction(formatter)) {
-    template = formatter(tick.value, idx, {
-      level: tick.level
-    });
-  } else {
-    var defaults2 = extend({}, defaultLeveledFormatter);
-    if (tick.level > 0) {
-      for (var i = 0; i < primaryTimeUnits.length; ++i) {
-        defaults2[primaryTimeUnits[i]] = "{primary|" + defaults2[primaryTimeUnits[i]] + "}";
-      }
-    }
-    var mergedFormatter = formatter ? formatter.inherit === false ? formatter : defaults(formatter, defaults2) : defaults2;
-    var unit = getUnitFromValue(tick.value, isUTC);
-    if (mergedFormatter[unit]) {
-      template = mergedFormatter[unit];
-    } else if (mergedFormatter.inherit) {
-      var targetId = timeUnits.indexOf(unit);
-      for (var i = targetId - 1; i >= 0; --i) {
-        if (mergedFormatter[unit]) {
-          template = mergedFormatter[unit];
-          break;
-        }
-      }
-      template = template || defaults2.none;
-    }
-    if (isArray(template)) {
-      var levelId = tick.level == null ? 0 : tick.level >= 0 ? tick.level : template.length + tick.level;
-      levelId = Math.min(levelId, template.length - 1);
-      template = template[levelId];
-    }
-  }
-  return format(new Date(tick.value), template, isUTC, lang);
-}
-function getUnitFromValue(value, isUTC) {
-  var date = parseDate(value);
-  var M = date[monthGetterName(isUTC)]() + 1;
-  var d = date[dateGetterName(isUTC)]();
-  var h = date[hoursGetterName(isUTC)]();
-  var m2 = date[minutesGetterName(isUTC)]();
-  var s = date[secondsGetterName(isUTC)]();
-  var S = date[millisecondsGetterName(isUTC)]();
-  var isSecond = S === 0;
-  var isMinute = isSecond && s === 0;
-  var isHour = isMinute && m2 === 0;
-  var isDay = isHour && h === 0;
-  var isMonth = isDay && d === 1;
-  var isYear = isMonth && M === 1;
-  if (isYear) {
-    return "year";
-  } else if (isMonth) {
-    return "month";
-  } else if (isDay) {
-    return "day";
-  } else if (isHour) {
-    return "hour";
-  } else if (isMinute) {
-    return "minute";
-  } else if (isSecond) {
-    return "second";
-  } else {
-    return "millisecond";
-  }
-}
-function getUnitValue(value, unit, isUTC) {
-  var date = isNumber(value) ? parseDate(value) : value;
-  unit = unit || getUnitFromValue(value, isUTC);
-  switch (unit) {
-    case "year":
-      return date[fullYearGetterName(isUTC)]();
-    case "half-year":
-      return date[monthGetterName(isUTC)]() >= 6 ? 1 : 0;
-    case "quarter":
-      return Math.floor((date[monthGetterName(isUTC)]() + 1) / 4);
-    case "month":
-      return date[monthGetterName(isUTC)]();
-    case "day":
-      return date[dateGetterName(isUTC)]();
-    case "half-day":
-      return date[hoursGetterName(isUTC)]() / 24;
-    case "hour":
-      return date[hoursGetterName(isUTC)]();
-    case "minute":
-      return date[minutesGetterName(isUTC)]();
-    case "second":
-      return date[secondsGetterName(isUTC)]();
-    case "millisecond":
-      return date[millisecondsGetterName(isUTC)]();
-  }
-}
-function fullYearGetterName(isUTC) {
-  return isUTC ? "getUTCFullYear" : "getFullYear";
-}
-function monthGetterName(isUTC) {
-  return isUTC ? "getUTCMonth" : "getMonth";
-}
-function dateGetterName(isUTC) {
-  return isUTC ? "getUTCDate" : "getDate";
-}
-function hoursGetterName(isUTC) {
-  return isUTC ? "getUTCHours" : "getHours";
-}
-function minutesGetterName(isUTC) {
-  return isUTC ? "getUTCMinutes" : "getMinutes";
-}
-function secondsGetterName(isUTC) {
-  return isUTC ? "getUTCSeconds" : "getSeconds";
-}
-function millisecondsGetterName(isUTC) {
-  return isUTC ? "getUTCMilliseconds" : "getMilliseconds";
-}
-function fullYearSetterName(isUTC) {
-  return isUTC ? "setUTCFullYear" : "setFullYear";
-}
-function monthSetterName(isUTC) {
-  return isUTC ? "setUTCMonth" : "setMonth";
-}
-function dateSetterName(isUTC) {
-  return isUTC ? "setUTCDate" : "setDate";
-}
-function hoursSetterName(isUTC) {
-  return isUTC ? "setUTCHours" : "setHours";
-}
-function minutesSetterName(isUTC) {
-  return isUTC ? "setUTCMinutes" : "setMinutes";
-}
-function secondsSetterName(isUTC) {
-  return isUTC ? "setUTCSeconds" : "setSeconds";
-}
-function millisecondsSetterName(isUTC) {
-  return isUTC ? "setUTCMilliseconds" : "setMilliseconds";
-}
-
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/legacy/getTextRect.js
-function getTextRect(text, font, align, verticalAlign, padding, rich, truncate, lineHeight) {
-  var textEl = new Text_default({
-    style: {
-      text,
-      font,
-      align,
-      verticalAlign,
-      padding,
-      rich,
-      overflow: truncate ? "truncate" : null,
-      lineHeight
-    }
-  });
-  return textEl.getBoundingRect();
-}
-
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/util/format.js
-function addCommas(x) {
-  if (!isNumeric(x)) {
-    return isString(x) ? x : "-";
-  }
-  var parts = (x + "").split(".");
-  return parts[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, "$1,") + (parts.length > 1 ? "." + parts[1] : "");
-}
-function toCamelCase(str, upperCaseFirst) {
-  str = (str || "").toLowerCase().replace(/-(.)/g, function(match, group1) {
-    return group1.toUpperCase();
-  });
-  if (upperCaseFirst && str) {
-    str = str.charAt(0).toUpperCase() + str.slice(1);
-  }
-  return str;
-}
-var normalizeCssArray2 = normalizeCssArray;
-function makeValueReadable(value, valueType, useUTC) {
-  var USER_READABLE_DEFUALT_TIME_PATTERN = "{yyyy}-{MM}-{dd} {HH}:{mm}:{ss}";
-  function stringToUserReadable(str) {
-    return str && trim(str) ? str : "-";
-  }
-  function isNumberUserReadable(num) {
-    return !!(num != null && !isNaN(num) && isFinite(num));
-  }
-  var isTypeTime = valueType === "time";
-  var isValueDate = value instanceof Date;
-  if (isTypeTime || isValueDate) {
-    var date = isTypeTime ? parseDate(value) : value;
-    if (!isNaN(+date)) {
-      return format(date, USER_READABLE_DEFUALT_TIME_PATTERN, useUTC);
-    } else if (isValueDate) {
-      return "-";
-    }
-  }
-  if (valueType === "ordinal") {
-    return isStringSafe(value) ? stringToUserReadable(value) : isNumber(value) ? isNumberUserReadable(value) ? value + "" : "-" : "-";
-  }
-  var numericResult = numericToNumber(value);
-  return isNumberUserReadable(numericResult) ? addCommas(numericResult) : isStringSafe(value) ? stringToUserReadable(value) : typeof value === "boolean" ? value + "" : "-";
-}
-var TPL_VAR_ALIAS = ["a", "b", "c", "d", "e", "f", "g"];
-var wrapVar = function(varName, seriesIdx) {
-  return "{" + varName + (seriesIdx == null ? "" : seriesIdx) + "}";
-};
-function formatTpl(tpl, paramsList, encode) {
-  if (!isArray(paramsList)) {
-    paramsList = [paramsList];
-  }
-  var seriesLen = paramsList.length;
-  if (!seriesLen) {
-    return "";
-  }
-  var $vars = paramsList[0].$vars || [];
-  for (var i = 0; i < $vars.length; i++) {
-    var alias = TPL_VAR_ALIAS[i];
-    tpl = tpl.replace(wrapVar(alias), wrapVar(alias, 0));
-  }
-  for (var seriesIdx = 0; seriesIdx < seriesLen; seriesIdx++) {
-    for (var k = 0; k < $vars.length; k++) {
-      var val = paramsList[seriesIdx][$vars[k]];
-      tpl = tpl.replace(wrapVar(TPL_VAR_ALIAS[k], seriesIdx), encode ? encodeHTML(val) : val);
-    }
-  }
-  return tpl;
-}
-function formatTplSimple(tpl, param, encode) {
-  each(param, function(value, key) {
-    tpl = tpl.replace("{" + key + "}", encode ? encodeHTML(value) : value);
-  });
-  return tpl;
-}
-function getTooltipMarker(inOpt, extraCssText) {
-  var opt = isString(inOpt) ? {
-    color: inOpt,
-    extraCssText
-  } : inOpt || {};
-  var color = opt.color;
-  var type = opt.type;
-  extraCssText = opt.extraCssText;
-  var renderMode = opt.renderMode || "html";
-  if (!color) {
-    return "";
-  }
-  if (renderMode === "html") {
-    return type === "subItem" ? '<span style="display:inline-block;vertical-align:middle;margin-right:8px;margin-left:3px;border-radius:4px;width:4px;height:4px;background-color:' + encodeHTML(color) + ";" + (extraCssText || "") + '"></span>' : '<span style="display:inline-block;margin-right:4px;border-radius:10px;width:10px;height:10px;background-color:' + encodeHTML(color) + ";" + (extraCssText || "") + '"></span>';
-  } else {
-    var markerId = opt.markerId || "markerX";
-    return {
-      renderMode,
-      content: "{" + markerId + "|}  ",
-      style: type === "subItem" ? {
-        width: 4,
-        height: 4,
-        borderRadius: 2,
-        backgroundColor: color
-      } : {
-        width: 10,
-        height: 10,
-        borderRadius: 5,
-        backgroundColor: color
-      }
-    };
-  }
-}
-function formatTime(tpl, value, isUTC) {
-  if (true) {
-    deprecateReplaceLog("echarts.format.formatTime", "echarts.time.format");
-  }
-  if (tpl === "week" || tpl === "month" || tpl === "quarter" || tpl === "half-year" || tpl === "year") {
-    tpl = "MM-dd\nyyyy";
-  }
-  var date = parseDate(value);
-  var getUTC = isUTC ? "getUTC" : "get";
-  var y = date[getUTC + "FullYear"]();
-  var M = date[getUTC + "Month"]() + 1;
-  var d = date[getUTC + "Date"]();
-  var h = date[getUTC + "Hours"]();
-  var m2 = date[getUTC + "Minutes"]();
-  var s = date[getUTC + "Seconds"]();
-  var S = date[getUTC + "Milliseconds"]();
-  tpl = tpl.replace("MM", pad(M, 2)).replace("M", M).replace("yyyy", y).replace("yy", pad(y % 100 + "", 2)).replace("dd", pad(d, 2)).replace("d", d).replace("hh", pad(h, 2)).replace("h", h).replace("mm", pad(m2, 2)).replace("m", m2).replace("ss", pad(s, 2)).replace("s", s).replace("SSS", pad(S, 3));
-  return tpl;
-}
-function capitalFirst(str) {
-  return str ? str.charAt(0).toUpperCase() + str.substr(1) : str;
-}
-function convertToColorString(color, defaultColor) {
-  defaultColor = defaultColor || "transparent";
-  return isString(color) ? color : isObject(color) ? color.colorStops && (color.colorStops[0] || {}).color || defaultColor : defaultColor;
-}
-function windowOpen(link, target) {
-  if (target === "_blank" || target === "blank") {
-    var blank = window.open();
-    blank.opener = null;
-    blank.location.href = link;
-  } else {
-    window.open(link, target);
-  }
-}
-
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/util/layout.js
-var each2 = each;
-var LOCATION_PARAMS = ["left", "right", "top", "bottom", "width", "height"];
-var HV_NAMES = [["width", "left", "right"], ["height", "top", "bottom"]];
-function boxLayout(orient, group, gap, maxWidth, maxHeight) {
-  var x = 0;
-  var y = 0;
-  if (maxWidth == null) {
-    maxWidth = Infinity;
-  }
-  if (maxHeight == null) {
-    maxHeight = Infinity;
-  }
-  var currentLineMaxSize = 0;
-  group.eachChild(function(child, idx) {
-    var rect = child.getBoundingRect();
-    var nextChild = group.childAt(idx + 1);
-    var nextChildRect = nextChild && nextChild.getBoundingRect();
-    var nextX;
-    var nextY;
-    if (orient === "horizontal") {
-      var moveX = rect.width + (nextChildRect ? -nextChildRect.x + rect.x : 0);
-      nextX = x + moveX;
-      if (nextX > maxWidth || child.newline) {
-        x = 0;
-        nextX = moveX;
-        y += currentLineMaxSize + gap;
-        currentLineMaxSize = rect.height;
-      } else {
-        currentLineMaxSize = Math.max(currentLineMaxSize, rect.height);
-      }
-    } else {
-      var moveY = rect.height + (nextChildRect ? -nextChildRect.y + rect.y : 0);
-      nextY = y + moveY;
-      if (nextY > maxHeight || child.newline) {
-        x += currentLineMaxSize + gap;
-        y = 0;
-        nextY = moveY;
-        currentLineMaxSize = rect.width;
-      } else {
-        currentLineMaxSize = Math.max(currentLineMaxSize, rect.width);
-      }
-    }
-    if (child.newline) {
-      return;
-    }
-    child.x = x;
-    child.y = y;
-    child.markRedraw();
-    orient === "horizontal" ? x = nextX + gap : y = nextY + gap;
-  });
-}
-var box = boxLayout;
-var vbox = curry(boxLayout, "vertical");
-var hbox = curry(boxLayout, "horizontal");
-function getAvailableSize(positionInfo, containerRect, margin) {
-  var containerWidth = containerRect.width;
-  var containerHeight = containerRect.height;
-  var x = parsePercent2(positionInfo.left, containerWidth);
-  var y = parsePercent2(positionInfo.top, containerHeight);
-  var x2 = parsePercent2(positionInfo.right, containerWidth);
-  var y2 = parsePercent2(positionInfo.bottom, containerHeight);
-  (isNaN(x) || isNaN(parseFloat(positionInfo.left))) && (x = 0);
-  (isNaN(x2) || isNaN(parseFloat(positionInfo.right))) && (x2 = containerWidth);
-  (isNaN(y) || isNaN(parseFloat(positionInfo.top))) && (y = 0);
-  (isNaN(y2) || isNaN(parseFloat(positionInfo.bottom))) && (y2 = containerHeight);
-  margin = normalizeCssArray2(margin || 0);
-  return {
-    width: Math.max(x2 - x - margin[1] - margin[3], 0),
-    height: Math.max(y2 - y - margin[0] - margin[2], 0)
-  };
-}
-function getLayoutRect(positionInfo, containerRect, margin) {
-  margin = normalizeCssArray2(margin || 0);
-  var containerWidth = containerRect.width;
-  var containerHeight = containerRect.height;
-  var left = parsePercent2(positionInfo.left, containerWidth);
-  var top = parsePercent2(positionInfo.top, containerHeight);
-  var right = parsePercent2(positionInfo.right, containerWidth);
-  var bottom = parsePercent2(positionInfo.bottom, containerHeight);
-  var width = parsePercent2(positionInfo.width, containerWidth);
-  var height = parsePercent2(positionInfo.height, containerHeight);
-  var verticalMargin = margin[2] + margin[0];
-  var horizontalMargin = margin[1] + margin[3];
-  var aspect = positionInfo.aspect;
-  if (isNaN(width)) {
-    width = containerWidth - right - horizontalMargin - left;
-  }
-  if (isNaN(height)) {
-    height = containerHeight - bottom - verticalMargin - top;
-  }
-  if (aspect != null) {
-    if (isNaN(width) && isNaN(height)) {
-      if (aspect > containerWidth / containerHeight) {
-        width = containerWidth * 0.8;
-      } else {
-        height = containerHeight * 0.8;
-      }
-    }
-    if (isNaN(width)) {
-      width = aspect * height;
-    }
-    if (isNaN(height)) {
-      height = width / aspect;
-    }
-  }
-  if (isNaN(left)) {
-    left = containerWidth - right - width - horizontalMargin;
-  }
-  if (isNaN(top)) {
-    top = containerHeight - bottom - height - verticalMargin;
-  }
-  switch (positionInfo.left || positionInfo.right) {
-    case "center":
-      left = containerWidth / 2 - width / 2 - margin[3];
-      break;
-    case "right":
-      left = containerWidth - width - horizontalMargin;
-      break;
-  }
-  switch (positionInfo.top || positionInfo.bottom) {
-    case "middle":
-    case "center":
-      top = containerHeight / 2 - height / 2 - margin[0];
-      break;
-    case "bottom":
-      top = containerHeight - height - verticalMargin;
-      break;
-  }
-  left = left || 0;
-  top = top || 0;
-  if (isNaN(width)) {
-    width = containerWidth - horizontalMargin - left - (right || 0);
-  }
-  if (isNaN(height)) {
-    height = containerHeight - verticalMargin - top - (bottom || 0);
-  }
-  var rect = new BoundingRect_default(left + margin[3], top + margin[0], width, height);
-  rect.margin = margin;
-  return rect;
-}
-function positionElement(el, positionInfo, containerRect, margin, opt, out2) {
-  var h = !opt || !opt.hv || opt.hv[0];
-  var v = !opt || !opt.hv || opt.hv[1];
-  var boundingMode = opt && opt.boundingMode || "all";
-  out2 = out2 || el;
-  out2.x = el.x;
-  out2.y = el.y;
-  if (!h && !v) {
-    return false;
-  }
-  var rect;
-  if (boundingMode === "raw") {
-    rect = el.type === "group" ? new BoundingRect_default(0, 0, +positionInfo.width || 0, +positionInfo.height || 0) : el.getBoundingRect();
-  } else {
-    rect = el.getBoundingRect();
-    if (el.needLocalTransform()) {
-      var transform = el.getLocalTransform();
-      rect = rect.clone();
-      rect.applyTransform(transform);
-    }
-  }
-  var layoutRect = getLayoutRect(defaults({
-    width: rect.width,
-    height: rect.height
-  }, positionInfo), containerRect, margin);
-  var dx = h ? layoutRect.x - rect.x : 0;
-  var dy = v ? layoutRect.y - rect.y : 0;
-  if (boundingMode === "raw") {
-    out2.x = dx;
-    out2.y = dy;
-  } else {
-    out2.x += dx;
-    out2.y += dy;
-  }
-  if (out2 === el) {
-    el.markRedraw();
-  }
-  return true;
-}
-function sizeCalculable(option, hvIdx) {
-  return option[HV_NAMES[hvIdx][0]] != null || option[HV_NAMES[hvIdx][1]] != null && option[HV_NAMES[hvIdx][2]] != null;
-}
-function fetchLayoutMode(ins) {
-  var layoutMode = ins.layoutMode || ins.constructor.layoutMode;
-  return isObject(layoutMode) ? layoutMode : layoutMode ? {
-    type: layoutMode
-  } : null;
-}
-function mergeLayoutParam(targetOption, newOption, opt) {
-  var ignoreSize = opt && opt.ignoreSize;
-  !isArray(ignoreSize) && (ignoreSize = [ignoreSize, ignoreSize]);
-  var hResult = merge2(HV_NAMES[0], 0);
-  var vResult = merge2(HV_NAMES[1], 1);
-  copy(HV_NAMES[0], targetOption, hResult);
-  copy(HV_NAMES[1], targetOption, vResult);
-  function merge2(names, hvIdx) {
-    var newParams = {};
-    var newValueCount = 0;
-    var merged = {};
-    var mergedValueCount = 0;
-    var enoughParamNumber = 2;
-    each2(names, function(name) {
-      merged[name] = targetOption[name];
-    });
-    each2(names, function(name) {
-      hasProp(newOption, name) && (newParams[name] = merged[name] = newOption[name]);
-      hasValue(newParams, name) && newValueCount++;
-      hasValue(merged, name) && mergedValueCount++;
-    });
-    if (ignoreSize[hvIdx]) {
-      if (hasValue(newOption, names[1])) {
-        merged[names[2]] = null;
-      } else if (hasValue(newOption, names[2])) {
-        merged[names[1]] = null;
-      }
-      return merged;
-    }
-    if (mergedValueCount === enoughParamNumber || !newValueCount) {
-      return merged;
-    } else if (newValueCount >= enoughParamNumber) {
-      return newParams;
-    } else {
-      for (var i = 0; i < names.length; i++) {
-        var name_1 = names[i];
-        if (!hasProp(newParams, name_1) && hasProp(targetOption, name_1)) {
-          newParams[name_1] = targetOption[name_1];
-          break;
-        }
-      }
-      return newParams;
-    }
-  }
-  function hasProp(obj, name) {
-    return obj.hasOwnProperty(name);
-  }
-  function hasValue(obj, name) {
-    return obj[name] != null && obj[name] !== "auto";
-  }
-  function copy(names, target, source) {
-    each2(names, function(name) {
-      target[name] = source[name];
-    });
-  }
-}
-function getLayoutParams(source) {
-  return copyLayoutParams({}, source);
-}
-function copyLayoutParams(target, source) {
-  source && target && each2(LOCATION_PARAMS, function(name) {
-    source.hasOwnProperty(name) && (target[name] = source[name]);
-  });
-  return target;
-}
-
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/model/Component.js
-var inner2 = makeInner();
-var ComponentModel = (
-  /** @class */
-  function(_super) {
-    __extends(ComponentModel2, _super);
-    function ComponentModel2(option, parentModel, ecModel) {
-      var _this = _super.call(this, option, parentModel, ecModel) || this;
-      _this.uid = getUID("ec_cpt_model");
-      return _this;
-    }
-    ComponentModel2.prototype.init = function(option, parentModel, ecModel) {
-      this.mergeDefaultAndTheme(option, ecModel);
-    };
-    ComponentModel2.prototype.mergeDefaultAndTheme = function(option, ecModel) {
-      var layoutMode = fetchLayoutMode(this);
-      var inputPositionParams = layoutMode ? getLayoutParams(option) : {};
-      var themeModel = ecModel.getTheme();
-      merge(option, themeModel.get(this.mainType));
-      merge(option, this.getDefaultOption());
-      if (layoutMode) {
-        mergeLayoutParam(option, inputPositionParams, layoutMode);
-      }
-    };
-    ComponentModel2.prototype.mergeOption = function(option, ecModel) {
-      merge(this.option, option, true);
-      var layoutMode = fetchLayoutMode(this);
-      if (layoutMode) {
-        mergeLayoutParam(this.option, option, layoutMode);
-      }
-    };
-    ComponentModel2.prototype.optionUpdated = function(newCptOption, isInit) {
-    };
-    ComponentModel2.prototype.getDefaultOption = function() {
-      var ctor = this.constructor;
-      if (!isExtendedClass(ctor)) {
-        return ctor.defaultOption;
-      }
-      var fields = inner2(this);
-      if (!fields.defaultOption) {
-        var optList = [];
-        var clz = ctor;
-        while (clz) {
-          var opt = clz.prototype.defaultOption;
-          opt && optList.push(opt);
-          clz = clz.superClass;
-        }
-        var defaultOption = {};
-        for (var i = optList.length - 1; i >= 0; i--) {
-          defaultOption = merge(defaultOption, optList[i], true);
-        }
-        fields.defaultOption = defaultOption;
-      }
-      return fields.defaultOption;
-    };
-    ComponentModel2.prototype.getReferringComponents = function(mainType, opt) {
-      var indexKey = mainType + "Index";
-      var idKey = mainType + "Id";
-      return queryReferringComponents(this.ecModel, mainType, {
-        index: this.get(indexKey, true),
-        id: this.get(idKey, true)
-      }, opt);
-    };
-    ComponentModel2.prototype.getBoxLayoutParams = function() {
-      var boxLayoutModel = this;
-      return {
-        left: boxLayoutModel.get("left"),
-        top: boxLayoutModel.get("top"),
-        right: boxLayoutModel.get("right"),
-        bottom: boxLayoutModel.get("bottom"),
-        width: boxLayoutModel.get("width"),
-        height: boxLayoutModel.get("height")
-      };
-    };
-    ComponentModel2.prototype.getZLevelKey = function() {
-      return "";
-    };
-    ComponentModel2.prototype.setZLevel = function(zlevel) {
-      this.option.zlevel = zlevel;
-    };
-    ComponentModel2.protoInitialize = function() {
-      var proto2 = ComponentModel2.prototype;
-      proto2.type = "component";
-      proto2.id = "";
-      proto2.name = "";
-      proto2.mainType = "";
-      proto2.subType = "";
-      proto2.componentIndex = 0;
-    }();
-    return ComponentModel2;
-  }(Model_default)
-);
-mountExtend(ComponentModel, Model_default);
-enableClassManagement(ComponentModel);
-enableSubTypeDefaulter(ComponentModel);
-enableTopologicalTravel(ComponentModel, getDependencies);
-function getDependencies(componentType) {
-  var deps = [];
-  each(ComponentModel.getClassesByMainType(componentType), function(clz) {
-    deps = deps.concat(clz.dependencies || clz.prototype.dependencies || []);
-  });
-  deps = map(deps, function(type) {
-    return parseClassType(type).main;
-  });
-  if (componentType !== "dataset" && indexOf(deps, "dataset") <= 0) {
-    deps.unshift("dataset");
-  }
-  return deps;
-}
-var Component_default = ComponentModel;
-
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/model/mixin/palette.js
-var innerColor = makeInner();
-var innerDecal = makeInner();
-var PaletteMixin = (
-  /** @class */
-  function() {
-    function PaletteMixin2() {
-    }
-    PaletteMixin2.prototype.getColorFromPalette = function(name, scope, requestNum) {
-      var defaultPalette = normalizeToArray(this.get("color", true));
-      var layeredPalette = this.get("colorLayer", true);
-      return getFromPalette(this, innerColor, defaultPalette, layeredPalette, name, scope, requestNum);
-    };
-    PaletteMixin2.prototype.clearColorPalette = function() {
-      clearPalette(this, innerColor);
-    };
-    return PaletteMixin2;
-  }()
-);
-function getDecalFromPalette(ecModel, name, scope, requestNum) {
-  var defaultDecals = normalizeToArray(ecModel.get(["aria", "decal", "decals"]));
-  return getFromPalette(ecModel, innerDecal, defaultDecals, null, name, scope, requestNum);
-}
-function getNearestPalette(palettes, requestColorNum) {
-  var paletteNum = palettes.length;
-  for (var i = 0; i < paletteNum; i++) {
-    if (palettes[i].length > requestColorNum) {
-      return palettes[i];
-    }
-  }
-  return palettes[paletteNum - 1];
-}
-function getFromPalette(that, inner7, defaultPalette, layeredPalette, name, scope, requestNum) {
-  scope = scope || that;
-  var scopeFields = inner7(scope);
-  var paletteIdx = scopeFields.paletteIdx || 0;
-  var paletteNameMap = scopeFields.paletteNameMap = scopeFields.paletteNameMap || {};
-  if (paletteNameMap.hasOwnProperty(name)) {
-    return paletteNameMap[name];
-  }
-  var palette = requestNum == null || !layeredPalette ? defaultPalette : getNearestPalette(layeredPalette, requestNum);
-  palette = palette || defaultPalette;
-  if (!palette || !palette.length) {
-    return;
-  }
-  var pickedPaletteItem = palette[paletteIdx];
-  if (name) {
-    paletteNameMap[name] = pickedPaletteItem;
-  }
-  scopeFields.paletteIdx = (paletteIdx + 1) % palette.length;
-  return pickedPaletteItem;
-}
-function clearPalette(that, inner7) {
-  inner7(that).paletteIdx = 0;
-  inner7(that).paletteNameMap = {};
-}
-
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/model/mixin/dataFormat.js
-var DIMENSION_LABEL_REG = /\{@(.+?)\}/g;
-var DataFormatMixin = (
-  /** @class */
-  function() {
-    function DataFormatMixin2() {
-    }
-    DataFormatMixin2.prototype.getDataParams = function(dataIndex, dataType) {
-      var data = this.getData(dataType);
-      var rawValue = this.getRawValue(dataIndex, dataType);
-      var rawDataIndex = data.getRawIndex(dataIndex);
-      var name = data.getName(dataIndex);
-      var itemOpt = data.getRawDataItem(dataIndex);
-      var style = data.getItemVisual(dataIndex, "style");
-      var color = style && style[data.getItemVisual(dataIndex, "drawType") || "fill"];
-      var borderColor = style && style.stroke;
-      var mainType = this.mainType;
-      var isSeries2 = mainType === "series";
-      var userOutput = data.userOutput && data.userOutput.get();
-      return {
-        componentType: mainType,
-        componentSubType: this.subType,
-        componentIndex: this.componentIndex,
-        seriesType: isSeries2 ? this.subType : null,
-        seriesIndex: this.seriesIndex,
-        seriesId: isSeries2 ? this.id : null,
-        seriesName: isSeries2 ? this.name : null,
-        name,
-        dataIndex: rawDataIndex,
-        data: itemOpt,
-        dataType,
-        value: rawValue,
-        color,
-        borderColor,
-        dimensionNames: userOutput ? userOutput.fullDimensions : null,
-        encode: userOutput ? userOutput.encode : null,
-        // Param name list for mapping `a`, `b`, `c`, `d`, `e`
-        $vars: ["seriesName", "name", "value"]
-      };
-    };
-    DataFormatMixin2.prototype.getFormattedLabel = function(dataIndex, status, dataType, labelDimIndex, formatter, extendParams) {
-      status = status || "normal";
-      var data = this.getData(dataType);
-      var params = this.getDataParams(dataIndex, dataType);
-      if (extendParams) {
-        params.value = extendParams.interpolatedValue;
-      }
-      if (labelDimIndex != null && isArray(params.value)) {
-        params.value = params.value[labelDimIndex];
-      }
-      if (!formatter) {
-        var itemModel = data.getItemModel(dataIndex);
-        formatter = itemModel.get(status === "normal" ? ["label", "formatter"] : [status, "label", "formatter"]);
-      }
-      if (isFunction(formatter)) {
-        params.status = status;
-        params.dimensionIndex = labelDimIndex;
-        return formatter(params);
-      } else if (isString(formatter)) {
-        var str = formatTpl(formatter, params);
-        return str.replace(DIMENSION_LABEL_REG, function(origin, dimStr) {
-          var len = dimStr.length;
-          var dimLoose = dimStr;
-          if (dimLoose.charAt(0) === "[" && dimLoose.charAt(len - 1) === "]") {
-            dimLoose = +dimLoose.slice(1, len - 1);
-            if (true) {
-              if (isNaN(dimLoose)) {
-                error("Invalide label formatter: @" + dimStr + ", only support @[0], @[1], @[2], ...");
-              }
-            }
-          }
-          var val = retrieveRawValue(data, dataIndex, dimLoose);
-          if (extendParams && isArray(extendParams.interpolatedValue)) {
-            var dimIndex = data.getDimensionIndex(dimLoose);
-            if (dimIndex >= 0) {
-              val = extendParams.interpolatedValue[dimIndex];
-            }
-          }
-          return val != null ? val + "" : "";
-        });
-      }
-    };
-    DataFormatMixin2.prototype.getRawValue = function(idx, dataType) {
-      return retrieveRawValue(this.getData(dataType), idx);
-    };
-    DataFormatMixin2.prototype.formatTooltip = function(dataIndex, multipleSeries, dataType) {
-      return;
-    };
-    return DataFormatMixin2;
-  }()
-);
-function normalizeTooltipFormatResult(result) {
-  var markupText;
-  var markupFragment;
-  if (isObject(result)) {
-    if (result.type) {
-      markupFragment = result;
-    } else {
-      if (true) {
-        console.warn("The return type of `formatTooltip` is not supported: " + makePrintable(result));
-      }
-    }
-  } else {
-    markupText = result;
-  }
-  return {
-    text: markupText,
-    // markers: markers || markersExisting,
-    frag: markupFragment
-  };
-}
-
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/core/task.js
-function createTask(define) {
-  return new Task(define);
-}
-var Task = (
-  /** @class */
-  function() {
-    function Task2(define) {
-      define = define || {};
-      this._reset = define.reset;
-      this._plan = define.plan;
-      this._count = define.count;
-      this._onDirty = define.onDirty;
-      this._dirty = true;
-    }
-    Task2.prototype.perform = function(performArgs) {
-      var upTask = this._upstream;
-      var skip = performArgs && performArgs.skip;
-      if (this._dirty && upTask) {
-        var context = this.context;
-        context.data = context.outputData = upTask.context.outputData;
-      }
-      if (this.__pipeline) {
-        this.__pipeline.currentTask = this;
-      }
-      var planResult;
-      if (this._plan && !skip) {
-        planResult = this._plan(this.context);
-      }
-      var lastModBy = normalizeModBy(this._modBy);
-      var lastModDataCount = this._modDataCount || 0;
-      var modBy = normalizeModBy(performArgs && performArgs.modBy);
-      var modDataCount = performArgs && performArgs.modDataCount || 0;
-      if (lastModBy !== modBy || lastModDataCount !== modDataCount) {
-        planResult = "reset";
-      }
-      function normalizeModBy(val) {
-        !(val >= 1) && (val = 1);
-        return val;
-      }
-      var forceFirstProgress;
-      if (this._dirty || planResult === "reset") {
-        this._dirty = false;
-        forceFirstProgress = this._doReset(skip);
-      }
-      this._modBy = modBy;
-      this._modDataCount = modDataCount;
-      var step = performArgs && performArgs.step;
-      if (upTask) {
-        if (true) {
-          assert(upTask._outputDueEnd != null);
-        }
-        this._dueEnd = upTask._outputDueEnd;
-      } else {
-        if (true) {
-          assert(!this._progress || this._count);
-        }
-        this._dueEnd = this._count ? this._count(this.context) : Infinity;
-      }
-      if (this._progress) {
-        var start = this._dueIndex;
-        var end = Math.min(step != null ? this._dueIndex + step : Infinity, this._dueEnd);
-        if (!skip && (forceFirstProgress || start < end)) {
-          var progress = this._progress;
-          if (isArray(progress)) {
-            for (var i = 0; i < progress.length; i++) {
-              this._doProgress(progress[i], start, end, modBy, modDataCount);
-            }
-          } else {
-            this._doProgress(progress, start, end, modBy, modDataCount);
-          }
-        }
-        this._dueIndex = end;
-        var outputDueEnd = this._settedOutputEnd != null ? this._settedOutputEnd : end;
-        if (true) {
-          assert(outputDueEnd >= this._outputDueEnd);
-        }
-        this._outputDueEnd = outputDueEnd;
-      } else {
-        this._dueIndex = this._outputDueEnd = this._settedOutputEnd != null ? this._settedOutputEnd : this._dueEnd;
-      }
-      return this.unfinished();
-    };
-    Task2.prototype.dirty = function() {
-      this._dirty = true;
-      this._onDirty && this._onDirty(this.context);
-    };
-    Task2.prototype._doProgress = function(progress, start, end, modBy, modDataCount) {
-      iterator.reset(start, end, modBy, modDataCount);
-      this._callingProgress = progress;
-      this._callingProgress({
-        start,
-        end,
-        count: end - start,
-        next: iterator.next
-      }, this.context);
-    };
-    Task2.prototype._doReset = function(skip) {
-      this._dueIndex = this._outputDueEnd = this._dueEnd = 0;
-      this._settedOutputEnd = null;
-      var progress;
-      var forceFirstProgress;
-      if (!skip && this._reset) {
-        progress = this._reset(this.context);
-        if (progress && progress.progress) {
-          forceFirstProgress = progress.forceFirstProgress;
-          progress = progress.progress;
-        }
-        if (isArray(progress) && !progress.length) {
-          progress = null;
-        }
-      }
-      this._progress = progress;
-      this._modBy = this._modDataCount = null;
-      var downstream = this._downstream;
-      downstream && downstream.dirty();
-      return forceFirstProgress;
-    };
-    Task2.prototype.unfinished = function() {
-      return this._progress && this._dueIndex < this._dueEnd;
-    };
-    Task2.prototype.pipe = function(downTask) {
-      if (true) {
-        assert(downTask && !downTask._disposed && downTask !== this);
-      }
-      if (this._downstream !== downTask || this._dirty) {
-        this._downstream = downTask;
-        downTask._upstream = this;
-        downTask.dirty();
-      }
-    };
-    Task2.prototype.dispose = function() {
-      if (this._disposed) {
-        return;
-      }
-      this._upstream && (this._upstream._downstream = null);
-      this._downstream && (this._downstream._upstream = null);
-      this._dirty = false;
-      this._disposed = true;
-    };
-    Task2.prototype.getUpstream = function() {
-      return this._upstream;
-    };
-    Task2.prototype.getDownstream = function() {
-      return this._downstream;
-    };
-    Task2.prototype.setOutputEnd = function(end) {
-      this._outputDueEnd = this._settedOutputEnd = end;
-    };
-    return Task2;
-  }()
-);
-var iterator = /* @__PURE__ */ function() {
-  var end;
-  var current;
-  var modBy;
-  var modDataCount;
-  var winCount;
-  var it = {
-    reset: function(s, e2, sStep, sCount) {
-      current = s;
-      end = e2;
-      modBy = sStep;
-      modDataCount = sCount;
-      winCount = Math.ceil(modDataCount / modBy);
-      it.next = modBy > 1 && modDataCount > 0 ? modNext : sequentialNext;
-    }
-  };
-  return it;
-  function sequentialNext() {
-    return current < end ? current++ : null;
-  }
-  function modNext() {
-    var dataIndex = current % winCount * modBy + Math.ceil(current / winCount);
-    var result = current >= end ? null : dataIndex < modDataCount ? dataIndex : current;
-    current++;
-    return result;
-  }
-}();
-
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/data/helper/transform.js
-var ExternalSource = (
-  /** @class */
-  function() {
-    function ExternalSource2() {
-    }
-    ExternalSource2.prototype.getRawData = function() {
-      throw new Error("not supported");
-    };
-    ExternalSource2.prototype.getRawDataItem = function(dataIndex) {
-      throw new Error("not supported");
-    };
-    ExternalSource2.prototype.cloneRawData = function() {
-      return;
-    };
-    ExternalSource2.prototype.getDimensionInfo = function(dim) {
-      return;
-    };
-    ExternalSource2.prototype.cloneAllDimensionInfo = function() {
-      return;
-    };
-    ExternalSource2.prototype.count = function() {
-      return;
-    };
-    ExternalSource2.prototype.retrieveValue = function(dataIndex, dimIndex) {
-      return;
-    };
-    ExternalSource2.prototype.retrieveValueFromItem = function(dataItem, dimIndex) {
-      return;
-    };
-    ExternalSource2.prototype.convertValue = function(rawVal, dimInfo) {
-      return parseDataValue(rawVal, dimInfo);
-    };
-    return ExternalSource2;
-  }()
-);
-function createExternalSource(internalSource, externalTransform) {
-  var extSource = new ExternalSource();
-  var data = internalSource.data;
-  var sourceFormat = extSource.sourceFormat = internalSource.sourceFormat;
-  var sourceHeaderCount = internalSource.startIndex;
-  var errMsg = "";
-  if (internalSource.seriesLayoutBy !== SERIES_LAYOUT_BY_COLUMN) {
-    if (true) {
-      errMsg = '`seriesLayoutBy` of upstream dataset can only be "column" in data transform.';
-    }
-    throwError(errMsg);
-  }
-  var dimensions = [];
-  var dimsByName = {};
-  var dimsDef = internalSource.dimensionsDefine;
-  if (dimsDef) {
-    each(dimsDef, function(dimDef, idx) {
-      var name = dimDef.name;
-      var dimDefExt = {
-        index: idx,
-        name,
-        displayName: dimDef.displayName
-      };
-      dimensions.push(dimDefExt);
-      if (name != null) {
-        var errMsg_1 = "";
-        if (hasOwn(dimsByName, name)) {
-          if (true) {
-            errMsg_1 = 'dimension name "' + name + '" duplicated.';
-          }
-          throwError(errMsg_1);
-        }
-        dimsByName[name] = dimDefExt;
-      }
-    });
-  } else {
-    for (var i = 0; i < internalSource.dimensionsDetectedCount || 0; i++) {
-      dimensions.push({
-        index: i
-      });
-    }
-  }
-  var rawItemGetter = getRawSourceItemGetter(sourceFormat, SERIES_LAYOUT_BY_COLUMN);
-  if (externalTransform.__isBuiltIn) {
-    extSource.getRawDataItem = function(dataIndex) {
-      return rawItemGetter(data, sourceHeaderCount, dimensions, dataIndex);
-    };
-    extSource.getRawData = bind(getRawData, null, internalSource);
-  }
-  extSource.cloneRawData = bind(cloneRawData, null, internalSource);
-  var rawCounter = getRawSourceDataCounter(sourceFormat, SERIES_LAYOUT_BY_COLUMN);
-  extSource.count = bind(rawCounter, null, data, sourceHeaderCount, dimensions);
-  var rawValueGetter = getRawSourceValueGetter(sourceFormat);
-  extSource.retrieveValue = function(dataIndex, dimIndex) {
-    var rawItem = rawItemGetter(data, sourceHeaderCount, dimensions, dataIndex);
-    return retrieveValueFromItem(rawItem, dimIndex);
-  };
-  var retrieveValueFromItem = extSource.retrieveValueFromItem = function(dataItem, dimIndex) {
-    if (dataItem == null) {
-      return;
-    }
-    var dimDef = dimensions[dimIndex];
-    if (dimDef) {
-      return rawValueGetter(dataItem, dimIndex, dimDef.name);
-    }
-  };
-  extSource.getDimensionInfo = bind(getDimensionInfo, null, dimensions, dimsByName);
-  extSource.cloneAllDimensionInfo = bind(cloneAllDimensionInfo, null, dimensions);
-  return extSource;
-}
-function getRawData(upstream) {
-  var sourceFormat = upstream.sourceFormat;
-  if (!isSupportedSourceFormat(sourceFormat)) {
-    var errMsg = "";
-    if (true) {
-      errMsg = "`getRawData` is not supported in source format " + sourceFormat;
-    }
-    throwError(errMsg);
-  }
-  return upstream.data;
-}
-function cloneRawData(upstream) {
-  var sourceFormat = upstream.sourceFormat;
-  var data = upstream.data;
-  if (!isSupportedSourceFormat(sourceFormat)) {
-    var errMsg = "";
-    if (true) {
-      errMsg = "`cloneRawData` is not supported in source format " + sourceFormat;
-    }
-    throwError(errMsg);
-  }
-  if (sourceFormat === SOURCE_FORMAT_ARRAY_ROWS) {
-    var result = [];
-    for (var i = 0, len = data.length; i < len; i++) {
-      result.push(data[i].slice());
-    }
-    return result;
-  } else if (sourceFormat === SOURCE_FORMAT_OBJECT_ROWS) {
-    var result = [];
-    for (var i = 0, len = data.length; i < len; i++) {
-      result.push(extend({}, data[i]));
-    }
-    return result;
-  }
-}
-function getDimensionInfo(dimensions, dimsByName, dim) {
-  if (dim == null) {
-    return;
-  }
-  if (isNumber(dim) || !isNaN(dim) && !hasOwn(dimsByName, dim)) {
-    return dimensions[dim];
-  } else if (hasOwn(dimsByName, dim)) {
-    return dimsByName[dim];
-  }
-}
-function cloneAllDimensionInfo(dimensions) {
-  return clone(dimensions);
-}
-var externalTransformMap = createHashMap();
-function registerExternalTransform(externalTransform) {
-  externalTransform = clone(externalTransform);
-  var type = externalTransform.type;
-  var errMsg = "";
-  if (!type) {
-    if (true) {
-      errMsg = "Must have a `type` when `registerTransform`.";
-    }
-    throwError(errMsg);
-  }
-  var typeParsed = type.split(":");
-  if (typeParsed.length !== 2) {
-    if (true) {
-      errMsg = 'Name must include namespace like "ns:regression".';
-    }
-    throwError(errMsg);
-  }
-  var isBuiltIn = false;
-  if (typeParsed[0] === "echarts") {
-    type = typeParsed[1];
-    isBuiltIn = true;
-  }
-  externalTransform.__isBuiltIn = isBuiltIn;
-  externalTransformMap.set(type, externalTransform);
-}
-function applyDataTransform(rawTransOption, sourceList, infoForPrint) {
-  var pipedTransOption = normalizeToArray(rawTransOption);
-  var pipeLen = pipedTransOption.length;
-  var errMsg = "";
-  if (!pipeLen) {
-    if (true) {
-      errMsg = "If `transform` declared, it should at least contain one transform.";
-    }
-    throwError(errMsg);
-  }
-  for (var i = 0, len = pipeLen; i < len; i++) {
-    var transOption = pipedTransOption[i];
-    sourceList = applySingleDataTransform(transOption, sourceList, infoForPrint, pipeLen === 1 ? null : i);
-    if (i !== len - 1) {
-      sourceList.length = Math.max(sourceList.length, 1);
-    }
-  }
-  return sourceList;
-}
-function applySingleDataTransform(transOption, upSourceList, infoForPrint, pipeIndex) {
-  var errMsg = "";
-  if (!upSourceList.length) {
-    if (true) {
-      errMsg = "Must have at least one upstream dataset.";
-    }
-    throwError(errMsg);
-  }
-  if (!isObject(transOption)) {
-    if (true) {
-      errMsg = "transform declaration must be an object rather than " + typeof transOption + ".";
-    }
-    throwError(errMsg);
-  }
-  var transType = transOption.type;
-  var externalTransform = externalTransformMap.get(transType);
-  if (!externalTransform) {
-    if (true) {
-      errMsg = 'Can not find transform on type "' + transType + '".';
-    }
-    throwError(errMsg);
-  }
-  var extUpSourceList = map(upSourceList, function(upSource) {
-    return createExternalSource(upSource, externalTransform);
-  });
-  var resultList = normalizeToArray(externalTransform.transform({
-    upstream: extUpSourceList[0],
-    upstreamList: extUpSourceList,
-    config: clone(transOption.config)
-  }));
-  if (true) {
-    if (transOption.print) {
-      var printStrArr = map(resultList, function(extSource) {
-        var pipeIndexStr = pipeIndex != null ? " === pipe index: " + pipeIndex : "";
-        return ["=== dataset index: " + infoForPrint.datasetIndex + pipeIndexStr + " ===", "- transform result data:", makePrintable(extSource.data), "- transform result dimensions:", makePrintable(extSource.dimensions)].join("\n");
-      }).join("\n");
-      log(printStrArr);
-    }
-  }
-  return map(resultList, function(result, resultIndex) {
-    var errMsg2 = "";
-    if (!isObject(result)) {
-      if (true) {
-        errMsg2 = "A transform should not return some empty results.";
-      }
-      throwError(errMsg2);
-    }
-    if (!result.data) {
-      if (true) {
-        errMsg2 = "Transform result data should be not be null or undefined";
-      }
-      throwError(errMsg2);
-    }
-    var sourceFormat = detectSourceFormat(result.data);
-    if (!isSupportedSourceFormat(sourceFormat)) {
-      if (true) {
-        errMsg2 = "Transform result data should be array rows or object rows.";
-      }
-      throwError(errMsg2);
-    }
-    var resultMetaRawOption;
-    var firstUpSource = upSourceList[0];
-    if (firstUpSource && resultIndex === 0 && !result.dimensions) {
-      var startIndex = firstUpSource.startIndex;
-      if (startIndex) {
-        result.data = firstUpSource.data.slice(0, startIndex).concat(result.data);
-      }
-      resultMetaRawOption = {
-        seriesLayoutBy: SERIES_LAYOUT_BY_COLUMN,
-        sourceHeader: startIndex,
-        dimensions: firstUpSource.metaRawOption.dimensions
-      };
-    } else {
-      resultMetaRawOption = {
-        seriesLayoutBy: SERIES_LAYOUT_BY_COLUMN,
-        sourceHeader: 0,
-        dimensions: result.dimensions
-      };
-    }
-    return createSource(result.data, resultMetaRawOption, null);
-  });
-}
-function isSupportedSourceFormat(sourceFormat) {
-  return sourceFormat === SOURCE_FORMAT_ARRAY_ROWS || sourceFormat === SOURCE_FORMAT_OBJECT_ROWS;
-}
-
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/data/helper/sourceManager.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/data/helper/sourceManager.js
 var SourceManager = (
   /** @class */
   function() {
@@ -8773,7 +7706,7 @@ function doThrow(errMsg) {
   throw new Error(errMsg);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/tooltip/tooltipMarkup.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/tooltip/tooltipMarkup.js
 var TOOLTIP_LINE_HEIGHT_CSS = "line-height:1";
 function getTooltipLineHeight(textStyle) {
   var lineHeight = textStyle.lineHeight;
@@ -9018,7 +7951,7 @@ var TooltipMarkupStyleCreator = (
   }()
 );
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/tooltip/seriesFormatTooltip.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/tooltip/seriesFormatTooltip.js
 function defaultSeriesFormatTooltip(opt) {
   var series = opt.series;
   var dataIndex = opt.dataIndex;
@@ -9108,8 +8041,8 @@ function formatTooltipArrayValue(value, series, dataIndex, tooltipDims, colorStr
   };
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/model/Series.js
-var inner3 = makeInner();
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/model/Series.js
+var inner2 = makeInner();
 function getSelectionKey(data, dataIndex) {
   return data.getName(dataIndex) || data.getId(dataIndex);
 }
@@ -9133,7 +8066,7 @@ var SeriesModel = (
         model: this
       };
       this.mergeDefaultAndTheme(option, ecModel);
-      var sourceManager = inner3(this).sourceManager = new SourceManager(this);
+      var sourceManager = inner2(this).sourceManager = new SourceManager(this);
       sourceManager.prepareSource();
       var data = this.getInitialData(option, ecModel);
       wrapData(data, this);
@@ -9141,7 +8074,7 @@ var SeriesModel = (
       if (true) {
         assert(data, "getInitialData returned invalid data.");
       }
-      inner3(this).dataBeforeProcessed = data;
+      inner2(this).dataBeforeProcessed = data;
       autoSeriesName(this);
       this._initSelectedMapFromData(data);
     };
@@ -9167,14 +8100,14 @@ var SeriesModel = (
       if (layoutMode) {
         mergeLayoutParam(this.option, newSeriesOption, layoutMode);
       }
-      var sourceManager = inner3(this).sourceManager;
+      var sourceManager = inner2(this).sourceManager;
       sourceManager.dirty();
       sourceManager.prepareSource();
       var data = this.getInitialData(newSeriesOption, ecModel);
       wrapData(data, this);
       this.dataTask.dirty();
       this.dataTask.context.data = data;
-      inner3(this).dataBeforeProcessed = data;
+      inner2(this).dataBeforeProcessed = data;
       autoSeriesName(this);
       this._initSelectedMapFromData(data);
     };
@@ -9201,7 +8134,7 @@ var SeriesModel = (
         var data = task.context.data;
         return dataType == null || !data.getLinkedData ? data : data.getLinkedData(dataType);
       } else {
-        return inner3(this).data;
+        return inner2(this).data;
       }
     };
     SeriesModel2.prototype.getAllData = function() {
@@ -9219,7 +8152,7 @@ var SeriesModel = (
           context.data = data;
         }
       }
-      inner3(this).data = data;
+      inner2(this).data = data;
     };
     SeriesModel2.prototype.getEncode = function() {
       var encode = this.get("encode", true);
@@ -9228,13 +8161,13 @@ var SeriesModel = (
       }
     };
     SeriesModel2.prototype.getSourceManager = function() {
-      return inner3(this).sourceManager;
+      return inner2(this).sourceManager;
     };
     SeriesModel2.prototype.getSource = function() {
       return this.getSourceManager().getSource();
     };
     SeriesModel2.prototype.getRawData = function() {
-      return inner3(this).dataBeforeProcessed;
+      return inner2(this).dataBeforeProcessed;
     };
     SeriesModel2.prototype.getColorBy = function() {
       var colorBy = this.get("colorBy");
@@ -9473,7 +8406,42 @@ function getCurrentTask(seriesModel) {
 }
 var Series_default = SeriesModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/helper/createRenderPlanner.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/view/Component.js
+var ComponentView = (
+  /** @class */
+  function() {
+    function ComponentView2() {
+      this.group = new Group_default();
+      this.uid = getUID("viewComponent");
+    }
+    ComponentView2.prototype.init = function(ecModel, api) {
+    };
+    ComponentView2.prototype.render = function(model, ecModel, api, payload) {
+    };
+    ComponentView2.prototype.dispose = function(ecModel, api) {
+    };
+    ComponentView2.prototype.updateView = function(model, ecModel, api, payload) {
+    };
+    ComponentView2.prototype.updateLayout = function(model, ecModel, api, payload) {
+    };
+    ComponentView2.prototype.updateVisual = function(model, ecModel, api, payload) {
+    };
+    ComponentView2.prototype.toggleBlurSeries = function(seriesModels, isBlur, ecModel) {
+    };
+    ComponentView2.prototype.eachRendered = function(cb) {
+      var group = this.group;
+      if (group) {
+        group.traverse(cb);
+      }
+    };
+    return ComponentView2;
+  }()
+);
+enableClassExtend(ComponentView);
+enableClassManagement(ComponentView);
+var Component_default2 = ComponentView;
+
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/helper/createRenderPlanner.js
 function createRenderPlanner() {
   var inner7 = makeInner();
   return function(seriesModel) {
@@ -9487,8 +8455,8 @@ function createRenderPlanner() {
   };
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/view/Chart.js
-var inner4 = makeInner();
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/view/Chart.js
+var inner3 = makeInner();
 var renderPlanner = createRenderPlanner();
 var ChartView = (
   /** @class */
@@ -9549,7 +8517,7 @@ var ChartView = (
       traverseElements(this.group, cb);
     };
     ChartView2.markUpdateMethod = function(payload, methodName) {
-      inner4(payload).updateMethod = methodName;
+      inner3(payload).updateMethod = methodName;
     };
     ChartView2.protoInitialize = function() {
       var proto2 = ChartView2.prototype;
@@ -9588,7 +8556,7 @@ function renderTaskReset(context) {
   var payload = context.payload;
   var progressiveRender = seriesModel.pipelineContext.progressiveRender;
   var view = context.view;
-  var updateMethod = payload && inner4(payload).updateMethod;
+  var updateMethod = payload && inner3(payload).updateMethod;
   var methodName = progressiveRender ? "incrementalPrepareRender" : updateMethod && view[updateMethod] ? updateMethod : "render";
   if (methodName !== "render") {
     view[methodName](seriesModel, ecModel, api, payload);
@@ -9614,7 +8582,7 @@ var progressMethodMap = {
 };
 var Chart_default = ChartView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/util/throttle.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/util/throttle.js
 var ORIGIN_METHOD = "\0__throttleOriginMethod";
 var RATE = "\0__throttleRate";
 var THROTTLE_TYPE = "\0__throttleType";
@@ -9695,42 +8663,7 @@ function clear(obj, fnAttr) {
   }
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/view/Component.js
-var ComponentView = (
-  /** @class */
-  function() {
-    function ComponentView2() {
-      this.group = new Group_default();
-      this.uid = getUID("viewComponent");
-    }
-    ComponentView2.prototype.init = function(ecModel, api) {
-    };
-    ComponentView2.prototype.render = function(model, ecModel, api, payload) {
-    };
-    ComponentView2.prototype.dispose = function(ecModel, api) {
-    };
-    ComponentView2.prototype.updateView = function(model, ecModel, api, payload) {
-    };
-    ComponentView2.prototype.updateLayout = function(model, ecModel, api, payload) {
-    };
-    ComponentView2.prototype.updateVisual = function(model, ecModel, api, payload) {
-    };
-    ComponentView2.prototype.toggleBlurSeries = function(seriesModels, isBlur, ecModel) {
-    };
-    ComponentView2.prototype.eachRendered = function(cb) {
-      var group = this.group;
-      if (group) {
-        group.traverse(cb);
-      }
-    };
-    return ComponentView2;
-  }()
-);
-enableClassExtend(ComponentView);
-enableClassManagement(ComponentView);
-var Component_default2 = ComponentView;
-
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/model/globalDefault.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/model/globalDefault.js
 var platform = "";
 if (typeof navigator !== "undefined") {
   platform = navigator.platform || "";
@@ -9818,7 +8751,7 @@ var globalDefault_default = {
   useUTC: false
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/model/internalComponentCreator.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/model/internalComponentCreator.js
 var internalOptionCreatorMap = createHashMap();
 function registerInternalOptionCreator(mainType, creator) {
   assert(internalOptionCreatorMap.get(mainType) == null && creator);
@@ -9841,7 +8774,7 @@ function concatInternalOptions(ecModel, mainType, newCmptOptionList) {
   return newCmptOptionList.concat(internalOptions);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/model/Global.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/model/Global.js
 var reCreateSeriesIndices;
 var assertSeriesInitialized;
 var initBase;
@@ -10401,7 +9334,7 @@ function normalizeSetOptionInput(opts) {
 mixin(GlobalModel, PaletteMixin);
 var Global_default = GlobalModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/core/ExtensionAPI.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/core/ExtensionAPI.js
 var availableMethods = [
   "getDom",
   "getZr",
@@ -10435,7 +9368,7 @@ var ExtensionAPI = (
 );
 var ExtensionAPI_default = ExtensionAPI;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/core/CoordinateSystem.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/core/CoordinateSystem.js
 var coordinateSystemCreators = {};
 var CoordinateSystemManager = (
   /** @class */
@@ -10470,7 +9403,7 @@ var CoordinateSystemManager = (
 );
 var CoordinateSystem_default = CoordinateSystemManager;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/model/OptionManager.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/model/OptionManager.js
 var QUERY_REG = /^(min|max)?(.+)$/;
 var OptionManager = (
   /** @class */
@@ -10656,9 +9589,9 @@ function indicesEquals(indices1, indices2) {
 }
 var OptionManager_default = OptionManager;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/preprocessor/helper/compatStyle.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/preprocessor/helper/compatStyle.js
 var each3 = each;
-var isObject3 = isObject;
+var isObject2 = isObject;
 var POSSIBLE_STYLES = ["areaStyle", "lineStyle", "nodeStyle", "linkStyle", "chordStyle", "label", "labelLine"];
 function compatEC2ItemStyle(opt) {
   var itemStyleOpt = opt && opt.itemStyle;
@@ -10735,8 +9668,8 @@ function removeEC3NormalStatus(opt) {
   convertNormalEmphasis(opt, "edgeLabel");
 }
 function compatTextStyle(opt, propName) {
-  var labelOptSingle = isObject3(opt) && opt[propName];
-  var textStyle = isObject3(labelOptSingle) && labelOptSingle.textStyle;
+  var labelOptSingle = isObject2(opt) && opt[propName];
+  var textStyle = isObject2(labelOptSingle) && labelOptSingle.textStyle;
   if (textStyle) {
     if (true) {
       deprecateLog("textStyle hierarchy in " + propName + " has been removed since 4.0. All textStyle properties are configured in " + propName + " directly now.");
@@ -10757,7 +9690,7 @@ function compatEC3CommonStyles(opt) {
   }
 }
 function processSeries(seriesOpt) {
-  if (!isObject3(seriesOpt)) {
+  if (!isObject2(seriesOpt)) {
     return;
   }
   compatEC2ItemStyle(seriesOpt);
@@ -10842,7 +9775,7 @@ function toObj(o) {
 }
 function globalCompatStyle(option, isTheme) {
   each3(toArr(option.series), function(seriesOpt) {
-    isObject3(seriesOpt) && processSeries(seriesOpt);
+    isObject2(seriesOpt) && processSeries(seriesOpt);
   });
   var axes = ["xAxis", "yAxis", "radiusAxis", "angleAxis", "singleAxis", "parallelAxis", "radar"];
   isTheme && axes.push("valueAxis", "categoryAxis", "logAxis", "timeAxis");
@@ -10890,7 +9823,7 @@ function globalCompatStyle(option, isTheme) {
     }
   });
   each3(toArr(option.geo), function(geoOpt) {
-    if (isObject3(geoOpt)) {
+    if (isObject2(geoOpt)) {
       compatEC3CommonStyles(geoOpt);
       each3(toArr(geoOpt.regions), function(regionObj) {
         compatEC3CommonStyles(regionObj);
@@ -10920,7 +9853,7 @@ function globalCompatStyle(option, isTheme) {
   compatTextStyle(toObj(option.tooltip).axisPointer, "label");
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/preprocessor/backwardCompat.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/preprocessor/backwardCompat.js
 function get(opt, path) {
   var pathArr = path.split(",");
   var obj = opt;
@@ -11127,7 +10060,7 @@ function globalBackwardCompat(option, isTheme) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/processor/dataStack.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/processor/dataStack.js
 function dataStack(ecModel) {
   var stackInfoMap = createHashMap();
   ecModel.eachSeries(function(seriesModel) {
@@ -11197,8 +10130,8 @@ function calculateStack(stackInfoList) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/visual/style.js
-var inner5 = makeInner();
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/visual/style.js
+var inner4 = makeInner();
 var defaultStyleMappers = {
   itemStyle: makeStyleMapper(ITEM_STYLE_KEY_MAP, true),
   lineStyle: makeStyleMapper(LINE_STYLE_KEY_MAP, true)
@@ -11317,7 +10250,7 @@ var dataColorPaletteTask = {
         colorScope = {};
         paletteScopeGroupByType.set(key, colorScope);
       }
-      inner5(seriesModel).scope = colorScope;
+      inner4(seriesModel).scope = colorScope;
     });
     ecModel.eachSeries(function(seriesModel) {
       if (seriesModel.isColorBySeries() || ecModel.isSeriesFiltered(seriesModel)) {
@@ -11326,7 +10259,7 @@ var dataColorPaletteTask = {
       var dataAll = seriesModel.getRawData();
       var idxMap = {};
       var data = seriesModel.getData();
-      var colorScope = inner5(seriesModel).scope;
+      var colorScope = inner4(seriesModel).scope;
       var stylePath = seriesModel.visualStyleAccessPath || "itemStyle";
       var colorKey = getDefaultColorKey(seriesModel, stylePath);
       data.each(function(idx) {
@@ -11347,7 +10280,7 @@ var dataColorPaletteTask = {
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/loading/default.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/loading/default.js
 var PI3 = Math.PI;
 function defaultLoading(api, opts) {
   opts = opts || {};
@@ -11449,7 +10382,7 @@ function defaultLoading(api, opts) {
   return group;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/core/Scheduler.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/core/Scheduler.js
 var Scheduler = (
   /** @class */
   function() {
@@ -11800,14 +10733,14 @@ function mockMethods(target, Clz) {
 }
 var Scheduler_default = Scheduler;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/theme/light.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/theme/light.js
 var colorAll = ["#37A2DA", "#32C5E9", "#67E0E3", "#9FE6B8", "#FFDB5C", "#ff9f7f", "#fb7293", "#E062AE", "#E690D1", "#e7bcf3", "#9d96f5", "#8378EA", "#96BFFF"];
 var light_default = {
   color: colorAll,
   colorLayer: [["#37A2DA", "#ffd85c", "#fd7b5f"], ["#37A2DA", "#67E0E3", "#FFDB5C", "#ff9f7f", "#E062AE", "#9d96f5"], ["#37A2DA", "#32C5E9", "#9FE6B8", "#FFDB5C", "#ff9f7f", "#fb7293", "#e7bcf3", "#8378EA", "#96BFFF"], colorAll]
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/theme/dark.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/theme/dark.js
 var contrastColor = "#B9B8CE";
 var backgroundColor = "#100C2A";
 var axisCommon = function() {
@@ -11991,7 +10924,7 @@ var theme = {
 theme.categoryAxis.splitLine.show = false;
 var dark_default = theme;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/util/ECEventProcessor.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/util/ECEventProcessor.js
 var ECEventProcessor = (
   /** @class */
   function() {
@@ -12067,7 +11000,7 @@ var ECEventProcessor = (
   }()
 );
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/visual/symbol.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/visual/symbol.js
 var SYMBOL_PROPS_WITH_CB = ["symbol", "symbolSize", "symbolRotate", "symbolOffset"];
 var SYMBOL_PROPS = SYMBOL_PROPS_WITH_CB.concat(["symbolKeepAspect"]);
 var seriesSymbolTask = {
@@ -12145,7 +11078,7 @@ var dataSymbolTask = {
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/visual/helper.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/visual/helper.js
 function getItemVisualFromData(data, dataIndex, key) {
   switch (key) {
     case "color":
@@ -12202,7 +11135,7 @@ function setItemVisualFromData(data, dataIndex, key, value) {
   }
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/legacy/dataSelectAction.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/legacy/dataSelectAction.js
 function createLegacyDataSelectAction(seriesType2, ecRegisterAction) {
   function getSeriesIndices(ecModel, payload) {
     var seriesIndices = [];
@@ -12272,7 +11205,7 @@ function handleLegacySelectEvents(messageCenter, ecIns, api) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/util/event.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/util/event.js
 function findEventDispatcher(target, det, returnFirstMatch) {
   var found;
   while (target) {
@@ -12287,7 +11220,7 @@ function findEventDispatcher(target, det, returnFirstMatch) {
   return found;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/zrender/lib/core/WeakMap.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/zrender/lib/core/WeakMap.js
 var wmUniqueIndex = Math.round(Math.random() * 9);
 var supportDefineProperty = typeof Object.defineProperty === "function";
 var WeakMap = function() {
@@ -12330,7 +11263,7 @@ var WeakMap = function() {
 }();
 var WeakMap_default = WeakMap;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/util/symbol.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/util/symbol.js
 var Triangle = Path_default.extend({
   type: "triangle",
   shape: {
@@ -12583,7 +11516,7 @@ function normalizeSymbolOffset(symbolOffset, symbolSize) {
   return [parsePercent2(symbolOffset[0], symbolSize[0]) || 0, parsePercent2(retrieve2(symbolOffset[1], symbolOffset[0]), symbolSize[1]) || 0];
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/util/decal.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/util/decal.js
 var decalMap = new WeakMap_default();
 var decalCache = new LRU_default(100);
 var decalKeys = ["symbol", "symbolSize", "symbolKeepAspect", "color", "backgroundColor", "dashArrayX", "dashArrayY", "maxTileWidth", "maxTileHeight"];
@@ -12866,7 +11799,7 @@ function getLineBlockLengthY(dash) {
   return blockLength;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/visual/decal.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/visual/decal.js
 function decalVisual(ecModel, api) {
   ecModel.eachRawSeries(function(seriesModel) {
     if (ecModel.isSeriesFiltered(seriesModel)) {
@@ -12890,11 +11823,11 @@ function decalVisual(ecModel, api) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/core/lifecycle.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/core/lifecycle.js
 var lifecycle = new Eventful_default();
 var lifecycle_default = lifecycle;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/core/impl.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/core/impl.js
 var implsStore = {};
 function registerImpl(name, impl) {
   if (true) {
@@ -12913,7 +11846,7 @@ function getImpl(name) {
   return implsStore[name];
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/core/echarts.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/core/echarts.js
 var version = "5.6.0";
 var dependencies = {
   zrender: "5.6.1"
@@ -14724,7 +13657,1074 @@ registerTheme("light", light_default);
 registerTheme("dark", dark_default);
 var dataTool = {};
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/extension.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/data/DataDiffer.js
+function dataIndexMapValueLength(valNumOrArrLengthMoreThan2) {
+  return valNumOrArrLengthMoreThan2 == null ? 0 : valNumOrArrLengthMoreThan2.length || 1;
+}
+function defaultKeyGetter(item) {
+  return item;
+}
+var DataDiffer = (
+  /** @class */
+  function() {
+    function DataDiffer2(oldArr, newArr, oldKeyGetter, newKeyGetter, context, diffMode) {
+      this._old = oldArr;
+      this._new = newArr;
+      this._oldKeyGetter = oldKeyGetter || defaultKeyGetter;
+      this._newKeyGetter = newKeyGetter || defaultKeyGetter;
+      this.context = context;
+      this._diffModeMultiple = diffMode === "multiple";
+    }
+    DataDiffer2.prototype.add = function(func) {
+      this._add = func;
+      return this;
+    };
+    DataDiffer2.prototype.update = function(func) {
+      this._update = func;
+      return this;
+    };
+    DataDiffer2.prototype.updateManyToOne = function(func) {
+      this._updateManyToOne = func;
+      return this;
+    };
+    DataDiffer2.prototype.updateOneToMany = function(func) {
+      this._updateOneToMany = func;
+      return this;
+    };
+    DataDiffer2.prototype.updateManyToMany = function(func) {
+      this._updateManyToMany = func;
+      return this;
+    };
+    DataDiffer2.prototype.remove = function(func) {
+      this._remove = func;
+      return this;
+    };
+    DataDiffer2.prototype.execute = function() {
+      this[this._diffModeMultiple ? "_executeMultiple" : "_executeOneToOne"]();
+    };
+    DataDiffer2.prototype._executeOneToOne = function() {
+      var oldArr = this._old;
+      var newArr = this._new;
+      var newDataIndexMap = {};
+      var oldDataKeyArr = new Array(oldArr.length);
+      var newDataKeyArr = new Array(newArr.length);
+      this._initIndexMap(oldArr, null, oldDataKeyArr, "_oldKeyGetter");
+      this._initIndexMap(newArr, newDataIndexMap, newDataKeyArr, "_newKeyGetter");
+      for (var i = 0; i < oldArr.length; i++) {
+        var oldKey = oldDataKeyArr[i];
+        var newIdxMapVal = newDataIndexMap[oldKey];
+        var newIdxMapValLen = dataIndexMapValueLength(newIdxMapVal);
+        if (newIdxMapValLen > 1) {
+          var newIdx = newIdxMapVal.shift();
+          if (newIdxMapVal.length === 1) {
+            newDataIndexMap[oldKey] = newIdxMapVal[0];
+          }
+          this._update && this._update(newIdx, i);
+        } else if (newIdxMapValLen === 1) {
+          newDataIndexMap[oldKey] = null;
+          this._update && this._update(newIdxMapVal, i);
+        } else {
+          this._remove && this._remove(i);
+        }
+      }
+      this._performRestAdd(newDataKeyArr, newDataIndexMap);
+    };
+    DataDiffer2.prototype._executeMultiple = function() {
+      var oldArr = this._old;
+      var newArr = this._new;
+      var oldDataIndexMap = {};
+      var newDataIndexMap = {};
+      var oldDataKeyArr = [];
+      var newDataKeyArr = [];
+      this._initIndexMap(oldArr, oldDataIndexMap, oldDataKeyArr, "_oldKeyGetter");
+      this._initIndexMap(newArr, newDataIndexMap, newDataKeyArr, "_newKeyGetter");
+      for (var i = 0; i < oldDataKeyArr.length; i++) {
+        var oldKey = oldDataKeyArr[i];
+        var oldIdxMapVal = oldDataIndexMap[oldKey];
+        var newIdxMapVal = newDataIndexMap[oldKey];
+        var oldIdxMapValLen = dataIndexMapValueLength(oldIdxMapVal);
+        var newIdxMapValLen = dataIndexMapValueLength(newIdxMapVal);
+        if (oldIdxMapValLen > 1 && newIdxMapValLen === 1) {
+          this._updateManyToOne && this._updateManyToOne(newIdxMapVal, oldIdxMapVal);
+          newDataIndexMap[oldKey] = null;
+        } else if (oldIdxMapValLen === 1 && newIdxMapValLen > 1) {
+          this._updateOneToMany && this._updateOneToMany(newIdxMapVal, oldIdxMapVal);
+          newDataIndexMap[oldKey] = null;
+        } else if (oldIdxMapValLen === 1 && newIdxMapValLen === 1) {
+          this._update && this._update(newIdxMapVal, oldIdxMapVal);
+          newDataIndexMap[oldKey] = null;
+        } else if (oldIdxMapValLen > 1 && newIdxMapValLen > 1) {
+          this._updateManyToMany && this._updateManyToMany(newIdxMapVal, oldIdxMapVal);
+          newDataIndexMap[oldKey] = null;
+        } else if (oldIdxMapValLen > 1) {
+          for (var i_1 = 0; i_1 < oldIdxMapValLen; i_1++) {
+            this._remove && this._remove(oldIdxMapVal[i_1]);
+          }
+        } else {
+          this._remove && this._remove(oldIdxMapVal);
+        }
+      }
+      this._performRestAdd(newDataKeyArr, newDataIndexMap);
+    };
+    DataDiffer2.prototype._performRestAdd = function(newDataKeyArr, newDataIndexMap) {
+      for (var i = 0; i < newDataKeyArr.length; i++) {
+        var newKey = newDataKeyArr[i];
+        var newIdxMapVal = newDataIndexMap[newKey];
+        var idxMapValLen = dataIndexMapValueLength(newIdxMapVal);
+        if (idxMapValLen > 1) {
+          for (var j = 0; j < idxMapValLen; j++) {
+            this._add && this._add(newIdxMapVal[j]);
+          }
+        } else if (idxMapValLen === 1) {
+          this._add && this._add(newIdxMapVal);
+        }
+        newDataIndexMap[newKey] = null;
+      }
+    };
+    DataDiffer2.prototype._initIndexMap = function(arr, map3, keyArr, keyGetterName) {
+      var cbModeMultiple = this._diffModeMultiple;
+      for (var i = 0; i < arr.length; i++) {
+        var key = "_ec_" + this[keyGetterName](arr[i], i);
+        if (!cbModeMultiple) {
+          keyArr[i] = key;
+        }
+        if (!map3) {
+          continue;
+        }
+        var idxMapVal = map3[key];
+        var idxMapValLen = dataIndexMapValueLength(idxMapVal);
+        if (idxMapValLen === 0) {
+          map3[key] = i;
+          if (cbModeMultiple) {
+            keyArr.push(key);
+          }
+        } else if (idxMapValLen === 1) {
+          map3[key] = [idxMapVal, i];
+        } else {
+          idxMapVal.push(i);
+        }
+      }
+    };
+    return DataDiffer2;
+  }()
+);
+var DataDiffer_default = DataDiffer;
+
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/data/helper/dimensionHelper.js
+var DimensionUserOuput = (
+  /** @class */
+  function() {
+    function DimensionUserOuput2(encode, dimRequest) {
+      this._encode = encode;
+      this._schema = dimRequest;
+    }
+    DimensionUserOuput2.prototype.get = function() {
+      return {
+        // Do not generate full dimension name until fist used.
+        fullDimensions: this._getFullDimensionNames(),
+        encode: this._encode
+      };
+    };
+    DimensionUserOuput2.prototype._getFullDimensionNames = function() {
+      if (!this._cachedDimNames) {
+        this._cachedDimNames = this._schema ? this._schema.makeOutputDimensionNames() : [];
+      }
+      return this._cachedDimNames;
+    };
+    return DimensionUserOuput2;
+  }()
+);
+function summarizeDimensions(data, schema) {
+  var summary = {};
+  var encode = summary.encode = {};
+  var notExtraCoordDimMap = createHashMap();
+  var defaultedLabel = [];
+  var defaultedTooltip = [];
+  var userOutputEncode = {};
+  each(data.dimensions, function(dimName) {
+    var dimItem = data.getDimensionInfo(dimName);
+    var coordDim = dimItem.coordDim;
+    if (coordDim) {
+      if (true) {
+        assert(VISUAL_DIMENSIONS.get(coordDim) == null);
+      }
+      var coordDimIndex = dimItem.coordDimIndex;
+      getOrCreateEncodeArr(encode, coordDim)[coordDimIndex] = dimName;
+      if (!dimItem.isExtraCoord) {
+        notExtraCoordDimMap.set(coordDim, 1);
+        if (mayLabelDimType(dimItem.type)) {
+          defaultedLabel[0] = dimName;
+        }
+        getOrCreateEncodeArr(userOutputEncode, coordDim)[coordDimIndex] = data.getDimensionIndex(dimItem.name);
+      }
+      if (dimItem.defaultTooltip) {
+        defaultedTooltip.push(dimName);
+      }
+    }
+    VISUAL_DIMENSIONS.each(function(v, otherDim) {
+      var encodeArr = getOrCreateEncodeArr(encode, otherDim);
+      var dimIndex = dimItem.otherDims[otherDim];
+      if (dimIndex != null && dimIndex !== false) {
+        encodeArr[dimIndex] = dimItem.name;
+      }
+    });
+  });
+  var dataDimsOnCoord = [];
+  var encodeFirstDimNotExtra = {};
+  notExtraCoordDimMap.each(function(v, coordDim) {
+    var dimArr = encode[coordDim];
+    encodeFirstDimNotExtra[coordDim] = dimArr[0];
+    dataDimsOnCoord = dataDimsOnCoord.concat(dimArr);
+  });
+  summary.dataDimsOnCoord = dataDimsOnCoord;
+  summary.dataDimIndicesOnCoord = map(dataDimsOnCoord, function(dimName) {
+    return data.getDimensionInfo(dimName).storeDimIndex;
+  });
+  summary.encodeFirstDimNotExtra = encodeFirstDimNotExtra;
+  var encodeLabel = encode.label;
+  if (encodeLabel && encodeLabel.length) {
+    defaultedLabel = encodeLabel.slice();
+  }
+  var encodeTooltip = encode.tooltip;
+  if (encodeTooltip && encodeTooltip.length) {
+    defaultedTooltip = encodeTooltip.slice();
+  } else if (!defaultedTooltip.length) {
+    defaultedTooltip = defaultedLabel.slice();
+  }
+  encode.defaultedLabel = defaultedLabel;
+  encode.defaultedTooltip = defaultedTooltip;
+  summary.userOutput = new DimensionUserOuput(userOutputEncode, schema);
+  return summary;
+}
+function getOrCreateEncodeArr(encode, dim) {
+  if (!encode.hasOwnProperty(dim)) {
+    encode[dim] = [];
+  }
+  return encode[dim];
+}
+function getDimensionTypeByAxis(axisType) {
+  return axisType === "category" ? "ordinal" : axisType === "time" ? "time" : "float";
+}
+function mayLabelDimType(dimType) {
+  return !(dimType === "ordinal" || dimType === "time");
+}
+
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/data/SeriesDimensionDefine.js
+var SeriesDimensionDefine = (
+  /** @class */
+  /* @__PURE__ */ function() {
+    function SeriesDimensionDefine2(opt) {
+      this.otherDims = {};
+      if (opt != null) {
+        extend(this, opt);
+      }
+    }
+    return SeriesDimensionDefine2;
+  }()
+);
+var SeriesDimensionDefine_default = SeriesDimensionDefine;
+
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/data/helper/SeriesDataSchema.js
+var inner5 = makeInner();
+var dimTypeShort = {
+  float: "f",
+  int: "i",
+  ordinal: "o",
+  number: "n",
+  time: "t"
+};
+var SeriesDataSchema = (
+  /** @class */
+  function() {
+    function SeriesDataSchema2(opt) {
+      this.dimensions = opt.dimensions;
+      this._dimOmitted = opt.dimensionOmitted;
+      this.source = opt.source;
+      this._fullDimCount = opt.fullDimensionCount;
+      this._updateDimOmitted(opt.dimensionOmitted);
+    }
+    SeriesDataSchema2.prototype.isDimensionOmitted = function() {
+      return this._dimOmitted;
+    };
+    SeriesDataSchema2.prototype._updateDimOmitted = function(dimensionOmitted) {
+      this._dimOmitted = dimensionOmitted;
+      if (!dimensionOmitted) {
+        return;
+      }
+      if (!this._dimNameMap) {
+        this._dimNameMap = ensureSourceDimNameMap(this.source);
+      }
+    };
+    SeriesDataSchema2.prototype.getSourceDimensionIndex = function(dimName) {
+      return retrieve2(this._dimNameMap.get(dimName), -1);
+    };
+    SeriesDataSchema2.prototype.getSourceDimension = function(dimIndex) {
+      var dimensionsDefine = this.source.dimensionsDefine;
+      if (dimensionsDefine) {
+        return dimensionsDefine[dimIndex];
+      }
+    };
+    SeriesDataSchema2.prototype.makeStoreSchema = function() {
+      var dimCount = this._fullDimCount;
+      var willRetrieveDataByName = shouldRetrieveDataByName(this.source);
+      var makeHashStrict = !shouldOmitUnusedDimensions(dimCount);
+      var dimHash = "";
+      var dims = [];
+      for (var fullDimIdx = 0, seriesDimIdx = 0; fullDimIdx < dimCount; fullDimIdx++) {
+        var property = void 0;
+        var type = void 0;
+        var ordinalMeta = void 0;
+        var seriesDimDef = this.dimensions[seriesDimIdx];
+        if (seriesDimDef && seriesDimDef.storeDimIndex === fullDimIdx) {
+          property = willRetrieveDataByName ? seriesDimDef.name : null;
+          type = seriesDimDef.type;
+          ordinalMeta = seriesDimDef.ordinalMeta;
+          seriesDimIdx++;
+        } else {
+          var sourceDimDef = this.getSourceDimension(fullDimIdx);
+          if (sourceDimDef) {
+            property = willRetrieveDataByName ? sourceDimDef.name : null;
+            type = sourceDimDef.type;
+          }
+        }
+        dims.push({
+          property,
+          type,
+          ordinalMeta
+        });
+        if (willRetrieveDataByName && property != null && (!seriesDimDef || !seriesDimDef.isCalculationCoord)) {
+          dimHash += makeHashStrict ? property.replace(/\`/g, "`1").replace(/\$/g, "`2") : property;
+        }
+        dimHash += "$";
+        dimHash += dimTypeShort[type] || "f";
+        if (ordinalMeta) {
+          dimHash += ordinalMeta.uid;
+        }
+        dimHash += "$";
+      }
+      var source = this.source;
+      var hash = [source.seriesLayoutBy, source.startIndex, dimHash].join("$$");
+      return {
+        dimensions: dims,
+        hash
+      };
+    };
+    SeriesDataSchema2.prototype.makeOutputDimensionNames = function() {
+      var result = [];
+      for (var fullDimIdx = 0, seriesDimIdx = 0; fullDimIdx < this._fullDimCount; fullDimIdx++) {
+        var name_1 = void 0;
+        var seriesDimDef = this.dimensions[seriesDimIdx];
+        if (seriesDimDef && seriesDimDef.storeDimIndex === fullDimIdx) {
+          if (!seriesDimDef.isCalculationCoord) {
+            name_1 = seriesDimDef.name;
+          }
+          seriesDimIdx++;
+        } else {
+          var sourceDimDef = this.getSourceDimension(fullDimIdx);
+          if (sourceDimDef) {
+            name_1 = sourceDimDef.name;
+          }
+        }
+        result.push(name_1);
+      }
+      return result;
+    };
+    SeriesDataSchema2.prototype.appendCalculationDimension = function(dimDef) {
+      this.dimensions.push(dimDef);
+      dimDef.isCalculationCoord = true;
+      this._fullDimCount++;
+      this._updateDimOmitted(true);
+    };
+    return SeriesDataSchema2;
+  }()
+);
+function isSeriesDataSchema(schema) {
+  return schema instanceof SeriesDataSchema;
+}
+function createDimNameMap(dimsDef) {
+  var dataDimNameMap = createHashMap();
+  for (var i = 0; i < (dimsDef || []).length; i++) {
+    var dimDefItemRaw = dimsDef[i];
+    var userDimName = isObject(dimDefItemRaw) ? dimDefItemRaw.name : dimDefItemRaw;
+    if (userDimName != null && dataDimNameMap.get(userDimName) == null) {
+      dataDimNameMap.set(userDimName, i);
+    }
+  }
+  return dataDimNameMap;
+}
+function ensureSourceDimNameMap(source) {
+  var innerSource = inner5(source);
+  return innerSource.dimNameMap || (innerSource.dimNameMap = createDimNameMap(source.dimensionsDefine));
+}
+function shouldOmitUnusedDimensions(dimCount) {
+  return dimCount > 30;
+}
+
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/data/SeriesData.js
+var isObject3 = isObject;
+var map2 = map;
+var CtorInt32Array2 = typeof Int32Array === "undefined" ? Array : Int32Array;
+var ID_PREFIX = "e\0\0";
+var INDEX_NOT_FOUND = -1;
+var TRANSFERABLE_PROPERTIES = ["hasItemOption", "_nameList", "_idList", "_invertedIndicesMap", "_dimSummary", "userOutput", "_rawData", "_dimValueGetter", "_nameDimIdx", "_idDimIdx", "_nameRepeatCount"];
+var CLONE_PROPERTIES = ["_approximateExtent"];
+var prepareInvertedIndex;
+var getId;
+var getIdNameFromStore;
+var normalizeDimensions;
+var transferProperties;
+var cloneListForMapAndSample;
+var makeIdFromName;
+var SeriesData = (
+  /** @class */
+  function() {
+    function SeriesData2(dimensionsInput, hostModel) {
+      this.type = "list";
+      this._dimOmitted = false;
+      this._nameList = [];
+      this._idList = [];
+      this._visual = {};
+      this._layout = {};
+      this._itemVisuals = [];
+      this._itemLayouts = [];
+      this._graphicEls = [];
+      this._approximateExtent = {};
+      this._calculationInfo = {};
+      this.hasItemOption = false;
+      this.TRANSFERABLE_METHODS = ["cloneShallow", "downSample", "minmaxDownSample", "lttbDownSample", "map"];
+      this.CHANGABLE_METHODS = ["filterSelf", "selectRange"];
+      this.DOWNSAMPLE_METHODS = ["downSample", "minmaxDownSample", "lttbDownSample"];
+      var dimensions;
+      var assignStoreDimIdx = false;
+      if (isSeriesDataSchema(dimensionsInput)) {
+        dimensions = dimensionsInput.dimensions;
+        this._dimOmitted = dimensionsInput.isDimensionOmitted();
+        this._schema = dimensionsInput;
+      } else {
+        assignStoreDimIdx = true;
+        dimensions = dimensionsInput;
+      }
+      dimensions = dimensions || ["x", "y"];
+      var dimensionInfos = {};
+      var dimensionNames = [];
+      var invertedIndicesMap = {};
+      var needsHasOwn = false;
+      var emptyObj = {};
+      for (var i = 0; i < dimensions.length; i++) {
+        var dimInfoInput = dimensions[i];
+        var dimensionInfo = isString(dimInfoInput) ? new SeriesDimensionDefine_default({
+          name: dimInfoInput
+        }) : !(dimInfoInput instanceof SeriesDimensionDefine_default) ? new SeriesDimensionDefine_default(dimInfoInput) : dimInfoInput;
+        var dimensionName = dimensionInfo.name;
+        dimensionInfo.type = dimensionInfo.type || "float";
+        if (!dimensionInfo.coordDim) {
+          dimensionInfo.coordDim = dimensionName;
+          dimensionInfo.coordDimIndex = 0;
+        }
+        var otherDims = dimensionInfo.otherDims = dimensionInfo.otherDims || {};
+        dimensionNames.push(dimensionName);
+        dimensionInfos[dimensionName] = dimensionInfo;
+        if (emptyObj[dimensionName] != null) {
+          needsHasOwn = true;
+        }
+        if (dimensionInfo.createInvertedIndices) {
+          invertedIndicesMap[dimensionName] = [];
+        }
+        if (otherDims.itemName === 0) {
+          this._nameDimIdx = i;
+        }
+        if (otherDims.itemId === 0) {
+          this._idDimIdx = i;
+        }
+        if (true) {
+          assert(assignStoreDimIdx || dimensionInfo.storeDimIndex >= 0);
+        }
+        if (assignStoreDimIdx) {
+          dimensionInfo.storeDimIndex = i;
+        }
+      }
+      this.dimensions = dimensionNames;
+      this._dimInfos = dimensionInfos;
+      this._initGetDimensionInfo(needsHasOwn);
+      this.hostModel = hostModel;
+      this._invertedIndicesMap = invertedIndicesMap;
+      if (this._dimOmitted) {
+        var dimIdxToName_1 = this._dimIdxToName = createHashMap();
+        each(dimensionNames, function(dimName) {
+          dimIdxToName_1.set(dimensionInfos[dimName].storeDimIndex, dimName);
+        });
+      }
+    }
+    SeriesData2.prototype.getDimension = function(dim) {
+      var dimIdx = this._recognizeDimIndex(dim);
+      if (dimIdx == null) {
+        return dim;
+      }
+      dimIdx = dim;
+      if (!this._dimOmitted) {
+        return this.dimensions[dimIdx];
+      }
+      var dimName = this._dimIdxToName.get(dimIdx);
+      if (dimName != null) {
+        return dimName;
+      }
+      var sourceDimDef = this._schema.getSourceDimension(dimIdx);
+      if (sourceDimDef) {
+        return sourceDimDef.name;
+      }
+    };
+    SeriesData2.prototype.getDimensionIndex = function(dim) {
+      var dimIdx = this._recognizeDimIndex(dim);
+      if (dimIdx != null) {
+        return dimIdx;
+      }
+      if (dim == null) {
+        return -1;
+      }
+      var dimInfo = this._getDimInfo(dim);
+      return dimInfo ? dimInfo.storeDimIndex : this._dimOmitted ? this._schema.getSourceDimensionIndex(dim) : -1;
+    };
+    SeriesData2.prototype._recognizeDimIndex = function(dim) {
+      if (isNumber(dim) || dim != null && !isNaN(dim) && !this._getDimInfo(dim) && (!this._dimOmitted || this._schema.getSourceDimensionIndex(dim) < 0)) {
+        return +dim;
+      }
+    };
+    SeriesData2.prototype._getStoreDimIndex = function(dim) {
+      var dimIdx = this.getDimensionIndex(dim);
+      if (true) {
+        if (dimIdx == null) {
+          throw new Error("Unknown dimension " + dim);
+        }
+      }
+      return dimIdx;
+    };
+    SeriesData2.prototype.getDimensionInfo = function(dim) {
+      return this._getDimInfo(this.getDimension(dim));
+    };
+    SeriesData2.prototype._initGetDimensionInfo = function(needsHasOwn) {
+      var dimensionInfos = this._dimInfos;
+      this._getDimInfo = needsHasOwn ? function(dimName) {
+        return dimensionInfos.hasOwnProperty(dimName) ? dimensionInfos[dimName] : void 0;
+      } : function(dimName) {
+        return dimensionInfos[dimName];
+      };
+    };
+    SeriesData2.prototype.getDimensionsOnCoord = function() {
+      return this._dimSummary.dataDimsOnCoord.slice();
+    };
+    SeriesData2.prototype.mapDimension = function(coordDim, idx) {
+      var dimensionsSummary = this._dimSummary;
+      if (idx == null) {
+        return dimensionsSummary.encodeFirstDimNotExtra[coordDim];
+      }
+      var dims = dimensionsSummary.encode[coordDim];
+      return dims ? dims[idx] : null;
+    };
+    SeriesData2.prototype.mapDimensionsAll = function(coordDim) {
+      var dimensionsSummary = this._dimSummary;
+      var dims = dimensionsSummary.encode[coordDim];
+      return (dims || []).slice();
+    };
+    SeriesData2.prototype.getStore = function() {
+      return this._store;
+    };
+    SeriesData2.prototype.initData = function(data, nameList, dimValueGetter) {
+      var _this = this;
+      var store;
+      if (data instanceof DataStore_default) {
+        store = data;
+      }
+      if (!store) {
+        var dimensions = this.dimensions;
+        var provider = isSourceInstance(data) || isArrayLike(data) ? new DefaultDataProvider(data, dimensions.length) : data;
+        store = new DataStore_default();
+        var dimensionInfos = map2(dimensions, function(dimName) {
+          return {
+            type: _this._dimInfos[dimName].type,
+            property: dimName
+          };
+        });
+        store.initData(provider, dimensionInfos, dimValueGetter);
+      }
+      this._store = store;
+      this._nameList = (nameList || []).slice();
+      this._idList = [];
+      this._nameRepeatCount = {};
+      this._doInit(0, store.count());
+      this._dimSummary = summarizeDimensions(this, this._schema);
+      this.userOutput = this._dimSummary.userOutput;
+    };
+    SeriesData2.prototype.appendData = function(data) {
+      var range = this._store.appendData(data);
+      this._doInit(range[0], range[1]);
+    };
+    SeriesData2.prototype.appendValues = function(values, names) {
+      var _a2 = this._store.appendValues(values, names && names.length), start = _a2.start, end = _a2.end;
+      var shouldMakeIdFromName = this._shouldMakeIdFromName();
+      this._updateOrdinalMeta();
+      if (names) {
+        for (var idx = start; idx < end; idx++) {
+          var sourceIdx = idx - start;
+          this._nameList[idx] = names[sourceIdx];
+          if (shouldMakeIdFromName) {
+            makeIdFromName(this, idx);
+          }
+        }
+      }
+    };
+    SeriesData2.prototype._updateOrdinalMeta = function() {
+      var store = this._store;
+      var dimensions = this.dimensions;
+      for (var i = 0; i < dimensions.length; i++) {
+        var dimInfo = this._dimInfos[dimensions[i]];
+        if (dimInfo.ordinalMeta) {
+          store.collectOrdinalMeta(dimInfo.storeDimIndex, dimInfo.ordinalMeta);
+        }
+      }
+    };
+    SeriesData2.prototype._shouldMakeIdFromName = function() {
+      var provider = this._store.getProvider();
+      return this._idDimIdx == null && provider.getSource().sourceFormat !== SOURCE_FORMAT_TYPED_ARRAY && !provider.fillStorage;
+    };
+    SeriesData2.prototype._doInit = function(start, end) {
+      if (start >= end) {
+        return;
+      }
+      var store = this._store;
+      var provider = store.getProvider();
+      this._updateOrdinalMeta();
+      var nameList = this._nameList;
+      var idList = this._idList;
+      var sourceFormat = provider.getSource().sourceFormat;
+      var isFormatOriginal = sourceFormat === SOURCE_FORMAT_ORIGINAL;
+      if (isFormatOriginal && !provider.pure) {
+        var sharedDataItem = [];
+        for (var idx = start; idx < end; idx++) {
+          var dataItem = provider.getItem(idx, sharedDataItem);
+          if (!this.hasItemOption && isDataItemOption(dataItem)) {
+            this.hasItemOption = true;
+          }
+          if (dataItem) {
+            var itemName = dataItem.name;
+            if (nameList[idx] == null && itemName != null) {
+              nameList[idx] = convertOptionIdName(itemName, null);
+            }
+            var itemId = dataItem.id;
+            if (idList[idx] == null && itemId != null) {
+              idList[idx] = convertOptionIdName(itemId, null);
+            }
+          }
+        }
+      }
+      if (this._shouldMakeIdFromName()) {
+        for (var idx = start; idx < end; idx++) {
+          makeIdFromName(this, idx);
+        }
+      }
+      prepareInvertedIndex(this);
+    };
+    SeriesData2.prototype.getApproximateExtent = function(dim) {
+      return this._approximateExtent[dim] || this._store.getDataExtent(this._getStoreDimIndex(dim));
+    };
+    SeriesData2.prototype.setApproximateExtent = function(extent3, dim) {
+      dim = this.getDimension(dim);
+      this._approximateExtent[dim] = extent3.slice();
+    };
+    SeriesData2.prototype.getCalculationInfo = function(key) {
+      return this._calculationInfo[key];
+    };
+    SeriesData2.prototype.setCalculationInfo = function(key, value) {
+      isObject3(key) ? extend(this._calculationInfo, key) : this._calculationInfo[key] = value;
+    };
+    SeriesData2.prototype.getName = function(idx) {
+      var rawIndex = this.getRawIndex(idx);
+      var name = this._nameList[rawIndex];
+      if (name == null && this._nameDimIdx != null) {
+        name = getIdNameFromStore(this, this._nameDimIdx, rawIndex);
+      }
+      if (name == null) {
+        name = "";
+      }
+      return name;
+    };
+    SeriesData2.prototype._getCategory = function(dimIdx, idx) {
+      var ordinal = this._store.get(dimIdx, idx);
+      var ordinalMeta = this._store.getOrdinalMeta(dimIdx);
+      if (ordinalMeta) {
+        return ordinalMeta.categories[ordinal];
+      }
+      return ordinal;
+    };
+    SeriesData2.prototype.getId = function(idx) {
+      return getId(this, this.getRawIndex(idx));
+    };
+    SeriesData2.prototype.count = function() {
+      return this._store.count();
+    };
+    SeriesData2.prototype.get = function(dim, idx) {
+      var store = this._store;
+      var dimInfo = this._dimInfos[dim];
+      if (dimInfo) {
+        return store.get(dimInfo.storeDimIndex, idx);
+      }
+    };
+    SeriesData2.prototype.getByRawIndex = function(dim, rawIdx) {
+      var store = this._store;
+      var dimInfo = this._dimInfos[dim];
+      if (dimInfo) {
+        return store.getByRawIndex(dimInfo.storeDimIndex, rawIdx);
+      }
+    };
+    SeriesData2.prototype.getIndices = function() {
+      return this._store.getIndices();
+    };
+    SeriesData2.prototype.getDataExtent = function(dim) {
+      return this._store.getDataExtent(this._getStoreDimIndex(dim));
+    };
+    SeriesData2.prototype.getSum = function(dim) {
+      return this._store.getSum(this._getStoreDimIndex(dim));
+    };
+    SeriesData2.prototype.getMedian = function(dim) {
+      return this._store.getMedian(this._getStoreDimIndex(dim));
+    };
+    SeriesData2.prototype.getValues = function(dimensions, idx) {
+      var _this = this;
+      var store = this._store;
+      return isArray(dimensions) ? store.getValues(map2(dimensions, function(dim) {
+        return _this._getStoreDimIndex(dim);
+      }), idx) : store.getValues(dimensions);
+    };
+    SeriesData2.prototype.hasValue = function(idx) {
+      var dataDimIndicesOnCoord = this._dimSummary.dataDimIndicesOnCoord;
+      for (var i = 0, len = dataDimIndicesOnCoord.length; i < len; i++) {
+        if (isNaN(this._store.get(dataDimIndicesOnCoord[i], idx))) {
+          return false;
+        }
+      }
+      return true;
+    };
+    SeriesData2.prototype.indexOfName = function(name) {
+      for (var i = 0, len = this._store.count(); i < len; i++) {
+        if (this.getName(i) === name) {
+          return i;
+        }
+      }
+      return -1;
+    };
+    SeriesData2.prototype.getRawIndex = function(idx) {
+      return this._store.getRawIndex(idx);
+    };
+    SeriesData2.prototype.indexOfRawIndex = function(rawIndex) {
+      return this._store.indexOfRawIndex(rawIndex);
+    };
+    SeriesData2.prototype.rawIndexOf = function(dim, value) {
+      var invertedIndices = dim && this._invertedIndicesMap[dim];
+      if (true) {
+        if (!invertedIndices) {
+          throw new Error("Do not supported yet");
+        }
+      }
+      var rawIndex = invertedIndices && invertedIndices[value];
+      if (rawIndex == null || isNaN(rawIndex)) {
+        return INDEX_NOT_FOUND;
+      }
+      return rawIndex;
+    };
+    SeriesData2.prototype.indicesOfNearest = function(dim, value, maxDistance) {
+      return this._store.indicesOfNearest(this._getStoreDimIndex(dim), value, maxDistance);
+    };
+    SeriesData2.prototype.each = function(dims, cb, ctx) {
+      "use strict";
+      if (isFunction(dims)) {
+        ctx = cb;
+        cb = dims;
+        dims = [];
+      }
+      var fCtx = ctx || this;
+      var dimIndices = map2(normalizeDimensions(dims), this._getStoreDimIndex, this);
+      this._store.each(dimIndices, fCtx ? bind(cb, fCtx) : cb);
+    };
+    SeriesData2.prototype.filterSelf = function(dims, cb, ctx) {
+      "use strict";
+      if (isFunction(dims)) {
+        ctx = cb;
+        cb = dims;
+        dims = [];
+      }
+      var fCtx = ctx || this;
+      var dimIndices = map2(normalizeDimensions(dims), this._getStoreDimIndex, this);
+      this._store = this._store.filter(dimIndices, fCtx ? bind(cb, fCtx) : cb);
+      return this;
+    };
+    SeriesData2.prototype.selectRange = function(range) {
+      "use strict";
+      var _this = this;
+      var innerRange = {};
+      var dims = keys(range);
+      var dimIndices = [];
+      each(dims, function(dim) {
+        var dimIdx = _this._getStoreDimIndex(dim);
+        innerRange[dimIdx] = range[dim];
+        dimIndices.push(dimIdx);
+      });
+      this._store = this._store.selectRange(innerRange);
+      return this;
+    };
+    SeriesData2.prototype.mapArray = function(dims, cb, ctx) {
+      "use strict";
+      if (isFunction(dims)) {
+        ctx = cb;
+        cb = dims;
+        dims = [];
+      }
+      ctx = ctx || this;
+      var result = [];
+      this.each(dims, function() {
+        result.push(cb && cb.apply(this, arguments));
+      }, ctx);
+      return result;
+    };
+    SeriesData2.prototype.map = function(dims, cb, ctx, ctxCompat) {
+      "use strict";
+      var fCtx = ctx || ctxCompat || this;
+      var dimIndices = map2(normalizeDimensions(dims), this._getStoreDimIndex, this);
+      var list = cloneListForMapAndSample(this);
+      list._store = this._store.map(dimIndices, fCtx ? bind(cb, fCtx) : cb);
+      return list;
+    };
+    SeriesData2.prototype.modify = function(dims, cb, ctx, ctxCompat) {
+      var _this = this;
+      var fCtx = ctx || ctxCompat || this;
+      if (true) {
+        each(normalizeDimensions(dims), function(dim) {
+          var dimInfo = _this.getDimensionInfo(dim);
+          if (!dimInfo.isCalculationCoord) {
+            console.error("Danger: only stack dimension can be modified");
+          }
+        });
+      }
+      var dimIndices = map2(normalizeDimensions(dims), this._getStoreDimIndex, this);
+      this._store.modify(dimIndices, fCtx ? bind(cb, fCtx) : cb);
+    };
+    SeriesData2.prototype.downSample = function(dimension, rate, sampleValue, sampleIndex) {
+      var list = cloneListForMapAndSample(this);
+      list._store = this._store.downSample(this._getStoreDimIndex(dimension), rate, sampleValue, sampleIndex);
+      return list;
+    };
+    SeriesData2.prototype.minmaxDownSample = function(valueDimension, rate) {
+      var list = cloneListForMapAndSample(this);
+      list._store = this._store.minmaxDownSample(this._getStoreDimIndex(valueDimension), rate);
+      return list;
+    };
+    SeriesData2.prototype.lttbDownSample = function(valueDimension, rate) {
+      var list = cloneListForMapAndSample(this);
+      list._store = this._store.lttbDownSample(this._getStoreDimIndex(valueDimension), rate);
+      return list;
+    };
+    SeriesData2.prototype.getRawDataItem = function(idx) {
+      return this._store.getRawDataItem(idx);
+    };
+    SeriesData2.prototype.getItemModel = function(idx) {
+      var hostModel = this.hostModel;
+      var dataItem = this.getRawDataItem(idx);
+      return new Model_default(dataItem, hostModel, hostModel && hostModel.ecModel);
+    };
+    SeriesData2.prototype.diff = function(otherList) {
+      var thisList = this;
+      return new DataDiffer_default(otherList ? otherList.getStore().getIndices() : [], this.getStore().getIndices(), function(idx) {
+        return getId(otherList, idx);
+      }, function(idx) {
+        return getId(thisList, idx);
+      });
+    };
+    SeriesData2.prototype.getVisual = function(key) {
+      var visual = this._visual;
+      return visual && visual[key];
+    };
+    SeriesData2.prototype.setVisual = function(kvObj, val) {
+      this._visual = this._visual || {};
+      if (isObject3(kvObj)) {
+        extend(this._visual, kvObj);
+      } else {
+        this._visual[kvObj] = val;
+      }
+    };
+    SeriesData2.prototype.getItemVisual = function(idx, key) {
+      var itemVisual = this._itemVisuals[idx];
+      var val = itemVisual && itemVisual[key];
+      if (val == null) {
+        return this.getVisual(key);
+      }
+      return val;
+    };
+    SeriesData2.prototype.hasItemVisual = function() {
+      return this._itemVisuals.length > 0;
+    };
+    SeriesData2.prototype.ensureUniqueItemVisual = function(idx, key) {
+      var itemVisuals = this._itemVisuals;
+      var itemVisual = itemVisuals[idx];
+      if (!itemVisual) {
+        itemVisual = itemVisuals[idx] = {};
+      }
+      var val = itemVisual[key];
+      if (val == null) {
+        val = this.getVisual(key);
+        if (isArray(val)) {
+          val = val.slice();
+        } else if (isObject3(val)) {
+          val = extend({}, val);
+        }
+        itemVisual[key] = val;
+      }
+      return val;
+    };
+    SeriesData2.prototype.setItemVisual = function(idx, key, value) {
+      var itemVisual = this._itemVisuals[idx] || {};
+      this._itemVisuals[idx] = itemVisual;
+      if (isObject3(key)) {
+        extend(itemVisual, key);
+      } else {
+        itemVisual[key] = value;
+      }
+    };
+    SeriesData2.prototype.clearAllVisual = function() {
+      this._visual = {};
+      this._itemVisuals = [];
+    };
+    SeriesData2.prototype.setLayout = function(key, val) {
+      isObject3(key) ? extend(this._layout, key) : this._layout[key] = val;
+    };
+    SeriesData2.prototype.getLayout = function(key) {
+      return this._layout[key];
+    };
+    SeriesData2.prototype.getItemLayout = function(idx) {
+      return this._itemLayouts[idx];
+    };
+    SeriesData2.prototype.setItemLayout = function(idx, layout2, merge2) {
+      this._itemLayouts[idx] = merge2 ? extend(this._itemLayouts[idx] || {}, layout2) : layout2;
+    };
+    SeriesData2.prototype.clearItemLayouts = function() {
+      this._itemLayouts.length = 0;
+    };
+    SeriesData2.prototype.setItemGraphicEl = function(idx, el) {
+      var seriesIndex = this.hostModel && this.hostModel.seriesIndex;
+      setCommonECData(seriesIndex, this.dataType, idx, el);
+      this._graphicEls[idx] = el;
+    };
+    SeriesData2.prototype.getItemGraphicEl = function(idx) {
+      return this._graphicEls[idx];
+    };
+    SeriesData2.prototype.eachItemGraphicEl = function(cb, context) {
+      each(this._graphicEls, function(el, idx) {
+        if (el) {
+          cb && cb.call(context, el, idx);
+        }
+      });
+    };
+    SeriesData2.prototype.cloneShallow = function(list) {
+      if (!list) {
+        list = new SeriesData2(this._schema ? this._schema : map2(this.dimensions, this._getDimInfo, this), this.hostModel);
+      }
+      transferProperties(list, this);
+      list._store = this._store;
+      return list;
+    };
+    SeriesData2.prototype.wrapMethod = function(methodName, injectFunction) {
+      var originalMethod = this[methodName];
+      if (!isFunction(originalMethod)) {
+        return;
+      }
+      this.__wrappedMethods = this.__wrappedMethods || [];
+      this.__wrappedMethods.push(methodName);
+      this[methodName] = function() {
+        var res = originalMethod.apply(this, arguments);
+        return injectFunction.apply(this, [res].concat(slice(arguments)));
+      };
+    };
+    SeriesData2.internalField = function() {
+      prepareInvertedIndex = function(data) {
+        var invertedIndicesMap = data._invertedIndicesMap;
+        each(invertedIndicesMap, function(invertedIndices, dim) {
+          var dimInfo = data._dimInfos[dim];
+          var ordinalMeta = dimInfo.ordinalMeta;
+          var store = data._store;
+          if (ordinalMeta) {
+            invertedIndices = invertedIndicesMap[dim] = new CtorInt32Array2(ordinalMeta.categories.length);
+            for (var i = 0; i < invertedIndices.length; i++) {
+              invertedIndices[i] = INDEX_NOT_FOUND;
+            }
+            for (var i = 0; i < store.count(); i++) {
+              invertedIndices[store.get(dimInfo.storeDimIndex, i)] = i;
+            }
+          }
+        });
+      };
+      getIdNameFromStore = function(data, dimIdx, idx) {
+        return convertOptionIdName(data._getCategory(dimIdx, idx), null);
+      };
+      getId = function(data, rawIndex) {
+        var id = data._idList[rawIndex];
+        if (id == null && data._idDimIdx != null) {
+          id = getIdNameFromStore(data, data._idDimIdx, rawIndex);
+        }
+        if (id == null) {
+          id = ID_PREFIX + rawIndex;
+        }
+        return id;
+      };
+      normalizeDimensions = function(dimensions) {
+        if (!isArray(dimensions)) {
+          dimensions = dimensions != null ? [dimensions] : [];
+        }
+        return dimensions;
+      };
+      cloneListForMapAndSample = function(original) {
+        var list = new SeriesData2(original._schema ? original._schema : map2(original.dimensions, original._getDimInfo, original), original.hostModel);
+        transferProperties(list, original);
+        return list;
+      };
+      transferProperties = function(target, source) {
+        each(TRANSFERABLE_PROPERTIES.concat(source.__wrappedMethods || []), function(propName) {
+          if (source.hasOwnProperty(propName)) {
+            target[propName] = source[propName];
+          }
+        });
+        target.__wrappedMethods = source.__wrappedMethods;
+        each(CLONE_PROPERTIES, function(propName) {
+          target[propName] = clone(source[propName]);
+        });
+        target._calculationInfo = extend({}, source._calculationInfo);
+      };
+      makeIdFromName = function(data, idx) {
+        var nameList = data._nameList;
+        var idList = data._idList;
+        var nameDimIdx = data._nameDimIdx;
+        var idDimIdx = data._idDimIdx;
+        var name = nameList[idx];
+        var id = idList[idx];
+        if (name == null && nameDimIdx != null) {
+          nameList[idx] = name = getIdNameFromStore(data, nameDimIdx, idx);
+        }
+        if (id == null && idDimIdx != null) {
+          idList[idx] = id = getIdNameFromStore(data, idDimIdx, idx);
+        }
+        if (id == null && name != null) {
+          var nameRepeatCount = data._nameRepeatCount;
+          var nmCnt = nameRepeatCount[name] = (nameRepeatCount[name] || 0) + 1;
+          id = name;
+          if (nmCnt > 1) {
+            id += "__ec__" + nmCnt;
+          }
+          idList[idx] = id;
+        }
+      };
+    }();
+    return SeriesData2;
+  }()
+);
+var SeriesData_default = SeriesData;
+
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/extension.js
 var extensions = [];
 var extensionRegisters = {
   registerPreprocessor,
@@ -14784,7 +14784,346 @@ function use(ext) {
   ext.install(extensionRegisters);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/scale/Scale.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/zrender/lib/contain/polygon.js
+var EPSILON = 1e-8;
+function isAroundEqual(a, b) {
+  return Math.abs(a - b) < EPSILON;
+}
+function contain(points2, x, y) {
+  var w = 0;
+  var p = points2[0];
+  if (!p) {
+    return false;
+  }
+  for (var i = 1; i < points2.length; i++) {
+    var p2 = points2[i];
+    w += windingLine(p[0], p[1], p2[0], p2[1], x, y);
+    p = p2;
+  }
+  var p0 = points2[0];
+  if (!isAroundEqual(p[0], p0[0]) || !isAroundEqual(p[1], p0[1])) {
+    w += windingLine(p[0], p[1], p0[0], p0[1], x, y);
+  }
+  return w !== 0;
+}
+
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/geo/Region.js
+var TMP_TRANSFORM = [];
+function transformPoints(points2, transform) {
+  for (var p = 0; p < points2.length; p++) {
+    applyTransform(points2[p], points2[p], transform);
+  }
+}
+function updateBBoxFromPoints(points2, min2, max2, projection) {
+  for (var i = 0; i < points2.length; i++) {
+    var p = points2[i];
+    if (projection) {
+      p = projection.project(p);
+    }
+    if (p && isFinite(p[0]) && isFinite(p[1])) {
+      min(min2, min2, p);
+      max(max2, max2, p);
+    }
+  }
+}
+function centroid(points2) {
+  var signedArea = 0;
+  var cx = 0;
+  var cy = 0;
+  var len = points2.length;
+  var x0 = points2[len - 1][0];
+  var y0 = points2[len - 1][1];
+  for (var i = 0; i < len; i++) {
+    var x1 = points2[i][0];
+    var y1 = points2[i][1];
+    var a = x0 * y1 - x1 * y0;
+    signedArea += a;
+    cx += (x0 + x1) * a;
+    cy += (y0 + y1) * a;
+    x0 = x1;
+    y0 = y1;
+  }
+  return signedArea ? [cx / signedArea / 3, cy / signedArea / 3, signedArea] : [points2[0][0] || 0, points2[0][1] || 0];
+}
+var Region = (
+  /** @class */
+  function() {
+    function Region2(name) {
+      this.name = name;
+    }
+    Region2.prototype.setCenter = function(center) {
+      this._center = center;
+    };
+    Region2.prototype.getCenter = function() {
+      var center = this._center;
+      if (!center) {
+        center = this._center = this.calcCenter();
+      }
+      return center;
+    };
+    return Region2;
+  }()
+);
+var GeoJSONPolygonGeometry = (
+  /** @class */
+  /* @__PURE__ */ function() {
+    function GeoJSONPolygonGeometry2(exterior, interiors) {
+      this.type = "polygon";
+      this.exterior = exterior;
+      this.interiors = interiors;
+    }
+    return GeoJSONPolygonGeometry2;
+  }()
+);
+var GeoJSONLineStringGeometry = (
+  /** @class */
+  /* @__PURE__ */ function() {
+    function GeoJSONLineStringGeometry2(points2) {
+      this.type = "linestring";
+      this.points = points2;
+    }
+    return GeoJSONLineStringGeometry2;
+  }()
+);
+var GeoJSONRegion = (
+  /** @class */
+  function(_super) {
+    __extends(GeoJSONRegion2, _super);
+    function GeoJSONRegion2(name, geometries, cp) {
+      var _this = _super.call(this, name) || this;
+      _this.type = "geoJSON";
+      _this.geometries = geometries;
+      _this._center = cp && [cp[0], cp[1]];
+      return _this;
+    }
+    GeoJSONRegion2.prototype.calcCenter = function() {
+      var geometries = this.geometries;
+      var largestGeo;
+      var largestGeoSize = 0;
+      for (var i = 0; i < geometries.length; i++) {
+        var geo = geometries[i];
+        var exterior = geo.exterior;
+        var size = exterior && exterior.length;
+        if (size > largestGeoSize) {
+          largestGeo = geo;
+          largestGeoSize = size;
+        }
+      }
+      if (largestGeo) {
+        return centroid(largestGeo.exterior);
+      }
+      var rect = this.getBoundingRect();
+      return [rect.x + rect.width / 2, rect.y + rect.height / 2];
+    };
+    GeoJSONRegion2.prototype.getBoundingRect = function(projection) {
+      var rect = this._rect;
+      if (rect && !projection) {
+        return rect;
+      }
+      var min2 = [Infinity, Infinity];
+      var max2 = [-Infinity, -Infinity];
+      var geometries = this.geometries;
+      each(geometries, function(geo) {
+        if (geo.type === "polygon") {
+          updateBBoxFromPoints(geo.exterior, min2, max2, projection);
+        } else {
+          each(geo.points, function(points2) {
+            updateBBoxFromPoints(points2, min2, max2, projection);
+          });
+        }
+      });
+      if (!(isFinite(min2[0]) && isFinite(min2[1]) && isFinite(max2[0]) && isFinite(max2[1]))) {
+        min2[0] = min2[1] = max2[0] = max2[1] = 0;
+      }
+      rect = new BoundingRect_default(min2[0], min2[1], max2[0] - min2[0], max2[1] - min2[1]);
+      if (!projection) {
+        this._rect = rect;
+      }
+      return rect;
+    };
+    GeoJSONRegion2.prototype.contain = function(coord) {
+      var rect = this.getBoundingRect();
+      var geometries = this.geometries;
+      if (!rect.contain(coord[0], coord[1])) {
+        return false;
+      }
+      loopGeo:
+        for (var i = 0, len = geometries.length; i < len; i++) {
+          var geo = geometries[i];
+          if (geo.type !== "polygon") {
+            continue;
+          }
+          var exterior = geo.exterior;
+          var interiors = geo.interiors;
+          if (contain(exterior, coord[0], coord[1])) {
+            for (var k = 0; k < (interiors ? interiors.length : 0); k++) {
+              if (contain(interiors[k], coord[0], coord[1])) {
+                continue loopGeo;
+              }
+            }
+            return true;
+          }
+        }
+      return false;
+    };
+    GeoJSONRegion2.prototype.transformTo = function(x, y, width, height) {
+      var rect = this.getBoundingRect();
+      var aspect = rect.width / rect.height;
+      if (!width) {
+        width = aspect * height;
+      } else if (!height) {
+        height = width / aspect;
+      }
+      var target = new BoundingRect_default(x, y, width, height);
+      var transform = rect.calculateTransform(target);
+      var geometries = this.geometries;
+      for (var i = 0; i < geometries.length; i++) {
+        var geo = geometries[i];
+        if (geo.type === "polygon") {
+          transformPoints(geo.exterior, transform);
+          each(geo.interiors, function(interior) {
+            transformPoints(interior, transform);
+          });
+        } else {
+          each(geo.points, function(points2) {
+            transformPoints(points2, transform);
+          });
+        }
+      }
+      rect = this._rect;
+      rect.copy(target);
+      this._center = [rect.x + rect.width / 2, rect.y + rect.height / 2];
+    };
+    GeoJSONRegion2.prototype.cloneShallow = function(name) {
+      name == null && (name = this.name);
+      var newRegion = new GeoJSONRegion2(name, this.geometries, this._center);
+      newRegion._rect = this._rect;
+      newRegion.transformTo = null;
+      return newRegion;
+    };
+    return GeoJSONRegion2;
+  }(Region)
+);
+var GeoSVGRegion = (
+  /** @class */
+  function(_super) {
+    __extends(GeoSVGRegion2, _super);
+    function GeoSVGRegion2(name, elOnlyForCalculate) {
+      var _this = _super.call(this, name) || this;
+      _this.type = "geoSVG";
+      _this._elOnlyForCalculate = elOnlyForCalculate;
+      return _this;
+    }
+    GeoSVGRegion2.prototype.calcCenter = function() {
+      var el = this._elOnlyForCalculate;
+      var rect = el.getBoundingRect();
+      var center = [rect.x + rect.width / 2, rect.y + rect.height / 2];
+      var mat = identity(TMP_TRANSFORM);
+      var target = el;
+      while (target && !target.isGeoSVGGraphicRoot) {
+        mul(mat, target.getLocalTransform(), mat);
+        target = target.parent;
+      }
+      invert(mat, mat);
+      applyTransform(center, center, mat);
+      return center;
+    };
+    return GeoSVGRegion2;
+  }(Region)
+);
+
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/geo/parseGeoJson.js
+function decode(json) {
+  if (!json.UTF8Encoding) {
+    return json;
+  }
+  var jsonCompressed = json;
+  var encodeScale = jsonCompressed.UTF8Scale;
+  if (encodeScale == null) {
+    encodeScale = 1024;
+  }
+  var features = jsonCompressed.features;
+  each(features, function(feature) {
+    var geometry = feature.geometry;
+    var encodeOffsets = geometry.encodeOffsets;
+    var coordinates = geometry.coordinates;
+    if (!encodeOffsets) {
+      return;
+    }
+    switch (geometry.type) {
+      case "LineString":
+        geometry.coordinates = decodeRing(coordinates, encodeOffsets, encodeScale);
+        break;
+      case "Polygon":
+        decodeRings(coordinates, encodeOffsets, encodeScale);
+        break;
+      case "MultiLineString":
+        decodeRings(coordinates, encodeOffsets, encodeScale);
+        break;
+      case "MultiPolygon":
+        each(coordinates, function(rings, idx) {
+          return decodeRings(rings, encodeOffsets[idx], encodeScale);
+        });
+    }
+  });
+  jsonCompressed.UTF8Encoding = false;
+  return jsonCompressed;
+}
+function decodeRings(rings, encodeOffsets, encodeScale) {
+  for (var c = 0; c < rings.length; c++) {
+    rings[c] = decodeRing(rings[c], encodeOffsets[c], encodeScale);
+  }
+}
+function decodeRing(coordinate, encodeOffsets, encodeScale) {
+  var result = [];
+  var prevX = encodeOffsets[0];
+  var prevY = encodeOffsets[1];
+  for (var i = 0; i < coordinate.length; i += 2) {
+    var x = coordinate.charCodeAt(i) - 64;
+    var y = coordinate.charCodeAt(i + 1) - 64;
+    x = x >> 1 ^ -(x & 1);
+    y = y >> 1 ^ -(y & 1);
+    x += prevX;
+    y += prevY;
+    prevX = x;
+    prevY = y;
+    result.push([x / encodeScale, y / encodeScale]);
+  }
+  return result;
+}
+function parseGeoJSON(geoJson, nameProperty) {
+  geoJson = decode(geoJson);
+  return map(filter(geoJson.features, function(featureObj) {
+    return featureObj.geometry && featureObj.properties && featureObj.geometry.coordinates.length > 0;
+  }), function(featureObj) {
+    var properties = featureObj.properties;
+    var geo = featureObj.geometry;
+    var geometries = [];
+    switch (geo.type) {
+      case "Polygon":
+        var coordinates = geo.coordinates;
+        geometries.push(new GeoJSONPolygonGeometry(coordinates[0], coordinates.slice(1)));
+        break;
+      case "MultiPolygon":
+        each(geo.coordinates, function(item) {
+          if (item[0]) {
+            geometries.push(new GeoJSONPolygonGeometry(item[0], item.slice(1)));
+          }
+        });
+        break;
+      case "LineString":
+        geometries.push(new GeoJSONLineStringGeometry([geo.coordinates]));
+        break;
+      case "MultiLineString":
+        geometries.push(new GeoJSONLineStringGeometry(geo.coordinates));
+    }
+    var region = new GeoJSONRegion(properties[nameProperty || "name"], geometries, properties.cp);
+    region.properties = properties;
+    return region;
+  });
+}
+
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/scale/Scale.js
 var Scale = (
   /** @class */
   function() {
@@ -14830,7 +15169,7 @@ var Scale = (
 enableClassManagement(Scale);
 var Scale_default = Scale;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/data/OrdinalMeta.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/data/OrdinalMeta.js
 var uidBase = 0;
 var OrdinalMeta = (
   /** @class */
@@ -14895,7 +15234,7 @@ function getName(obj) {
 }
 var OrdinalMeta_default = OrdinalMeta;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/scale/helper.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/scale/helper.js
 function isValueNice(val) {
   var exp10 = Math.pow(10, quantityExponent(Math.abs(val)));
   var f = Math.abs(val / exp10);
@@ -14948,7 +15287,7 @@ function fixExtent(niceTickExtent, extent3) {
     niceTickExtent[0] = niceTickExtent[1];
   }
 }
-function contain(val, extent3) {
+function contain2(val, extent3) {
   return val >= extent3[0] && val <= extent3[1];
 }
 function normalize2(val, extent3) {
@@ -14961,7 +15300,7 @@ function scale2(val, extent3) {
   return val * (extent3[1] - extent3[0]) + extent3[0];
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/scale/Ordinal.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/scale/Ordinal.js
 var OrdinalScale = (
   /** @class */
   function(_super) {
@@ -14992,7 +15331,7 @@ var OrdinalScale = (
     };
     OrdinalScale2.prototype.contain = function(rank) {
       rank = this.parse(rank);
-      return contain(rank, this._extent) && this._ordinalMeta.categories[rank] != null;
+      return contain2(rank, this._extent) && this._ordinalMeta.categories[rank] != null;
     };
     OrdinalScale2.prototype.normalize = function(val) {
       val = this._getTickNumber(this.parse(val));
@@ -15081,7 +15420,7 @@ var OrdinalScale = (
 Scale_default.registerClass(OrdinalScale);
 var Ordinal_default = OrdinalScale;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/scale/Interval.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/scale/Interval.js
 var roundNumber = round;
 var IntervalScale = (
   /** @class */
@@ -15098,7 +15437,7 @@ var IntervalScale = (
       return val;
     };
     IntervalScale2.prototype.contain = function(val) {
-      return contain(val, this._extent);
+      return contain2(val, this._extent);
     };
     IntervalScale2.prototype.normalize = function(val) {
       return normalize2(val, this._extent);
@@ -15267,7 +15606,7 @@ var IntervalScale = (
 Scale_default.registerClass(IntervalScale);
 var Interval_default = IntervalScale;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/data/helper/dataStackHelper.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/data/helper/dataStackHelper.js
 function enableDataStack(seriesModel, dimensionsInput, opt) {
   opt = opt || {};
   var byIndex = opt.byIndex;
@@ -15369,7 +15708,7 @@ function getStackedDimension(data, targetDim) {
   return isDimensionStacked(data, targetDim) ? data.getCalculationInfo("stackResultDimension") : targetDim;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/util/vendor.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/util/vendor.js
 var supportFloat32Array = typeof Float32Array !== "undefined";
 var Float32ArrayCtor = !supportFloat32Array ? Array : Float32Array;
 function createFloat32Array(arg) {
@@ -15379,7 +15718,7 @@ function createFloat32Array(arg) {
   return new Float32ArrayCtor(arg);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/layout/barGrid.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/layout/barGrid.js
 var STACK_PREFIX = "__ec_stack_";
 function getSeriesStackId(seriesModel) {
   return seriesModel.get("stack") || STACK_PREFIX + seriesModel.seriesIndex;
@@ -15764,7 +16103,7 @@ function getValueAxisStart(baseAxis, valueAxis) {
   return valueAxis.toGlobalCoord(valueAxis.dataToCoord(valueAxis.type === "log" ? startValue > 0 ? startValue : 1 : startValue));
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/scale/Time.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/scale/Time.js
 var bisect = function(a, x, lo, hi) {
   while (lo < hi) {
     var mid = lo + hi >>> 1;
@@ -15847,7 +16186,7 @@ var TimeScale = (
       return isNumber(val) ? val : +parseDate(val);
     };
     TimeScale2.prototype.contain = function(val) {
-      return contain(this.parse(val), this._extent);
+      return contain2(this.parse(val), this._extent);
     };
     TimeScale2.prototype.normalize = function(val) {
       return normalize2(this.parse(val), this._extent);
@@ -16134,7 +16473,7 @@ function getIntervalTicks(bottomUnitName, approxInterval, isUTC, extent3) {
 Scale_default.registerClass(TimeScale);
 var Time_default = TimeScale;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/scale/Log.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/scale/Log.js
 var scaleProto = Scale_default.prototype;
 var intervalScaleProto = Interval_default.prototype;
 var roundingErrorFix = round;
@@ -16225,7 +16564,7 @@ var LogScale = (
     };
     LogScale2.prototype.contain = function(val) {
       val = mathLog(val) / mathLog(this.base);
-      return contain(val, this._extent);
+      return contain2(val, this._extent);
     };
     LogScale2.prototype.normalize = function(val) {
       val = mathLog(val) / mathLog(this.base);
@@ -16248,7 +16587,7 @@ function fixRoundingError(val, originalVal) {
 Scale_default.registerClass(LogScale);
 var Log_default = LogScale;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/scaleRawExtentInfo.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/scaleRawExtentInfo.js
 var ScaleRawExtentInfo = (
   /** @class */
   function() {
@@ -16386,7 +16725,7 @@ function parseAxisModelMinMax(scale3, minMax) {
   return minMax == null ? null : eqNaN(minMax) ? NaN : scale3.parse(minMax);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/axisHelper.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/axisHelper.js
 function getScaleExtent(scale3, model) {
   var scaleType = scale3.type;
   var rawExtentResult = ensureScaleRawExtentInfo(scale3, model, scale3.getExtent()).calculate();
@@ -16597,7 +16936,7 @@ function unionAxisExtentFromData(dataExtent, data, axisDim) {
   }
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/axisTickLabelBuilder.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/axisTickLabelBuilder.js
 var inner6 = makeInner();
 function tickValuesToNumbers(axis, values) {
   var nums = map(values, function(val) {
@@ -16856,7 +17195,7 @@ function makeLabelsByCustomizedCategoryInterval(axis, categoryInterval, onlyTick
   return result;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/Axis.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/Axis.js
 var NORMALIZED_EXTENT = [0, 1];
 var Axis = (
   /** @class */
@@ -17029,346 +17368,7 @@ function fixOnBandTicksCoords(axis, ticksCoords, alignWithLabel, clamp2) {
 }
 var Axis_default = Axis;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/zrender/lib/contain/polygon.js
-var EPSILON = 1e-8;
-function isAroundEqual(a, b) {
-  return Math.abs(a - b) < EPSILON;
-}
-function contain2(points2, x, y) {
-  var w = 0;
-  var p = points2[0];
-  if (!p) {
-    return false;
-  }
-  for (var i = 1; i < points2.length; i++) {
-    var p2 = points2[i];
-    w += windingLine(p[0], p[1], p2[0], p2[1], x, y);
-    p = p2;
-  }
-  var p0 = points2[0];
-  if (!isAroundEqual(p[0], p0[0]) || !isAroundEqual(p[1], p0[1])) {
-    w += windingLine(p[0], p[1], p0[0], p0[1], x, y);
-  }
-  return w !== 0;
-}
-
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/geo/Region.js
-var TMP_TRANSFORM = [];
-function transformPoints(points2, transform) {
-  for (var p = 0; p < points2.length; p++) {
-    applyTransform(points2[p], points2[p], transform);
-  }
-}
-function updateBBoxFromPoints(points2, min2, max2, projection) {
-  for (var i = 0; i < points2.length; i++) {
-    var p = points2[i];
-    if (projection) {
-      p = projection.project(p);
-    }
-    if (p && isFinite(p[0]) && isFinite(p[1])) {
-      min(min2, min2, p);
-      max(max2, max2, p);
-    }
-  }
-}
-function centroid(points2) {
-  var signedArea = 0;
-  var cx = 0;
-  var cy = 0;
-  var len = points2.length;
-  var x0 = points2[len - 1][0];
-  var y0 = points2[len - 1][1];
-  for (var i = 0; i < len; i++) {
-    var x1 = points2[i][0];
-    var y1 = points2[i][1];
-    var a = x0 * y1 - x1 * y0;
-    signedArea += a;
-    cx += (x0 + x1) * a;
-    cy += (y0 + y1) * a;
-    x0 = x1;
-    y0 = y1;
-  }
-  return signedArea ? [cx / signedArea / 3, cy / signedArea / 3, signedArea] : [points2[0][0] || 0, points2[0][1] || 0];
-}
-var Region = (
-  /** @class */
-  function() {
-    function Region2(name) {
-      this.name = name;
-    }
-    Region2.prototype.setCenter = function(center) {
-      this._center = center;
-    };
-    Region2.prototype.getCenter = function() {
-      var center = this._center;
-      if (!center) {
-        center = this._center = this.calcCenter();
-      }
-      return center;
-    };
-    return Region2;
-  }()
-);
-var GeoJSONPolygonGeometry = (
-  /** @class */
-  /* @__PURE__ */ function() {
-    function GeoJSONPolygonGeometry2(exterior, interiors) {
-      this.type = "polygon";
-      this.exterior = exterior;
-      this.interiors = interiors;
-    }
-    return GeoJSONPolygonGeometry2;
-  }()
-);
-var GeoJSONLineStringGeometry = (
-  /** @class */
-  /* @__PURE__ */ function() {
-    function GeoJSONLineStringGeometry2(points2) {
-      this.type = "linestring";
-      this.points = points2;
-    }
-    return GeoJSONLineStringGeometry2;
-  }()
-);
-var GeoJSONRegion = (
-  /** @class */
-  function(_super) {
-    __extends(GeoJSONRegion2, _super);
-    function GeoJSONRegion2(name, geometries, cp) {
-      var _this = _super.call(this, name) || this;
-      _this.type = "geoJSON";
-      _this.geometries = geometries;
-      _this._center = cp && [cp[0], cp[1]];
-      return _this;
-    }
-    GeoJSONRegion2.prototype.calcCenter = function() {
-      var geometries = this.geometries;
-      var largestGeo;
-      var largestGeoSize = 0;
-      for (var i = 0; i < geometries.length; i++) {
-        var geo = geometries[i];
-        var exterior = geo.exterior;
-        var size = exterior && exterior.length;
-        if (size > largestGeoSize) {
-          largestGeo = geo;
-          largestGeoSize = size;
-        }
-      }
-      if (largestGeo) {
-        return centroid(largestGeo.exterior);
-      }
-      var rect = this.getBoundingRect();
-      return [rect.x + rect.width / 2, rect.y + rect.height / 2];
-    };
-    GeoJSONRegion2.prototype.getBoundingRect = function(projection) {
-      var rect = this._rect;
-      if (rect && !projection) {
-        return rect;
-      }
-      var min2 = [Infinity, Infinity];
-      var max2 = [-Infinity, -Infinity];
-      var geometries = this.geometries;
-      each(geometries, function(geo) {
-        if (geo.type === "polygon") {
-          updateBBoxFromPoints(geo.exterior, min2, max2, projection);
-        } else {
-          each(geo.points, function(points2) {
-            updateBBoxFromPoints(points2, min2, max2, projection);
-          });
-        }
-      });
-      if (!(isFinite(min2[0]) && isFinite(min2[1]) && isFinite(max2[0]) && isFinite(max2[1]))) {
-        min2[0] = min2[1] = max2[0] = max2[1] = 0;
-      }
-      rect = new BoundingRect_default(min2[0], min2[1], max2[0] - min2[0], max2[1] - min2[1]);
-      if (!projection) {
-        this._rect = rect;
-      }
-      return rect;
-    };
-    GeoJSONRegion2.prototype.contain = function(coord) {
-      var rect = this.getBoundingRect();
-      var geometries = this.geometries;
-      if (!rect.contain(coord[0], coord[1])) {
-        return false;
-      }
-      loopGeo:
-        for (var i = 0, len = geometries.length; i < len; i++) {
-          var geo = geometries[i];
-          if (geo.type !== "polygon") {
-            continue;
-          }
-          var exterior = geo.exterior;
-          var interiors = geo.interiors;
-          if (contain2(exterior, coord[0], coord[1])) {
-            for (var k = 0; k < (interiors ? interiors.length : 0); k++) {
-              if (contain2(interiors[k], coord[0], coord[1])) {
-                continue loopGeo;
-              }
-            }
-            return true;
-          }
-        }
-      return false;
-    };
-    GeoJSONRegion2.prototype.transformTo = function(x, y, width, height) {
-      var rect = this.getBoundingRect();
-      var aspect = rect.width / rect.height;
-      if (!width) {
-        width = aspect * height;
-      } else if (!height) {
-        height = width / aspect;
-      }
-      var target = new BoundingRect_default(x, y, width, height);
-      var transform = rect.calculateTransform(target);
-      var geometries = this.geometries;
-      for (var i = 0; i < geometries.length; i++) {
-        var geo = geometries[i];
-        if (geo.type === "polygon") {
-          transformPoints(geo.exterior, transform);
-          each(geo.interiors, function(interior) {
-            transformPoints(interior, transform);
-          });
-        } else {
-          each(geo.points, function(points2) {
-            transformPoints(points2, transform);
-          });
-        }
-      }
-      rect = this._rect;
-      rect.copy(target);
-      this._center = [rect.x + rect.width / 2, rect.y + rect.height / 2];
-    };
-    GeoJSONRegion2.prototype.cloneShallow = function(name) {
-      name == null && (name = this.name);
-      var newRegion = new GeoJSONRegion2(name, this.geometries, this._center);
-      newRegion._rect = this._rect;
-      newRegion.transformTo = null;
-      return newRegion;
-    };
-    return GeoJSONRegion2;
-  }(Region)
-);
-var GeoSVGRegion = (
-  /** @class */
-  function(_super) {
-    __extends(GeoSVGRegion2, _super);
-    function GeoSVGRegion2(name, elOnlyForCalculate) {
-      var _this = _super.call(this, name) || this;
-      _this.type = "geoSVG";
-      _this._elOnlyForCalculate = elOnlyForCalculate;
-      return _this;
-    }
-    GeoSVGRegion2.prototype.calcCenter = function() {
-      var el = this._elOnlyForCalculate;
-      var rect = el.getBoundingRect();
-      var center = [rect.x + rect.width / 2, rect.y + rect.height / 2];
-      var mat = identity(TMP_TRANSFORM);
-      var target = el;
-      while (target && !target.isGeoSVGGraphicRoot) {
-        mul(mat, target.getLocalTransform(), mat);
-        target = target.parent;
-      }
-      invert(mat, mat);
-      applyTransform(center, center, mat);
-      return center;
-    };
-    return GeoSVGRegion2;
-  }(Region)
-);
-
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/geo/parseGeoJson.js
-function decode(json) {
-  if (!json.UTF8Encoding) {
-    return json;
-  }
-  var jsonCompressed = json;
-  var encodeScale = jsonCompressed.UTF8Scale;
-  if (encodeScale == null) {
-    encodeScale = 1024;
-  }
-  var features = jsonCompressed.features;
-  each(features, function(feature) {
-    var geometry = feature.geometry;
-    var encodeOffsets = geometry.encodeOffsets;
-    var coordinates = geometry.coordinates;
-    if (!encodeOffsets) {
-      return;
-    }
-    switch (geometry.type) {
-      case "LineString":
-        geometry.coordinates = decodeRing(coordinates, encodeOffsets, encodeScale);
-        break;
-      case "Polygon":
-        decodeRings(coordinates, encodeOffsets, encodeScale);
-        break;
-      case "MultiLineString":
-        decodeRings(coordinates, encodeOffsets, encodeScale);
-        break;
-      case "MultiPolygon":
-        each(coordinates, function(rings, idx) {
-          return decodeRings(rings, encodeOffsets[idx], encodeScale);
-        });
-    }
-  });
-  jsonCompressed.UTF8Encoding = false;
-  return jsonCompressed;
-}
-function decodeRings(rings, encodeOffsets, encodeScale) {
-  for (var c = 0; c < rings.length; c++) {
-    rings[c] = decodeRing(rings[c], encodeOffsets[c], encodeScale);
-  }
-}
-function decodeRing(coordinate, encodeOffsets, encodeScale) {
-  var result = [];
-  var prevX = encodeOffsets[0];
-  var prevY = encodeOffsets[1];
-  for (var i = 0; i < coordinate.length; i += 2) {
-    var x = coordinate.charCodeAt(i) - 64;
-    var y = coordinate.charCodeAt(i + 1) - 64;
-    x = x >> 1 ^ -(x & 1);
-    y = y >> 1 ^ -(y & 1);
-    x += prevX;
-    y += prevY;
-    prevX = x;
-    prevY = y;
-    result.push([x / encodeScale, y / encodeScale]);
-  }
-  return result;
-}
-function parseGeoJSON(geoJson, nameProperty) {
-  geoJson = decode(geoJson);
-  return map(filter(geoJson.features, function(featureObj) {
-    return featureObj.geometry && featureObj.properties && featureObj.geometry.coordinates.length > 0;
-  }), function(featureObj) {
-    var properties = featureObj.properties;
-    var geo = featureObj.geometry;
-    var geometries = [];
-    switch (geo.type) {
-      case "Polygon":
-        var coordinates = geo.coordinates;
-        geometries.push(new GeoJSONPolygonGeometry(coordinates[0], coordinates.slice(1)));
-        break;
-      case "MultiPolygon":
-        each(geo.coordinates, function(item) {
-          if (item[0]) {
-            geometries.push(new GeoJSONPolygonGeometry(item[0], item.slice(1)));
-          }
-        });
-        break;
-      case "LineString":
-        geometries.push(new GeoJSONLineStringGeometry([geo.coordinates]));
-        break;
-      case "MultiLineString":
-        geometries.push(new GeoJSONLineStringGeometry(geo.coordinates));
-    }
-    var region = new GeoJSONRegion(properties[nameProperty || "name"], geometries, properties.cp);
-    region.properties = properties;
-    return region;
-  });
-}
-
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/axisModelCommonMixin.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/axisModelCommonMixin.js
 var AxisModelCommonMixin = (
   /** @class */
   function() {
@@ -17385,7 +17385,7 @@ var AxisModelCommonMixin = (
   }()
 );
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/label/labelLayoutHelper.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/label/labelLayoutHelper.js
 function prepareLayoutList(input) {
   var list = [];
   for (var i = 0; i < input.length; i++) {
@@ -17606,7 +17606,6 @@ function hideOverlap(labelList) {
 }
 
 export {
-  makeStyleMapper,
   linearMap,
   parsePercent2 as parsePercent,
   round,
@@ -17651,6 +17650,7 @@ export {
   getTooltipRenderMode,
   groupData,
   interpolateRawValues,
+  makeStyleMapper,
   getECData,
   setCommonECData,
   HOVER_STATE_BLUR,
@@ -17720,35 +17720,6 @@ export {
   setLabelValueAnimation,
   animateLabelValue,
   Model_default,
-  DataDiffer_default,
-  VISUAL_DIMENSIONS,
-  SOURCE_FORMAT_ORIGINAL,
-  SOURCE_FORMAT_ARRAY_ROWS,
-  SOURCE_FORMAT_OBJECT_ROWS,
-  SERIES_LAYOUT_BY_COLUMN,
-  BE_ORDINAL,
-  makeSeriesEncodeForAxisCoordSys,
-  makeSeriesEncodeForNameBased,
-  guessOrdinal,
-  isSourceInstance,
-  createSourceFromSeriesDataOption,
-  retrieveRawValue,
-  getDimensionTypeByAxis,
-  SeriesDimensionDefine_default,
-  parseDataValue,
-  getRawValueParser,
-  SortOrderComparator,
-  createFilterComparator,
-  CtorInt32Array,
-  SeriesDataSchema,
-  createDimNameMap,
-  ensureSourceDimNameMap,
-  shouldOmitUnusedDimensions,
-  SeriesData_default,
-  CoordinateSystem_default,
-  enableDataStack,
-  isDimensionStacked,
-  getStackedDimension,
   getUID,
   inheritDefaultOption,
   registerLocale,
@@ -17776,9 +17747,28 @@ export {
   getLayoutParams,
   copyLayoutParams,
   Component_default,
+  VISUAL_DIMENSIONS,
+  SOURCE_FORMAT_ORIGINAL,
+  SOURCE_FORMAT_ARRAY_ROWS,
+  SOURCE_FORMAT_OBJECT_ROWS,
+  SERIES_LAYOUT_BY_COLUMN,
+  BE_ORDINAL,
+  makeSeriesEncodeForAxisCoordSys,
+  makeSeriesEncodeForNameBased,
+  guessOrdinal,
+  registerInternalOptionCreator,
   getDecalFromPalette,
+  CoordinateSystem_default,
+  isSourceInstance,
+  createSourceFromSeriesDataOption,
+  retrieveRawValue,
   DataFormatMixin,
   normalizeTooltipFormatResult,
+  parseDataValue,
+  getRawValueParser,
+  SortOrderComparator,
+  createFilterComparator,
+  CtorInt32Array,
   SourceManager,
   disableTransformOptionMerge,
   createTooltipMarkup,
@@ -17788,30 +17778,21 @@ export {
   TooltipMarkupStyleCreator,
   defaultSeriesFormatTooltip,
   Series_default,
+  Component_default2,
+  createRenderPlanner,
+  Chart_default,
+  throttle,
+  createOrUpdate,
+  clear,
+  getItemVisualFromData,
+  getVisualFromData,
+  setItemVisualFromData,
+  createLegacyDataSelectAction,
+  findEventDispatcher,
   symbolBuildProxies,
   createSymbol,
   normalizeSymbolSize,
   normalizeSymbolOffset,
-  createFloat32Array,
-  createRenderPlanner,
-  Chart_default,
-  getLayoutOnAxis,
-  layout,
-  createProgressiveLayout,
-  throttle,
-  createOrUpdate,
-  clear,
-  createLegacyDataSelectAction,
-  prepareLayoutList,
-  shiftLayoutOnX,
-  shiftLayoutOnY,
-  hideOverlap,
-  registerInternalOptionCreator,
-  Component_default2,
-  getItemVisualFromData,
-  getVisualFromData,
-  setItemVisualFromData,
-  findEventDispatcher,
   createOrUpdatePatternFromDecal,
   version,
   dependencies,
@@ -17840,14 +17821,27 @@ export {
   getMap,
   registerTransform,
   dataTool,
-  use,
-  AxisModelCommonMixin,
+  DataDiffer_default,
+  getDimensionTypeByAxis,
+  SeriesDimensionDefine_default,
+  SeriesDataSchema,
+  createDimNameMap,
+  ensureSourceDimNameMap,
+  shouldOmitUnusedDimensions,
+  SeriesData_default,
+  enableDataStack,
+  isDimensionStacked,
+  getStackedDimension,
   OrdinalMeta_default,
   isValueNice,
   isIntervalOrLogScale,
   increaseInterval,
   Ordinal_default,
   Interval_default,
+  createFloat32Array,
+  getLayoutOnAxis,
+  layout,
+  createProgressiveLayout,
   Time_default,
   ensureScaleRawExtentInfo,
   getScaleExtent,
@@ -17859,10 +17853,16 @@ export {
   shouldShowAllLabels,
   getDataDimensionsOnAxis,
   unionAxisExtentFromData,
-  Axis_default,
-  contain2 as contain,
+  AxisModelCommonMixin,
+  use,
+  contain,
   GeoJSONRegion,
   GeoSVGRegion,
-  parseGeoJSON
+  parseGeoJSON,
+  Axis_default,
+  prepareLayoutList,
+  shiftLayoutOnX,
+  shiftLayoutOnY,
+  hideOverlap
 };
-//# sourceMappingURL=chunk-QGOZMNMY.js.map
+//# sourceMappingURL=chunk-SVFLJ42B.js.map

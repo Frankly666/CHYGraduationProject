@@ -1,58 +1,58 @@
 {
-  "hash": "8215a61f",
-  "configHash": "ad7bf19d",
-  "lockfileHash": "bd0c49b3",
-  "browserHash": "a992b5ef",
+  "hash": "a93bc244",
+  "configHash": "6de87e1c",
+  "lockfileHash": "592a1a5c",
+  "browserHash": "3d0f21a5",
   "optimized": {
-    "openai": {
-      "src": "../../../../../node_modules/openai/index.mjs",
-      "file": "openai.js",
-      "fileHash": "7864866b",
-      "needsInterop": false
-    },
     "marked": {
       "src": "../../../../../node_modules/marked/lib/marked.esm.js",
       "file": "marked.js",
-      "fileHash": "0caa06c5",
+      "fileHash": "62ac3345",
       "needsInterop": false
     },
     "echarts/core": {
       "src": "../../../../../node_modules/echarts/core.js",
       "file": "echarts_core.js",
-      "fileHash": "454f3cc6",
+      "fileHash": "d8af9933",
       "needsInterop": false
     },
     "echarts/charts": {
       "src": "../../../../../node_modules/echarts/charts.js",
       "file": "echarts_charts.js",
-      "fileHash": "5ae2c508",
+      "fileHash": "776e71e7",
       "needsInterop": false
     },
     "echarts/components": {
       "src": "../../../../../node_modules/echarts/components.js",
       "file": "echarts_components.js",
-      "fileHash": "e014589a",
+      "fileHash": "9a6dc64a",
       "needsInterop": false
     },
     "echarts/renderers": {
       "src": "../../../../../node_modules/echarts/renderers.js",
       "file": "echarts_renderers.js",
-      "fileHash": "35b458b2",
+      "fileHash": "c5891426",
+      "needsInterop": false
+    },
+    "openai": {
+      "src": "../../../../../node_modules/openai/index.mjs",
+      "file": "openai.js",
+      "fileHash": "7ae356a4",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-KR35U5EH": {
-      "file": "chunk-KR35U5EH.js"
+    "chunk-S346HD5J": {
+      "file": "chunk-S346HD5J.js"
     },
-    "chunk-I5UVBIPP": {
-      "file": "chunk-I5UVBIPP.js"
+    "chunk-G2AIAOYN": {
+      "file": "chunk-G2AIAOYN.js"
     },
-    "chunk-QGOZMNMY": {
-      "file": "chunk-QGOZMNMY.js"
+    "chunk-SVFLJ42B": {
+      "file": "chunk-SVFLJ42B.js"
     },
-    "chunk-BQOHNX66": {
-      "file": "chunk-BQOHNX66.js"
+    "chunk-XYPXWI6Z": {
+      "file": "chunk-XYPXWI6Z.js"
     },
     "chunk-7U33LM2Z": {
       "file": "chunk-7U33LM2Z.js"

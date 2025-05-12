@@ -1,6 +1,7 @@
 // 文件上传和内容抽取服务
+import { config } from '@/config/env';
 const MOONSHOT_API_KEY = 'sk-JWuFVaV252ndCTXc3Q8lvkVP7vMomFeySnJxx6bbT1PMoEst'; // 需要替换为实际的API密钥
-const MOONSHOT_BASE_URL = 'https://api.moonshot.cn/v1';
+const MOONSHOT_BASE_URL = config.baseURL;
 
 // 上传文件
 export const uploadFile = async (file) => {

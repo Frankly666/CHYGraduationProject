@@ -5,7 +5,7 @@ import {
   limitTurnAngle,
   prepareSeriesDataSchema,
   setLabelLineStyle
-} from "./chunk-KR35U5EH.js";
+} from "./chunk-S346HD5J.js";
 import {
   LineDraw_default,
   Line_default as Line_default2,
@@ -35,7 +35,7 @@ import {
   updateViewOnPan,
   updateViewOnZoom,
   warnDeprecated
-} from "./chunk-I5UVBIPP.js";
+} from "./chunk-G2AIAOYN.js";
 import {
   BezierCurve_default,
   Chart_default,
@@ -135,7 +135,7 @@ import {
   use,
   warn,
   windowOpen
-} from "./chunk-QGOZMNMY.js";
+} from "./chunk-SVFLJ42B.js";
 import {
   BoundingRect_default,
   Displayable_default,
@@ -156,7 +156,7 @@ import {
   concatArray,
   containStroke,
   containStroke2,
-  copy2 as copy,
+  copy,
   create,
   create2,
   createHashMap,
@@ -208,10 +208,10 @@ import {
   set,
   sub,
   translate
-} from "./chunk-BQOHNX66.js";
+} from "./chunk-XYPXWI6Z.js";
 import "./chunk-7U33LM2Z.js";
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/line/LineSeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/line/LineSeries.js
 var LineSeriesModel = (
   /** @class */
   function(_super) {
@@ -319,7 +319,7 @@ var LineSeriesModel = (
 );
 var LineSeries_default = LineSeriesModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/line/helper.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/line/helper.js
 function prepareDataCoordInfo(coordSys, data, valueOrigin) {
   var baseAxis = coordSys.getBaseAxis();
   var valueAxis = coordSys.getOtherAxis(baseAxis);
@@ -395,7 +395,7 @@ function getStackedOnPoint(dataCoordInfo, coordSys, data, idx) {
   return coordSys.dataToPoint(stackedData);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/line/lineAnimationDiff.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/line/lineAnimationDiff.js
 function diffData(oldData, newData) {
   var diffResult = [];
   newData.diff(oldData).add(function(idx) {
@@ -504,7 +504,7 @@ function lineAnimationDiff(oldData, newData, oldStackedOnPoints, newStackedOnPoi
   };
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/line/poly.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/line/poly.js
 var mathMin = Math.min;
 var mathMax = Math.max;
 function isPointNull(x, y) {
@@ -801,7 +801,7 @@ var ECPolygon = (
   }(Path_default)
 );
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/helper/createClipPathFromCoordSys.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/helper/createClipPathFromCoordSys.js
 function createGridClipPath(cartesian, hasAnimation, seriesModel, done, during) {
   var rect = cartesian.getArea();
   var x = rect.x;
@@ -897,7 +897,7 @@ function createClipPath(coordSys, hasAnimation, seriesModel, done, during) {
   return null;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/line/LineView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/line/LineView.js
 function isPointsSame(points1, points2) {
   if (points1.length !== points2.length) {
     return;
@@ -1852,7 +1852,7 @@ var LineView = (
 );
 var LineView_default = LineView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/layout/points.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/layout/points.js
 function pointsLayout(seriesType, forceStoreInTypedArray) {
   return {
     seriesType,
@@ -1909,7 +1909,7 @@ function pointsLayout(seriesType, forceStoreInTypedArray) {
   };
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/processor/dataSample.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/processor/dataSample.js
 var samplers = {
   average: function(frame) {
     var sum2 = 0;
@@ -1990,7 +1990,7 @@ function dataSample(seriesType) {
   };
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/line/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/line/install.js
 function install5(registers) {
   registers.registerChartView(LineView_default);
   registers.registerSeriesModel(LineSeries_default);
@@ -2009,7 +2009,7 @@ function install5(registers) {
   registers.registerProcessor(registers.PRIORITY.PROCESSOR.STATISTIC, dataSample("line"));
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/bar/BaseBarSeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/bar/BaseBarSeries.js
 var BaseBarSeriesModel = (
   /** @class */
   function(_super) {
@@ -2109,7 +2109,7 @@ var BaseBarSeriesModel = (
 Series_default.registerClass(BaseBarSeriesModel);
 var BaseBarSeries_default = BaseBarSeriesModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/bar/BarSeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/bar/BarSeries.js
 var BarSeriesModel = (
   /** @class */
   function(_super) {
@@ -2171,7 +2171,7 @@ var BarSeriesModel = (
 );
 var BarSeries_default = BarSeriesModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/util/shape/sausage.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/util/shape/sausage.js
 var SausageShape = (
   /** @class */
   /* @__PURE__ */ function() {
@@ -2235,7 +2235,7 @@ var SausagePath = (
 );
 var sausage_default = SausagePath;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/label/sectorLabel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/label/sectorLabel.js
 function createSectorCalculateTextPosition(positionMapping, opts) {
   opts = opts || {};
   var isRoundCap = opts.isRoundCap;
@@ -2383,7 +2383,7 @@ function adjustAngleDistanceY(angle, distance, isEnd) {
   return distance * Math.cos(angle) * (isEnd ? 1 : -1);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/helper/sectorHelper.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/helper/sectorHelper.js
 function getSectorCornerRadius(model, shape, zeroIfNull) {
   var cornerRadius = model.get("borderRadius");
   if (cornerRadius == null) {
@@ -2402,7 +2402,7 @@ function getSectorCornerRadius(model, shape, zeroIfNull) {
   };
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/bar/BarView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/bar/BarView.js
 var mathMax2 = Math.max;
 var mathMin2 = Math.min;
 function getClipArea(coord, data) {
@@ -3178,7 +3178,7 @@ function createBackgroundEl(coord, isHorizontalOrRadial, layout2) {
 }
 var BarView_default = BarView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/bar/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/bar/install.js
 function install6(registers) {
   registers.registerChartView(BarView_default);
   registers.registerSeriesModel(BarSeries_default);
@@ -3202,7 +3202,7 @@ function install6(registers) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/pie/pieLayout.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/pie/pieLayout.js
 var PI2 = Math.PI * 2;
 var RADIAN = Math.PI / 180;
 function getViewRect(seriesModel, api) {
@@ -3379,7 +3379,7 @@ function pieLayout(seriesType, ecModel, api) {
 }
 var getSeriesLayoutData = makeInner();
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/processor/dataFilter.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/processor/dataFilter.js
 function dataFilter(seriesType) {
   return {
     seriesType,
@@ -3404,7 +3404,7 @@ function dataFilter(seriesType) {
   };
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/pie/labelLayout.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/pie/labelLayout.js
 var RADIAN2 = Math.PI / 180;
 function adjustSingleSide(list, cx, cy, r, dir, viewWidth, viewHeight, viewLeft, viewTop, farthestX) {
   if (list.length < 2) {
@@ -3788,7 +3788,7 @@ function pieLabelLayout(seriesModel) {
   }
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/pie/PieView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/pie/PieView.js
 var PiePiece = (
   /** @class */
   function(_super) {
@@ -4004,7 +4004,7 @@ var PieView = (
 );
 var PieView_default = PieView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/helper/createSeriesDataSimply.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/helper/createSeriesDataSimply.js
 function createSeriesDataSimply(seriesModel, opt, nameList) {
   opt = isArray(opt) && {
     coordDimensions: opt
@@ -4018,7 +4018,7 @@ function createSeriesDataSimply(seriesModel, opt, nameList) {
   return list;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/visual/LegendVisualProvider.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/visual/LegendVisualProvider.js
 var LegendVisualProvider = (
   /** @class */
   function() {
@@ -4047,7 +4047,7 @@ var LegendVisualProvider = (
 );
 var LegendVisualProvider_default = LegendVisualProvider;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/pie/PieSeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/pie/PieSeries.js
 var innerData = makeInner();
 var PieSeriesModel = (
   /** @class */
@@ -4198,7 +4198,7 @@ var PieSeriesModel = (
 );
 var PieSeries_default = PieSeriesModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/processor/negativeDataFilter.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/processor/negativeDataFilter.js
 function negativeDataFilter(seriesType) {
   return {
     seriesType,
@@ -4216,7 +4216,7 @@ function negativeDataFilter(seriesType) {
   };
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/pie/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/pie/install.js
 function install7(registers) {
   registers.registerChartView(PieView_default);
   registers.registerSeriesModel(PieSeries_default);
@@ -4226,7 +4226,7 @@ function install7(registers) {
   registers.registerProcessor(negativeDataFilter("pie"));
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/scatter/ScatterSeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/scatter/ScatterSeries.js
 var ScatterSeriesModel = (
   /** @class */
   function(_super) {
@@ -4300,7 +4300,7 @@ var ScatterSeriesModel = (
 );
 var ScatterSeries_default = ScatterSeriesModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/helper/LargeSymbolDraw.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/helper/LargeSymbolDraw.js
 var BOOST_SIZE_THRESHOLD = 4;
 var LargeSymbolPathShape = (
   /** @class */
@@ -4548,7 +4548,7 @@ var LargeSymbolDraw = (
 );
 var LargeSymbolDraw_default = LargeSymbolDraw;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/scatter/ScatterView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/scatter/ScatterView.js
 var ScatterView = (
   /** @class */
   function(_super) {
@@ -4636,7 +4636,7 @@ var ScatterView = (
 );
 var ScatterView_default = ScatterView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/scatter/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/scatter/install.js
 function install8(registers) {
   use(install);
   registers.registerSeriesModel(ScatterSeries_default);
@@ -4644,7 +4644,7 @@ function install8(registers) {
   registers.registerLayout(pointsLayout("scatter"));
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/radar/radarLayout.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/radar/radarLayout.js
 function radarLayout(ecModel) {
   ecModel.eachSeriesByType("radar", function(seriesModel) {
     var data = seriesModel.getData();
@@ -4677,7 +4677,7 @@ function getValueMissingPoint(coordSys) {
   return [coordSys.cx, coordSys.cy];
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/radar/backwardCompat.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/radar/backwardCompat.js
 function radarBackwardCompat(option) {
   var polarOptArr = option.polar;
   if (polarOptArr) {
@@ -4708,7 +4708,7 @@ function radarBackwardCompat(option) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/radar/RadarView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/radar/RadarView.js
 var RadarView = (
   /** @class */
   function(_super) {
@@ -4883,7 +4883,7 @@ var RadarView = (
 );
 var RadarView_default = RadarView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/radar/RadarSeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/radar/RadarSeries.js
 var RadarSeriesModel = (
   /** @class */
   function(_super) {
@@ -4969,7 +4969,7 @@ var RadarSeriesModel = (
 );
 var RadarSeries_default = RadarSeriesModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/radar/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/radar/install.js
 function install9(registers) {
   use(install2);
   registers.registerChartView(RadarView_default);
@@ -4979,7 +4979,7 @@ function install9(registers) {
   registers.registerPreprocessor(radarBackwardCompat);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/map/MapView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/map/MapView.js
 var MapView = (
   /** @class */
   function(_super) {
@@ -5092,7 +5092,7 @@ var MapView = (
 );
 var MapView_default = MapView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/map/MapSeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/map/MapSeries.js
 var MapSeries = (
   /** @class */
   function(_super) {
@@ -5276,7 +5276,7 @@ var MapSeries = (
 );
 var MapSeries_default = MapSeries;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/map/mapDataStatistic.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/map/mapDataStatistic.js
 function dataStatistics(datas, statisticType) {
   var dataNameMap = {};
   each(datas, function(data) {
@@ -5335,7 +5335,7 @@ function mapDataStatistic(ecModel) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/map/mapSymbolLayout.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/map/mapSymbolLayout.js
 function mapSymbolLayout(ecModel) {
   var processedMapType = {};
   ecModel.eachSeriesByType("map", function(mapSeries) {
@@ -5375,7 +5375,7 @@ function mapSymbolLayout(ecModel) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/map/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/map/install.js
 function install10(registers) {
   use(install3);
   registers.registerChartView(MapView_default);
@@ -5385,7 +5385,7 @@ function install10(registers) {
   createLegacyDataSelectAction("map", registers.registerAction);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/tree/layoutHelper.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/tree/layoutHelper.js
 function init(inRoot) {
   var root = inRoot;
   root.hierNode = {
@@ -5536,7 +5536,7 @@ function defaultSeparation(node1, node2) {
   return node1.parentNode === node2.parentNode ? 1 : 2;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/tree/TreeView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/tree/TreeView.js
 var TreeEdgeShape = (
   /** @class */
   /* @__PURE__ */ function() {
@@ -6081,7 +6081,7 @@ function getEdgeShape(layoutOpt, orient, curvature, sourceLayout, targetLayout) 
 }
 var TreeView_default = TreeView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/data/helper/linkSeriesData.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/data/helper/linkSeriesData.js
 var inner = makeInner();
 function linkSeriesData(opt) {
   var mainData = opt.mainData;
@@ -6164,7 +6164,7 @@ function linkSingle(data, dataType, mainData, opt) {
 }
 var linkSeriesData_default = linkSeriesData;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/data/Tree.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/data/Tree.js
 var TreeNode = (
   /** @class */
   function() {
@@ -6403,7 +6403,7 @@ function addChild(child, node) {
 }
 var Tree_default = Tree;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/helper/treeHelper.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/helper/treeHelper.js
 function retrieveTargetInfo(payload, validPayloadTypes, seriesModel) {
   if (payload && indexOf(validPayloadTypes, payload.type) >= 0) {
     var root = seriesModel.getData().tree.root;
@@ -6451,7 +6451,7 @@ function wrapTreePathInfo(node, seriesModel) {
   return treePathInfo;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/tree/TreeSeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/tree/TreeSeries.js
 var TreeSeriesModel = (
   /** @class */
   function(_super) {
@@ -6581,7 +6581,7 @@ var TreeSeriesModel = (
 );
 var TreeSeries_default = TreeSeriesModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/tree/traversalHelper.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/tree/traversalHelper.js
 function eachAfter(root, callback, separation2) {
   var nodes = [root];
   var next = [];
@@ -6617,7 +6617,7 @@ function eachBefore(root, callback) {
   }
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/tree/treeLayout.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/tree/treeLayout.js
 function treeLayout(ecModel, api) {
   ecModel.eachSeriesByType("tree", function(seriesModel) {
     commonLayout(seriesModel, api);
@@ -6712,7 +6712,7 @@ function commonLayout(seriesModel, api) {
   }
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/tree/treeVisual.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/tree/treeVisual.js
 function treeVisual(ecModel) {
   ecModel.eachSeriesByType("tree", function(seriesModel) {
     var data = seriesModel.getData();
@@ -6726,7 +6726,7 @@ function treeVisual(ecModel) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/tree/treeAction.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/tree/treeAction.js
 function installTreeAction(registers) {
   registers.registerAction({
     type: "treeExpandAndCollapse",
@@ -6766,7 +6766,7 @@ function installTreeAction(registers) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/tree/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/tree/install.js
 function install11(registers) {
   registers.registerChartView(TreeView_default);
   registers.registerSeriesModel(TreeSeries_default);
@@ -6775,7 +6775,7 @@ function install11(registers) {
   installTreeAction(registers);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/treemap/treemapAction.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/treemap/treemapAction.js
 var actionTypes = ["treemapZoomToNode", "treemapRender", "treemapMove"];
 function installTreemapAction(registers) {
   for (var i = 0; i < actionTypes.length; i++) {
@@ -6807,7 +6807,7 @@ function installTreemapAction(registers) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/helper/enableAriaDecalForTree.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/helper/enableAriaDecalForTree.js
 function enableAriaDecalForTree(seriesModel) {
   var data = seriesModel.getData();
   var tree = data.tree;
@@ -6822,7 +6822,7 @@ function enableAriaDecalForTree(seriesModel) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/treemap/TreemapSeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/treemap/TreemapSeries.js
 var TreemapSeriesModel = (
   /** @class */
   function(_super) {
@@ -7075,7 +7075,7 @@ function setDefault(levels, ecModel) {
 }
 var TreemapSeries_default = TreemapSeriesModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/treemap/Breadcrumb.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/treemap/Breadcrumb.js
 var TEXT_PADDING = 8;
 var ITEM_GAP = 8;
 var ARRAY_LENGTH = 5;
@@ -7206,7 +7206,7 @@ function packEventData(el, seriesModel, itemNode) {
 }
 var Breadcrumb_default = Breadcrumb;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/util/animation.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/util/animation.js
 var AnimationWrap = (
   /** @class */
   function() {
@@ -7263,7 +7263,7 @@ function createWrap() {
   return new AnimationWrap();
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/treemap/TreemapView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/treemap/TreemapView.js
 var Group = Group_default;
 var Rect = Rect_default;
 var DRAG_THRESHOLD = 3;
@@ -7588,9 +7588,9 @@ var TreemapView = (
         var layoutInfo = this.seriesModel.layoutInfo;
         mouseX -= layoutInfo.x;
         mouseY -= layoutInfo.y;
-        var m = create();
+        var m = create2();
         translate(m, m, [-mouseX, -mouseY]);
-        scale(m, m, [zoomScale, zoomScale]);
+        scale2(m, m, [zoomScale, zoomScale]);
         translate(m, m, [mouseX, mouseY]);
         rect.applyTransform(m);
         this.api.dispatchAction({
@@ -7976,7 +7976,7 @@ function calculateZ2(depth, z2InLevel) {
 }
 var TreemapView_default = TreemapView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/treemap/treemapVisual.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/treemap/treemapVisual.js
 var ITEM_STYLE_NORMAL = "itemStyle";
 var inner3 = makeInner();
 var treemapVisual_default = {
@@ -8109,7 +8109,7 @@ function mapVisual(nodeModel, visuals, child, index, mapping, seriesModel) {
   return childVisuals;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/treemap/treemapLayout.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/treemap/treemapLayout.js
 var mathMax3 = Math.max;
 var mathMin3 = Math.min;
 var retrieveValue = retrieve;
@@ -8464,7 +8464,7 @@ function getUpperLabelHeight(model) {
   return model.get(PATH_UPPER_LABEL_SHOW) ? model.get(PATH_UPPER_LABEL_HEIGHT) : 0;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/treemap/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/treemap/install.js
 function install12(registers) {
   registers.registerSeriesModel(TreemapSeries_default);
   registers.registerChartView(TreemapView_default);
@@ -8473,7 +8473,7 @@ function install12(registers) {
   installTreemapAction(registers);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/graph/categoryFilter.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/graph/categoryFilter.js
 function categoryFilter(ecModel) {
   var legendModels = ecModel.findComponents({
     mainType: "legend"
@@ -8504,7 +8504,7 @@ function categoryFilter(ecModel) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/graph/categoryVisual.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/graph/categoryVisual.js
 function categoryVisual(ecModel) {
   var paletteScope = {};
   ecModel.eachSeriesByType("graph", function(seriesModel) {
@@ -8549,7 +8549,7 @@ function categoryVisual(ecModel) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/graph/edgeVisual.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/graph/edgeVisual.js
 function normalize2(a) {
   if (!(a instanceof Array)) {
     a = [a, a];
@@ -8595,7 +8595,7 @@ function graphEdgeVisual(ecModel) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/helper/multipleGraphEdgeHelper.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/helper/multipleGraphEdgeHelper.js
 var KEY_DELIMITER = "-->";
 var getAutoCurvenessParams = function(seriesModel) {
   return seriesModel.get("autoCurveness") || null;
@@ -8711,7 +8711,7 @@ function getCurvenessForEdge(edge, seriesModel, index, needReverse) {
   }
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/graph/simpleLayoutHelper.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/graph/simpleLayoutHelper.js
 function simpleLayout(seriesModel) {
   var coordSys = seriesModel.coordinateSystem;
   if (coordSys && coordSys.type !== "view") {
@@ -8727,8 +8727,8 @@ function simpleLayout(seriesModel) {
 function simpleLayoutEdge(graph, seriesModel) {
   graph.eachEdge(function(edge, index) {
     var curveness = retrieve3(edge.getModel().get(["lineStyle", "curveness"]), -getCurvenessForEdge(edge, seriesModel, index, true), 0);
-    var p1 = clone3(edge.node1.getLayout());
-    var p2 = clone3(edge.node2.getLayout());
+    var p1 = clone2(edge.node1.getLayout());
+    var p2 = clone2(edge.node2.getLayout());
     var points = [p1, p2];
     if (+curveness) {
       points.push([(p1[0] + p2[0]) / 2 - (p1[1] - p2[1]) * curveness, (p1[1] + p2[1]) / 2 - (p2[0] - p1[0]) * curveness]);
@@ -8737,7 +8737,7 @@ function simpleLayoutEdge(graph, seriesModel) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/graph/simpleLayout.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/graph/simpleLayout.js
 function graphSimpleLayout(ecModel, api) {
   ecModel.eachSeriesByType("graph", function(seriesModel) {
     var layout2 = seriesModel.get("layout");
@@ -8771,7 +8771,7 @@ function graphSimpleLayout(ecModel, api) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/graph/graphHelper.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/graph/graphHelper.js
 function getNodeGlobalScale(seriesModel) {
   var coordSys = seriesModel.coordinateSystem;
   if (coordSys.type !== "view") {
@@ -8791,7 +8791,7 @@ function getSymbolSize(node) {
   return +symbolSize;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/graph/circularLayoutHelper.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/graph/circularLayoutHelper.js
 var PI = Math.PI;
 var _symbolRadiansHalf = [];
 function circularLayout(seriesModel, basedOn, draggingNode, pointer) {
@@ -8817,7 +8817,7 @@ function circularLayout(seriesModel, basedOn, draggingNode, pointer) {
     var _a = coordSys.pointToData(pointer), tempX = _a[0], tempY = _a[1];
     var v = [tempX - cx, tempY - cy];
     normalize(v, v);
-    scale2(v, v, r);
+    scale(v, v, r);
     draggingNode.setLayout([cx + v[0], cy + v[1]], true);
     var circularRotateLabel = seriesModel.get(["circular", "rotateLabel"]);
     rotateNodeLabel(draggingNode, circularRotateLabel, cx, cy);
@@ -8825,8 +8825,8 @@ function circularLayout(seriesModel, basedOn, draggingNode, pointer) {
   _layoutNodesBasedOn[basedOn](seriesModel, graph, nodeData, r, cx, cy, count);
   graph.eachEdge(function(edge, index) {
     var curveness = retrieve3(edge.getModel().get(["lineStyle", "curveness"]), getCurvenessForEdge(edge, seriesModel, index), 0);
-    var p1 = clone3(edge.node1.getLayout());
-    var p2 = clone3(edge.node2.getLayout());
+    var p1 = clone2(edge.node1.getLayout());
+    var p2 = clone2(edge.node2.getLayout());
     var cp1;
     var x12 = (p1[0] + p2[0]) / 2;
     var y12 = (p1[1] + p2[1]) / 2;
@@ -8909,7 +8909,7 @@ function rotateNodeLabel(node, circularRotateLabel, cx, cy) {
   }
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/graph/circularLayout.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/graph/circularLayout.js
 function graphCircularLayout(ecModel) {
   ecModel.eachSeriesByType("graph", function(seriesModel) {
     if (seriesModel.get("layout") === "circular") {
@@ -8918,7 +8918,7 @@ function graphCircularLayout(ecModel) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/graph/forceHelper.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/graph/forceHelper.js
 var scaleAndAdd2 = scaleAndAdd;
 function forceLayout(inNodes, inEdges, opts) {
   var nodes = inNodes;
@@ -8931,9 +8931,9 @@ function forceLayout(inNodes, inEdges, opts) {
   for (var i = 0; i < nodes.length; i++) {
     var n = nodes[i];
     if (!n.p) {
-      n.p = create2(width * (Math.random() - 0.5) + center2[0], height * (Math.random() - 0.5) + center2[1]);
+      n.p = create(width * (Math.random() - 0.5) + center2[0], height * (Math.random() - 0.5) + center2[1]);
     }
-    n.pp = clone3(n.p);
+    n.pp = clone2(n.p);
     n.edges = null;
   }
   var initialFriction = opts.friction == null ? 0.6 : opts.friction;
@@ -9028,7 +9028,7 @@ function forceLayout(inNodes, inEdges, opts) {
   };
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/graph/forceLayout.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/graph/forceLayout.js
 function graphForceLayout(ecModel) {
   ecModel.eachSeriesByType("graph", function(graphSeries) {
     var coordSys = graphSeries.coordinateSystem;
@@ -9134,7 +9134,7 @@ function graphForceLayout(ecModel) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/graph/createView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/graph/createView.js
 function getViewRect3(seriesModel, api, aspect) {
   var option = extend(seriesModel.getBoxLayoutParams(), {
     aspect
@@ -9187,7 +9187,7 @@ function createViewCoordSys(ecModel, api) {
   return viewList;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/graph/adjustEdge.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/graph/adjustEdge.js
 var v1 = [];
 var v2 = [];
 var v3 = [];
@@ -9251,9 +9251,9 @@ function adjustEdge(graph, scale3) {
     var fromSymbol = edge.getVisual("fromSymbol");
     var toSymbol = edge.getVisual("toSymbol");
     if (!linePoints.__original) {
-      linePoints.__original = [clone3(linePoints[0]), clone3(linePoints[1])];
+      linePoints.__original = [clone2(linePoints[0]), clone2(linePoints[1])];
       if (linePoints[2]) {
-        linePoints.__original.push(clone3(linePoints[2]));
+        linePoints.__original.push(clone2(linePoints[2]));
       }
     }
     var originalPoints = linePoints.__original;
@@ -9303,7 +9303,7 @@ function adjustEdge(graph, scale3) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/graph/GraphView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/graph/GraphView.js
 function isViewCoordSys(coordSys) {
   return coordSys.type === "view";
 }
@@ -9510,7 +9510,7 @@ var GraphView = (
 );
 var GraphView_default = GraphView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/data/Graph.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/data/Graph.js
 function generateNodeKey(id) {
   return "_EC_" + id;
 }
@@ -9874,7 +9874,7 @@ mixin(GraphNode, createGraphDataProxyMixin("hostGraph", "data"));
 mixin(GraphEdge, createGraphDataProxyMixin("hostGraph", "edgeData"));
 var Graph_default = Graph;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/helper/createGraphFromNodeEdge.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/helper/createGraphFromNodeEdge.js
 function createGraphFromNodeEdge(nodes, edges, seriesModel, directed, beforeLink) {
   var graph = new Graph_default(directed);
   for (var i = 0; i < nodes.length; i++) {
@@ -9935,7 +9935,7 @@ function createGraphFromNodeEdge(nodes, edges, seriesModel, directed, beforeLink
   return graph;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/graph/GraphSeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/graph/GraphSeries.js
 var GraphSeriesModel = (
   /** @class */
   function(_super) {
@@ -10153,7 +10153,7 @@ var GraphSeriesModel = (
 );
 var GraphSeries_default = GraphSeriesModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/graph/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/graph/install.js
 var actionInfo = {
   type: "graphRoam",
   event: "graphRoam",
@@ -10195,7 +10195,7 @@ function install13(registers) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/gauge/PointerPath.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/gauge/PointerPath.js
 var PointerShape = (
   /** @class */
   /* @__PURE__ */ function() {
@@ -10241,7 +10241,7 @@ var PointerPath = (
 );
 var PointerPath_default = PointerPath;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/gauge/GaugeView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/gauge/GaugeView.js
 function parsePosition(seriesModel, api) {
   var center2 = seriesModel.get("center");
   var width = api.getWidth();
@@ -10740,7 +10740,7 @@ var GaugeView = (
 );
 var GaugeView_default = GaugeView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/gauge/GaugeSeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/gauge/GaugeSeries.js
 var GaugeSeriesModel = (
   /** @class */
   function(_super) {
@@ -10884,13 +10884,13 @@ var GaugeSeriesModel = (
 );
 var GaugeSeries_default = GaugeSeriesModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/gauge/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/gauge/install.js
 function install14(registers) {
   registers.registerChartView(GaugeView_default);
   registers.registerSeriesModel(GaugeSeries_default);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/funnel/FunnelView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/funnel/FunnelView.js
 var opacityAccessPath = ["itemStyle", "opacity"];
 var FunnelPiece = (
   /** @class */
@@ -11045,7 +11045,7 @@ var FunnelView = (
 );
 var FunnelView_default = FunnelView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/funnel/FunnelSeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/funnel/FunnelSeries.js
 var FunnelSeriesModel = (
   /** @class */
   function(_super) {
@@ -11137,7 +11137,7 @@ var FunnelSeriesModel = (
 );
 var FunnelSeries_default = FunnelSeriesModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/funnel/funnelLayout.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/funnel/funnelLayout.js
 function getViewRect4(seriesModel, api) {
   return getLayoutRect(seriesModel.getBoxLayoutParams(), {
     width: api.getWidth(),
@@ -11425,7 +11425,7 @@ function funnelLayout(ecModel, api) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/funnel/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/funnel/install.js
 function install15(registers) {
   registers.registerChartView(FunnelView_default);
   registers.registerSeriesModel(FunnelSeries_default);
@@ -11433,7 +11433,7 @@ function install15(registers) {
   registers.registerProcessor(dataFilter("funnel"));
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/parallel/ParallelView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/parallel/ParallelView.js
 var DEFAULT_SMOOTH = 0.3;
 var ParallelView = (
   /** @class */
@@ -11583,7 +11583,7 @@ function isEmptyValue(val, axisType) {
 }
 var ParallelView_default = ParallelView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/parallel/ParallelSeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/parallel/ParallelSeries.js
 var ParallelSeriesModel = (
   /** @class */
   function(_super) {
@@ -11657,7 +11657,7 @@ function convertDimNameToNumber(dimName) {
 }
 var ParallelSeries_default = ParallelSeriesModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/parallel/parallelVisual.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/parallel/parallelVisual.js
 var opacityAccessPath2 = ["lineStyle", "opacity"];
 var parallelVisual = {
   seriesType: "parallel",
@@ -11685,7 +11685,7 @@ var parallelVisual = {
 };
 var parallelVisual_default = parallelVisual;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/parallel/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/parallel/install.js
 function install16(registers) {
   use(install4);
   registers.registerChartView(ParallelView_default);
@@ -11693,7 +11693,7 @@ function install16(registers) {
   registers.registerVisual(registers.PRIORITY.VISUAL.BRUSH, parallelVisual_default);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/sankey/SankeyView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/sankey/SankeyView.js
 var SankeyPathShape = (
   /** @class */
   /* @__PURE__ */ function() {
@@ -11975,7 +11975,7 @@ function createGridClipShape2(rect, seriesModel, cb) {
 }
 var SankeyView_default = SankeyView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/sankey/SankeySeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/sankey/SankeySeries.js
 var SankeySeriesModel = (
   /** @class */
   function(_super) {
@@ -12129,7 +12129,7 @@ var SankeySeriesModel = (
 );
 var SankeySeries_default = SankeySeriesModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/sankey/sankeyLayout.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/sankey/sankeyLayout.js
 function sankeyLayout(ecModel, api) {
   ecModel.eachSeriesByType("sankey", function(seriesModel) {
     var nodeWidth = seriesModel.get("nodeWidth");
@@ -12511,7 +12511,7 @@ function computeEdgeDepths(nodes, orient) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/sankey/sankeyVisual.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/sankey/sankeyVisual.js
 function sankeyVisual(ecModel) {
   ecModel.eachSeriesByType("sankey", function(seriesModel) {
     var graph = seriesModel.getGraph();
@@ -12560,7 +12560,7 @@ function sankeyVisual(ecModel) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/sankey/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/sankey/install.js
 function install17(registers) {
   registers.registerChartView(SankeyView_default);
   registers.registerSeriesModel(SankeySeries_default);
@@ -12582,7 +12582,7 @@ function install17(registers) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/helper/whiskerBoxCommon.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/helper/whiskerBoxCommon.js
 var WhiskerBoxCommonMixin = (
   /** @class */
   function() {
@@ -12665,7 +12665,7 @@ var WhiskerBoxCommonMixin = (
   }()
 );
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/boxplot/BoxplotSeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/boxplot/BoxplotSeries.js
 var BoxplotSeriesModel = (
   /** @class */
   function(_super) {
@@ -12723,7 +12723,7 @@ var BoxplotSeriesModel = (
 mixin(BoxplotSeriesModel, WhiskerBoxCommonMixin, true);
 var BoxplotSeries_default = BoxplotSeriesModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/boxplot/BoxplotView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/boxplot/BoxplotView.js
 var BoxplotView = (
   /** @class */
   function(_super) {
@@ -12854,7 +12854,7 @@ function transInit(points, dim, itemLayout) {
 }
 var BoxplotView_default = BoxplotView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/boxplot/boxplotLayout.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/boxplot/boxplotLayout.js
 var each3 = each;
 function boxplotLayout(ecModel) {
   var groupResult = groupSeriesByAxis(ecModel);
@@ -12983,7 +12983,7 @@ function layoutSingleSeries(seriesModel, offset, boxWidth) {
   }
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/boxplot/prepareBoxplotData.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/boxplot/prepareBoxplotData.js
 function prepareBoxplotData(rawData, opt) {
   opt = opt || {};
   var boxData = [];
@@ -13019,7 +13019,7 @@ function prepareBoxplotData(rawData, opt) {
   };
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/boxplot/boxplotTransform.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/boxplot/boxplotTransform.js
 var boxplotTransform = {
   type: "echarts:boxplot",
   transform: function transform(params) {
@@ -13041,7 +13041,7 @@ var boxplotTransform = {
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/boxplot/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/boxplot/install.js
 function install18(registers) {
   registers.registerSeriesModel(BoxplotSeries_default);
   registers.registerChartView(BoxplotView_default);
@@ -13049,7 +13049,7 @@ function install18(registers) {
   registers.registerTransform(boxplotTransform);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/candlestick/candlestickVisual.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/candlestick/candlestickVisual.js
 var positiveBorderColorQuery = ["itemStyle", "borderColor"];
 var negativeBorderColorQuery = ["itemStyle", "borderColor0"];
 var dojiBorderColorQuery = ["itemStyle", "borderColorDoji"];
@@ -13089,7 +13089,7 @@ var candlestickVisual = {
 };
 var candlestickVisual_default = candlestickVisual;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/candlestick/CandlestickView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/candlestick/CandlestickView.js
 var SKIP_PROPS = ["color", "borderColor"];
 var CandlestickView = (
   /** @class */
@@ -13384,7 +13384,7 @@ function setLargeStyle(sign, el, seriesModel, data) {
 }
 var CandlestickView_default = CandlestickView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/candlestick/CandlestickSeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/candlestick/CandlestickSeries.js
 var CandlestickSeriesModel = (
   /** @class */
   function(_super) {
@@ -13457,7 +13457,7 @@ var CandlestickSeriesModel = (
 mixin(CandlestickSeriesModel, WhiskerBoxCommonMixin, true);
 var CandlestickSeries_default = CandlestickSeriesModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/candlestick/preprocessor.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/candlestick/preprocessor.js
 function candlestickPreprocessor(option) {
   if (!option || !isArray(option.series)) {
     return;
@@ -13469,7 +13469,7 @@ function candlestickPreprocessor(option) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/candlestick/candlestickLayout.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/candlestick/candlestickLayout.js
 var candlestickLayout = {
   seriesType: "candlestick",
   plan: createRenderPlanner(),
@@ -13611,7 +13611,7 @@ function calculateCandleWidth(seriesModel, data) {
 }
 var candlestickLayout_default = candlestickLayout;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/candlestick/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/candlestick/install.js
 function install19(registers) {
   registers.registerChartView(CandlestickView_default);
   registers.registerSeriesModel(CandlestickSeries_default);
@@ -13620,7 +13620,7 @@ function install19(registers) {
   registers.registerLayout(candlestickLayout_default);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/helper/EffectSymbol.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/helper/EffectSymbol.js
 function updateRipplePath(rippleGroup, effectCfg) {
   var color = effectCfg.rippleEffectColor || effectCfg.color;
   rippleGroup.eachChild(function(ripplePath) {
@@ -13767,7 +13767,7 @@ var EffectSymbol = (
 );
 var EffectSymbol_default = EffectSymbol;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/effectScatter/EffectScatterView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/effectScatter/EffectScatterView.js
 var EffectScatterView = (
   /** @class */
   function(_super) {
@@ -13809,7 +13809,7 @@ var EffectScatterView = (
     EffectScatterView2.prototype._updateGroupTransform = function(seriesModel) {
       var coordSys = seriesModel.coordinateSystem;
       if (coordSys && coordSys.getRoamTransform) {
-        this.group.transform = clone2(coordSys.getRoamTransform());
+        this.group.transform = clone3(coordSys.getRoamTransform());
         this.group.decomposeTransform();
       }
     };
@@ -13822,7 +13822,7 @@ var EffectScatterView = (
 );
 var EffectScatterView_default = EffectScatterView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/effectScatter/EffectScatterSeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/effectScatter/EffectScatterSeries.js
 var EffectScatterSeriesModel = (
   /** @class */
   function(_super) {
@@ -13886,14 +13886,14 @@ var EffectScatterSeriesModel = (
 );
 var EffectScatterSeries_default = EffectScatterSeriesModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/effectScatter/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/effectScatter/install.js
 function install20(registers) {
   registers.registerChartView(EffectScatterView_default);
   registers.registerSeriesModel(EffectScatterSeries_default);
   registers.registerLayout(pointsLayout("effectScatter"));
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/helper/EffectLine.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/helper/EffectLine.js
 var EffectLine = (
   /** @class */
   function(_super) {
@@ -14043,7 +14043,7 @@ var EffectLine = (
 );
 var EffectLine_default = EffectLine;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/helper/Polyline.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/helper/Polyline.js
 var Polyline = (
   /** @class */
   function(_super) {
@@ -14108,7 +14108,7 @@ var Polyline = (
 );
 var Polyline_default2 = Polyline;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/helper/EffectPolyline.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/helper/EffectPolyline.js
 var EffectPolyline = (
   /** @class */
   function(_super) {
@@ -14192,7 +14192,7 @@ var EffectPolyline = (
 );
 var EffectPolyline_default = EffectPolyline;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/helper/LargeLineDraw.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/helper/LargeLineDraw.js
 var LargeLinesPathShape = (
   /** @class */
   /* @__PURE__ */ function() {
@@ -14435,7 +14435,7 @@ var LargeLineDraw = (
 );
 var LargeLineDraw_default = LargeLineDraw;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/lines/linesLayout.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/lines/linesLayout.js
 var linesLayout = {
   seriesType: "lines",
   plan: createRenderPlanner(),
@@ -14504,7 +14504,7 @@ var linesLayout = {
 };
 var linesLayout_default = linesLayout;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/lines/LinesView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/lines/LinesView.js
 var LinesView = (
   /** @class */
   function(_super) {
@@ -14630,7 +14630,7 @@ var LinesView = (
 );
 var LinesView_default = LinesView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/lines/LinesSeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/lines/LinesSeries.js
 var Uint32Arr = typeof Uint32Array === "undefined" ? Array : Uint32Array;
 var Float64Arr = typeof Float64Array === "undefined" ? Array : Float64Array;
 function compatEc2(seriesOpt) {
@@ -14883,7 +14883,7 @@ var LinesSeriesModel = (
 );
 var LinesSeries_default = LinesSeriesModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/lines/linesVisual.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/lines/linesVisual.js
 function normalize3(a) {
   if (!(a instanceof Array)) {
     a = [a, a];
@@ -14916,7 +14916,7 @@ var linesVisual = {
 };
 var linesVisual_default = linesVisual;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/lines/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/lines/install.js
 function install21(registers) {
   registers.registerChartView(LinesView_default);
   registers.registerSeriesModel(LinesSeries_default);
@@ -14924,7 +14924,7 @@ function install21(registers) {
   registers.registerVisual(linesVisual_default);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/heatmap/HeatmapLayer.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/heatmap/HeatmapLayer.js
 var GRADIENT_LEVELS = 256;
 var HeatmapLayer = (
   /** @class */
@@ -15023,7 +15023,7 @@ var HeatmapLayer = (
 );
 var HeatmapLayer_default = HeatmapLayer;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/heatmap/HeatmapView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/heatmap/HeatmapView.js
 function getIsInPiecewiseRange(dataExtent, pieceList, selected) {
   var dataSpan = dataExtent[1] - dataExtent[0];
   pieceList = map(pieceList, function(piece) {
@@ -15267,7 +15267,7 @@ var HeatmapView = (
 );
 var HeatmapView_default = HeatmapView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/heatmap/HeatmapSeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/heatmap/HeatmapSeries.js
 var HeatmapSeriesModel = (
   /** @class */
   function(_super) {
@@ -15314,13 +15314,13 @@ var HeatmapSeriesModel = (
 );
 var HeatmapSeries_default = HeatmapSeriesModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/heatmap/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/heatmap/install.js
 function install22(registers) {
   registers.registerChartView(HeatmapView_default);
   registers.registerSeriesModel(HeatmapSeries_default);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/bar/PictorialBarView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/bar/PictorialBarView.js
 var BAR_BORDER_WIDTH_QUERY = ["itemStyle", "borderWidth"];
 var LAYOUT_ATTRS = [{
   xy: "x",
@@ -15861,7 +15861,7 @@ function toIntTimes(times) {
 }
 var PictorialBarView_default = PictorialBarView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/bar/PictorialBarSeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/bar/PictorialBarSeries.js
 var PictorialBarSeriesModel = (
   /** @class */
   function(_super) {
@@ -15914,7 +15914,7 @@ var PictorialBarSeriesModel = (
 );
 var PictorialBarSeries_default = PictorialBarSeriesModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/bar/installPictorialBar.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/bar/installPictorialBar.js
 function install23(registers) {
   registers.registerChartView(PictorialBarView_default);
   registers.registerSeriesModel(PictorialBarSeries_default);
@@ -15922,7 +15922,7 @@ function install23(registers) {
   registers.registerLayout(registers.PRIORITY.VISUAL.PROGRESSIVE_LAYOUT, createProgressiveLayout("pictorialBar"));
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/themeRiver/ThemeRiverView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/themeRiver/ThemeRiverView.js
 var ThemeRiverView = (
   /** @class */
   function(_super) {
@@ -16057,7 +16057,7 @@ function createGridClipShape3(rect, seriesModel, cb) {
 }
 var ThemeRiverView_default = ThemeRiverView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/themeRiver/ThemeRiverSeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/themeRiver/ThemeRiverSeries.js
 var DATA_NAME_INDEX = 2;
 var ThemeRiverSeriesModel = (
   /** @class */
@@ -16234,7 +16234,7 @@ var ThemeRiverSeriesModel = (
 );
 var ThemeRiverSeries_default = ThemeRiverSeriesModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/themeRiver/themeRiverLayout.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/themeRiver/themeRiverLayout.js
 function themeRiverLayout(ecModel, api) {
   ecModel.eachSeriesByType("themeRiver", function(seriesModel) {
     var data = seriesModel.getData();
@@ -16331,7 +16331,7 @@ function computeBaseline(data) {
   };
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/themeRiver/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/themeRiver/install.js
 function install24(registers) {
   registers.registerChartView(ThemeRiverView_default);
   registers.registerSeriesModel(ThemeRiverSeries_default);
@@ -16339,7 +16339,7 @@ function install24(registers) {
   registers.registerProcessor(dataFilter("themeRiver"));
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/sunburst/SunburstPiece.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/sunburst/SunburstPiece.js
 var DEFAULT_SECTOR_Z = 2;
 var DEFAULT_TEXT_Z = 4;
 var SunburstPiece = (
@@ -16507,7 +16507,7 @@ var SunburstPiece = (
 );
 var SunburstPiece_default = SunburstPiece;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/sunburst/sunburstAction.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/sunburst/sunburstAction.js
 var ROOT_TO_NODE_ACTION = "sunburstRootToNode";
 var HIGHLIGHT_ACTION = "sunburstHighlight";
 var UNHIGHLIGHT_ACTION = "sunburstUnhighlight";
@@ -16569,7 +16569,7 @@ function installSunburstAction(registers) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/sunburst/SunburstView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/sunburst/SunburstView.js
 var SunburstView = (
   /** @class */
   function(_super) {
@@ -16708,7 +16708,7 @@ var SunburstView = (
 );
 var SunburstView_default = SunburstView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/sunburst/SunburstSeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/sunburst/SunburstSeries.js
 var SunburstSeriesModel = (
   /** @class */
   function(_super) {
@@ -16857,7 +16857,7 @@ function completeTreeValue2(dataNode) {
 }
 var SunburstSeries_default = SunburstSeriesModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/sunburst/sunburstLayout.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/sunburst/sunburstLayout.js
 var RADIAN3 = Math.PI / 180;
 function sunburstLayout(seriesType, ecModel, api) {
   ecModel.eachSeriesByType(seriesType, function(seriesModel) {
@@ -17001,7 +17001,7 @@ function sort2(children, sortOrder) {
   }
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/sunburst/sunburstVisual.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/sunburst/sunburstVisual.js
 function sunburstVisual(ecModel) {
   var paletteScope = {};
   function pickColor(node, seriesModel, treeHeight) {
@@ -17030,7 +17030,7 @@ function sunburstVisual(ecModel) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/sunburst/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/sunburst/install.js
 function install25(registers) {
   registers.registerChartView(SunburstView_default);
   registers.registerSeriesModel(SunburstSeries_default);
@@ -17040,7 +17040,7 @@ function install25(registers) {
   installSunburstAction(registers);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/custom/CustomSeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/custom/CustomSeries.js
 var STYLE_VISUAL_TYPE = {
   color: "fill",
   borderColor: "stroke"
@@ -17100,7 +17100,7 @@ var CustomSeriesModel = (
 );
 var CustomSeries_default = CustomSeriesModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/cartesian/prepareCustom.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/cartesian/prepareCustom.js
 function dataToCoordSize(dataSize, dataItem) {
   dataItem = dataItem || [0, 0];
   return map(["x", "y"], function(dim, dimIdx) {
@@ -17130,7 +17130,7 @@ function cartesianPrepareCustom(coordSys) {
   };
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/geo/prepareCustom.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/geo/prepareCustom.js
 function dataToCoordSize2(dataSize, dataItem) {
   dataItem = dataItem || [0, 0];
   return map([0, 1], function(dimIdx) {
@@ -17164,7 +17164,7 @@ function geoPrepareCustom(coordSys) {
   };
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/single/prepareCustom.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/single/prepareCustom.js
 function dataToCoordSize3(dataSize, dataItem) {
   var axis = this.getAxis();
   var val = dataItem instanceof Array ? dataItem[0] : dataItem;
@@ -17190,7 +17190,7 @@ function singlePrepareCustom(coordSys) {
   };
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/polar/prepareCustom.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/polar/prepareCustom.js
 function dataToCoordSize4(dataSize, dataItem) {
   dataItem = dataItem || [0, 0];
   return map(["Radius", "Angle"], function(dim, dimIdx) {
@@ -17231,7 +17231,7 @@ function polarPrepareCustom(coordSys) {
   };
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/calendar/prepareCustom.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/calendar/prepareCustom.js
 function calendarPrepareCustom(coordSys) {
   var rect = coordSys.getRect();
   var rangeInfo = coordSys.getRangeInfo();
@@ -17259,7 +17259,7 @@ function calendarPrepareCustom(coordSys) {
   };
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/custom/CustomView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/custom/CustomView.js
 var EMPHASIS = "emphasis";
 var NORMAL = "normal";
 var BLUR = "blur";
@@ -17926,7 +17926,7 @@ function hasOwnPathData(shape) {
   return shape && (hasOwn(shape, "pathData") || hasOwn(shape, "d"));
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/chart/custom/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/chart/custom/install.js
 function install26(registers) {
   registers.registerChartView(CustomView_default);
   registers.registerSeriesModel(CustomSeries_default);

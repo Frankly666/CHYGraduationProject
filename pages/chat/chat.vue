@@ -147,10 +147,14 @@
           class="message-input"
           v-model="inputMessage"
           placeholder="输入消息..."
-          @confirm="sendMessage"
+          @confirm="!isAnalyzing && sendMessage()"
           ref="messageInput"
+          :disabled="isAnalyzing"
         />
-        <view class="send-button" @click="sendMessage">
+        <view class="analyzing-tip" v-if="isAnalyzing">
+          <text>知识图谱生成中，请稍候...</text>
+        </view>
+        <view class="send-button" @click="sendMessage" :class="{ 'disabled': isAnalyzing || !canSend }">
           <text>发送</text>
         </view>
       </view>
@@ -159,7 +163,7 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed, nextTick, onMounted } from "vue";
+import { ref, reactive, computed, nextTick, onMounted, onBeforeUnmount } from "vue";
 import { onReady } from '@dcloudio/uni-app';
 import { streamChat, formatHistory, handleAIError } from "../../service/kimi_normal";
 import { userAvatar, aiAvatar } from "../../static/avatars.js";
@@ -356,18 +360,103 @@ const showWelcomeMessage = () => {
   currentSession.value.messages = [welcomeMessage];
   
   // 确保显示欢迎消息后滚动到底部
+  scrollToBottom();
+  
+  // 多次尝试滚动到底部，确保成功
+  setTimeout(() => scrollToBottom(), 100);
+  setTimeout(() => scrollToBottom(), 300);
+  setTimeout(() => scrollToBottom(), 500);
+  
+  // 自动聚焦输入框，方便用户继续输入
   nextTick(() => {
-    scrollToBottom();
-    // 添加延时滚动，解决某些情况下滚动不完全的问题
-    setTimeout(() => {
-      scrollToBottom();
-      
-      // 自动聚焦输入框，方便用户继续输入
-      if (messageInput.value && typeof messageInput.value.focus === 'function') {
-        messageInput.value.focus();
-      }
-    }, 300);
+    if (messageInput.value && typeof messageInput.value.focus === 'function') {
+      messageInput.value.focus();
+    }
   });
+};
+
+// 滚动到底部
+const scrollToBottom = () => {
+  // 使用nextTick确保DOM已更新
+  nextTick(() => {
+    const query = uni.createSelectorQuery();
+    query.select('.message-list').boundingClientRect();
+    query.exec((res) => {
+      if (res[0]) {
+        // 设置滚动位置为消息列表的高度
+        scrollTop.value = res[0].height * 1000; // 使用较大的值确保滚动到底部
+        
+        // 添加多次延时滚动，解决各种情况下滚动不完全的问题
+        let attempts = 0;
+        const maxAttempts = 5;
+        const interval = 100; // 毫秒
+        
+        const scrollInterval = setInterval(() => {
+          attempts++;
+          scrollTop.value = res[0].height * 2000; // 增加滚动距离确保触底
+          
+          if (attempts >= maxAttempts) {
+            clearInterval(scrollInterval);
+          }
+        }, interval);
+      }
+    });
+  });
+};
+
+// 增强型滚动监听器
+const setupScrollObserver = () => {
+  // 环境检测
+  const isBrowserEnv = typeof window !== 'undefined' && typeof document !== 'undefined';
+  const hasMutationObserver = isBrowserEnv && typeof MutationObserver !== 'undefined';
+  
+  let messageListObserver = null;
+  
+  // 仅在浏览器环境且支持MutationObserver时使用
+  if (hasMutationObserver) {
+    // 监听消息列表变化
+    messageListObserver = new MutationObserver(() => {
+      scrollToBottom();
+    });
+    
+    // 监听DOM更新后执行
+    nextTick(() => {
+      const messageListEl = document.querySelector('.message-list');
+      if (messageListEl) {
+        messageListObserver.observe(messageListEl, {
+          childList: true,
+          subtree: true
+        });
+      }
+    });
+  } else {
+    // UniApp环境下定时滚动以确保内容显示在底部
+    const scrollIntervalId = setInterval(() => {
+      if (messageList.value.length > 0) {
+        scrollToBottom();
+      }
+    }, 1000);
+    
+    // 返回特殊的清理函数
+    return () => {
+      clearInterval(scrollIntervalId);
+    };
+  }
+  
+  // 在所有环境下都监听窗口大小变化
+  if (isBrowserEnv) {
+    window.addEventListener('resize', scrollToBottom);
+  }
+  
+  // 返回清理函数
+  return () => {
+    if (messageListObserver) {
+      messageListObserver.disconnect();
+    }
+    if (isBrowserEnv) {
+      window.removeEventListener('resize', scrollToBottom);
+    }
+  };
 };
 
 // 修改 onMounted
@@ -378,10 +467,23 @@ onMounted(() => {
   if (currentSession.value.messages.length === 0) {
     showWelcomeMessage();
   }
+  
   // 确保初始化后滚动到底部
   nextTick(() => {
     scrollToBottom();
+    
+    // 设置DOM变化观察器，确保在内容变化时总是滚动到底部
+    const cleanup = setupScrollObserver();
+    
+    // 卸载时清理
+    onBeforeUnmount(() => {
+      cleanup();
+    });
   });
+  
+  // 添加更多的滚动触发点
+  setTimeout(scrollToBottom, 500);
+  setTimeout(scrollToBottom, 1000);
 });
 
 // 使用uni-app的页面生命周期函数
@@ -443,6 +545,8 @@ const showKnowledgeGraph = ref(false);
 const graphData = ref(null);
 const isAnalyzing = ref(false);
 const analysisResult = ref(null);
+// 添加知识图谱映射，存储不同会话的知识图谱数据
+const sessionGraphMap = ref({});
 // currentFile已在状态管理部分定义
 const isFileChat = ref(false);
 // 添加自动生成知识图谱的标志
@@ -452,7 +556,14 @@ const hasGeneratedGraph = ref(false);
 
 // 切换知识图谱显示状态
 const toggleKnowledgeGraph = () => {
-  if (graphData.value) {
+  const currentSessionId = currentSession.value.id;
+  if (currentSessionId && sessionGraphMap.value[currentSessionId]) {
+    // 只有当前会话有知识图谱数据时才允许切换
+    showKnowledgeGraph.value = !showKnowledgeGraph.value;
+    // 从映射中获取当前会话的知识图谱数据
+    graphData.value = sessionGraphMap.value[currentSessionId];
+  } else if (graphData.value) {
+    // 向后兼容：如果有图谱数据但没有映射关系，也允许切换
     showKnowledgeGraph.value = !showKnowledgeGraph.value;
   }
 };
@@ -485,16 +596,16 @@ const FILE_STATUS = {
 
 // 计算属性
 const canSend = computed(() => {
-  return inputMessage.value.trim() && !isSending.value;
+  return inputMessage.value.trim() && !isSending.value && !isAnalyzing.value;
 });
 
 // 使用从title-service.js导入的generateTitle函数
 
 // 发送消息
 const sendMessage = async () => {
-  if (!inputMessage.value.trim()) return;
+  if (!inputMessage.value.trim() || !canSend.value) return;
   
-  // 检查是否正在生成知识图谱，如果是，提示用户等待
+  // 检查是否正在生成知识图谱，如果是，提示用户等待并阻止发送
   if (isAnalyzing.value) {
     uni.showToast({
       title: '知识图谱正在生成中，请稍候再发送消息',
@@ -612,15 +723,8 @@ const sendMessage = async () => {
           // 更新消息列表
           messageList.value = [...currentSession.value.messages];
           
-          // 滚动到底部
-          nextTick(() => {
-            scrollToBottom();
-            
-            // 添加延时滚动，确保在内容完全渲染后再次滚动到底部
-            setTimeout(() => {
-              scrollToBottom();
-            }, 300);
-          });
+          // 滚动到底部 - 每次内容更新都进行滚动
+          scrollToBottom();
         },
         historyMessages
       );
@@ -668,15 +772,8 @@ const sendMessage = async () => {
           // 更新消息列表
           messageList.value = [...currentSession.value.messages];
           
-          // 滚动到底部
-          nextTick(() => {
-            scrollToBottom();
-            
-            // 添加延时滚动，确保在内容完全渲染后再次滚动到底部
-            setTimeout(() => {
-              scrollToBottom();
-            }, 300);
-          });
+          // 滚动到底部 - 每次内容更新都进行滚动
+          scrollToBottom();
         } else if (data.type === 'error') {
           throw new Error(data.error);
         }
@@ -725,10 +822,19 @@ const sendMessage = async () => {
     await nextTick();
     scrollToBottom();
     
-    // 确保在UI更新后再次滚动到底部
+    // 确保在UI更新后再次滚动到底部，多次尝试确保成功
+    setTimeout(() => {
+      scrollToBottom();
+    }, 100);
     setTimeout(() => {
       scrollToBottom();
     }, 300);
+    setTimeout(() => {
+      scrollToBottom();
+    }, 500);
+    setTimeout(() => {
+      scrollToBottom();
+    }, 1000);
     
     // 自动聚焦输入框，方便用户继续输入
     nextTick(() => {
@@ -743,12 +849,14 @@ const sendMessage = async () => {
       // 使用setTimeout将知识图谱生成放入事件循环的下一个周期，不阻塞当前操作
       setTimeout(() => {
         try {
-          isAnalyzing.value = true;         
-          // 显示友好提示，告知用户知识图谱正在后台生成，可以继续对话
+          // 设置分析状态为true，禁用发送按钮
+          isAnalyzing.value = true;
+          
+          // 显示友好提示，告知用户知识图谱正在生成中，暂时不能发送消息
           uni.showToast({
-            title: '知识图谱正在后台生成中，您可以继续对话',
+            title: '知识图谱正在自动生成中，暂时无法发送消息',
             icon: 'none',
-            duration: 3000
+            duration: 4000
           });
           
           // 将API调用包装在Promise中，确保异步执行
@@ -756,31 +864,61 @@ const sendMessage = async () => {
           setTimeout(async () => {
             try {
               const graphResult = await generateKnowledgeGraph(currentFile.value.content);
+              
+              // 获取当前会话ID
+              const currentSessionId = currentSession.value.id;
+              
+              // 保存到会话图谱映射中
+              if (currentSessionId) {
+                sessionGraphMap.value[currentSessionId] = graphResult;
+                console.log('自动生成的知识图谱已保存到会话映射中:', currentSessionId);
+              }
+              
+              // 更新当前图谱数据
               graphData.value = graphResult;
+              
+              // 如果有会话ID，尝试更新数据库
+              if (currentSessionId) {
+                try {
+                  await updateSession(currentSessionId, {
+                    graphData: graphResult
+                  });
+                  console.log('自动生成的知识图谱数据已保存到会话:', currentSessionId);
+                } catch (error) {
+                  console.error('保存自动生成的知识图谱数据到会话失败:', error);
+                  // 继续执行，不影响用户体验
+                }
+              }
+              
               console.log('知识图谱后台生成成功');
               // 不自动显示知识图谱，让用户主动点击显示
               showKnowledgeGraph.value = false;
               // 标记当前会话已生成过知识图谱
               hasGeneratedGraph.value = true;
-              // 标记当前会话已生成过知识图谱
-              hasGeneratedGraph.value = true;
               
               // 生成成功提示
               uni.showToast({
-                title: '知识图谱生成完成，可点击按钮查看',
-                icon: 'none',
+                title: '知识图谱生成完成，现在可以正常对话',
+                icon: 'success',
                 duration: 2000
               });
             } catch (error) {
               console.error('后台生成知识图谱失败:', error);
               // 生成失败时显示错误提示
               uni.showToast({
-                title: '知识图谱生成失败',
+                title: '知识图谱生成失败，请稍后重试',
                 icon: 'none',
                 duration: 2000
               });
             } finally {
+              // 无论成功或失败，都重置分析状态，允许用户发送消息
               isAnalyzing.value = false;
+              // 确保输入框获得焦点
+              nextTick(() => {
+                if (messageInput.value && typeof messageInput.value.focus === 'function') {
+                  messageInput.value.focus();
+                }
+              });
             }
           }, 0);
           
@@ -895,9 +1033,9 @@ const handleGenerateGraph = () => {
     // 标记正在生成知识图谱，防止重复生成
     hasGeneratedGraph.value = true;
     
-    // 显示友好提示，告知用户知识图谱正在生成中，需要等待完成
+    // 显示友好提示，告知用户知识图谱正在生成中，暂时不能发送消息
     uni.showToast({
-      title: '知识图谱正在生成中，请稍候再发送消息',
+      title: '知识图谱生成中，暂时无法发送消息',
       icon: 'none',
       duration: 4000
     });
@@ -905,7 +1043,7 @@ const handleGenerateGraph = () => {
     // 显示模态框提供更详细的信息
     uni.showModal({
       title: '知识图谱生成中',
-      content: '由于API并发限制，知识图谱生成过程中需要等待生成完成后才能继续对话。',
+      content: '知识图谱正在生成，发送按钮暂时被禁用。请等待生成完成后再发送消息。',
       showCancel: false,
       confirmText: '我知道了'
     });
@@ -918,7 +1056,31 @@ const handleGenerateGraph = () => {
         setTimeout(async () => {
           try {
             const graphResult = await generateKnowledgeGraph(currentFile.value.content);
+            
+            // 获取当前会话ID
+            const currentSessionId = currentSession.value.id;
+            
+            // 存储到会话图谱映射中
+            if (currentSessionId) {
+              sessionGraphMap.value[currentSessionId] = graphResult;
+              console.log('知识图谱已保存到会话映射中:', currentSessionId);
+            }
+            
+            // 更新当前图谱数据
             graphData.value = graphResult;
+            
+            // 如果有会话ID，尝试更新数据库
+            if (currentSessionId) {
+              try {
+                await updateSession(currentSessionId, {
+                  graphData: graphResult
+                });
+                console.log('知识图谱数据已保存到会话:', currentSessionId);
+              } catch (error) {
+                console.error('保存知识图谱数据到会话失败:', error);
+                // 继续执行，不影响用户体验
+              }
+            }
             
             // 生成完成后自动显示知识图谱（因为是用户主动触发的）
             showKnowledgeGraph.value = true;
@@ -937,7 +1099,7 @@ const handleGenerateGraph = () => {
             // 显示模态框提示用户可以开始对话
             uni.showModal({
               title: '知识图谱生成完成',
-              content: '知识图谱已成功生成，您现在可以开始进行对话。',
+              content: '知识图谱已成功生成，发送按钮已解除禁用，您现在可以开始进行对话。',
               showCancel: false,
               confirmText: '我知道了'
             });
@@ -949,8 +1111,15 @@ const handleGenerateGraph = () => {
             });
           } finally {
             isAnalyzing.value = false;
+            // 确保输入框获得焦点
+            nextTick(() => {
+              if (messageInput.value && typeof messageInput.value.focus === 'function') {
+                messageInput.value.focus();
+              }
+            });
           }
         }, 0);
+        
       } catch (error) {
         console.error('启动知识图谱生成失败:', error);
         isAnalyzing.value = false;
@@ -959,419 +1128,6 @@ const handleGenerateGraph = () => {
   } catch (error) {
     console.error('启动知识图谱生成失败:', error);
     isAnalyzing.value = false;
-  }
-};
-
-const scrollToBottom = () => {
-  // 使用nextTick确保DOM已更新
-  nextTick(() => {
-    const query = uni.createSelectorQuery();
-    query.select('.message-list').boundingClientRect();
-    query.exec((res) => {
-      if (res[0]) {
-        // 设置滚动位置为消息列表的高度
-        scrollTop.value = res[0].height * 1000; // 使用较大的值确保滚动到底部
-        
-        // 添加延时滚动，解决某些情况下滚动不完全的问题
-        setTimeout(() => {
-          if (res[0]) {
-            scrollTop.value = res[0].height * 1000;
-          }
-        }, 100);
-      }
-    });
-  });
-};
-
-// 创建新会话
-const createNewChat = async () => {
-  try {
-    console.log('创建新会话');
-    
-    // 不再立即创建会话记录，而是只在内存中创建临时会话
-    // 只有在用户实际发送消息时才会创建真正的会话记录
-    
-    // 更新当前会话（仅在内存中）
-    currentSession.value = {
-      id: '', // 空ID表示这是一个临时会话，尚未保存到数据库
-      title: '新对话',
-      type: 'chat',
-      time: Date.now(),
-      messages: []
-    };
-    
-    // 重置文件状态
-    isFileChat.value = false;
-    currentFile.value = null;
-    
-    // 显示欢迎消息
-    showWelcomeMessage();
-    
-    // 更新消息列表（仅在内存中，不保存到数据库）
-    // 欢迎消息已经在showWelcomeMessage函数中添加到currentSession.value.messages
-    messageList.value = [...currentSession.value.messages];
-    
-    // 不再保存欢迎消息到数据库，只有用户实际发送消息时才会创建会话记录
-    
-    // 不再立即更新左侧历史记录列表，等待用户实际发送消息后再更新
-    
-    // 确保创建新会话后滚动到底部
-    nextTick(() => {
-      scrollToBottom();
-      // 添加延时滚动，解决某些情况下滚动不完全的问题
-      setTimeout(() => {
-        scrollToBottom();
-      }, 300);
-      
-      // 自动聚焦输入框，方便用户继续输入
-      if (messageInput.value && typeof messageInput.value.focus === 'function') {
-        messageInput.value.focus();
-      }
-    });
-    
-  } catch (error) {
-    console.error('创建新会话失败:', error);
-    uni.showToast({
-      title: error.message || '创建新会话失败',
-      icon: 'none'
-    });
-  }
-};
-
-// 添加加载状态变量
-const isLoading = ref(false);
-
-// 切换会话
-const switchSession = async (session) => {
-  try {
-    console.log('切换到会话:', session);
-    
-    // 清除知识图谱数据
-    showKnowledgeGraph.value = false;
-    graphData.value = null;
-    
-    // 设置加载状态为true
-    isLoading.value = true;
-    
-    // 显示加载提示
-    uni.showLoading({
-      title: '加载历史记录中...',
-      mask: true // 显示透明蒙层，防止触摸穿透
-    });
-    
-    // 重置自动生成知识图谱的标志
-    shouldGenerateGraph.value = false;
-    // 重置知识图谱生成状态标志
-    hasGeneratedGraph.value = false;
-    
-    // 检查是否为文件对话
-    if (session.isFileChat && session.fileInfo) {
-      console.log('切换到文件对话，文件信息:', session.fileInfo);
-      try {
-        // 获取文件内容
-        const fileContent = await getFileContent(session.fileInfo.id);
-        
-        if (fileContent) {
-          isFileChat.value = true;
-          currentFile.value = {
-            id: session.fileInfo.id,
-            name: session.fileInfo.name,
-            size: session.fileInfo.size,
-            type: session.fileInfo.type,
-            uploadTime: session.fileInfo.uploadTime || Date.now(),
-            content: fileContent
-          };
-          
-          // 加载分析结果
-          if (session.analysisResult) {
-            console.log('加载文件分析结果:', session.analysisResult);
-            analysisResult.value = session.analysisResult;
-          } else {
-            // 如果没有分析结果，尝试重新分析
-            console.log('会话中没有分析结果，尝试重新分析文件');
-            const checkResult = await checkFileForKnowledgeGraph(fileContent);
-            console.log('重新分析结果:', checkResult);
-            analysisResult.value = checkResult;
-            
-            // 如果文件适合生成知识图谱，标记需要自动生成
-            if (checkResult && checkResult.suitable) {
-              shouldGenerateGraph.value = true;
-            }
-          }
-        } else {
-          console.warn('文件内容为空，重置文件状态');
-          isFileChat.value = false;
-          currentFile.value = null;
-          analysisResult.value = null;
-        }
-      } catch (error) {
-        console.error('获取文件内容失败:', error);
-        isFileChat.value = false;
-        currentFile.value = null;
-        // 不抛出错误，而是显示提示并继续加载会话
-        uni.showToast({
-          title: '文件内容加载失败，仅显示对话记录',
-          icon: 'none',
-          duration: 2000
-        });
-      }
-    } else {
-      // 非文件对话，重置文件相关状态
-      isFileChat.value = false;
-      currentFile.value = null;
-    }
-    
-    // 获取会话详情
-    const sessionDetail = await getSession(session.id);
-    console.log('会话详情:', sessionDetail);
-    
-    // 获取会话消息列表
-    const messages = await getMessageList(session.id);
-    console.log('会话消息:', messages);
-    
-    // 检查是否有消息
-    if (!messages || messages.length === 0) {
-      console.warn('该会话没有消息记录');
-      
-      // 如果没有消息，创建一个欢迎消息
-      const welcomeMessage = {
-        role: 'assistant',
-        content: '欢迎回来！您可以继续之前的对话或者开始新的话题。',
-        time: Date.now()
-      };
-      
-      // 保存欢迎消息到数据库
-      await createMessage(
-        session.id,
-        welcomeMessage.content,
-        welcomeMessage.role
-      );
-      
-      // 更新会话消息列表
-      currentSession.value = {
-        ...session,
-        messages: [welcomeMessage]
-      };
-    } else {
-      // 更新会话消息列表
-      currentSession.value = {
-        ...session,
-        messages: messages.map(msg => ({
-          role: msg.role,
-          content: msg.content,
-          time: msg.createTime || Date.now()
-        }))
-      };
-    }
-    
-    // 更新消息列表
-    messageList.value = [...currentSession.value.messages];
-    
-    // 确保滚动到底部
-    await nextTick();
-    scrollToBottom();
-    
-    // 添加延时滚动，解决某些情况下滚动不完全的问题
-    setTimeout(() => {
-      scrollToBottom();
-    }, 300);
-    
-    // 如果是文件对话，设置文件状态和分析结果
-    if (session.isFileChat && session.fileInfo) {
-      console.log('加载文件对话信息:', session.fileInfo);
-      isFileChat.value = true;
-      
-      // 检查会话是否已有知识图谱数据
-      if (session.graphData) {
-        console.log('会话已有知识图谱数据，直接加载');
-        graphData.value = session.graphData;
-        hasGeneratedGraph.value = true; // 标记已生成过知识图谱
-      }
-      
-      // 确保文件内容已加载
-      if (!currentFile.value || !currentFile.value.content) {
-        console.log('文件内容未加载或不完整，尝试重新获取文件内容');
-        try {
-          // 再次尝试获取文件内容
-          const fileContent = await getFileContent(session.fileInfo.id);
-          
-          if (fileContent) {
-            currentFile.value = {
-              ...session.fileInfo,
-              content: fileContent
-            };
-            console.log('成功重新获取文件内容');
-            
-            // 如果没有分析结果，尝试重新分析
-            if (!analysisResult.value) {
-              const checkResult = await checkFileForKnowledgeGraph(fileContent);
-              console.log('重新分析结果:', checkResult);
-              analysisResult.value = checkResult;
-            }
-          }
-        } catch (error) {
-          console.error('重新获取文件内容失败:', error);
-          uni.showToast({
-            title: '文件内容加载失败，可能无法进行文件问答',
-            icon: 'none',
-            duration: 2000
-          });
-        }
-      }
-    } else {
-      isFileChat.value = false;
-      currentFile.value = null;
-      analysisResult.value = null;
-    }
-    
-    // 滚动到底部
-    await nextTick();
-    scrollToBottom();
-    
-    // 确保在UI更新后再次滚动到底部
-    setTimeout(() => {
-      scrollToBottom();
-    }, 300);
-    
-    // 自动聚焦输入框，方便用户继续输入
-    nextTick(() => {
-      if (messageInput.value && typeof messageInput.value.focus === 'function') {
-        messageInput.value.focus();
-      }
-    });
-    
-    // 如果需要自动生成知识图谱，且当前会话尚未生成过知识图谱，在切换会话完成后异步生成，不阻塞用户界面
-    if (shouldGenerateGraph.value && currentFile.value && currentFile.value.content && !hasGeneratedGraph.value) {
-      console.log('开始后台异步生成知识图谱');
-      // 使用setTimeout将知识图谱生成放入事件循环的下一个周期，不阻塞当前操作
-      setTimeout(() => {
-        try {
-          isAnalyzing.value = true;
-          
-          // 显示友好提示，告知用户知识图谱正在生成中
-          uni.showToast({
-            title: '知识图谱正在生成中，请稍候再发送消息',
-            icon: 'none',
-            duration: 3000
-          });
-          
-          // 将API调用包装在Promise中，确保异步执行
-          // 再次使用setTimeout确保UI不被阻塞
-          setTimeout(async () => {
-            try {
-              const graphResult = await generateKnowledgeGraph(currentFile.value.content);
-              graphData.value = graphResult;
-              console.log('知识图谱后台生成成功');
-              // 不自动显示知识图谱，让用户主动点击显示
-              showKnowledgeGraph.value = false;
-              // 标记当前会话已生成过知识图谱
-              hasGeneratedGraph.value = true;
-              
-              // 生成成功提示
-              uni.showToast({
-                title: '知识图谱生成完成，可点击按钮查看',
-                icon: 'none',
-                duration: 2000
-              });
-            } catch (error) {
-              console.error('后台生成知识图谱失败:', error);
-              // 生成失败时显示错误提示
-              uni.showToast({
-                title: '知识图谱生成失败',
-                icon: 'none',
-                duration: 2000
-              });
-            } finally {
-              isAnalyzing.value = false;
-            }
-          }, 0);
-          
-        } catch (error) {
-          console.error('启动知识图谱生成失败:', error);
-          isAnalyzing.value = false;
-        }
-      }, 100); // 短暂延迟，确保UI更新完成
-    }
-    
-  } catch (error) {
-    console.error('切换会话失败:', error);
-    uni.showToast({
-      title: error.message || '切换会话失败',
-      icon: 'none'
-    });
-  } finally {
-    // 无论成功或失败，都隐藏加载提示并重置加载状态
-    uni.hideLoading();
-    isLoading.value = false;
-  }
-};
-
-// 添加删除加载状态变量
-const isDeleting = ref(false);
-
-// 删除会话
-const deleteSessionRecord = async (session) => {
-  try {
-    console.log('删除会话:', session);
-    
-    // 显示确认对话框
-    uni.showModal({
-      title: '删除会话',
-      content: '确定要删除该会话吗？所有相关消息将被永久删除。',
-      success: async (res) => {
-        if (res.confirm) {
-          // 设置删除状态为true
-          isDeleting.value = true;
-          
-          // 显示加载提示
-          uni.showLoading({
-            title: '正在删除...',
-            mask: true // 显示透明蒙层，防止触摸穿透
-          });
-          
-          try {
-            // 先删除所有关联的消息
-            console.log('删除会话关联的消息');
-            await deleteMessages(session.id);
-            
-            // 然后删除会话
-            console.log('删除会话');
-            await deleteSession(session.id);
-            
-            // 重新加载历史记录
-            await loadUserHistory();
-            
-            // 如果删除的是当前会话，创建新会话
-            if (currentSession.value.id === session.id) {
-              createNewChat();
-            }
-            
-            uni.showToast({
-              title: '删除成功',
-              icon: 'success'
-            });
-          } catch (error) {
-            console.error('删除会话失败:', error);
-            uni.showToast({
-              title: error.message || '删除会话失败',
-              icon: 'none'
-            });
-          } finally {
-            // 无论成功或失败，都隐藏加载提示并重置删除状态
-            uni.hideLoading();
-            isDeleting.value = false;
-          }
-        }
-      }
-    });
-  } catch (error) {
-    console.error('删除会话失败:', error);
-    uni.showToast({
-      title: error.message || '删除会话失败',
-      icon: 'none'
-    });
-    // 确保删除状态被重置
-    isDeleting.value = false;
   }
 };
 
@@ -1759,6 +1515,337 @@ const groupedHistoryList = computed(() => {
 
 // 在 setup 中添加
 const fileInputRef = ref(null);
+
+// 创建新会话
+const createNewChat = async () => {
+  try {
+    console.log('创建新会话');
+    
+    // 不再立即创建会话记录，而是只在内存中创建临时会话
+    // 只有在用户实际发送消息时才会创建真正的会话记录
+    
+    // 更新当前会话（仅在内存中）
+    currentSession.value = {
+      id: '', // 空ID表示这是一个临时会话，尚未保存到数据库
+      title: '新对话',
+      type: 'chat',
+      time: Date.now(),
+      messages: []
+    };
+    
+    // 重置文件状态
+    isFileChat.value = false;
+    currentFile.value = null;
+    
+    // 重置知识图谱状态
+    showKnowledgeGraph.value = false;
+    graphData.value = null;
+    hasGeneratedGraph.value = false;
+    shouldGenerateGraph.value = false;
+    
+    // 显示欢迎消息
+    showWelcomeMessage();
+    
+    // 更新消息列表（仅在内存中，不保存到数据库）
+    // 欢迎消息已经在showWelcomeMessage函数中添加到currentSession.value.messages
+    messageList.value = [...currentSession.value.messages];
+    
+    // 不再保存欢迎消息到数据库，只有用户实际发送消息时才会创建会话记录
+    
+    // 不再立即更新左侧历史记录列表，等待用户实际发送消息后再更新
+    
+    // 确保创建新会话后滚动到底部
+    scrollToBottom();
+    setTimeout(scrollToBottom, 100);
+    setTimeout(scrollToBottom, 300);
+    
+    // 自动聚焦输入框，方便用户继续输入
+    nextTick(() => {
+      if (messageInput.value && typeof messageInput.value.focus === 'function') {
+        messageInput.value.focus();
+      }
+    });
+    
+  } catch (error) {
+    console.error('创建新会话失败:', error);
+    uni.showToast({
+      title: error.message || '创建新会话失败',
+      icon: 'none'
+    });
+  }
+};
+
+// 添加加载状态变量
+const isLoading = ref(false);
+
+const switchSession = async (session) => {
+  try {
+    console.log('切换到会话:', session);
+    
+    // 立即更新当前会话ID，以便UI立即反映用户的选择
+    // 创建一个临时会话对象，只包含基本信息
+    currentSession.value = {
+      ...session,
+      messages: [] // 先用空数组，等加载完成后再更新
+    };
+    
+    // 重置UI状态相关变量
+    // 清除知识图谱数据
+    showKnowledgeGraph.value = false;
+    // 默认设置graphData为null
+    graphData.value = null;
+    
+    // 检查会话图谱映射中是否有当前会话的数据
+    if (sessionGraphMap.value[session.id]) {
+      // 如果有，使用映射中的数据
+      graphData.value = sessionGraphMap.value[session.id];
+      hasGeneratedGraph.value = true;
+      console.log('使用缓存的知识图谱数据:', session.id);
+    } else {
+      // 如果没有，重置状态
+      hasGeneratedGraph.value = false;
+    }
+    
+    // 重置自动生成知识图谱的标志
+    shouldGenerateGraph.value = false;
+    
+    // 立即显示加载动画
+    messageList.value = [{
+      role: 'assistant',
+      content: '正在加载对话历史...',
+      thinking: true,
+      time: Date.now()
+    }];
+    
+    // 确保立即滚动到底部显示加载动画
+    await nextTick();
+    scrollToBottom();
+    
+    // 设置加载状态为true
+    isLoading.value = true;
+    
+    // 显示加载提示
+    uni.showLoading({
+      title: '加载历史记录中...',
+      mask: true // 显示透明蒙层，防止触摸穿透
+    });
+    
+    // 异步获取会话详情和消息列表
+    Promise.all([
+      getSession(session.id),
+      getMessageList(session.id)
+    ]).then(([sessionDetail, messages]) => {
+      console.log('会话详情:', sessionDetail);
+      
+      // 如果会话详情中有知识图谱数据且本地映射中没有，则添加到映射中
+      if (sessionDetail && sessionDetail.graphData && !sessionGraphMap.value[session.id]) {
+        console.log('从会话详情中获取知识图谱数据');
+        sessionGraphMap.value[session.id] = sessionDetail.graphData;
+        graphData.value = sessionDetail.graphData;
+        hasGeneratedGraph.value = true;
+      }
+      
+      console.log('会话消息:', messages);
+      
+      // 检查是否为文件对话 - 使用异步加载，不阻塞UI响应
+      if (session.isFileChat && session.fileInfo) {
+        console.log('切换到文件对话，文件信息:', session.fileInfo);
+        // 设置文件对话标记，更新UI立即显示文件标记
+        isFileChat.value = true;
+        
+        // 异步加载文件内容
+        getFileContent(session.fileInfo.id).then(fileContent => {
+          if (fileContent) {
+            currentFile.value = {
+              id: session.fileInfo.id,
+              name: session.fileInfo.name,
+              size: session.fileInfo.size,
+              type: session.fileInfo.type,
+              uploadTime: session.fileInfo.uploadTime || Date.now(),
+              content: fileContent
+            };
+            
+            // 异步加载分析结果
+            if (session.analysisResult) {
+              console.log('加载文件分析结果:', session.analysisResult);
+              analysisResult.value = session.analysisResult;
+            } else {
+              // 如果没有分析结果，异步尝试重新分析
+              checkFileForKnowledgeGraph(fileContent).then(checkResult => {
+                console.log('重新分析结果:', checkResult);
+                analysisResult.value = checkResult;
+                
+                // 如果文件适合生成知识图谱，标记需要自动生成
+                if (checkResult && checkResult.suitable && !sessionGraphMap.value[session.id]) {
+                  shouldGenerateGraph.value = true;
+                }
+              }).catch(error => {
+                console.error('文件分析失败:', error);
+              });
+            }
+          } else {
+            console.warn('文件内容为空，重置文件状态');
+            isFileChat.value = false;
+            currentFile.value = null;
+            analysisResult.value = null;
+          }
+        }).catch(error => {
+          console.error('获取文件内容失败:', error);
+          isFileChat.value = false;
+          currentFile.value = null;
+          // 不抛出错误，而是显示提示并继续加载会话
+          uni.showToast({
+            title: '文件内容加载失败，仅显示对话记录',
+            icon: 'none',
+            duration: 2000
+          });
+        });
+      } else {
+        // 非文件对话，重置文件相关状态
+        isFileChat.value = false;
+        currentFile.value = null;
+      }
+      
+      // 检查是否有消息
+      if (!messages || messages.length === 0) {
+        console.warn('该会话没有消息记录');
+        
+        // 如果没有消息，创建一个欢迎消息
+        const welcomeMessage = {
+          role: 'assistant',
+          content: '欢迎回来！您可以继续之前的对话或者开始新的话题。',
+          time: Date.now()
+        };
+        
+        // 保存欢迎消息到数据库
+        createMessage(
+          session.id,
+          welcomeMessage.content,
+          welcomeMessage.role
+        );
+        
+        // 更新会话消息列表
+        currentSession.value = {
+          ...session,
+          messages: [welcomeMessage]
+        };
+        
+        // 更新显示的消息列表
+        messageList.value = [...currentSession.value.messages];
+      } else {
+        // 更新会话消息列表
+        currentSession.value = {
+          ...session,
+          messages: messages.map(msg => ({
+            role: msg.role,
+            content: msg.content,
+            time: msg.createTime || Date.now()
+          }))
+        };
+        
+        // 更新消息列表
+        messageList.value = [...currentSession.value.messages];
+      }
+      
+      // 确保滚动到底部 - 使用多次尝试确保成功
+      scrollToBottom();
+      setTimeout(scrollToBottom, 100);
+      setTimeout(scrollToBottom, 300);
+      setTimeout(scrollToBottom, 600);
+      
+      // 如果需要自动生成知识图谱，且当前会话尚未生成过知识图谱，在切换会话完成后异步生成
+      if (shouldGenerateGraph.value && currentFile.value && currentFile.value.content && !hasGeneratedGraph.value) {
+        console.log('开始后台异步生成知识图谱');
+        // 使用setTimeout将知识图谱生成放入事件循环的下一个周期，不阻塞当前操作
+        setTimeout(() => {
+          try {
+            // 设置分析状态为true，禁用发送按钮
+            isAnalyzing.value = true;
+            
+            // 显示友好提示，告知用户知识图谱正在生成中，暂时不能发送消息
+            uni.showToast({
+              title: '切换会话后正在生成知识图谱，暂时无法发送消息',
+              icon: 'none',
+              duration: 4000
+            });
+            
+            // 将API调用包装在Promise中，确保异步执行
+            setTimeout(async () => {
+              try {
+                const graphResult = await generateKnowledgeGraph(currentFile.value.content);
+                
+                // 存储到会话图谱映射中
+                sessionGraphMap.value[session.id] = graphResult;
+                graphData.value = graphResult;
+                
+                // 尝试更新数据库中的会话数据
+                try {
+                  await updateSession(session.id, {
+                    graphData: graphResult
+                  });
+                  console.log('知识图谱数据已保存到会话:', session.id);
+                } catch (error) {
+                  console.error('保存知识图谱数据到会话失败:', error);
+                  // 继续执行，不影响用户体验
+                }
+                
+                console.log('知识图谱后台生成成功');
+                // 不自动显示知识图谱，让用户主动点击显示
+                showKnowledgeGraph.value = false;
+                // 标记当前会话已生成过知识图谱
+                hasGeneratedGraph.value = true;
+                
+                // 生成成功提示
+                uni.showToast({
+                  title: '知识图谱生成完成，现在可以正常对话',
+                  icon: 'success',
+                  duration: 2000
+                });
+              } catch (error) {
+                console.error('后台生成知识图谱失败:', error);
+                // 生成失败时显示错误提示
+                uni.showToast({
+                  title: '知识图谱生成失败，请稍后重试',
+                  icon: 'none',
+                  duration: 2000
+                });
+              } finally {
+                // 无论成功或失败，都重置分析状态，允许用户发送消息
+                isAnalyzing.value = false;
+                // 确保输入框获得焦点
+                nextTick(() => {
+                  if (messageInput.value && typeof messageInput.value.focus === 'function') {
+                    messageInput.value.focus();
+                  }
+                });
+              }
+            }, 0);
+            
+          } catch (error) {
+            console.error('启动知识图谱生成失败:', error);
+            isAnalyzing.value = false;
+          }
+        }, 100); // 短暂延迟，确保UI更新完成
+      }
+    }).catch(error => {
+      console.error('加载会话数据失败:', error);
+      uni.showToast({
+        title: error.message || '加载会话数据失败',
+        icon: 'none'
+      });
+    }).finally(() => {
+      // 无论成功或失败，都隐藏加载提示并重置加载状态
+      uni.hideLoading();
+      isLoading.value = false;
+    });
+  } catch (error) {
+    console.error('切换会话失败:', error);
+    uni.showToast({
+      title: error.message || '切换会话失败',
+      icon: 'none'
+    });
+  }
+};
 </script>
 
 <style lang="less">
@@ -2257,6 +2344,18 @@ const fileInputRef = ref(null);
         &:active {
           transform: translateY(1px);
         }
+        
+        &.disabled {
+          background: #b0b0b0;
+          cursor: not-allowed;
+          transform: none;
+          box-shadow: none;
+          
+          &:hover {
+            transform: none;
+            box-shadow: none;
+          }
+        }
       }
     }
 
@@ -2600,5 +2699,27 @@ const fileInputRef = ref(null);
 .delete-btn.disabled {
   opacity: 0.5;
   cursor: not-allowed;
+}
+
+.analyzing-tip {
+  background-color: #fff2e8;
+  color: #fa8c16;
+  padding: 4px 8px;
+  border-radius: 4px;
+  margin-right: 10px;
+  font-size: 12px;
+  animation: pulse 1.5s infinite;
+  
+  @keyframes pulse {
+    0% {
+      opacity: 0.7;
+    }
+    50% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0.7;
+    }
+  }
 }
 </style>

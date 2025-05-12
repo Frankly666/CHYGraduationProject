@@ -30,7 +30,7 @@ import {
   sliderMove,
   stopPreviousKeyframeAnimationAndRestore,
   updateLeaveTo
-} from "./chunk-I5UVBIPP.js";
+} from "./chunk-G2AIAOYN.js";
 import {
   AxisModelCommonMixin,
   Axis_default,
@@ -158,7 +158,7 @@ import {
   use,
   warn,
   windowOpen
-} from "./chunk-QGOZMNMY.js";
+} from "./chunk-SVFLJ42B.js";
 import {
   BoundingRect_default,
   Displayable_default,
@@ -172,7 +172,7 @@ import {
   assert,
   bind,
   clone,
-  create,
+  create2 as create,
   createHashMap,
   curry,
   defaults,
@@ -211,10 +211,10 @@ import {
   transformLocalCoord,
   translate,
   trim
-} from "./chunk-BQOHNX66.js";
+} from "./chunk-XYPXWI6Z.js";
 import "./chunk-7U33LM2Z.js";
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/axisPointer/BaseAxisPointer.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/axisPointer/BaseAxisPointer.js
 var inner = makeInner();
 var clone2 = clone;
 var bind2 = bind;
@@ -490,7 +490,7 @@ function updateMandatoryProps(group, axisPointerModel, silent) {
 }
 var BaseAxisPointer_default = BaseAxisPointer;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/axisPointer/viewHelper.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/axisPointer/viewHelper.js
 function buildElStyle(axisPointerModel) {
   var axisPointerType = axisPointerModel.get("type");
   var styleModel = axisPointerModel.getModel(axisPointerType + "Style");
@@ -629,7 +629,7 @@ function makeSectorShape(cx, cy, r0, r, startAngle, endAngle) {
   };
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/axisPointer/CartesianAxisPointer.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/axisPointer/CartesianAxisPointer.js
 var CartesianAxisPointer = (
   /** @class */
   function(_super) {
@@ -730,7 +730,7 @@ function getAxisDimIndex(axis) {
 }
 var CartesianAxisPointer_default = CartesianAxisPointer;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/axisPointer/AxisPointerModel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/axisPointer/AxisPointerModel.js
 var AxisPointerModel = (
   /** @class */
   function(_super) {
@@ -802,7 +802,7 @@ var AxisPointerModel = (
 );
 var AxisPointerModel_default = AxisPointerModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/axisPointer/globalListener.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/axisPointer/globalListener.js
 var inner2 = makeInner();
 var each2 = each;
 function register(key, api, handler) {
@@ -883,7 +883,7 @@ function unregister(key, api) {
   }
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/axisPointer/AxisPointerView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/axisPointer/AxisPointerView.js
 var AxisPointerView = (
   /** @class */
   function(_super) {
@@ -919,7 +919,7 @@ var AxisPointerView = (
 );
 var AxisPointerView_default = AxisPointerView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/axisPointer/findPointFromSeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/axisPointer/findPointFromSeries.js
 function findPointFromSeries(finder, ecModel) {
   var point = [];
   var seriesIndex = finder.seriesIndex;
@@ -968,7 +968,7 @@ function findPointFromSeries(finder, ecModel) {
   };
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/axisPointer/axisTrigger.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/axisPointer/axisTrigger.js
 var inner3 = makeInner();
 function axisTrigger(payload, ecModel, api) {
   var currTrigger = payload.currTrigger;
@@ -1255,7 +1255,7 @@ function illegalPoint(point) {
   return !point || point[0] == null || isNaN(point[0]) || point[1] == null || isNaN(point[1]);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/axisPointer/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/axisPointer/install.js
 function install5(registers) {
   AxisView_default.registerAxisPointerClass("CartesianAxisPointer", CartesianAxisPointer_default);
   registers.registerComponentModel(AxisPointerModel_default);
@@ -1279,13 +1279,13 @@ function install5(registers) {
   }, axisTrigger);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/grid/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/grid/install.js
 function install6(registers) {
   use(install);
   use(install5);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/axisPointer/PolarAxisPointer.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/axisPointer/PolarAxisPointer.js
 var PolarAxisPointer = (
   /** @class */
   function(_super) {
@@ -1385,7 +1385,7 @@ var pointerShapeBuilder2 = {
 };
 var PolarAxisPointer_default = PolarAxisPointer;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/polar/PolarModel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/polar/PolarModel.js
 var PolarModel = (
   /** @class */
   function(_super) {
@@ -1418,7 +1418,7 @@ var PolarModel = (
 );
 var PolarModel_default = PolarModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/polar/AxisModel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/polar/AxisModel.js
 var PolarAxisModel = (
   /** @class */
   function(_super) {
@@ -1461,7 +1461,7 @@ var RadiusAxisModel = (
   }(PolarAxisModel)
 );
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/polar/RadiusAxis.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/polar/RadiusAxis.js
 var RadiusAxis = (
   /** @class */
   function(_super) {
@@ -1479,7 +1479,7 @@ RadiusAxis.prototype.dataToRadius = Axis_default.prototype.dataToCoord;
 RadiusAxis.prototype.radiusToData = Axis_default.prototype.coordToData;
 var RadiusAxis_default = RadiusAxis;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/polar/AngleAxis.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/polar/AngleAxis.js
 var inner4 = makeInner();
 var AngleAxis = (
   /** @class */
@@ -1526,7 +1526,7 @@ AngleAxis.prototype.dataToAngle = Axis_default.prototype.dataToCoord;
 AngleAxis.prototype.angleToData = Axis_default.prototype.coordToData;
 var AngleAxis_default = AngleAxis;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/polar/Polar.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/polar/Polar.js
 var polarDimensions = ["radius", "angle"];
 var Polar = (
   /** @class */
@@ -1660,7 +1660,7 @@ function getCoordSys(finder) {
 }
 var Polar_default = Polar;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/polar/polarCreator.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/polar/polarCreator.js
 function resizePolar(polar, polarModel, api) {
   var center = polarModel.get("center");
   var width = api.getWidth();
@@ -1756,7 +1756,7 @@ var polarCreator = {
 };
 var polarCreator_default = polarCreator;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/axis/AngleAxisView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/axis/AngleAxisView.js
 var elementList = ["axisLine", "axisLabel", "axisTick", "minorTick", "splitLine", "minorSplitLine", "splitArea"];
 function getAxisLineShape(polar, rExtent, angle) {
   rExtent[1] > rExtent[0] && (rExtent = rExtent.slice().reverse());
@@ -2025,7 +2025,7 @@ var angelAxisElementsBuilders = {
 };
 var AngleAxisView_default = AngleAxisView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/axis/RadiusAxisView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/axis/RadiusAxisView.js
 var axisBuilderAttrs = ["axisLine", "axisTickLabel", "axisName"];
 var selfBuilderAttrs = ["splitLine", "splitArea", "minorSplitLine"];
 var RadiusAxisView = (
@@ -2181,7 +2181,7 @@ function layoutAxis(polar, radiusAxisModel, axisAngle) {
 }
 var RadiusAxisView_default = RadiusAxisView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/layout/barPolar.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/layout/barPolar.js
 function getSeriesStackId(seriesModel) {
   return seriesModel.get("stack") || "__ec_stack_" + seriesModel.seriesIndex;
 }
@@ -2374,7 +2374,7 @@ function calRadialBar(barSeries) {
 }
 var barPolar_default = barLayoutPolar;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/polar/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/polar/install.js
 var angleAxisExtraOption = {
   startAngle: 90,
   clockwise: true,
@@ -2412,7 +2412,7 @@ function install7(registers) {
   registers.registerLayout(curry(barPolar_default, "bar"));
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/single/singleAxisHelper.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/single/singleAxisHelper.js
 function layout2(axisModel, opt) {
   opt = opt || {};
   var single = axisModel.coordinateSystem;
@@ -2458,7 +2458,7 @@ function layout2(axisModel, opt) {
   return layout4;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/axis/SingleAxisView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/axis/SingleAxisView.js
 var axisBuilderAttrs2 = ["axisLine", "axisTickLabel", "axisName"];
 var selfBuilderAttrs2 = ["splitArea", "splitLine"];
 var SingleAxisView = (
@@ -2559,7 +2559,7 @@ var axisElementBuilders2 = {
 };
 var SingleAxisView_default = SingleAxisView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/single/AxisModel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/single/AxisModel.js
 var SingleAxisModel = (
   /** @class */
   function(_super) {
@@ -2620,7 +2620,7 @@ var SingleAxisModel = (
 mixin(SingleAxisModel, AxisModelCommonMixin.prototype);
 var AxisModel_default = SingleAxisModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/single/SingleAxis.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/single/SingleAxis.js
 var SingleAxis = (
   /** @class */
   function(_super) {
@@ -2643,7 +2643,7 @@ var SingleAxis = (
 );
 var SingleAxis_default = SingleAxis;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/single/Single.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/single/Single.js
 var singleDimensions = ["single"];
 var Single = (
   /** @class */
@@ -2780,7 +2780,7 @@ function getCoordSys2(finder) {
 }
 var Single_default = Single;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/single/singleCreator.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/single/singleCreator.js
 function create2(ecModel, api) {
   var singles = [];
   ecModel.eachComponent("singleAxis", function(axisModel, idx) {
@@ -2804,7 +2804,7 @@ var singleCreator = {
 };
 var singleCreator_default = singleCreator;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/axisPointer/SingleAxisPointer.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/axisPointer/SingleAxisPointer.js
 var XY = ["x", "y"];
 var WH = ["width", "height"];
 var SingleAxisPointer = (
@@ -2903,7 +2903,7 @@ function getGlobalExtent(coordSys, dimIndex) {
 }
 var SingleAxisPointer_default = SingleAxisPointer;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/singleAxis/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/singleAxis/install.js
 var SingleView = (
   /** @class */
   function(_super) {
@@ -2927,7 +2927,7 @@ function install8(registers) {
   registers.registerCoordinateSystem("single", singleCreator_default);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/calendar/CalendarModel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/calendar/CalendarModel.js
 var CalendarModel = (
   /** @class */
   function(_super) {
@@ -3033,7 +3033,7 @@ function mergeAndNormalizeLayoutParams(target, raw) {
 }
 var CalendarModel_default = CalendarModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/calendar/CalendarView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/calendar/CalendarView.js
 var CalendarView = (
   /** @class */
   function(_super) {
@@ -3361,7 +3361,7 @@ var CalendarView = (
 );
 var CalendarView_default = CalendarView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/coord/calendar/Calendar.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/coord/calendar/Calendar.js
 var PROXIMATE_ONE_DAY = 864e5;
 var Calendar = (
   /** @class */
@@ -3622,14 +3622,14 @@ function getCoordSys3(finder) {
 }
 var Calendar_default = Calendar;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/calendar/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/calendar/install.js
 function install9(registers) {
   registers.registerComponentModel(CalendarModel_default);
   registers.registerComponentView(CalendarView_default);
   registers.registerCoordinateSystem("calendar", Calendar_default);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/graphic/GraphicModel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/graphic/GraphicModel.js
 function setKeyInfoToNewElOption(resultItem, newElOption) {
   var existElOption = resultItem.existing;
   newElOption.id = resultItem.keyInfo.id;
@@ -3790,7 +3790,7 @@ var GraphicComponentModel = (
   }(Component_default)
 );
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/graphic/GraphicView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/graphic/GraphicView.js
 var nonShapeGraphicElements = {
   // Reserved but not supported in graphic component.
   path: null,
@@ -4088,7 +4088,7 @@ function setEventData(el, graphicModel, elOption) {
   }
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/graphic/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/graphic/install.js
 function install10(registers) {
   registers.registerComponentModel(GraphicComponentModel);
   registers.registerComponentView(GraphicComponentView);
@@ -4110,7 +4110,7 @@ function install10(registers) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/helper.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/helper.js
 var DATA_ZOOM_AXIS_DIMENSIONS = ["x", "y", "radius", "angle", "single"];
 var SERIES_COORDS = ["cartesian2d", "polar", "singleAxis"];
 function isCoordSupported(seriesModel) {
@@ -4198,7 +4198,7 @@ function collectReferCoordSysModelInfo(dataZoomModel) {
   return coordSysInfoWrap;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/DataZoomModel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/DataZoomModel.js
 var DataZoomAxisInfo = (
   /** @class */
   function() {
@@ -4492,7 +4492,7 @@ function retrieveRawOption(option) {
 }
 var DataZoomModel_default = DataZoomModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/SelectZoomModel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/SelectZoomModel.js
 var SelectDataZoomModel = (
   /** @class */
   function(_super) {
@@ -4508,7 +4508,7 @@ var SelectDataZoomModel = (
 );
 var SelectZoomModel_default = SelectDataZoomModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/DataZoomView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/DataZoomView.js
 var DataZoomView = (
   /** @class */
   function(_super) {
@@ -4529,7 +4529,7 @@ var DataZoomView = (
 );
 var DataZoomView_default = DataZoomView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/SelectZoomView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/SelectZoomView.js
 var SelectDataZoomView = (
   /** @class */
   function(_super) {
@@ -4545,7 +4545,7 @@ var SelectDataZoomView = (
 );
 var SelectZoomView_default = SelectDataZoomView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/AxisProxy.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/AxisProxy.js
 var each3 = each;
 var asc2 = asc;
 var AxisProxy = (
@@ -4747,7 +4747,7 @@ function calculateDataExtent(axisProxy, axisDim, seriesModels) {
 }
 var AxisProxy_default = AxisProxy;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/dataZoomProcessor.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/dataZoomProcessor.js
 var dataZoomProcessor = {
   // `dataZoomProcessor` will only be performed in needed series. Consider if
   // there is a line series and a pie series, it is better not to update the
@@ -4808,7 +4808,7 @@ var dataZoomProcessor = {
 };
 var dataZoomProcessor_default = dataZoomProcessor;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/dataZoomAction.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/dataZoomAction.js
 function installDataZoomAction(registers) {
   registers.registerAction("dataZoom", function(payload, ecModel) {
     var effectedModels = findEffectedDataZooms(ecModel, payload);
@@ -4823,7 +4823,7 @@ function installDataZoomAction(registers) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/installCommon.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/installCommon.js
 var installed = false;
 function installCommon(registers) {
   if (installed) {
@@ -4837,14 +4837,14 @@ function installCommon(registers) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/installDataZoomSelect.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/installDataZoomSelect.js
 function install11(registers) {
   registers.registerComponentModel(SelectZoomModel_default);
   registers.registerComponentView(SelectZoomView_default);
   installCommon(registers);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/toolbox/featureManager.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/toolbox/featureManager.js
 var ToolboxFeature = (
   /** @class */
   /* @__PURE__ */ function() {
@@ -4861,7 +4861,7 @@ function getFeature(name) {
   return features[name];
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/toolbox/ToolboxModel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/toolbox/ToolboxModel.js
 var ToolboxModel = (
   /** @class */
   function(_super) {
@@ -4927,7 +4927,7 @@ var ToolboxModel = (
 );
 var ToolboxModel_default = ToolboxModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/helper/listComponent.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/helper/listComponent.js
 function layout3(group, componentModel, api) {
   var boxLayoutParams = componentModel.getBoxLayoutParams();
   var padding = componentModel.get("padding");
@@ -4958,7 +4958,7 @@ function makeBackground(rect, componentModel) {
   return rect;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/toolbox/ToolboxView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/toolbox/ToolboxView.js
 var ToolboxView = (
   /** @class */
   function(_super) {
@@ -5174,7 +5174,7 @@ function isUserFeatureName(featureName) {
 }
 var ToolboxView_default = ToolboxView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/toolbox/feature/SaveAsImage.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/toolbox/feature/SaveAsImage.js
 var SaveAsImage = (
   /** @class */
   function(_super) {
@@ -5265,7 +5265,7 @@ var SaveAsImage = (
 );
 var SaveAsImage_default = SaveAsImage;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/toolbox/feature/MagicType.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/toolbox/feature/MagicType.js
 var INNER_STACK_KEYWORD = "__ec_magicType_stack__";
 var radioTypes = [["line", "bar"], ["stack"]];
 var MagicType = (
@@ -5421,7 +5421,7 @@ registerAction({
 });
 var MagicType_default = MagicType;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/toolbox/feature/DataView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/toolbox/feature/DataView.js
 var BLOCK_SPLITER = new Array(60).join("-");
 var ITEM_SPLITER = "	";
 function groupSeries(ecModel) {
@@ -5782,7 +5782,7 @@ registerAction({
 });
 var DataView_default = DataView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/history.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/history.js
 var each4 = each;
 var inner6 = makeInner();
 function push(ecModel, newSnapshot) {
@@ -5843,7 +5843,7 @@ function getStoreSnapshots(ecModel) {
   return store.snapshots;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/toolbox/feature/Restore.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/toolbox/feature/Restore.js
 var RestoreOption = (
   /** @class */
   function(_super) {
@@ -5879,7 +5879,7 @@ registerAction({
 });
 var Restore_default = RestoreOption;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/helper/BrushTargetManager.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/helper/BrushTargetManager.js
 var INCLUDE_FINDER_MAIN_TYPES = ["grid", "xAxis", "yAxis", "geo", "graph", "polar", "radiusAxis", "angleAxis", "bmap"];
 var BrushTargetManager = (
   /** @class */
@@ -6143,7 +6143,7 @@ function getSize(xyMinMax) {
 }
 var BrushTargetManager_default = BrushTargetManager;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/toolbox/feature/DataZoom.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/toolbox/feature/DataZoom.js
 var each5 = each;
 var DATA_ZOOM_ID_BASE = makeInternalComponentId("toolbox-dataZoom_");
 var DataZoomFeature = (
@@ -6339,7 +6339,7 @@ registerInternalOptionCreator("dataZoom", function(ecModel) {
 });
 var DataZoom_default = DataZoomFeature;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/toolbox/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/toolbox/install.js
 function install12(registers) {
   registers.registerComponentModel(ToolboxModel_default);
   registers.registerComponentView(ToolboxView_default);
@@ -6351,7 +6351,7 @@ function install12(registers) {
   use(install11);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/tooltip/TooltipModel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/tooltip/TooltipModel.js
 var TooltipModel = (
   /** @class */
   function(_super) {
@@ -6435,7 +6435,7 @@ var TooltipModel = (
 );
 var TooltipModel_default = TooltipModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/tooltip/helper.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/tooltip/helper.js
 function shouldTooltipConfine(tooltipModel) {
   var confineOption = tooltipModel.get("confine");
   return confineOption != null ? !!confineOption : tooltipModel.get("renderMode") === "richText";
@@ -6467,7 +6467,7 @@ function getComputedStyle(el, style) {
   return stl ? style ? stl[style] : stl : null;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/tooltip/TooltipHTMLContent.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/tooltip/TooltipHTMLContent.js
 var CSS_TRANSITION_VENDOR = toCSSVendorPrefix(TRANSITION_VENDOR, "transition");
 var CSS_TRANSFORM_VENDOR = toCSSVendorPrefix(TRANSFORM_VENDOR, "transform");
 var gCssText = "position:absolute;display:block;border-style:solid;white-space:nowrap;z-index:9999999;" + (env_default.transform3dSupported ? "will-change:transform;" : "");
@@ -6759,7 +6759,7 @@ var TooltipHTMLContent = (
 );
 var TooltipHTMLContent_default = TooltipHTMLContent;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/tooltip/TooltipRichContent.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/tooltip/TooltipRichContent.js
 var TooltipRichContent = (
   /** @class */
   function() {
@@ -6908,7 +6908,7 @@ function makeStyleCoord2(out, zr, zrX, zrY) {
 }
 var TooltipRichContent_default = TooltipRichContent;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/tooltip/TooltipView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/tooltip/TooltipView.js
 var proxyRect = new Rect_default({
   shape: {
     x: -1,
@@ -7576,7 +7576,7 @@ function findComponentReference(payload, ecModel, api) {
 }
 var TooltipView_default = TooltipView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/tooltip/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/tooltip/install.js
 function install13(registers) {
   use(install5);
   registers.registerComponentModel(TooltipModel_default);
@@ -7593,7 +7593,7 @@ function install13(registers) {
   }, noop);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/brush/preprocessor.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/brush/preprocessor.js
 var DEFAULT_TOOLBOX_BTNS = ["rect", "polygon", "keep", "clear"];
 function brushPreprocessor(option, isNew) {
   var brushComponents = normalizeToArray(option ? option.brush : []);
@@ -7637,7 +7637,7 @@ function removeDuplicate(arr) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/visual/visualSolution.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/visual/visualSolution.js
 var each6 = each;
 function hasKeys(obj) {
   if (obj) {
@@ -7764,7 +7764,7 @@ function incrementalApplyVisual(stateList, visualMappings, getValueState, dim) {
   };
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/brush/selector.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/brush/selector.js
 function makeBrushCommonSelectorForSeries(area) {
   var brushType = area.brushType;
   var selectors = {
@@ -7833,7 +7833,7 @@ function inLineRange(p, range) {
   return range[0] <= p && p <= range[1];
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/brush/visualEncoding.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/brush/visualEncoding.js
 var STATE_LIST = ["inBrush", "outOfBrush"];
 var DISPATCH_METHOD = "__ecBrushSelect";
 var DISPATCH_FLAG = "__ecInBrushSelectEvent";
@@ -8007,7 +8007,7 @@ function getBoundingRectFromMinMax(minMax) {
   return new BoundingRect_default(minMax[0][0], minMax[1][0], minMax[0][1] - minMax[0][0], minMax[1][1] - minMax[1][0]);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/brush/BrushView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/brush/BrushView.js
 var BrushView = (
   /** @class */
   function(_super) {
@@ -8065,7 +8065,7 @@ var BrushView = (
 );
 var BrushView_default = BrushView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/brush/BrushModel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/brush/BrushModel.js
 var DEFAULT_OUT_OF_BRUSH_COLOR = "#ddd";
 var BrushModel = (
   /** @class */
@@ -8139,7 +8139,7 @@ function generateBrushOption(option, brushOption) {
 }
 var BrushModel_default = BrushModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/toolbox/feature/Brush.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/toolbox/feature/Brush.js
 var ICON_TYPES = ["rect", "polygon", "lineX", "lineY", "keep", "clear"];
 var BrushFeature = (
   /** @class */
@@ -8231,7 +8231,7 @@ var BrushFeature = (
 );
 var Brush_default = BrushFeature;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/brush/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/brush/install.js
 function install14(registers) {
   registers.registerComponentView(BrushView_default);
   registers.registerComponentModel(BrushModel_default);
@@ -8262,7 +8262,7 @@ function install14(registers) {
   registerFeature("brush", Brush_default);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/title/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/title/install.js
 var TitleModel = (
   /** @class */
   function(_super) {
@@ -8434,7 +8434,7 @@ function install15(registers) {
   registers.registerComponentView(TitleView);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/timeline/TimelineModel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/timeline/TimelineModel.js
 var TimelineModel = (
   /** @class */
   function(_super) {
@@ -8551,7 +8551,7 @@ var TimelineModel = (
 );
 var TimelineModel_default = TimelineModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/timeline/SliderTimelineModel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/timeline/SliderTimelineModel.js
 var SliderTimelineModel = (
   /** @class */
   function(_super) {
@@ -8664,7 +8664,7 @@ var SliderTimelineModel = (
 mixin(SliderTimelineModel, DataFormatMixin.prototype);
 var SliderTimelineModel_default = SliderTimelineModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/timeline/TimelineView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/timeline/TimelineView.js
 var TimelineView = (
   /** @class */
   function(_super) {
@@ -8680,7 +8680,7 @@ var TimelineView = (
 );
 var TimelineView_default = TimelineView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/timeline/TimelineAxis.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/timeline/TimelineAxis.js
 var TimelineAxis = (
   /** @class */
   function(_super) {
@@ -8701,7 +8701,7 @@ var TimelineAxis = (
 );
 var TimelineAxis_default = TimelineAxis;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/timeline/SliderTimelineView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/timeline/SliderTimelineView.js
 var PI = Math.PI;
 var labelDataIndexStore = makeInner();
 var SliderTimelineView = (
@@ -9253,7 +9253,7 @@ function pointerMoveTo(pointer, progressLine, dataIndex, axis, timelineModel, no
 }
 var SliderTimelineView_default = SliderTimelineView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/timeline/timelineAction.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/timeline/timelineAction.js
 function installTimelineAction(registers) {
   registers.registerAction({
     type: "timelineChange",
@@ -9291,7 +9291,7 @@ function installTimelineAction(registers) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/timeline/preprocessor.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/timeline/preprocessor.js
 function timelinePreprocessor(option) {
   var timelineOpt = option && option.timeline;
   if (!isArray(timelineOpt)) {
@@ -9358,7 +9358,7 @@ function has(obj, attr) {
   return obj.hasOwnProperty(attr);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/timeline/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/timeline/install.js
 function install16(registers) {
   registers.registerComponentModel(SliderTimelineModel_default);
   registers.registerComponentView(SliderTimelineView_default);
@@ -9369,7 +9369,7 @@ function install16(registers) {
   registers.registerPreprocessor(timelinePreprocessor);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/marker/checkMarkerInSeries.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/marker/checkMarkerInSeries.js
 function checkMarkerInSeries(seriesOpts, markerType) {
   if (!seriesOpts) {
     return false;
@@ -9383,7 +9383,7 @@ function checkMarkerInSeries(seriesOpts, markerType) {
   return false;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/marker/MarkerModel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/marker/MarkerModel.js
 function fillLabel(opt) {
   defaultEmphasis(opt, "label", ["show"]);
 }
@@ -9496,7 +9496,7 @@ var MarkerModel = (
 mixin(MarkerModel, DataFormatMixin.prototype);
 var MarkerModel_default = MarkerModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/marker/MarkPointModel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/marker/MarkPointModel.js
 var MarkPointModel = (
   /** @class */
   function(_super) {
@@ -9538,7 +9538,7 @@ var MarkPointModel = (
 );
 var MarkPointModel_default = MarkPointModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/marker/markerHelper.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/marker/markerHelper.js
 function hasXOrY(item) {
   return !(isNaN(parseFloat(item.x)) && isNaN(parseFloat(item.y)));
 }
@@ -9654,7 +9654,7 @@ function numCalculate(data, valueDataDim, type) {
   }
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/marker/MarkerView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/marker/MarkerView.js
 var inner8 = makeInner();
 var MarkerView = (
   /** @class */
@@ -9705,7 +9705,7 @@ var MarkerView = (
 );
 var MarkerView_default = MarkerView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/marker/MarkPointView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/marker/MarkPointView.js
 function updateMarkerLayout(mpData, seriesModel, api) {
   var coordSys = seriesModel.coordinateSystem;
   mpData.each(function(idx) {
@@ -9837,7 +9837,7 @@ function createData(coordSys, seriesModel, mpModel) {
 }
 var MarkPointView_default = MarkPointView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/marker/installMarkPoint.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/marker/installMarkPoint.js
 function install17(registers) {
   registers.registerComponentModel(MarkPointModel_default);
   registers.registerComponentView(MarkPointView_default);
@@ -9848,7 +9848,7 @@ function install17(registers) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/marker/MarkLineModel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/marker/MarkLineModel.js
 var MarkLineModel = (
   /** @class */
   function(_super) {
@@ -9896,7 +9896,7 @@ var MarkLineModel = (
 );
 var MarkLineModel_default = MarkLineModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/marker/MarkLineView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/marker/MarkLineView.js
 var inner9 = makeInner();
 var markLineTransform = function(seriesModel, coordSys, mlModel, item) {
   var data = seriesModel.getData();
@@ -10161,7 +10161,7 @@ function createList(coordSys, seriesModel, mlModel) {
 }
 var MarkLineView_default = MarkLineView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/marker/installMarkLine.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/marker/installMarkLine.js
 function install18(registers) {
   registers.registerComponentModel(MarkLineModel_default);
   registers.registerComponentView(MarkLineView_default);
@@ -10172,7 +10172,7 @@ function install18(registers) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/marker/MarkAreaModel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/marker/MarkAreaModel.js
 var MarkAreaModel = (
   /** @class */
   function(_super) {
@@ -10217,7 +10217,7 @@ var MarkAreaModel = (
 );
 var MarkAreaModel_default = MarkAreaModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/marker/MarkAreaView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/marker/MarkAreaView.js
 var inner10 = makeInner();
 var markAreaTransform = function(seriesModel, coordSys, maModel, item) {
   var item0 = item[0];
@@ -10493,7 +10493,7 @@ function createList2(coordSys, seriesModel, maModel) {
 }
 var MarkAreaView_default = MarkAreaView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/marker/installMarkArea.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/marker/installMarkArea.js
 function install19(registers) {
   registers.registerComponentModel(MarkAreaModel_default);
   registers.registerComponentView(MarkAreaView_default);
@@ -10504,7 +10504,7 @@ function install19(registers) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/legend/LegendModel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/legend/LegendModel.js
 var getDefaultSelectorOptions = function(ecModel, type) {
   if (type === "all") {
     return {
@@ -10760,7 +10760,7 @@ var LegendModel = (
 );
 var LegendModel_default = LegendModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/legend/LegendView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/legend/LegendView.js
 var curry2 = curry;
 var each7 = each;
 var Group = Group_default;
@@ -11168,7 +11168,7 @@ function dispatchDownplayAction(seriesName, dataName, api, excludeSeriesId) {
 }
 var LegendView_default = LegendView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/legend/legendFilter.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/legend/legendFilter.js
 function legendFilter(ecModel) {
   var legendModels = ecModel.findComponents({
     mainType: "legend"
@@ -11185,7 +11185,7 @@ function legendFilter(ecModel) {
   }
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/legend/legendAction.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/legend/legendAction.js
 function legendSelectActionHandler(methodName, payload, ecModel) {
   var isAllSelect = methodName === "allSelect" || methodName === "inverseSelect";
   var selectedMap = {};
@@ -11242,7 +11242,7 @@ function installLegendAction(registers) {
   registers.registerAction("legendUnSelect", "legendunselected", curry(legendSelectActionHandler, "unSelect"));
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/legend/installLegendPlain.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/legend/installLegendPlain.js
 function install20(registers) {
   registers.registerComponentModel(LegendModel_default);
   registers.registerComponentView(LegendView_default);
@@ -11253,7 +11253,7 @@ function install20(registers) {
   installLegendAction(registers);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/legend/ScrollableLegendModel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/legend/ScrollableLegendModel.js
 var ScrollableLegendModel = (
   /** @class */
   function(_super) {
@@ -11308,7 +11308,7 @@ function mergeAndNormalizeLayoutParams2(legendModel, target, raw) {
 }
 var ScrollableLegendModel_default = ScrollableLegendModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/legend/ScrollableLegendView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/legend/ScrollableLegendView.js
 var Group2 = Group_default;
 var WH2 = ["width", "height"];
 var XY2 = ["x", "y"];
@@ -11612,7 +11612,7 @@ var ScrollableLegendView = (
 );
 var ScrollableLegendView_default = ScrollableLegendView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/legend/scrollableLegendAction.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/legend/scrollableLegendAction.js
 function installScrollableLegendAction(registers) {
   registers.registerAction("legendScroll", "legendscroll", function(payload, ecModel) {
     var scrollDataIndex = payload.scrollDataIndex;
@@ -11626,7 +11626,7 @@ function installScrollableLegendAction(registers) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/legend/installLegendScroll.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/legend/installLegendScroll.js
 function install21(registers) {
   use(install20);
   registers.registerComponentModel(ScrollableLegendModel_default);
@@ -11634,13 +11634,13 @@ function install21(registers) {
   installScrollableLegendAction(registers);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/legend/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/legend/install.js
 function install22(registers) {
   use(install20);
   use(install21);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/InsideZoomModel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/InsideZoomModel.js
 var InsideZoomModel = (
   /** @class */
   function(_super) {
@@ -11664,7 +11664,7 @@ var InsideZoomModel = (
 );
 var InsideZoomModel_default = InsideZoomModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/roams.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/roams.js
 var inner11 = makeInner();
 function setViewInfoToCoordSysRecord(api, dataZoomModel, getRange) {
   inner11(api).coordSysRecordMap.each(function(coordSysRecord) {
@@ -11820,7 +11820,7 @@ function installDataZoomRoamProcessor(registers) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/InsideZoomView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/InsideZoomView.js
 var InsideZoomView = (
   /** @class */
   function(_super) {
@@ -11961,7 +11961,7 @@ var getDirectionInfo = {
 };
 var InsideZoomView_default = InsideZoomView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/installDataZoomInside.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/installDataZoomInside.js
 function install23(registers) {
   installCommon(registers);
   registers.registerComponentModel(InsideZoomModel_default);
@@ -11969,7 +11969,7 @@ function install23(registers) {
   installDataZoomRoamProcessor(registers);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/SliderZoomModel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/SliderZoomModel.js
 var SliderZoomModel = (
   /** @class */
   function(_super) {
@@ -12057,7 +12057,7 @@ var SliderZoomModel = (
 );
 var SliderZoomModel_default = SliderZoomModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/SliderZoomView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/SliderZoomView.js
 var Rect = Rect_default;
 var DEFAULT_LOCATION_EDGE_GAP = 7;
 var DEFAULT_FRAME_BORDER_WIDTH = 1;
@@ -12756,20 +12756,20 @@ function getCursor(orient) {
 }
 var SliderZoomView_default = SliderZoomView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/installDataZoomSlider.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/installDataZoomSlider.js
 function install24(registers) {
   registers.registerComponentModel(SliderZoomModel_default);
   registers.registerComponentView(SliderZoomView_default);
   installCommon(registers);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/dataZoom/install.js
 function install25(registers) {
   use(install23);
   use(install24);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/visual/visualDefault.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/visual/visualDefault.js
 var visualDefault = {
   /**
    * @public
@@ -12815,7 +12815,7 @@ var defaultOption = {
 };
 var visualDefault_default = visualDefault;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/VisualMapModel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/VisualMapModel.js
 var mapVisual = VisualMapping_default.mapVisual;
 var eachVisual = VisualMapping_default.eachVisual;
 var isArray2 = isArray;
@@ -13074,7 +13074,7 @@ var VisualMapModel = (
 );
 var VisualMapModel_default = VisualMapModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/ContinuousModel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/ContinuousModel.js
 var DEFAULT_BAR_BOUND = [20, 140];
 var ContinuousModel = (
   /** @class */
@@ -13245,7 +13245,7 @@ function getColorStopValues(visualMapModel, valueState, dataExtent) {
 }
 var ContinuousModel_default = ContinuousModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/VisualMapView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/VisualMapView.js
 var VisualMapView = (
   /** @class */
   function(_super) {
@@ -13338,7 +13338,7 @@ var VisualMapView = (
 );
 var VisualMapView_default = VisualMapView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/helper.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/helper.js
 var paramsSet = [["left", "right", "width"], ["top", "bottom", "height"]];
 function getItemAlign(visualMapModel, api, itemSize) {
   var modelOption = visualMapModel.option;
@@ -13373,7 +13373,7 @@ function makeHighDownBatch(batch, visualMapModel) {
   return batch;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/ContinuousView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/ContinuousView.js
 var linearMap3 = linearMap;
 var each9 = each;
 var mathMin = Math.min;
@@ -13952,7 +13952,7 @@ function getCursor2(orient) {
 }
 var ContinuousView_default = ContinuousView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/visualMapAction.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/visualMapAction.js
 var visualMapActionInfo = {
   type: "selectDataRange",
   event: "dataRangeSelected",
@@ -13968,7 +13968,7 @@ var visualMapActionHander = function(payload, ecModel) {
   });
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/visualEncoding.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/visualEncoding.js
 var visualMapEncodingHandlers = [
   {
     createOnAllSeries: true,
@@ -14028,7 +14028,7 @@ function getColorVisual(seriesModel, visualMapModel, value, valueState) {
   }
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/preprocessor.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/preprocessor.js
 var each10 = each;
 function visualMapPreprocessor(option) {
   var visualMap = option && option.visualMap;
@@ -14062,7 +14062,7 @@ function has2(obj, name) {
   return obj && obj.hasOwnProperty && obj.hasOwnProperty(name);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/installCommon.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/installCommon.js
 var installed2 = false;
 function installCommon2(registers) {
   if (installed2) {
@@ -14079,14 +14079,14 @@ function installCommon2(registers) {
   registers.registerPreprocessor(visualMapPreprocessor);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/installVisualMapContinuous.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/installVisualMapContinuous.js
 function install26(registers) {
   registers.registerComponentModel(ContinuousModel_default);
   registers.registerComponentView(ContinuousView_default);
   installCommon2(registers);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/PiecewiseModel.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/PiecewiseModel.js
 var PiecewiseModel = (
   /** @class */
   function(_super) {
@@ -14412,7 +14412,7 @@ function normalizeReverse(thisOption, pieceList) {
 }
 var PiecewiseModel_default = PiecewiseModel;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/PiecewiseView.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/PiecewiseView.js
 var PiecewiseVisualMapView = (
   /** @class */
   function(_super) {
@@ -14577,20 +14577,20 @@ var PiecewiseVisualMapView = (
 );
 var PiecewiseView_default = PiecewiseVisualMapView;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/installVisualMapPiecewise.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/installVisualMapPiecewise.js
 function install27(registers) {
   registers.registerComponentModel(PiecewiseModel_default);
   registers.registerComponentView(PiecewiseView_default);
   installCommon2(registers);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/visualMap/install.js
 function install28(registers) {
   use(install26);
   use(install27);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/visual/aria.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/visual/aria.js
 var DEFAULT_OPTION = {
   label: {
     enabled: true
@@ -14774,7 +14774,7 @@ function ariaVisual(ecModel, api) {
   }
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/aria/preprocessor.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/aria/preprocessor.js
 function ariaPreprocessor(option) {
   if (!option || !option.aria) {
     return;
@@ -14791,13 +14791,13 @@ function ariaPreprocessor(option) {
   });
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/aria/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/aria/install.js
 function install29(registers) {
   registers.registerPreprocessor(ariaPreprocessor);
   registers.registerVisual(registers.PRIORITY.VISUAL.ARIA, ariaVisual);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/util/conditionalExpression.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/util/conditionalExpression.js
 var RELATIONAL_EXPRESSION_OP_ALIAS_MAP = {
   value: "eq",
   // PENDING: not good for literal semantic?
@@ -15029,7 +15029,7 @@ function parseConditionalExpression(exprOption, getters) {
   return new ConditionalExpressionParsed(exprOption, getters);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/transform/filterTransform.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/transform/filterTransform.js
 var filterTransform = {
   type: "echarts:filter",
   // PENDING: enhance to filter by index rather than create new data
@@ -15077,7 +15077,7 @@ var filterTransform = {
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/transform/sortTransform.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/transform/sortTransform.js
 var sampleLog = "";
 if (true) {
   sampleLog = ["Valid config is like:", '{ dimension: "age", order: "asc" }', 'or [{ dimension: "age", order: "asc"], { dimension: "date", order: "desc" }]'].join(" ");
@@ -15180,13 +15180,13 @@ var sortTransform = {
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/transform/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/transform/install.js
 function install30(registers) {
   registers.registerTransform(filterTransform);
   registers.registerTransform(sortTransform);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/echarts/lib/component/dataset/install.js
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/echarts/lib/component/dataset/install.js
 var DatasetModel = (
   /** @class */
   function(_super) {

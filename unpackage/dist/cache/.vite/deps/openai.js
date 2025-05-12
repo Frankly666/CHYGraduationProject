@@ -1,6 +1,6 @@
 import "./chunk-7U33LM2Z.js";
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/internal/qs/formats.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/internal/qs/formats.mjs
 var default_format = "RFC3986";
 var formatters = {
   RFC1738: (v) => String(v).replace(/%20/g, "+"),
@@ -8,7 +8,7 @@ var formatters = {
 };
 var RFC1738 = "RFC1738";
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/internal/qs/utils.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/internal/qs/utils.mjs
 var is_array = Array.isArray;
 var hex_table = (() => {
   const array = [];
@@ -87,7 +87,7 @@ function maybe_map(val, fn) {
   return fn(val);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/internal/qs/stringify.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/internal/qs/stringify.mjs
 var has = Object.prototype.hasOwnProperty;
 var array_prefix_generators = {
   brackets(prefix) {
@@ -368,10 +368,10 @@ function stringify(object, opts = {}) {
   return joined.length > 0 ? prefix + joined : "";
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/version.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/version.mjs
 var VERSION = "4.91.1";
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/_shims/registry.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/_shims/registry.mjs
 var auto = false;
 var kind = void 0;
 var fetch2 = void 0;
@@ -409,7 +409,7 @@ function setShims(shims, options = { auto: false }) {
   isFsReadStream = shims.isFsReadStream;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/_shims/MultipartBody.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/_shims/MultipartBody.mjs
 var MultipartBody = class {
   constructor(body) {
     this.body = body;
@@ -419,7 +419,7 @@ var MultipartBody = class {
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/_shims/web-runtime.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/_shims/web-runtime.mjs
 function getRuntime({ manuallyImported } = {}) {
   const recommendation = manuallyImported ? `You may need to use polyfills` : `Add one of these imports before your first \`import … from 'openai'\`:
 - \`import 'openai/shims/node'\` (if you're running on Node)
@@ -484,14 +484,14 @@ function getRuntime({ manuallyImported } = {}) {
   };
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/_shims/index.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/_shims/index.mjs
 var init = () => {
   if (!kind)
     setShims(getRuntime(), { auto: true });
 };
 init();
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/error.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/error.mjs
 var OpenAIError = class extends Error {
 };
 var APIError = class _APIError extends OpenAIError {
@@ -595,7 +595,7 @@ var ContentFilterFinishReasonError = class extends OpenAIError {
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/internal/decoders/line.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/internal/decoders/line.mjs
 var __classPrivateFieldSet = function(receiver, state, value, kind2, f) {
   if (kind2 === "m")
     throw new TypeError("Private method is not writable");
@@ -712,7 +712,7 @@ function findDoubleNewlineIndex(buffer) {
   return -1;
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/internal/stream-utils.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/internal/stream-utils.mjs
 function ReadableStreamToAsyncIterable(stream) {
   if (stream[Symbol.asyncIterator])
     return stream;
@@ -741,7 +741,7 @@ function ReadableStreamToAsyncIterable(stream) {
   };
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/streaming.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/streaming.mjs
 var Stream = class _Stream {
   constructor(iterator, controller) {
     this.iterator = iterator;
@@ -994,7 +994,7 @@ function partition(str2, delimiter) {
   return [str2, "", ""];
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/uploads.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/uploads.mjs
 var isResponseLike = (value) => value != null && typeof value === "object" && typeof value.url === "string" && typeof value.blob === "function";
 var isFileLike = (value) => value != null && typeof value === "object" && typeof value.name === "string" && typeof value.lastModified === "number" && isBlobLike(value);
 var isBlobLike = (value) => value != null && typeof value === "object" && typeof value.size === "number" && typeof value.type === "string" && typeof value.text === "function" && typeof value.slice === "function" && typeof value.arrayBuffer === "function";
@@ -1087,7 +1087,7 @@ var addFormValue = async (form, key, value) => {
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/core.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/core.mjs
 var __classPrivateFieldSet2 = function(receiver, state, value, kind2, f) {
   if (kind2 === "m")
     throw new TypeError("Private method is not writable");
@@ -1869,7 +1869,7 @@ function isObj(obj) {
   return obj != null && typeof obj === "object" && !Array.isArray(obj);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/pagination.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/pagination.mjs
 var Page = class extends AbstractPage {
   constructor(client, response, body, options) {
     super(client, response, body, options);
@@ -1932,14 +1932,14 @@ var CursorPage = class extends AbstractPage {
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resource.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resource.mjs
 var APIResource = class {
   constructor(client) {
     this._client = client;
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/chat/completions/messages.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/chat/completions/messages.mjs
 var Messages = class extends APIResource {
   list(completionId, query = {}, options) {
     if (isRequestOptions(query)) {
@@ -1949,7 +1949,7 @@ var Messages = class extends APIResource {
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/chat/completions/completions.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/chat/completions/completions.mjs
 var Completions = class extends APIResource {
   constructor() {
     super(...arguments);
@@ -1994,7 +1994,7 @@ var ChatCompletionStoreMessagesPage = class extends CursorPage {
 Completions.ChatCompletionsPage = ChatCompletionsPage;
 Completions.Messages = Messages;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/chat/chat.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/chat/chat.mjs
 var Chat = class extends APIResource {
   constructor() {
     super(...arguments);
@@ -2004,7 +2004,7 @@ var Chat = class extends APIResource {
 Chat.Completions = Completions;
 Chat.ChatCompletionsPage = ChatCompletionsPage;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/audio/speech.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/audio/speech.mjs
 var Speech = class extends APIResource {
   /**
    * Generates audio from the input text.
@@ -2019,7 +2019,7 @@ var Speech = class extends APIResource {
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/audio/transcriptions.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/audio/transcriptions.mjs
 var Transcriptions = class extends APIResource {
   create(body, options) {
     return this._client.post("/audio/transcriptions", multipartFormRequestOptions({
@@ -2031,14 +2031,14 @@ var Transcriptions = class extends APIResource {
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/audio/translations.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/audio/translations.mjs
 var Translations = class extends APIResource {
   create(body, options) {
     return this._client.post("/audio/translations", multipartFormRequestOptions({ body, ...options, __metadata: { model: body.model } }));
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/audio/audio.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/audio/audio.mjs
 var Audio = class extends APIResource {
   constructor() {
     super(...arguments);
@@ -2051,7 +2051,7 @@ Audio.Transcriptions = Transcriptions;
 Audio.Translations = Translations;
 Audio.Speech = Speech;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/batches.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/batches.mjs
 var Batches = class extends APIResource {
   /**
    * Creates and executes a batch from an uploaded file of requests
@@ -2084,7 +2084,7 @@ var BatchesPage = class extends CursorPage {
 };
 Batches.BatchesPage = BatchesPage;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/beta/assistants.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/beta/assistants.mjs
 var Assistants = class extends APIResource {
   /**
    * Create an assistant with a model and instructions.
@@ -2139,12 +2139,12 @@ var AssistantsPage = class extends CursorPage {
 };
 Assistants.AssistantsPage = AssistantsPage;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/lib/RunnableFunction.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/lib/RunnableFunction.mjs
 function isRunnableFunctionWithParse(fn) {
   return typeof fn.parse === "function";
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/lib/chatCompletionUtils.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/lib/chatCompletionUtils.mjs
 var isAssistantMessage = (message) => {
   return (message == null ? void 0 : message.role) === "assistant";
 };
@@ -2155,7 +2155,7 @@ var isToolMessage = (message) => {
   return (message == null ? void 0 : message.role) === "tool";
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/lib/EventStream.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/lib/EventStream.mjs
 var __classPrivateFieldSet3 = function(receiver, state, value, kind2, f) {
   if (kind2 === "m")
     throw new TypeError("Private method is not writable");
@@ -2360,7 +2360,7 @@ _EventStream_connectedPromise = /* @__PURE__ */ new WeakMap(), _EventStream_reso
   return this._emit("error", new OpenAIError(String(error)));
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/lib/parser.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/lib/parser.mjs
 function isAutoParsableResponseFormat(response_format) {
   return (response_format == null ? void 0 : response_format["$brand"]) === "auto-parseable-response-format";
 }
@@ -2464,7 +2464,7 @@ function validateInputTools(tools) {
   }
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/lib/AbstractChatCompletionRunner.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/lib/AbstractChatCompletionRunner.mjs
 var __classPrivateFieldGet4 = function(receiver, state, kind2, f) {
   if (kind2 === "a" && !f)
     throw new TypeError("Private accessor was defined without a getter");
@@ -2819,7 +2819,7 @@ _AbstractChatCompletionRunner_instances = /* @__PURE__ */ new WeakSet(), _Abstra
   return typeof rawContent === "string" ? rawContent : rawContent === void 0 ? "undefined" : JSON.stringify(rawContent);
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/lib/ChatCompletionRunner.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/lib/ChatCompletionRunner.mjs
 var ChatCompletionRunner = class _ChatCompletionRunner extends AbstractChatCompletionRunner {
   /** @deprecated - please use `runTools` instead. */
   static runFunctions(client, params, options) {
@@ -2848,7 +2848,7 @@ var ChatCompletionRunner = class _ChatCompletionRunner extends AbstractChatCompl
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/_vendor/partial-json-parser/parser.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/_vendor/partial-json-parser/parser.mjs
 var STR = 1;
 var NUM = 2;
 var ARR = 4;
@@ -3060,7 +3060,7 @@ var _parseJSON = (jsonString, allow) => {
 };
 var partialParse = (input) => parseJSON(input, Allow.ALL ^ Allow.NUM);
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/lib/ChatCompletionStream.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/lib/ChatCompletionStream.mjs
 var __classPrivateFieldSet4 = function(receiver, state, value, kind2, f) {
   if (kind2 === "m")
     throw new TypeError("Private method is not writable");
@@ -3562,7 +3562,7 @@ function assertIsEmpty(obj) {
 function assertNever(_x) {
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/lib/ChatCompletionStreamingRunner.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/lib/ChatCompletionStreamingRunner.mjs
 var ChatCompletionStreamingRunner = class _ChatCompletionStreamingRunner extends ChatCompletionStream {
   static fromReadableStream(stream) {
     const runner = new _ChatCompletionStreamingRunner(null);
@@ -3593,7 +3593,7 @@ var ChatCompletionStreamingRunner = class _ChatCompletionStreamingRunner extends
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/beta/chat/completions.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/beta/chat/completions.mjs
 var Completions2 = class extends APIResource {
   parse(body, options) {
     validateInputTools(body.tools);
@@ -3625,7 +3625,7 @@ var Completions2 = class extends APIResource {
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/beta/chat/chat.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/beta/chat/chat.mjs
 var Chat2 = class extends APIResource {
   constructor() {
     super(...arguments);
@@ -3636,7 +3636,7 @@ var Chat2 = class extends APIResource {
   Chat3.Completions = Completions2;
 })(Chat2 || (Chat2 = {}));
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/beta/realtime/sessions.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/beta/realtime/sessions.mjs
 var Sessions = class extends APIResource {
   /**
    * Create an ephemeral API token for use in client-side applications with the
@@ -3656,7 +3656,7 @@ var Sessions = class extends APIResource {
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/beta/realtime/transcription-sessions.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/beta/realtime/transcription-sessions.mjs
 var TranscriptionSessions = class extends APIResource {
   /**
    * Create an ephemeral API token for use in client-side applications with the
@@ -3676,7 +3676,7 @@ var TranscriptionSessions = class extends APIResource {
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/beta/realtime/realtime.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/beta/realtime/realtime.mjs
 var Realtime = class extends APIResource {
   constructor() {
     super(...arguments);
@@ -3687,7 +3687,7 @@ var Realtime = class extends APIResource {
 Realtime.Sessions = Sessions;
 Realtime.TranscriptionSessions = TranscriptionSessions;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/lib/AssistantStream.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/lib/AssistantStream.mjs
 var __classPrivateFieldGet6 = function(receiver, state, kind2, f) {
   if (kind2 === "a" && !f)
     throw new TypeError("Private accessor was defined without a getter");
@@ -4244,7 +4244,7 @@ _AssistantStream_addEvent = function _AssistantStream_addEvent2(event) {
 function assertNever2(_x) {
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/beta/threads/messages.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/beta/threads/messages.mjs
 var Messages2 = class extends APIResource {
   /**
    * Create a message.
@@ -4299,7 +4299,7 @@ var MessagesPage = class extends CursorPage {
 };
 Messages2.MessagesPage = MessagesPage;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/beta/threads/runs/steps.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/beta/threads/runs/steps.mjs
 var Steps = class extends APIResource {
   retrieve(threadId, runId, stepId, query = {}, options) {
     if (isRequestOptions(query)) {
@@ -4326,7 +4326,7 @@ var RunStepsPage = class extends CursorPage {
 };
 Steps.RunStepsPage = RunStepsPage;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/beta/threads/runs/runs.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/beta/threads/runs/runs.mjs
 var Runs = class extends APIResource {
   constructor() {
     super(...arguments);
@@ -4478,7 +4478,7 @@ Runs.RunsPage = RunsPage;
 Runs.Steps = Steps;
 Runs.RunStepsPage = RunStepsPage;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/beta/threads/threads.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/beta/threads/threads.mjs
 var Threads = class extends APIResource {
   constructor() {
     super(...arguments);
@@ -4552,7 +4552,7 @@ Threads.RunsPage = RunsPage;
 Threads.Messages = Messages2;
 Threads.MessagesPage = MessagesPage;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/beta/beta.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/beta/beta.mjs
 var Beta = class extends APIResource {
   constructor() {
     super(...arguments);
@@ -4567,14 +4567,14 @@ Beta.Assistants = Assistants;
 Beta.AssistantsPage = AssistantsPage;
 Beta.Threads = Threads;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/completions.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/completions.mjs
 var Completions3 = class extends APIResource {
   create(body, options) {
     return this._client.post("/completions", { body, ...options, stream: body.stream ?? false });
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/embeddings.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/embeddings.mjs
 var Embeddings = class extends APIResource {
   /**
    * Creates an embedding vector representing the input text.
@@ -4608,7 +4608,7 @@ var Embeddings = class extends APIResource {
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/files.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/files.mjs
 var Files = class extends APIResource {
   /**
    * Upload a file that can be used across various endpoints. Individual files can be
@@ -4695,7 +4695,7 @@ var FileObjectsPage = class extends CursorPage {
 };
 Files.FileObjectsPage = FileObjectsPage;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/fine-tuning/jobs/checkpoints.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/fine-tuning/jobs/checkpoints.mjs
 var Checkpoints = class extends APIResource {
   list(fineTuningJobId, query = {}, options) {
     if (isRequestOptions(query)) {
@@ -4708,7 +4708,7 @@ var FineTuningJobCheckpointsPage = class extends CursorPage {
 };
 Checkpoints.FineTuningJobCheckpointsPage = FineTuningJobCheckpointsPage;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/fine-tuning/jobs/jobs.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/fine-tuning/jobs/jobs.mjs
 var Jobs = class extends APIResource {
   constructor() {
     super(...arguments);
@@ -4765,7 +4765,7 @@ Jobs.FineTuningJobEventsPage = FineTuningJobEventsPage;
 Jobs.Checkpoints = Checkpoints;
 Jobs.FineTuningJobCheckpointsPage = FineTuningJobCheckpointsPage;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/fine-tuning/fine-tuning.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/fine-tuning/fine-tuning.mjs
 var FineTuning = class extends APIResource {
   constructor() {
     super(...arguments);
@@ -4776,7 +4776,7 @@ FineTuning.Jobs = Jobs;
 FineTuning.FineTuningJobsPage = FineTuningJobsPage;
 FineTuning.FineTuningJobEventsPage = FineTuningJobEventsPage;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/images.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/images.mjs
 var Images = class extends APIResource {
   /**
    * Creates a variation of a given image.
@@ -4798,7 +4798,7 @@ var Images = class extends APIResource {
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/models.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/models.mjs
 var Models = class extends APIResource {
   /**
    * Retrieves a model instance, providing basic information about the model such as
@@ -4826,7 +4826,7 @@ var ModelsPage = class extends Page {
 };
 Models.ModelsPage = ModelsPage;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/moderations.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/moderations.mjs
 var Moderations = class extends APIResource {
   /**
    * Classifies if text and/or image inputs are potentially harmful. Learn more in
@@ -4837,7 +4837,7 @@ var Moderations = class extends APIResource {
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/lib/ResponsesParser.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/lib/ResponsesParser.mjs
 function maybeParseResponse(response, params) {
   if (!params || !hasAutoParseableInput2(params)) {
     return {
@@ -4960,7 +4960,7 @@ function addOutputText(rsp) {
   rsp.output_text = texts.join("");
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/responses/input-items.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/responses/input-items.mjs
 var InputItems = class extends APIResource {
   list(responseId, query = {}, options) {
     if (isRequestOptions(query)) {
@@ -4973,7 +4973,7 @@ var InputItems = class extends APIResource {
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/lib/responses/ResponseStream.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/lib/responses/ResponseStream.mjs
 var __classPrivateFieldSet6 = function(receiver, state, value, kind2, f) {
   if (kind2 === "m")
     throw new TypeError("Private method is not writable");
@@ -5216,7 +5216,7 @@ function finalizeResponse(snapshot, params) {
   return maybeParseResponse(snapshot, params);
 }
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/responses/responses.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/responses/responses.mjs
 var Responses = class extends APIResource {
   constructor() {
     super(...arguments);
@@ -5259,7 +5259,7 @@ var ResponseItemsPage = class extends CursorPage {
 };
 Responses.InputItems = InputItems;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/uploads/parts.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/uploads/parts.mjs
 var Parts = class extends APIResource {
   /**
    * Adds a
@@ -5279,7 +5279,7 @@ var Parts = class extends APIResource {
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/uploads/uploads.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/uploads/uploads.mjs
 var Uploads = class extends APIResource {
   constructor() {
     super(...arguments);
@@ -5336,7 +5336,7 @@ var Uploads = class extends APIResource {
 };
 Uploads.Parts = Parts;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/lib/Util.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/lib/Util.mjs
 var allSettledWithThrow = async (promises) => {
   const results = await Promise.allSettled(promises);
   const rejected = results.filter((result) => result.status === "rejected");
@@ -5355,7 +5355,7 @@ var allSettledWithThrow = async (promises) => {
   return values;
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/vector-stores/files.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/vector-stores/files.mjs
 var Files2 = class extends APIResource {
   /**
    * Create a vector store file by attaching a
@@ -5487,7 +5487,7 @@ var FileContentResponsesPage = class extends Page {
 Files2.VectorStoreFilesPage = VectorStoreFilesPage;
 Files2.FileContentResponsesPage = FileContentResponsesPage;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/vector-stores/file-batches.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/vector-stores/file-batches.mjs
 var FileBatches = class extends APIResource {
   /**
    * Create a vector store file batch.
@@ -5598,7 +5598,7 @@ var FileBatches = class extends APIResource {
   }
 };
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/resources/vector-stores/vector-stores.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/resources/vector-stores/vector-stores.mjs
 var VectorStores = class extends APIResource {
   constructor() {
     super(...arguments);
@@ -5677,7 +5677,7 @@ VectorStores.VectorStoreFilesPage = VectorStoreFilesPage;
 VectorStores.FileContentResponsesPage = FileContentResponsesPage;
 VectorStores.FileBatches = FileBatches;
 
-// ../../../../HBuilderProjects/CHYGraduationProject/node_modules/openai/index.mjs
+// ../../../../../../Users/franklynxu/myProject/CHYGraduationProject/node_modules/openai/index.mjs
 var _a;
 var OpenAI = class extends APIClient {
   /**
