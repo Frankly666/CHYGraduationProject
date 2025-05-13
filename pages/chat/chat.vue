@@ -72,34 +72,13 @@
 
       <!-- 消息区域 -->
       <scroll-view class="message-list" scroll-y :scroll-top="scrollTop">
-        <view
+        <ChatMessageItem
           v-for="(msg, index) in messageList"
-          :key="index"
-          class="message"
-          :class="msg.role"
-        >
-          <image
-            class="avatar"
-            :src="msg.role === 'user' ? userAvatar : aiAvatar"
-          />
-          <view class="bubble">
-            <view class="role-tag" v-if="msg.role === 'user'">问</view>
-            <view class="role-tag answer" v-else>答</view>
-            <text v-if="msg.thinking" class="typing">
-              <text class="dot">●</text>
-              <text class="dot">●</text>
-              <text class="dot">●</text>
-            </text>
-            <rich-text v-else :nodes="renderMarkdown(msg.content)" class="markdown-content"></rich-text>
-            <view v-if="msg.files" class="files">
-              <view v-for="(file, i) in msg.files" :key="i" class="file">
-                <text class="icon">📎</text>
-                <text class="name">{{ file.name }}</text>
-              </view>
-            </view>
-            <text class="time">{{ formatTime(msg.time) }}</text>
-          </view>
-        </view>
+          :key="msg.time + '-' + index" 
+          :message="msg"
+          @copy="handleCopyMessage"
+          @regenerate="handleRegenerateMessage"
+        />
       </scroll-view>
 
       <!-- 分析结果弹窗 -->
@@ -174,6 +153,7 @@ import { uploadFile, getFileContent, chatWithFile } from '@/service/file.js';
 import { checkFileForKnowledgeGraph, generateKnowledgeGraph } from '@/service/knowledge-graph.js';
 import { generateTitle } from '@/service/title-service.js';
 import KnowledgeGraph from '@/components/KnowledgeGraph.vue';
+import ChatMessageItem from '@/components/ChatMessageItem.vue'; // 新增：导入ChatMessageItem组件
 import { getUserHistory, saveHistory, updateHistory, deleteHistory, } from '@/controls/history.js';
 
 // 用户登录状态
@@ -284,6 +264,16 @@ const saveChatHistory = async () => {
     console.log('开始保存聊天历史...');
     if (!currentSession.value || !currentSession.value.messages || currentSession.value.messages.length === 0) {
       console.log('没有消息需要保存');
+      return;
+    }
+    
+    // 检查是否存在网络错误的对话
+    const lastMessage = currentSession.value.messages[currentSession.value.messages.length - 1];
+    if (lastMessage && lastMessage.role === 'assistant' && 
+        (lastMessage.content.includes('网络连接错误') || 
+         lastMessage.content.includes('API错误') || 
+         lastMessage.content.includes('出现错误'))) {
+      console.log('检测到网络错误对话，不保存到历史记录');
       return;
     }
 
@@ -601,9 +591,71 @@ const canSend = computed(() => {
 
 // 使用从title-service.js导入的generateTitle函数
 
+// 处理复制消息事件
+const handleCopyMessage = (message) => {
+  // 子组件已处理复制逻辑和提示，父组件可选择性记录或执行其他操作
+  console.log('Message copied in parent:', message.content);
+  // uni.showToast({ title: '父组件已收到复制事件', icon: 'none' }); // 可选的父组件提示
+};
+
+// 处理重新生成消息事件
+const handleRegenerateMessage = async (messageToRegenerate) => {
+  console.log('Regenerate message requested in parent:', messageToRegenerate);
+  if (messageToRegenerate.role === 'assistant') {
+    // 找到这条AI消息在当前会话消息列表中的实际索引
+    // 我们需要比较内容和时间戳来确保是同一条消息，因为简单对象比较可能失败
+    const messageIndexInSession = currentSession.value.messages.findIndex(
+      m => m.time === messageToRegenerate.time && m.role === 'assistant' && m.content === messageToRegenerate.content
+    );
+
+    if (messageIndexInSession > 0) {
+      // 获取这条AI消息之前的用户消息作为上下文
+      const userMessageForContext = currentSession.value.messages[messageIndexInSession - 1];
+      
+      if (userMessageForContext && userMessageForContext.role === 'user') {
+        // 从当前会话的消息列表中移除旧的AI回复及其之后的所有消息
+        currentSession.value.messages.splice(messageIndexInSession);
+        
+        // 更新 messageList 以反映UI。直接基于修改后的 currentSession.value.messages 重建。
+        messageList.value = [...currentSession.value.messages];
+        
+        // 确保滚动到底部，以便用户能看到新的输入过程
+        scrollToBottom();
+
+        // 使用上一条用户消息的内容重新发送请求
+        await sendMessage(userMessageForContext.content, true); // true 表示是重新生成
+      } else {
+        uni.showToast({
+          title: '无法找到有效的用户提问来重新生成',
+          icon: 'none'
+        });
+      }
+    } else {
+      uni.showToast({
+        title: '无法重新生成此消息（可能为首条消息或上下文不匹配）',
+        icon: 'none'
+      });
+    }
+  } else {
+    uni.showToast({
+      title: '只能重新生成AI的回复',
+      icon: 'none'
+    });
+  }
+};
+
 // 发送消息
-const sendMessage = async () => {
-  if (!inputMessage.value.trim() || !canSend.value) return;
+const sendMessage = async (contentToResend = null, isRegenerating = false) => {
+  const currentInput = inputMessage.value.trim();
+  const messageContent = isRegenerating ? contentToResend : currentInput;
+
+  if (!messageContent && !isFileChat && !isRegenerating) {
+    // 如果不是重新生成，并且输入为空（且不是文件聊天），则不发送
+    return;
+  }
+  
+  // 即使是重新生成，也检查canSend，但要排除inputMessage.value.trim()的判断，因为此时依赖contentToResend
+  if (!isRegenerating && !canSend.value) return;
   
   // 检查是否正在生成知识图谱，如果是，提示用户等待并阻止发送
   if (isAnalyzing.value) {
@@ -615,15 +667,23 @@ const sendMessage = async () => {
     return;
   }
   
-  const userMessage = inputMessage.value.trim();
-  inputMessage.value = '';
+  // 如果不是重新生成，则添加用户消息到列表并清空输入框
+  if (!isRegenerating) {
+    currentSession.value.messages.push({
+      role: 'user',
+      content: messageContent, // 使用 messageContent
+      time: Date.now()
+    });
+    inputMessage.value = ''; // 清空输入框
+  } else {
+    // 如果是重新生成，我们不再次添加用户消息，因为它是基于历史消息的
+    // 但我们可能仍想清空输入框，以防用户在重新生成时输入了什么
+    inputMessage.value = ''; 
+  }
   
-  // 添加用户消息
-  currentSession.value.messages.push({
-    role: 'user',
-    content: userMessage,
-    time: Date.now()
-  });
+  // 更新UI显示的消息列表，无论是否重新生成，都需要更新以反映思考状态等
+  messageList.value = [...currentSession.value.messages]; 
+  const userMessageForRequest = messageContent; // 用于发送请求的内容
   
   // 如果是第一条消息，先生成标题
   if (!currentSession.value.id && isLoggedIn.value) {
@@ -657,11 +717,11 @@ const sendMessage = async () => {
     }
   }
   
-  // 保存用户消息到数据库
-  if (currentSession.value.id) {
+  // 如果不是重新生成，并且会话存在，则保存用户消息到数据库
+  if (!isRegenerating && currentSession.value.id) {
     await createMessage(
       currentSession.value.id,
-      userMessage,
+      userMessageForRequest, // 使用 userMessageForRequest
       'user'
     );
   }
@@ -672,7 +732,7 @@ const sendMessage = async () => {
     role: 'assistant',
     content: '',
     thinking: true,
-    time: Date.now()
+    time: Date.now() // AI消息的时间戳应该在它实际开始生成时或完成后更新，这里是占位符的初始时间
   });
   
   // 更新消息列表以显示思考状态
@@ -682,7 +742,7 @@ const sendMessage = async () => {
     let response;
     if (isFileChat.value && currentFile.value) {
       console.log('开始文件问答:', {
-        question: userMessage,
+        question: userMessageForRequest, // 使用 userMessageForRequest
         fileContent: currentFile.value.content
       });
       
@@ -710,7 +770,7 @@ const sendMessage = async () => {
       // 调用文件问答接口，传入进度回调函数和历史消息
       response = await chatWithFile(
         currentFile.value.content, 
-        userMessage,
+        userMessageForRequest, // 使用 userMessageForRequest
         (chunk, fullResponse) => {
           // 更新助手消息内容
           currentSession.value.messages[assistantMessageIndex] = {
@@ -731,8 +791,8 @@ const sendMessage = async () => {
       
       console.log('文件问答完成');
       
-      // 保存助手消息到数据库
-      if (currentSession.value.id) {
+      // 保存助手消息到数据库，只有在没有错误的情况下才保存
+      if (currentSession.value.id && !currentSession.value.messages[assistantMessageIndex].isError) {
         await createMessage(
           currentSession.value.id,
           response,
@@ -741,7 +801,7 @@ const sendMessage = async () => {
       }
     } else {
       // 普通对话
-      console.log('开始普通对话:', userMessage);
+      console.log('开始普通对话:', userMessageForRequest); // 使用 userMessageForRequest
       
       // 准备历史消息，过滤掉空内容和系统消息
       const historyMessages = currentSession.value.messages
@@ -759,7 +819,7 @@ const sendMessage = async () => {
       console.log('历史消息:', historyMessages);
       
       // 使用 streamChat 替代 chatWithAI，传入历史消息
-      response = await streamChat(userMessage, historyMessages, (data) => {
+      response = await streamChat(userMessageForRequest, historyMessages, (data) => { // 使用 userMessageForRequest
         if (data.type === 'chunk') {
           // 更新助手消息内容
           currentSession.value.messages[assistantMessageIndex] = {
@@ -775,12 +835,24 @@ const sendMessage = async () => {
           // 滚动到底部 - 每次内容更新都进行滚动
           scrollToBottom();
         } else if (data.type === 'error') {
+          // 更新助手消息为错误信息
+          currentSession.value.messages[assistantMessageIndex] = {
+            role: 'assistant',
+            content: data.error || '网络连接错误，请检查网络连接',
+            thinking: false,
+            isError: true, // 标记为错误消息
+            time: Date.now()
+          };
+          
+          // 更新消息列表
+          messageList.value = [...currentSession.value.messages];
+          
           throw new Error(data.error);
         }
       });
       
-      // 保存助手消息到数据库
-      if (currentSession.value.id) {
+      // 保存助手消息到数据库，只有在没有错误的情况下才保存
+      if (currentSession.value.id && !currentSession.value.messages[assistantMessageIndex].isError) {
         await createMessage(
           currentSession.value.id,
           response,
