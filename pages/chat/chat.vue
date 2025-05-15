@@ -200,6 +200,8 @@ const checkLoginStatus = () => {
   }
 };
 
+
+
 // 加载用户历史记录
 const loadUserHistory = async () => {
   if (!userId.value) {
@@ -257,6 +259,59 @@ const loadUserHistory = async () => {
     });
   }
 };
+
+// 删除会话记录
+const deleteSessionRecord = async (session) => {
+  try {
+    if (isDeleting.value) return;
+    
+    isDeleting.value = true;
+    
+    // 确认删除
+    uni.showModal({
+      title: '确认删除',
+      content: '确定要删除这个对话吗？此操作不可恢复。',
+      success: async (res) => {
+        if (res.confirm) {
+          try {
+            // 删除会话及其消息
+            await deleteSession(session.id);
+            await deleteMessages(session.id);
+            
+            // 从列表中移除
+            historyList.value = historyList.value.filter(item => item.id !== session.id);
+            
+            // 如果删除的是当前会话，创建新会话
+            if (session.id === currentSession.value.id) {
+              createNewChat();
+            }
+            
+            uni.showToast({
+              title: '删除成功',
+              icon: 'success'
+            });
+          } catch (error) {
+            console.error('删除会话失败:', error);
+            uni.showToast({
+              title: error.message || '删除失败',
+              icon: 'none'
+            });
+          }
+        }
+        isDeleting.value = false;
+      }
+    });
+  } catch (error) {
+    console.error('删除会话操作失败:', error);
+    isDeleting.value = false;
+    uni.showToast({
+      title: error.message || '操作失败',
+      icon: 'none'
+    });
+  }
+};
+
+
 
 // 保存聊天历史的函数，添加历史记录更新
 const saveChatHistory = async () => {
@@ -331,6 +386,8 @@ const saveChatHistory = async () => {
     });
   }
 };
+
+
 
 // 跳转到登录页面
 const goToLogin = () => {
@@ -511,6 +568,8 @@ const renderMarkdown = (content) => {
   }
 };
 
+
+
 // 状态管理
 const messageList = ref([]);
 const inputMessage = ref('');
@@ -529,6 +588,7 @@ const files = ref([]);
 const fileInput = ref(null);
 const fileId = ref(null);
 const currentFile = ref(null);
+const isDeleting = ref(false); // 添加删除状态标志
 
 // 知识图谱相关状态
 const showKnowledgeGraph = ref(false);
@@ -558,6 +618,8 @@ const toggleKnowledgeGraph = () => {
   }
 };
 
+
+
 // 分析结果弹窗引用
 const analysisPopup = ref(null);
 
@@ -568,12 +630,16 @@ const showAnalysisPopup = () => {
   }
 };
 
+
+
 // 关闭分析结果弹窗
 const closeAnalysisPopup = () => {
   if (analysisPopup.value) {
     analysisPopup.value.close();
   }
 };
+
+
 
 // 新增状态常量
 const FILE_STATUS = {
@@ -644,6 +710,8 @@ const handleRegenerateMessage = async (messageToRegenerate) => {
   }
 };
 
+
+
 // 发送消息
 const sendMessage = async (contentToResend = null, isRegenerating = false) => {
   const currentInput = inputMessage.value.trim();
@@ -690,7 +758,7 @@ const sendMessage = async (contentToResend = null, isRegenerating = false) => {
     try {
       console.log('首次发送消息，生成标题并创建新会话');
       // 生成标题
-      const generatedTitle = await generateTitle(userMessage);
+      const generatedTitle = await generateTitle(userMessageForRequest);
       console.log('生成的标题:', generatedTitle);
       currentSession.value.title = generatedTitle;
       
@@ -867,10 +935,10 @@ const sendMessage = async (contentToResend = null, isRegenerating = false) => {
       const lastMessage = currentSession.value.messages[currentSession.value.messages.length - 1];
       
       // 如果是第一条用户消息，使用它来生成标题
-      if (currentSession.value.messages.length <= 2 && userMessage.trim() !== '') {
+      if (currentSession.value.messages.length <= 2 && userMessageForRequest.trim() !== '') {
         try {
           // 使用title-service生成标题
-          const generatedTitle = await generateTitle(userMessage);
+          const generatedTitle = await generateTitle(userMessageForRequest);
           console.log('自动生成标题:', generatedTitle);
           currentSession.value.title = generatedTitle;
         } catch (error) {
@@ -1041,6 +1109,8 @@ const sendMessage = async (contentToResend = null, isRegenerating = false) => {
   }
 };
 
+
+
 // 滚动到底部
 // 处理文件上传
 const handleFileUpload = async (file) => {
@@ -1095,6 +1165,8 @@ const handleFileUpload = async (file) => {
     isAnalyzing.value = false;
   }
 };
+
+
 
 // 生成知识图谱 - 用户主动点击按钮触发
 const handleGenerateGraph = () => {
@@ -1203,6 +1275,8 @@ const handleGenerateGraph = () => {
   }
 };
 
+
+
 // 更新会话
 const updateSessionRecord = async (session) => {
   try {
@@ -1244,6 +1318,8 @@ const updateSessionRecord = async (session) => {
   }
 };
 
+
+
 // 格式化时间
 const formatTime = (timestamp) => {
   if (!timestamp) {
@@ -1269,6 +1345,8 @@ const formatTime = (timestamp) => {
   }
 };
 
+
+
 // 新增文件状态文本显示方法
 const fileStatusText = (file) => {
   switch (file.status) {
@@ -1286,6 +1364,8 @@ const fileStatusText = (file) => {
       return "未知状态";
   }
 };
+
+
 
 // 移除文件
 const removeFile = (index) => {
@@ -1324,6 +1404,8 @@ const triggerFileInput = () => {
     console.error('触发文件选择失败:', error);
   }
 };
+
+
 
 // 修改文件处理函数
 const handleFileSelected = async (file) => {
@@ -1525,6 +1607,8 @@ const handleFileSelected = async (file) => {
   }
 };
 
+
+
 // 格式化完整日期
 const formatFullDate = (timestamp) => {
   if (!timestamp) {
@@ -1553,6 +1637,8 @@ const formatFullDate = (timestamp) => {
     return '未知日期';
   }
 };
+
+
 
 // 计算属性：按日期分组的历史列表
 const groupedHistoryList = computed(() => {
@@ -1647,8 +1733,11 @@ const createNewChat = async () => {
   }
 };
 
+
+
 // 添加加载状态变量
 const isLoading = ref(false);
+// isDeleting状态已在上方定义
 
 const switchSession = async (session) => {
   try {
@@ -1918,6 +2007,8 @@ const switchSession = async (session) => {
     });
   }
 };
+
+
 </script>
 
 <style lang="less">
@@ -2793,5 +2884,36 @@ const switchSession = async (session) => {
       opacity: 0.7;
     }
   }
+}
+
+.mode-selector {
+  display: flex;
+  padding: 12px 20px;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+  gap: 16px;
+}
+
+.mode-option {
+  padding: 8px 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  border-radius: 24px;
+  font-size: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #eee;
+}
+
+.mode-option.active {
+  background-color: #05de7d;
+  color: white;
+  border-color: #05de7d;
+}
+
+.mode-option:hover:not(.active) {
+  background-color: #f5f5f5;
+  border-color: #ddd;
 }
 </style>
