@@ -1,61 +1,82 @@
 {
-  "hash": "a93bc244",
+  "hash": "58c25f0a",
   "configHash": "6de87e1c",
-  "lockfileHash": "592a1a5c",
-  "browserHash": "3d0f21a5",
+  "lockfileHash": "ae89652d",
+  "browserHash": "e5f9771c",
   "optimized": {
     "marked": {
       "src": "../../../../../node_modules/marked/lib/marked.esm.js",
       "file": "marked.js",
-      "fileHash": "62ac3345",
+      "fileHash": "0d5a0a39",
       "needsInterop": false
     },
     "echarts/core": {
       "src": "../../../../../node_modules/echarts/core.js",
       "file": "echarts_core.js",
-      "fileHash": "d8af9933",
+      "fileHash": "5d1c375d",
       "needsInterop": false
     },
     "echarts/charts": {
       "src": "../../../../../node_modules/echarts/charts.js",
       "file": "echarts_charts.js",
-      "fileHash": "776e71e7",
+      "fileHash": "d688dbc5",
       "needsInterop": false
     },
     "echarts/components": {
       "src": "../../../../../node_modules/echarts/components.js",
       "file": "echarts_components.js",
-      "fileHash": "9a6dc64a",
+      "fileHash": "5c9b873c",
       "needsInterop": false
     },
     "echarts/renderers": {
       "src": "../../../../../node_modules/echarts/renderers.js",
       "file": "echarts_renderers.js",
-      "fileHash": "c5891426",
+      "fileHash": "bcb60b4d",
       "needsInterop": false
     },
     "openai": {
       "src": "../../../../../node_modules/openai/index.mjs",
       "file": "openai.js",
-      "fileHash": "7ae356a4",
+      "fileHash": "8f87e562",
+      "needsInterop": false
+    },
+    "html2canvas": {
+      "src": "../../../../../node_modules/html2canvas/dist/html2canvas.esm.js",
+      "file": "html2canvas.js",
+      "fileHash": "0e8b64ce",
+      "needsInterop": false
+    },
+    "jspdf": {
+      "src": "../../../../../node_modules/jspdf/dist/jspdf.es.min.js",
+      "file": "jspdf.js",
+      "fileHash": "fcd2579f",
       "needsInterop": false
     }
   },
   "chunks": {
-    "chunk-S346HD5J": {
-      "file": "chunk-S346HD5J.js"
+    "purify.es-YHJFEE4W": {
+      "file": "purify__es-YHJFEE4W.js"
     },
-    "chunk-G2AIAOYN": {
-      "file": "chunk-G2AIAOYN.js"
+    "index.es-F6FMAJW2": {
+      "file": "index__es-F6FMAJW2.js"
     },
-    "chunk-SVFLJ42B": {
-      "file": "chunk-SVFLJ42B.js"
+    "chunk-24JL4MER": {
+      "file": "chunk-24JL4MER.js"
     },
-    "chunk-XYPXWI6Z": {
-      "file": "chunk-XYPXWI6Z.js"
+    "chunk-BXJ635HF": {
+      "file": "chunk-BXJ635HF.js"
     },
-    "chunk-7U33LM2Z": {
-      "file": "chunk-7U33LM2Z.js"
+    "chunk-QIV6VEKM": {
+      "file": "chunk-QIV6VEKM.js"
+    },
+    "chunk-EAYX3IOM": {
+      "file": "chunk-EAYX3IOM.js"
+    },
+    "chunk-IHS47Y26": {
+      "file": "chunk-IHS47Y26.js"
+    },
+    "chunk-UV5CTPV7": {
+      "file": "chunk-UV5CTPV7.js"
     }
   }
 }

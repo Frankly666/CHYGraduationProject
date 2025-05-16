@@ -114,17 +114,23 @@ marked.setOptions({
 
 .bubble {
   max-width: 70%;
-  padding: 6px 10px;
+  min-width: 80px;
+  padding: 4px 10px 4px 10px;
   border-radius: 10px;
   position: relative;
-  background-color: #f1f1f1; /* 默认背景色 */
+  background-color: #f1f1f1;
 }
 
 .message-item.user .bubble {
-  background-color: #409EFF; /* 用户消息背景色 */
+  background-color: #409EFF;
   color: white;
-  padding: 0px 27px; /* 用户消息气泡内边距更小 */
-  margin-top: 1px;
+  padding: 2px 10px 2px 10px;
+  margin-top: 0;
+  min-height: 24px;
+  min-width: 90px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
 }
 
 .message-item.assistant .bubble {
@@ -135,10 +141,11 @@ marked.setOptions({
 .role-tag {
   font-size: 9px;
   font-weight: bold;
-  padding: 1px 3px;
+  padding: 0 2px;
   border-radius: 3px;
   margin-bottom: 2px;
   display: inline-block;
+  background-color: inherit;
 }
 
 .message-item.user .role-tag {
@@ -154,12 +161,19 @@ marked.setOptions({
 .markdown-content {
   word-wrap: break-word;
   white-space: pre-wrap;
-  line-height: 1.3;
+  line-height: 1.25;
   font-size: 14px;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 .message-item.user .markdown-content {
   font-size: 13px;
+  text-align: left;
+  padding-left: 0;
+  line-height: 1.18;
+  margin: 0;
+  padding-bottom: 0;
 }
 
 .files {

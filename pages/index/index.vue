@@ -68,15 +68,15 @@ import { ref } from 'vue';
 			icon: '/static/homePage/atlas.png'
 		},
 		{
-			title: '方案生成',
-			desc: 'AI智能生成研究框架',
-			path: 'chat',
+			title: '研究方案',
+			desc: 'AI生成教育研究方案',
+			path: 'researchPlan',
 			icon: '/static/homePage/scheme.png'
 		},
 		{
 			title: '历史管理',
 			desc: '随时查看编辑方案',
-			path: 'chat',
+			path: 'researchPlanList',
 			icon: '/static/homePage/history.png'
 		}
 	];

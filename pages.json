@@ -30,6 +30,38 @@
 				"navigationBarTitleText" : "",
 				"navigationStyle": "custom"
 			}
+		},
+		{
+			"path" : "pages/researchPlan/researchPlan",
+			"style" : 
+			{
+				"navigationBarTitleText" : "研究方案生成",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path" : "pages/researchPlanList/researchPlanList",
+			"style" : 
+			{
+				"navigationBarTitleText" : "我的研究方案",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path" : "pages/researchPlanDetail/researchPlanDetail",
+			"style" : 
+			{
+				"navigationBarTitleText" : "研究方案详情",
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path" : "pages/researchPlanEditor/researchPlanEditor",
+			"style" : 
+			{
+				"navigationBarTitleText" : "编辑研究方案",
+				"navigationStyle": "custom"
+			}
 		}
 	],
 	"globalStyle": {
