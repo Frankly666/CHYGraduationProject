@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+    <style>
+        .mermaid {
+            font-family: 'Segoe UI';
+            background: #f8f9fa;
+        }
+        .data-flow { stroke-width:2px; }
+    </style>
+</head>
+<body>
+<div class="mermaid">
+graph TD
+    %% 颜色编码定义
+    classDef userData fill:#4e79a7,stroke:#2e557c;
+    classDef modelParam fill:#e15759,stroke:#a2353a;
+    classDef intermediate fill:#59a14f,stroke:#3a732a;
+    classDef output fill:#b07aa1,stroke:#7a4d6e;
+    classDef external fill:#ff9da7,stroke:#cc7c85;
+
+    %% 用户界面层
+    subgraph UI["用户界面层 | 多模态交互入口"]
+        direction LR
+        A[Web界面]:::userData
+        B[移动APP]:::userData
+        C[API接口]:::userData
+    end
+
+    %% 认知处理层
+    subgraph CP["认知处理层 | 意图理解引擎"]
+        D{意图识别}:::modelParam
+        E[任务分发]:::modelParam
+    end
+
+    %% 专业模块层 
+    subgraph PM["专业模块层 | 核心功能模块"]
+        F[智能对话]:::intermediate
+        G[方案生成]:::intermediate
+        H[知识推理]:::intermediate
+        I[文档解析]:::intermediate
+    end
+
+    %% 知识管理层
+    subgraph KM["知识管理层 | 数据中枢"]
+        J[(向量存储)]:::output
+        K[(关系数据库)]:::output
+        L[外部知识]:::external
+    end
+
+    %% 学习反馈层
+    subgraph LF["学习反馈层 | 持续进化"]
+        M[行为分析]:::modelParam
+        N[模型优化]:::modelParam
+        O[知识更新]:::modelParam
+    end
+
+    %% 数据流动
+    UI --"用户请求\n(原始数据)"..-> CP
+    CP --"解析指令\n(语义向量)"..-> PM
+    PM --"知识查询\n(向量化请求)"..-> KM
+    KM --"知识响应\n(结构化数据)"..-> PM
+    PM --"处理结果\n(格式化输出)"..-> CP
+    CP --"交互响应\n(最终结果)"..-> UI
+    PM --"对话日志\n(JSON格式)"..-> LF
+    LF --"优化参数\n(模型权重)"..-> CP
+    LF --"知识增量\n(RDF三元组)"..-> KM
+
+    %% 关键标注
+    click D "javascript:void(0)" _tooltip "基于BERT的意图分类模型"
+    click J "javascript:void(0)" _tooltip "FAISS向量索引"
+    click K "javascript:void(0)" _tooltip "MySQL关系数据库"
+    
+    %% 连接线样式
+    linkStyle 0,1,2,3,4,5,6,7,8,9 stroke-width:2px;
+</div>
+
+<script>
+mermaid.initialize({
+    startOnLoad: true,
+    theme: 'base',
+    themeVariables: {
+        fontSize: '14px',
+        primaryColor: '#f8f9fa',
+        edgeLabelBackground: '#ffffff'
+    },
+    flowchart: {
+        curve: 'linear',
+        nodeSpacing: 50,
+        rankSpacing: 70
+    }
+});
+</script>
+</body>
+</html>

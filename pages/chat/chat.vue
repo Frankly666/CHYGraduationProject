@@ -126,14 +126,13 @@
           class="message-input"
           v-model="inputMessage"
           placeholder="输入消息..."
-          @confirm="!isAnalyzing && sendMessage()"
+          @confirm="sendMessage()"
           ref="messageInput"
-          :disabled="isAnalyzing"
         />
         <view class="analyzing-tip" v-if="isAnalyzing">
-          <text>知识图谱生成中，请稍候...</text>
+          <text>知识图谱生成中...</text>
         </view>
-        <view class="send-button" @click="sendMessage" :class="{ 'disabled': isAnalyzing || !canSend }">
+        <view class="send-button" @click="sendMessage()" :class="{ 'disabled': !canSend }">
           <text>发送</text>
         </view>
       </view>
@@ -652,7 +651,7 @@ const FILE_STATUS = {
 
 // 计算属性
 const canSend = computed(() => {
-  return inputMessage.value.trim() && !isSending.value && !isAnalyzing.value;
+  return inputMessage.value.trim() && !isSending.value;
 });
 
 // 使用从title-service.js导入的generateTitle函数
@@ -725,15 +724,7 @@ const sendMessage = async (contentToResend = null, isRegenerating = false) => {
   // 即使是重新生成，也检查canSend，但要排除inputMessage.value.trim()的判断，因为此时依赖contentToResend
   if (!isRegenerating && !canSend.value) return;
   
-  // 检查是否正在生成知识图谱，如果是，提示用户等待并阻止发送
-  if (isAnalyzing.value) {
-    uni.showToast({
-      title: '知识图谱正在生成中，请稍候再发送消息',
-      icon: 'none',
-      duration: 3000
-    });
-    return;
-  }
+  // 不再阻止用户在生成知识图谱时发送消息
   
   // 如果不是重新生成，则添加用户消息到列表并清空输入框
   if (!isRegenerating) {
@@ -989,45 +980,34 @@ const sendMessage = async (contentToResend = null, isRegenerating = false) => {
       // 使用setTimeout将知识图谱生成放入事件循环的下一个周期，不阻塞当前操作
       setTimeout(() => {
         try {
-          // 设置分析状态为true，禁用发送按钮
+          // 设置分析状态为true
           isAnalyzing.value = true;
           
-          // 显示友好提示，告知用户知识图谱正在生成中，暂时不能发送消息
+          // 显示友好提示，告知用户知识图谱正在后台生成中，但可以继续对话
           uni.showToast({
-            title: '知识图谱正在自动生成中，暂时无法发送消息',
+            title: '切换会话后正在生成知识图谱，您可以继续对话',
             icon: 'none',
             duration: 4000
           });
           
           // 将API调用包装在Promise中，确保异步执行
-          // 再次使用setTimeout确保UI不被阻塞
           setTimeout(async () => {
             try {
               const graphResult = await generateKnowledgeGraph(currentFile.value.content);
               
-              // 获取当前会话ID
-              const currentSessionId = currentSession.value.id;
-              
-              // 保存到会话图谱映射中
-              if (currentSessionId) {
-                sessionGraphMap.value[currentSessionId] = graphResult;
-                console.log('自动生成的知识图谱已保存到会话映射中:', currentSessionId);
-              }
-              
-              // 更新当前图谱数据
+              // 存储到会话图谱映射中
+              sessionGraphMap.value[session.id] = graphResult;
               graphData.value = graphResult;
               
-              // 如果有会话ID，尝试更新数据库
-              if (currentSessionId) {
-                try {
-                  await updateSession(currentSessionId, {
-                    graphData: graphResult
-                  });
-                  console.log('自动生成的知识图谱数据已保存到会话:', currentSessionId);
-                } catch (error) {
-                  console.error('保存自动生成的知识图谱数据到会话失败:', error);
-                  // 继续执行，不影响用户体验
-                }
+              // 尝试更新数据库中的会话数据
+              try {
+                await updateSession(session.id, {
+                  graphData: graphResult
+                });
+                console.log('知识图谱数据已保存到会话:', session.id);
+              } catch (error) {
+                console.error('保存知识图谱数据到会话失败:', error);
+                // 继续执行，不影响用户体验
               }
               
               console.log('知识图谱后台生成成功');
@@ -1038,7 +1018,7 @@ const sendMessage = async (contentToResend = null, isRegenerating = false) => {
               
               // 生成成功提示
               uni.showToast({
-                title: '知识图谱生成完成，现在可以正常对话',
+                title: '知识图谱生成完成',
                 icon: 'success',
                 duration: 2000
               });
@@ -1051,14 +1031,8 @@ const sendMessage = async (contentToResend = null, isRegenerating = false) => {
                 duration: 2000
               });
             } finally {
-              // 无论成功或失败，都重置分析状态，允许用户发送消息
+              // 无论成功或失败，都重置分析状态
               isAnalyzing.value = false;
-              // 确保输入框获得焦点
-              nextTick(() => {
-                if (messageInput.value && typeof messageInput.value.focus === 'function') {
-                  messageInput.value.focus();
-                }
-              });
             }
           }, 0);
           
@@ -1177,9 +1151,9 @@ const handleGenerateGraph = () => {
     // 标记正在生成知识图谱，防止重复生成
     hasGeneratedGraph.value = true;
     
-    // 显示友好提示，告知用户知识图谱正在生成中，暂时不能发送消息
+    // 显示友好提示，告知用户知识图谱正在生成中，但可以继续发送消息
     uni.showToast({
-      title: '知识图谱生成中，暂时无法发送消息',
+      title: '知识图谱生成中，您可以继续对话',
       icon: 'none',
       duration: 4000
     });
@@ -1187,7 +1161,7 @@ const handleGenerateGraph = () => {
     // 显示模态框提供更详细的信息
     uni.showModal({
       title: '知识图谱生成中',
-      content: '知识图谱正在生成，发送按钮暂时被禁用。请等待生成完成后再发送消息。',
+      content: '知识图谱正在后台生成，您可以继续正常对话。生成完成后会通知您。',
       showCancel: false,
       confirmText: '我知道了'
     });
@@ -1235,18 +1209,11 @@ const handleGenerateGraph = () => {
             
             // 生成成功提示
             uni.showToast({
-              title: '知识图谱生成完成，现在可以正常对话',
+              title: '知识图谱生成完成',
               icon: 'success',
               duration: 2000
             });
             
-            // 显示模态框提示用户可以开始对话
-            uni.showModal({
-              title: '知识图谱生成完成',
-              content: '知识图谱已成功生成，发送按钮已解除禁用，您现在可以开始进行对话。',
-              showCancel: false,
-              confirmText: '我知道了'
-            });
           } catch (error) {
             console.error('生成知识图谱失败:', error);
             uni.showToast({
@@ -1255,12 +1222,6 @@ const handleGenerateGraph = () => {
             });
           } finally {
             isAnalyzing.value = false;
-            // 确保输入框获得焦点
-            nextTick(() => {
-              if (messageInput.value && typeof messageInput.value.focus === 'function') {
-                messageInput.value.focus();
-              }
-            });
           }
         }, 0);
         
@@ -1923,7 +1884,7 @@ const switchSession = async (session) => {
             // 设置分析状态为true，禁用发送按钮
             isAnalyzing.value = true;
             
-            // 显示友好提示，告知用户知识图谱正在生成中，暂时不能发送消息
+            // 显示友好提示，告知用户知识图谱正在后台生成中，但可以继续对话
             uni.showToast({
               title: '切换会话后正在生成知识图谱，暂时无法发送消息',
               icon: 'none',
